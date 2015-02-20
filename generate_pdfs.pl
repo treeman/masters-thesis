@@ -8,6 +8,7 @@ use Getopt::Long;
 use File::Basename;
 use File::Spec;
 use File::Copy;
+use Cwd;
 
 my $help; # Shall I show you some guidance?
 my $verbose; # Or shall I show you too much?
@@ -23,12 +24,13 @@ GetOptions(
 # Show help and exit?
 show_help() if $help;
 
-my $tmp_dir = File::Spec->join($base, ".gen");
+my $tmp_dir = Cwd::abs_path(File::Spec->join($base, ".gen"));
 mkdir $tmp_dir unless -d $tmp_dir;
 
 # keyword => [source_file, output_file]
 my %files = (
     planning => ["planning/report.tex", "planning-report.pdf"],
+    report => ["report/main.tex", "report.pdf"],
 );
 
 # Normalize paths
@@ -62,8 +64,16 @@ sub generate_pdf {
     }
     my $tmp_file = File::Spec->join($tmp_dir, "$1.pdf");
 
+    # Need to cd to directory as pdflatex cannot find packages otherwise
+    my $src_dir = dirname($src);
+    my $src_base = basename($src);
+
+    # Hacky workaround for pdflatex lack of module system
+    # Could not find another way! :)
+    my $cmd = "cd $src_dir && TEXINPUTS=.//:\$TEXINPUTS pdflatex "
+            . "-output-directory=$tmp_dir -halt-on-error $src_base";
+
     # Do command twice to force correct references
-    my $cmd = "pdflatex -output-directory=$tmp_dir -halt-on-error $src";
     # system prints to stdout and backticks captures.
     # Simple way to control output
     if ($verbose) {
