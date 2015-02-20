@@ -20,7 +20,10 @@ GetOptions(
     'v|verbose' => \$verbose,
 );
 
-my $tmp_dir = File::Spec->join($base, "tmp");
+# Show help and exit?
+show_help() if $help;
+
+my $tmp_dir = File::Spec->join($base, ".gen");
 mkdir $tmp_dir unless -d $tmp_dir;
 
 # keyword => [source_file, output_file]
@@ -35,26 +38,21 @@ for my $val (values %files) {
 }
 
 # Collect options
-my %found;
-for my $opt (@ARGV) {
-    if ($files{$opt}) {
-        $found{$opt} = 1;
-    }
-    else {
-        say "Error, unexpected option: '$opt' found!";
-        exit;
-    }
-}
+my %found = collect_options();
 
 # Did we find any options?
-my $num_options = keys %found;
-my $make_all = $num_options == 0;
+my $make_all = keys %found == 0;
 
 # Generate the pdfs
 while (my ($key, $val) = each %files) {
-    my ($src, $dst) = @$val;
-
     next unless $found{$key} || $make_all;
+
+    my ($src, $dst) = @$val;
+    generate_pdf($src, $dst);
+}
+
+sub generate_pdf {
+    my ($src, $dst) = @_;
 
     # pdflatex will generate a pdf in the same directory as $src
     # we want to find the name of that file, and move it to $dst
@@ -64,21 +62,40 @@ while (my ($key, $val) = each %files) {
     }
     my $tmp_file = File::Spec->join($tmp_dir, "$1.pdf");
 
-    # Yes I did it this way!
-    my $cmd = "pdflatex -output-directory=$tmp_dir $src";
+    # Do command twice to force correct references
+    my $cmd = "pdflatex -output-directory=$tmp_dir -halt-on-error $src";
+    # system prints to stdout and backticks captures.
+    # Simple way to control output
     if ($verbose) {
         say "$cmd";
+        system($cmd);
         system($cmd);
     }
     else {
         say "Generating $dst...";
         `$cmd`;
+        `$cmd`;
     }
-    say "move($tmp_file, $dst)" if $verbose;
+    say "move(\"$tmp_file\", \"$dst\")" if $verbose;
     move($tmp_file, $dst);
 }
 
-if ($help) {
+sub collect_options {
+    my %found;
+    for my $opt (@ARGV) {
+        if ($files{$opt}) {
+            $found{$opt} = 1;
+        }
+        else {
+            say "Error, unexpected option: '$opt' found!";
+            exit;
+        }
+    }
+
+    return %found;
+}
+
+sub show_help {
     my $name = basename($0);
     my $allowed_options = join("|", sort keys %files);
 
@@ -92,6 +109,6 @@ Usage:
 Options:
   -h --help     Show this screen.
 END
+
     exit;
 }
-
