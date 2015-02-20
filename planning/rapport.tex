@@ -1,0 +1,248 @@
+
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listingsutf8}
+\usepackage{fullpage}
+%\usepackage{times}
+\usepackage{graphicx}
+\usepackage{placeins}
+%\usepackage{multicol}
+%\usepackage{amsmath}
+%\usepackage{tabularx}
+%\usepackage{setspace}
+%\usepackage{epstopdf}
+%\usepackage{amassymb}
+%\usepackage{latexsym}
+\usepackage[swedish]{babel}
+%\usepackage{datetime}
+\usepackage{hyperref}
+%\usepackage{listings}
+\raggedright
+
+% Space up paragraphs a bit
+\setlength{\parskip}{4mm plus1mm minus3mm}
+
+%\linespread{1.3} % 1.5 word linespacing. \linespread{1.6} => double
+
+\begin{document}
+
+\section*{Planeringsrapport för exjobb vid IDA}
+
+\subsection*{Författare}
+
+Jonas Hietala, Civilingenjör i Datateknik
+
+\subsection*{Preliminär titel}
+
+Framtagning av modernt, skalbart och unik rekommendationsmotor
+
+(Production of a modern, scalable and unique recommendation engine)
+
+\subsection*{Problemformulering}
+
+Comordo Technologies är ett startup-bolag inom rekommendationssystem som drivs inom ramarna för LiUs företagsinkubator LEAD i Linköping och som i framtiden ska erbjuda en molntjänst till e-handlare. Grunden för rekommendationssystemet är algoritmer baserade på prediktering och machine learning. Bolaget står nu inför att bygga en förstaversion av sitt rekommendationssystem.
+
+Exjobbet består i att ta fram affärslogik och kontrollprogram så att rekommendations- algoritmerna blir körbara på systemnivå. Affärslogiken består av datahantering och styrprogram för rekommendationsmotorn. Kontrollprogrammen ska optimera parametrar och hantera inlärning hos rekommendationsalgoritmerna. Rekommendationsmotorn kommer att hantera köphistorik och ej ratings.
+
+
+\subsubsection*{Hur ska vi kunna genomföra inlärning och rekommendering i praktiken?}
+
+Lösningen ska vara tillräckligt snabb för att kunna köras med riktig data i rimlig tid. Frågan genomsyrar hela projektet då det är viktigt för företaget att resultatet ska kunna användas i produktion.
+
+Förväntningen är att kunna köra systemet på riktig data, om än lite förminskad.
+
+
+\subsubsection*{Hur ska inlärning av rekommendationsparametrar hanteras?}
+
+LinkAnalysis (2 parametrar: gamma, eta)
+
+KatzEig (2 parametrar: beta, K)
+
+Inlärningen ska fokusera på att ge ett så bra resultat som möjligt men extra hänsyn ska tas så att inlärningen kan ske inom rimlig tid så en avvägning mellan prestanda och prestation behövs.
+
+
+\subsubsection*{Hur ska stoppkriteriet för de iterativa algoritmerna (LinkAnalysis, KatzEig) se ut?}
+
+Viktigt för att maximera prestandan.
+
+
+\subsubsection*{Är klustring av data fördelaktigt ur prestanda- och prestationssynpunkt?}
+
+Hypotesen är att klustring kan ge förbättringar i båda avseenden. Kan möjliggöra bättre rekommendationer och möjlighet att hantera en större datamängd.
+
+
+\subsection*{Angreppssätt}
+
+Projektet kommer att använda iterativ utveckling, försöka få systemet som helhet körbart till en viss gräns tidigt och sedan iterativt införa förbättringar och ny funktionalitet. Fokus i början kommer ligga på att bygga en förstaversion av ett kontrollprogram till en algoritm och sedan bygga datahanteringen runt om så att vi får en förstaversion av systemet. Fokus skiftar sedan mer till algoritmerna.
+
+Planerat sätt att visa att problemen lösts på ett tillfredsställande sätt är med ett demo av systemet med kunddata samt att utvärdera prestationen med Precision och F-measure.
+
+
+\newpage
+
+
+\subsection*{Litteraturbas}
+
+\begin{enumerate}
+
+    \item J. Bennett och S. Lanning. "The Netflix Prize". \textit{KDD Cup and Workshop} (2007)
+
+    \item Z. Huang, D. Zeng, Hsinchun Chen. "A Comparison of Collaborative-Filtering Recommendation Algorithms for E-commerce". (2007)
+
+    \item Y. Hu, Y. Koren, C.  Volinsky. "Collaborative Filtering for Implicit Feedback Datasets". (?)
+
+    \item G. Takacs, I. Pilaszy och B. Nemeth. "Matrix Factorization and Neighbor Based Algorithms for the Netflix Prize". (?)
+
+    \item Niklas Ekvall. "Automatiserad matrisfaktorisering". (2014)
+
+    \item \url{https://class.coursera.org/ml-005/lecture/preview}
+    \item \url{https://class.coursera.org/recsys-001/lecture/preview}
+
+    \item \url{http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html}
+    \item \url{http://techblog.netflix.com/2012/06/netflix-recommendations-beyond-5-stars.html}
+    \item \url{http://techblog.netflix.com/2013/03/system-architectures-for.html}
+
+
+\end{enumerate}
+
+\newpage
+
+
+\subsection*{Tidsplan}
+
+\subsection*{Vecka 4}
+
+Uppstartsvecka.
+
+\begin{itemize}
+    \item Studera machine learning concept.
+    \item Workshop runt rekommendationsalgoritmer.
+    \item Sätt upp versionshantering.
+    \item Bekanta mig med kontoret.
+\end{itemize}
+
+
+\subsection*{Vecka 5}
+
+\begin{itemize}
+    \item Studera machine learning concept.
+    \item Workshop runt rekommendationsalgoritmer.
+    \item Kontrollprogram för en algoritm.
+    \item Undersök koppling matlab $\Leftrightarrow$ Python.
+\end{itemize}
+
+
+\subsection*{Vecka 6}
+
+\begin{itemize}
+    \item Workshop runt rekommendationsalgoritmer.
+    \item Skriv en projekt- och tidsplan.
+    \item Enkel indata- och utdatamodul.
+    \item Inläsningsmodul för enklare data.
+    \item Kontrollprogram för en algoritm.
+    \item Utvärdera matlab vs julia
+    \item Auskultation \#1
+\end{itemize}
+
+
+\subsection*{Vecka 7}
+
+\begin{itemize}
+    \item Inläsningsmodul adlibris data
+    \item Komplett systemtest med enklare komponenter.
+    \item Förbättra kontrollprogram.
+    \item Upprensning av kod.
+    \item Designa databaser för lagring av rå indata och rekommendationsdata.
+\end{itemize}
+
+
+\subsection*{Vecka 8}
+
+\begin{itemize}
+    \item Pluginsystem för inläsningsmodul
+    \item Uppsnabbning av kontrollprogram för linkanalysis
+    \item Undersök julia
+    \item Examinatorjakt
+    \item Auskultation \#2
+    \item Omformulera exjobbsbeskrivning
+\end{itemize}
+
+
+\subsection*{Vecka 9}
+
+\begin{itemize}
+    \item Omformulera exjobbsbeskrivning
+    \item Projektplan
+    \item Påbörja rapportskrivning
+    \item Dokumentera analys av linkanalysis optimering
+\end{itemize}
+
+
+\subsection*{Vecka 10-13}
+
+\begin{itemize}
+    \item Mer rapportskrivning
+    \item Projektplan
+    \item Analys/implementering av KatzEig
+    \item Undersök optimering via julia?
+\end{itemize}
+
+
+\subsection*{Vecka 14 - 15}
+
+Halvtidskontroll.
+
+Datahantering, databashantering samt styrprogram färdigt. Systemets flöde klart och implementerat. Kontrollprogram immplementerad till en funktionell grad för linkanalysis. Analys av linkanalysis genomförd. Rapport påbörjad.
+
+\begin{itemize}
+    \item Halvtidsdemo till företag
+    \item Adaptering till demo webbshop
+    \item Test med demo webbshop
+\end{itemize}
+
+
+\subsection*{Vecka 16 - 19}
+
+\begin{itemize}
+    \item Analysera klustring för prestanda och prestationsförbättringar
+    \item Mer implementering/förbättring av kontrollprogram?
+    \item Färdigställning av system. Kombinering av rekommendationer?
+    \item Mer rapportskrivning
+\end{itemize}
+
+
+\subsection*{Vecka 20}
+
+Slutet är nära.
+
+\begin{itemize}
+    \item Första utkast av rapporten.
+    \item Rensa upp källkod.
+    \item Färdigställ dokumentation av program och kod.
+\end{itemize}
+
+\subsection*{Vecka 21}
+
+\begin{itemize}
+    \item Andra utkast av raport.
+    \item Förbered för opponering.
+\end{itemize}
+
+\subsection*{Vecka 22}
+
+\begin{itemize}
+    \item Förbered för framläggning.
+    \item Sista rättning av rapport.
+    \item Opposition?
+\end{itemize}
+
+\subsection*{Vecka 23}
+
+Projektets slut.
+
+\begin{itemize}
+    \item Framläggning.
+\end{itemize}
+
+\end{document}
+
