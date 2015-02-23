@@ -42,12 +42,12 @@ Framtagning av modernt, skalbart och unik rekommendationsmotor
 
 Comordo Technologies är ett startup-bolag inom rekommendationssystem som drivs inom ramarna för LiUs företagsinkubator LEAD i Linköping och som i framtiden ska erbjuda en molntjänst till e-handlare. Grunden för rekommendationssystemet är algoritmer baserade på prediktering och machine learning. Bolaget står nu inför att bygga en förstaversion av sitt rekommendationssystem.
 
-Exjobbet består i att ta fram affärslogik och kontrollprogram så att rekommendations- algoritmerna blir körbara på systemnivå. Affärslogiken består av datahantering och styrprogram för rekommendationsmotorn. Kontrollprogrammen ska optimera parametrar och hantera inlärning hos rekommendationsalgoritmerna. Rekommendationsmotorn kommer att hantera köphistorik och ej ratings.
+Exjobbet består i att ta fram affärslogik och kontrollprogram så att rekommendations- algoritmerna blir körbara på systemnivå. Affärslogiken består av datahantering och styrprogram för rekommendationsmotorn. Kontrollprogrammen ska optimera parametrar och hantera inlärning hos rekommendationsalgoritmerna. Rekommendationsmotorn kommer att hantera köphistorik och ej ratings, om än lite förminskad.
 
 
 \subsubsection*{Hur ska vi kunna genomföra inlärning och rekommendering i praktiken?}
 
-Lösningen ska vara tillräckligt snabb för att kunna köras med riktig data i rimlig tid. Frågan genomsyrar hela projektet då det är viktigt för företaget att resultatet ska kunna användas i produktion.
+Lösningen ska vara tillräckligt snabb för att kunna köras med riktig data i rimlig tid. Frågan genomsyrar hela projektet då det är viktigt för företaget att resultatet ska kunna användas i kommersiellt syfte.
 
 Förväntningen är att kunna köra systemet på riktig data, om än lite förminskad.
 
@@ -60,6 +60,8 @@ KatzEig (2 parametrar: beta, K)
 
 Inlärningen ska fokusera på att ge ett så bra resultat som möjligt men extra hänsyn ska tas så att inlärningen kan ske inom rimlig tid så en avvägning mellan prestanda och prestation behövs.
 
+Hur varierar parameterrymden för de olika algoritmerna och för olika dataset?
+
 
 \subsubsection*{Hur ska stoppkriteriet för de iterativa algoritmerna (LinkAnalysis, KatzEig) se ut?}
 
@@ -68,14 +70,14 @@ Viktigt för att maximera prestandan.
 
 \subsubsection*{Är klustring av data fördelaktigt ur prestanda- och prestationssynpunkt?}
 
-Hypotesen är att klustring kan ge förbättringar i båda avseenden. Kan möjliggöra bättre rekommendationer och möjlighet att hantera en större datamängd.
+Hypotesen är att klustring kan ge förbättringar i båda avseenden. Kan möjliggöra bättre rekommendationer och möjlighet att hantera en större datamängd. Kan klustring användas för att parallellisera rekommenderingen?
 
 
 \subsection*{Angreppssätt}
 
 Projektet kommer att använda iterativ utveckling, försöka få systemet som helhet körbart till en viss gräns tidigt och sedan iterativt införa förbättringar och ny funktionalitet. Fokus i början kommer ligga på att bygga en förstaversion av ett kontrollprogram till en algoritm och sedan bygga datahanteringen runt om så att vi får en förstaversion av systemet. Fokus skiftar sedan mer till algoritmerna.
 
-Planerat sätt att visa att problemen lösts på ett tillfredsställande sätt är med ett demo av systemet med kunddata samt att utvärdera prestationen med Precision och F-measure.
+Planerat sätt att visa att problemen lösts på ett tillfredsställande sätt är med ett demo av systemet med kunddata samt att utvärdera prestationen med Precision, Recall och F-measure.
 
 
 \newpage
@@ -92,8 +94,6 @@ Planerat sätt att visa att problemen lösts på ett tillfredsställande sätt �
     \item Y. Hu, Y. Koren, C.  Volinsky. "Collaborative Filtering for Implicit Feedback Datasets". (?)
 
     \item G. Takacs, I. Pilaszy och B. Nemeth. "Matrix Factorization and Neighbor Based Algorithms for the Netflix Prize". (?)
-
-    \item Niklas Ekvall. "Automatiserad matrisfaktorisering". (2014)
 
     \item \url{https://class.coursera.org/ml-005/lecture/preview}
     \item \url{https://class.coursera.org/recsys-001/lecture/preview}
