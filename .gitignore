@@ -1,8 +1,15 @@
 *.pdf
 
+# Just a few latex temporary files...
 *.aux
 *.log
 *.toc
 *.out
+*.bbl
+*.blg
+*.brf
+*.idx
+*.ilg
+*.ind
 
 /.gen

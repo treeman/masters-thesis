@@ -34,6 +34,7 @@
 
 \usepackage{mythesis}
 
+%\makecover
 
 \begin{document}
 \selectlanguage{english}
@@ -50,18 +51,25 @@
 
 \mainmatter
 
+% Motivation, purpose, questions
+% Background
+% Theory (May be related work??)
 \include{introduction}
+\include{methods}
 \include{results}
-%\include{avrundning} Name???
+\include{discussion}
+% Related work?
+\include{conclusions}
 
 \part*{Appendix}
 \appendix
-\include{details}
-%\include{rtthesis-doc}
+\include{details} % Etc...
 
 \backmatter
 
-%\bibliography{IEEEfull,myrefs}
+
+%\bibliographystyle{plain}
+\bibliography{IEEEfull,myrefs}
 
 \printindex
 

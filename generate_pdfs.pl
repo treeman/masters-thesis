@@ -68,9 +68,23 @@ sub generate_pdf {
     my $src_dir = dirname($src);
     my $src_base = basename($src);
 
+    # TODO
+    # Generate bibliography...
+    # Also seems to be something off with latex as I cannot do it manually.
+    #
+    # 0. Clear $tmp_dir
+    # 1. Copy .tex file to $tmp_dir
+    # 2. pdflatex main
+    # 3. bibtex main
+    # 4. bibtex bu1; bibtex bu2; ... bibtex bun (or something!?)
+    # 5. pdflatex main
+    # 6. pdflatex main
+    #
+    # T.T
+
     # Hacky workaround for pdflatex lack of module system
     # Could not find another way! :)
-    my $cmd = "cd $src_dir && TEXINPUTS=.//:\$TEXINPUTS pdflatex "
+    my $cmd = "cd $src_dir && TEXINPUTS=.//: pdflatex "
             . "-output-directory=$tmp_dir -halt-on-error $src_base";
 
     # Do command twice to force correct references
