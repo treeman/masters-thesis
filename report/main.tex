@@ -31,7 +31,6 @@
   % Use option 'noparts' if you do not make use of part divisions.
   noparts
 ]{rtthesis/rtthesis}
-
 \usepackage{mythesis}
 
 %\makecover
@@ -51,6 +50,9 @@
 
 \mainmatter
 
+% Needed or else bibtex errors. Only includes citet resources ;)
+\cite{Duck:2005} is the fav!!!
+
 % Motivation, purpose, questions
 % Background
 % Theory (May be related work??)
@@ -67,9 +69,7 @@
 
 \backmatter
 
-
-%\bibliographystyle{plain}
-\bibliography{IEEEfull,myrefs}
+\bibliography{myrefs}
 
 \printindex
 
