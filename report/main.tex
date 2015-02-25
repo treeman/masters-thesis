@@ -4,7 +4,7 @@
   %
   % For vertical whitespace between paragraphs.  This comes down to more
   % than just using parskip.sty, so it's better to use this class option.
-  % parskip,
+  parskip,
   %
   % If you intend to really use margin paragraphs (not recommended!).
   % S5MP,
@@ -33,6 +33,8 @@
 ]{rtthesis/rtthesis}
 \usepackage{mythesis}
 
+%\usepackage{fullpage}
+
 %\makecover
 
 \begin{document}
@@ -50,9 +52,6 @@
 
 \mainmatter
 
-% Needed or else bibtex errors. Only includes citet resources ;)
-\cite{Duck:2005} is the fav!!!
-
 % Motivation, purpose, questions
 % Background
 % Theory (May be related work??)
@@ -65,7 +64,7 @@
 
 \part*{Appendix}
 \appendix
-\include{details} % Etc...
+\include{datasets}
 
 \backmatter
 
