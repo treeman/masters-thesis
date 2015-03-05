@@ -23,3 +23,41 @@ Things to write about:
     \item Evaluation. Precision/Recall/F-measure?
     \item Data splitting for training/evaluation
 \end{enumerate}
+
+Usually minimize a cost function, with regularization such as:
+
+\begin{equation}
+    \min_{x_*, y_*} \sum_{r_{u,i} \text{ is known} } (r_{ui} - x_{u}^T y_i)^2 + \lambda(\|x_u\|^2 + \|y_i\|^2)
+\end{equation}
+
+Model as:
+
+\begin{equation}
+    p_{ui} = \begin{cases}
+        1 \quad r_{ui} > 0 \\
+        0 \quad r_{ui} = 0
+    \end{cases}
+\end{equation}
+
+Here $p_{ui}$ describes our confidence level for user $u$ to like item $i$.
+
+$r_{ui}$ described as how fully did user $u$ consume item $i$. For example if the value is $0.7$ then the user watched $70\%$ of the show. This is used by \cite{Yifan:2008}.
+
+We however just use binary values.
+
+\cite{Yifan:2008} use this cost function:
+
+\begin{equation}
+    \min_{x_*, y_*} \sum_{u,i} c_{ui} (p_{ui} - x_{u}^T y_i)^2 + \lambda(\sum_{u} \|x_u\|^2 + \sum_{i} \|y_i\|^2)
+\end{equation}
+
+This function accounts for (1) varying confidence levels (we don't need it as we don't use implicit ones) and (2) should account for all pairs, not just observer (not sure what to think about this).
+
+Use cross-validation to select $\lambda$.
+
+This cost function is very slow to compute though. Can we make do with the original one?
+
+Here $x_{u}^T y_i$ are our predicted values!
+
+Usually we use stochastic gradient descent to find parameters \cite{Yifan:2008}.
+

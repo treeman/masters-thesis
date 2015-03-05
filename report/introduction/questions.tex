@@ -6,9 +6,11 @@
 \begin{itemize}
     \item How can learning and recommendation be performed in practice, with regards to speed and recommendation quality?
 
+          Includes data handling from different sources, output of recommendations to database storage. Recommendation algorithms needs to finish in a reasonable amount of time as they shall be used for commercial purposes.
+
     \item How shall learning and optimization of the algorithms' parameters be done?
 
-          How does the parameter space vary with different datasets? What will the stopping criteria be during the learning phase?
+          Explore the function space of the parameters with regards to our evaluation criteria (Precion/Recall/F-measure). Is the function more convex or is it concave? What search optimization techniques are applicable? Are there large differences in value across the function space? In what range is it reasonable to expect the optimal parameters to be found in?
 
     \item Is clustering beneficial for speed or recommendation quality?
 
