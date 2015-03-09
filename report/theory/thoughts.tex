@@ -1,0 +1,75 @@
+\section{Random thoughts and things}
+
+Binary classifier, likes?
+
+Name should either be theory, related work or theoretical reference. Ask adviser.
+
+Did I do the research?? Can I as a reader trust what the author is writing? After reading this part it should be clear to the reader that the question are good and well defined.
+
+Things I need to research more:
+
+\begin{enumerate}
+    \item Cost functions with respect to recommendations, is precision/recall/F-measure the best?
+    \item Validation sets. When to use, when it doesn't matter?
+    \item Various optimization techniques?
+    \item Collaborative filtering, neighbours? \cite{hu2008collaborative}
+    \item Matrix factorization.
+\end{enumerate}
+
+Things to write about:
+
+\begin{enumerate}
+    \item LinkAnalysis. Written about in \cite{huang2007comparison}.
+    \item Evaluation. Precision/Recall/F-measure?
+    \item Data splitting for training/evaluation
+\end{enumerate}
+
+
+\subsection{\cite{hu2008collaborative}}
+
+Usually minimize a cost function, with regularization such as:
+
+\begin{equation}
+    \min_{x_*, y_*} \sum_{r_{u,i} \text{ is known} } (r_{ui} - x_{u}^T y_i)^2 + \lambda(\|x_u\|^2 + \|y_i\|^2)
+\end{equation}
+
+Model as:
+
+\begin{equation}
+    p_{ui} = \begin{cases}
+        1 \quad r_{ui} > 0 \\
+        0 \quad r_{ui} = 0
+    \end{cases}
+\end{equation}
+
+Here $p_{ui}$ describes our confidence level for user $u$ to like item $i$.
+
+$r_{ui}$ described as how fully did user $u$ consume item $i$. For example if the value is $0.7$ then the user watched $70\%$ of the show. This is used by \cite{hu2008collaborative}.
+
+We however just use binary values.
+
+\cite{hu2008collaborative} use this cost function:
+
+\begin{equation}
+    \min_{x_*, y_*} \sum_{u,i} c_{ui} (p_{ui} - x_{u}^T y_i)^2 + \lambda(\sum_{u} \|x_u\|^2 + \sum_{i} \|y_i\|^2)
+\end{equation}
+
+This function accounts for (1) varying confidence levels (we don't need it as we don't use implicit ones) and (2) should account for all pairs, not just observer (not sure what to think about this).
+
+Use cross-validation to select $\lambda$.
+
+This cost function is very slow to compute though. Can we make do with the original one?
+
+Here $x_{u}^T y_i$ are our predicted values!
+
+Usually we use stochastic gradient descent to find parameters \cite{hu2008collaborative}.
+
+Describes link-analysis here.
+
+\Warning[TODO]{Mention discoveries!}
+
+Using $\eta$, but uses it as a constant. My findings are different. Possibly negative values?
+
+Using $\gamma$ in the range 0 to 1, but larger ones are also good.
+
+

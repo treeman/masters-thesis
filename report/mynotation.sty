@@ -23,3 +23,12 @@
 
 % It's hard to get good-looking underscores in filenames.  This is one attempt...
 \newcommand{\usc}{\hspace{0.1ex}\rule{1ex}{0.1ex}\hspace{0.1ex}}%\raisebox{2.5pt}{\_}
+
+% Change empty set to something prettier
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\newcommand{\rmse}{\texttt{RMSE}}
+\newcommand\TP{\mathit{TP}}
+\newcommand\FP{\mathit{FP}}
+\newcommand\FN{\mathit{FN}}

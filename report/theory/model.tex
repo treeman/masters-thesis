@@ -1,0 +1,55 @@
+
+\section{Model}\label{sec:model}
+
+Given a set of users $U$, a set of items $I$ and an interaction history $h_{u, i}$,  where
+
+\begin{equation}\label{eq:hist}
+    h_{u, i} = \begin{cases}
+        1 \quad \text{if user $u$ has interacted with item $i$} \\
+        0 \quad \text{otherwise}
+    \end{cases}
+\end{equation}
+
+the recommender problem is defined by producing a set of recommendations $r_{u, i}$ so
+
+\begin{equation}
+    r_{u, i} = \begin{cases}
+        1 \quad \text{if item $i$ is recommended to user $u$} \\
+        0 \quad \text{otherwise}
+    \end{cases}
+\end{equation}
+
+This definition is applicable for \textit{implicit feedback} systems which passively track different sorts of user behaviour. For example link following, interaction time and purchase history. When $r_{u, i}$ is binary this is known as a \textit{binary classification} problem.
+\Warning[TODO]{ Ref needed. }
+
+A variation of the definition is when the interaction history increases their value for each interaction, for example $h_{u, i} = 2$ means that the user $u$ has interacted with item $i$ 2 times. Another extension for \textit{implicit feedback} systems can log partial interactions, so $h_{u, i} = 0.7$ could mean that user $u$ has watched 70\% of the movie $i$, in the context of movie watching. \citep{hu2008collaborative}
+
+The converse of \textit{implicit feedback} is \textit{explicit feedback} where the users give direct input regarding their preferences, for example with movie ratings or with likes and dislikes.  Here the definition of the interaction history $hr$ is the users' rating history.
+
+\begin{equation}
+    hr_{u, i} = \begin{cases}
+        R \quad \text{the rating $R$ user $u$ gave item $i$} \\
+        \emptyset \quad \text{if the user $u$ did not rate item $i$}
+    \end{cases}
+\end{equation}
+
+The algorithms which produce recommendations produce predictions for each user-item pair, denoted $p_{u, i}$.  For binary classification if $p_{u, i}$ is close to 1 it means item $i$ is predicted with high probability to user $u$ and a value close to 0 means it's not predicted. If the interaction history describes ratings the value corresponds to the predicted ratings the users would give, for example $p_{u, i} = 3.8$ means the algorithm is predicting user $u$ to rate item $i$ a 4, given ratings between 1 and 5.
+
+The recommender problem can be extended to the \textit{top-K recommender problem} by introducing constraints \eqref{eq:constrain_K} which states that only $K$ recommendations can be presented for each user.
+
+\begin{equation}\label{eq:constrain_K}
+    \sum_i r_{u, i} \leq K \quad \forall u
+\end{equation}
+
+To produce top-K recommendations take the $K$ largest values of $p_{u, i}$ for each user. If it's important to recognize non-recommendations it is possible to set $r_{u, i} = 0$ if $p_{u, i} \leq \epsilon$, for some $\epsilon$, to accommodate for fewer than $K$ recommendations.
+
+This thesis will use the binary classification model with a top-K recommender system. To datasets with the more common explicit feedback style of ratings a crude model \eqref{eq:rating2binary} will be used.
+
+\begin{equation} \label{eq:rating2binary}
+    h_{u, i} = \begin{cases}
+        1 \quad \text{user $u$ has rated item $i$} \\
+        0 \quad \text{otherwise}
+    \end{cases}
+\end{equation}
+
+
