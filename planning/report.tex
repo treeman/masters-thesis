@@ -47,7 +47,7 @@ Jonas Hietala, mail@jonashietala.se, jonhi121 \\[0.2cm]
 
 \subsection*{Background}
 
-Comordo Technologies is a startup company in recommendation systems driven inside the framework of LiU's incubator LEAD in Linköping and will in the future offer a cloud service for e-commerce. The foundation for the recommendation system is algorithms based on prediction and machine learning. The company now stands for building a first version of their recommendation system.
+Comordo Technologies is a startup in recommendation systems driven inside the bounds of LiU's incubator LEAD in Linköping and will in the future offer a cloud service for e-commerce. The base for the recommendation system is algorithms based on predication and machine learning. The company now stands to build a first version of it's recommendation system.
 
 The master's thesis consists of developing business logic and control programs so the recommendation algorithms are runnable on a systems level. The business logic consists of data handling and control programs for the recommendation engine. The control programs handles the learning and optimization of learning parameters. The recommendation engine will handle purchase history without any ratings.
 
@@ -58,26 +58,26 @@ The master's thesis consists of developing business logic and control programs s
 
 \begin{itemize}
 
-    \item How can learning and recommendation be performed in practice, with regards to speed and recommendation quality?
-
-          Includes data handling from different sources with output of recommendations to database storage. Recommendation algorithms needs to finish in a reasonable amount of time while maintaining recommendation quality as the goal is to use them for commercial purposes.
+    \item How can a recommender system be designed to allow for easily extendible input- and output handling?
 
 
-    \item How shall learning and optimization of the algorithms' parameters be done?
+    \item How can learning and recommendation using \textit{link-analysis} and \textit{katz-eig} be performed in practice, with regards to speed and recommendation quality?
 
-          There are two main algorithms: LinkAnalysis (2 parameters) and KatzEig (2 parameters). Mostly described by the litterature, exists in modified form as code.
+        \begin{itemize}
+            \item How shall learning and optimization of their parameters be done?
+        \end{itemize}
 
-          Explore the function space of the parameters with regards to our evaluation criteria (Precion/Recall/F-measure).
+        To answer that question, an exploration of the function space of the parameters with regards to the evaluation criteria might be necessary. Then additional questions might need answers:
 
           \begin{itemize}
-                \item Is the function more convex or is it concave? 
+                \item Is the function convex or concave?
                 \item What search optimization techniques are applicable?
                 \item Are there large differences in value across the function space?
                 \item In what range is it reasonable to expect the optimal parameters to be found in?
           \end{itemize}
 
 
-    \item Is clustering beneficial for speed or recommendation quality?
+    \item Is clustering beneficial for speed or recommendation quality, with respect to \textit{link-analysis} and \textit{katz-eig}?
 
           The hypothesis is improvement in both aspects and it may allow handling of larger datasets.
 
@@ -125,7 +125,7 @@ The planned way to show a satisfactory solution for the system construction part
 
 \begin{tabular}{l l}
     2015-W11    & First version of control programs up and running. \\
-    2015-W14    & Half time evaluation. Demo system. \\
+    2015-W15    & Half time evaluation. Demo system. \\
     2015-W18    & Software implementation complete. \\
     2015-W18    & First thesis draft for supervisor review. \\
     2015-W19    & Second thesis draft. \\
