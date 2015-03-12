@@ -21,22 +21,13 @@ then a recursive definition of the authority and hub scores can be defined as
 \end{equation}
 
 \begin{equation}
-    \CR = A * \PR
-\end{equation}
-
-There are two problems with such a definition:
-\Warning[TODO]{ This is irrelevant here, could skip? Refer to article instead. }
-
-If a customer has links to all products, that costumer will have the highest representativeness cores for all customers, which is quite useless.  Secondly $\PR$ and $\CR$ will converge to matrices with identical columns.  Therefore $\CR$ is redefined as
-
-\begin{equation}
     \CR = B * \PR + \CR_0
 \end{equation}
 
-Where $B$ is a matrix such that $b_{i, j}$:
+Where $B$ is a matrix such that:
 
 \begin{equation}
-    b_{i, j} = \frac{ a_{i, j} }{ \left(\sum_{j} a_{i, j}\right)^\gamma }
+    B_{i, j} = \frac{ A_{i, j} }{ \left(\sum_{j} A_{i, j}\right)^\gamma }
 \end{equation}
 
 Meaning $B$ normalizes the representativeness score a costumer receives from linked products by dividing it with the total number of products the customer is linked to.  $\gamma$ controls the extent to which a consumer is penalized for making many purchases.
@@ -44,31 +35,35 @@ Meaning $B$ normalizes the representativeness score a costumer receives from lin
 $\CR_0$ is defined as
 
 \begin{equation}
-    cr_{i, j}^0 = \begin{cases}
+    \CR_{i, j}^0 = \begin{cases}
         \eta \quad \text{if } \; i = j \\
         0    \quad \text{otherwise}
     \end{cases}
 \end{equation}
 
-in other words $\CR_0 = \eta * I_M$ where $I_M$ is an $M x M$ identity matrix. It is included to maintain the high representativeness score for the target users themselves. This also necessitates a normalization step to keep the values on a consistent level.
+in other words $\CR_0 = \eta * I_M$ where $I_M$ is an $M x M$ identity matrix.
+\Warning[TODO]{ $M$ not previously defined }
+It is included to maintain the high representativeness score for the target users themselves. This also necessitates a normalization step to keep the values on a consistent level.
 
 In summary the link-analysis algorithm follow these steps:
 
 \begin{enumerate}
     \item Construct the interaction matrix $A$ and the associating matrix $B$.
 
-    \item Set $\CR_0 = \eta * I_M$ and let $\CR(0) = \CR_0$.
-    \item At each iteration $t = 1, \ldots$ perform:
+    \item Set $\CR_0 = \eta * I_M$.
+    \item At each iteration $t = 1, \ldots, t_{max}$ perform:
 
         \begin{enumerate}
-            \item $\PR(t) = A' * \CR(t - 1)$
-            \item $\CR(t) = B * \PR(t)$
-            \item Normalize $\CR(t)$ so each column adds up to 1
-                \textit{describe how?}
-            \item $\CR(t) = \CR(t) + \CR_0$
+            \item $\PR_t = A' * \CR_{t- 1}$
+            \item $\CR_t = B * \PR_t$
+            \item Normalize $\CR_t$ so each column adds up to 1
+                \Warning[TODO]{describe how?}
+            \item $\CR_t = \CR_t + \CR_0$
         \end{enumerate}
 
         Repeat until convergence.
+
+    \item Predicted user-item interaction is given by $\mathit{pval} = \PR'$.
 
 \end{enumerate}
 

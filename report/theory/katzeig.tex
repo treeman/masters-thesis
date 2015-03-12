@@ -1,4 +1,25 @@
 \section{The Katz Eig algorithm}\label{sec:katzeig}
 
-Described by \cite{shin2012multi}.
+\textit{Not described by \cite{shin2012multi}. Is there any article?}
+
+\begin{enumerate}
+    \item Construct $U, S, V$ so $U * S * V'$ forms a rank $k$ approximation of $A$, the user-item interaction matrix. Let $S_0 = S$.
+
+    \item At each iteration $t = 1, \ldots, t_{max}$ perform:
+
+        \begin{enumerate}
+            \item $S_t = S_{t - 1} + \beta^t * S_{t - 1}^t$
+        \end{enumerate}
+
+        Repeat until convergence.
+
+    \item Predicted user-item interaction is given by $\mathit{pval} = U * S_{t_{max}} * V'$.
+
+\end{enumerate}
+
+The parameter $\beta$ signifies ...
+\Warning[TODO]{ What? }
+
+The rank $k$ specifies the complexity of the model.
+\Warning[TODO]{ Write more things! }
 
