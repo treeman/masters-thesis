@@ -3,23 +3,97 @@
 
 Describe the system as a whole here, and what parts have been done.
 
-\begin{enumerate}
-    \item Reader module (inläsningsmodul, name????)
-    \item Input module (indata) name???
-    \item Output module (utdata)
-    \item Purchase history db
-    \item Product data db
-    \item Parameters??? Or will we ignore this for the thesis work?
-    \item Algorithm
-    \item Control programs (But it's really just modifications of the algorithms)
-    \item General/Personalized/Related recommendations db
-    \item Remote API
-    \item Web shop
-    \item Admin web API?
-\end{enumerate}
+%\begin{enumerate}
+    %\item Reader module (inläsningsmodul, name????)
+    %\item Input module (indata) name???
+    %\item Output module (utdata)
+    %\item Purchase history db
+    %\item Product data db
+    %\item Parameters??? Or will we ignore this for the thesis work?
+    %\item Algorithm
+    %\item Control programs (But it's really just modifications of the algorithms)
+    %\item General/Personalized/Related recommendations db
+    %\item Remote API
+    %\item Web shop
+    %\item Admin web API?
+%\end{enumerate}
 
-\Warning[TODO]{ Need a figure which describes the different parts }
+%\Warning[TODO]{ Need a figure which describes the different parts }
 
-\input{results/input}
-\input{results/data}
+%\input{results/input}
+%\input{results/data}
 
+
+\subsection{Reader module}
+
+Describe plugin based architecture here.
+
+Add plugin scripts to:
+
+
+\begin{lstlisting}
+    lib/reader_plugins
+\end{lstlisting}
+
+Basic look is:
+
+% TODO include files instead, or delegate to appendix?
+\begin{lstlisting}[language=python]
+class MyPlugin():
+
+    def add_arguments(self, parser):
+        """Parse command line arguments"""
+
+        parser.description = "Load plugin data"
+
+        parser.add_argument('data_file', metavar='data_file', type=str,
+                            help='the file to parse')
+
+    def load(self, args):
+        """Load users and products."""
+
+        products = {}
+        users = {}
+
+        # Parse data file
+        with open(args.data_file) as csvfile:
+            reader = csv.DictReader(csvfile, delimiter=';', quoting=csv.QUOTE_NONE)
+
+            for row in reader:
+                user_id = row['shopper_id']
+                isbn = row['isbn']
+                title = row['description']
+
+                if user_id not in users:
+                    users[user_id] = User(user_id)
+
+                if isbn not in products:
+                    product = Product(isbn)
+                    product.isbn = isbn
+                    product.title = title
+                    products[isbn] = product
+
+                users[user_id].add_history(isbn, 1)
+
+        return users, products
+\end{lstlisting}
+
+An example plugin is described in appendix X. \Warning[TODO]{ Make it happen! }
+
+Can describe how to dynamically locate modules with python, but that's not the purpose is it? Just describe that it can be done I guess?
+
+
+
+\subsection{Input module}
+
+\subsection{Output module}
+
+\subsection{Control program}
+
+\textit{This isn't really ok...????}
+
+\subsection{Data storage}\label{sec:res:data}
+
+Database table design!
+
+\Warning[TODO]{ Title/content }
