@@ -1,0 +1,18 @@
+\chapter{Graphs}\label{cha:graphs}
+
+Here be graphs.
+
+\section{Learning Curves}\label{sec:learning_curves}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.9\textwidth]{fig/readly_learning3.png}
+  \caption{Learning Curves}
+  %\label{fig:sysoverview}
+\end{figure}
+
+\FloatBarrier
+
+Evaluated with a top-10 recommender list, with F-measure. Result is averaged over 10 runs. Used \textit{Readly1\_BinarySplit2.mat}.
+
+Used a predetermined $\eta = -2$ and $\gamma = 1.8$ for link-analysis and $\beta = \frac{1}{|A_{train}|}$ with the model $K = 10$ for katz-eig.
