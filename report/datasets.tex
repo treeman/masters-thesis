@@ -2,31 +2,80 @@
 
 Some of these are not publicly available.
 
-Make a nice table here instead!
-
-\emph{Readly}
-
-\textfilename{Readly1\_BinarySplit.mat} 90/10 split \\
-\textfilename{Readly1\_BinarySplit2.mat} 80/20 split \\
-
-8321 users \\
-722 products \\
-205534 history \\
-
-
-\emph{Movielens}
-
-1 million data set \\
-6040 users \\
-3706 products \\
-1000209 ratings \\
-
-
-\emph{Adlibris}
-
-75000 with more than 2 purchases \\
-75007 users \\
-345674 products \\
-1945115 history \\
-
 \Warning[TODO]{Cleanup}
+
+\begin{description}
+    \item[movielens1m]
+
+        The movielens data.
+
+        Found 6040 users and 3883 products
+        Filtered down to 6040 users and 3706 products
+        6040 users, 3706 products
+        1000209 interactions, 4.5\% sparsity
+
+    \item[romeo]
+
+        An anonymous data set
+
+        Found 8321 users and 722 products
+        8321 users, 722 products
+        205534 interactions, 3.4\% sparsity
+
+    \item[alpha1]
+
+        An anonymous data set, filtered to only contain users with $\leq 2$ purchases.
+
+        Found 75007 users and 345674 products
+        75007 users, 345674 products
+        1945115 interactions, 0.0075\% sparsity
+
+    \item[alpha2]
+
+        An anonymous data set.
+
+        Found 100002 users and 219767 products
+        100002 users, 219767 products
+        904201 interactions, 0.0041\% sparsity
+
+    \item[eswc2015mov]
+
+        Movies 
+
+        Found 32159 users and 5389 products
+        32159 users, 5389 products
+        638268 interactions, 0.37\% sparsity
+
+    \item[eswc2015mus]
+
+        Music
+
+        Found 52072 users and 6372 products
+        52072 users, 6372 products
+        1093851 interactions, 0.33\% sparsity
+
+    \item[eswc2015b]
+
+        Books
+
+        Found 1398 users and 2609 products
+        1398 users, 2609 products
+        11600 interactions, 0.32\% sparsity
+
+\end{description}
+
+\begin{table}
+\centering
+\begin{tabular}{| l | r | r | r | r |}
+    \hline
+    origin      &   users   & items     & elements  & sparsity  \\ \hline
+
+    movielens1m &   6040    & 3706      & 1000209   & 4.5\%     \\ \hline
+    romeo       &   8321    & 722       & 205534    & 3.4\%     \\ \hline
+    alpha1      &   75007   & 345674    & 1945115   & 0.0075\%  \\ \hline
+    alpha2      &   100002  & 219767    & 904201    & 0.0041\%  \\ \hline
+    eswc2015    &   32169   & 5389      & 638268    & 0.37\%    \\ \hline
+
+\end{tabular}
+\end{table}
+
