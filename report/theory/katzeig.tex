@@ -1,6 +1,20 @@
-\section{The Katz Eig algorithm}\label{sec:katzeig}
+\section{The katz-eig algorithm}\label{sec:katzeig}
 
-\textit{Not described by \cite{shin2012multi}. Is there any article?}
+The original algorithm \cite{katz1953new} is a link prediction algorithm.
+\Warning[TODO]{ What does that mean? }
+This thesis is using the unweighted definition of \cite{liben2007link} where $h_{u,i} = 1$ if user $u$ has rated item $i$.
+\Warning[TODO]{ $A$ vs $h$, update! }
+
+
+\begin{equation}
+    \mathit{pval} = \sum_{t=1}^{\infty} \beta^t A^t
+\end{equation}
+
+Here $A^t$ can be seen as the $t$:th link value and $\beta$ signifies the diminishing return for links further away.  As an additional modification the algorithm doesn't operate directly on $A$, but operates on a $k$ rank approximation of $A$.
+
+% Originally introduced by \cite{katz1953new}, described and used by \cite{liben2007link}.
+
+Concretely the katz-eig algorithm follow these steps:
 
 \begin{enumerate}
     \item Construct $U, S, V$ so $U * S * V'$ forms a rank $k$ approximation of $A$, the user-item interaction matrix. Let $S_0 = S$.
@@ -17,9 +31,5 @@
 
 \end{enumerate}
 
-The parameter $\beta$ signifies ...
-\Warning[TODO]{ What? }
-
-The rank $k$ specifies the complexity of the model.
-\Warning[TODO]{ Write more things! }
+There are two parameters to the algorithm: $\beta$ and $k$.
 

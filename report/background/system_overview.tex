@@ -1,0 +1,22 @@
+\section{System overview}\label{sec:sysoverview}
+
+Figure \ref{fig:sysoverview} is a sketch of Commordo's recommender system, as planned for at the start of the thesis.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.9\textwidth]{fig/system_overview.png}
+  \caption{Commordo's system sketch}
+  \label{fig:sysoverview}
+\end{figure}
+
+\FloatBarrier
+
+\begin{description}
+    \item[Reader module] is responsible for reading data files provided by Commordo's clients.
+    \item[Input module] provides the algorithms with transformed data.
+    \item[Output module] populates the database with recommendations.
+    \item[Control program] handles learning and optimization of the algorithms.
+    \item[Parameter module] stores and adjusts parameters the algorithms use.
+    \item[Remote API] is a REST based API, the endpoint for Commordo's clients.
+\end{description}
+
