@@ -7,60 +7,63 @@ Some of these are not publicly available.
 \begin{description}
     \item[movielens1m]
 
-        The movielens data.
+        The MovieLens 1M dataset \footnote{Grouplens: MovieLens dataset, 2015. \url{http://grouplens.org/datasets/movielens/}}.
 
-        Found 6040 users and 3883 products
-        Filtered down to 6040 users and 3706 products
-        6040 users, 3706 products
-        1000209 interactions, 4.5\% sparsity
+        Transform ratings $r_{u, i}$ to interaction history $h_{u, i}$ by
+
+        \begin{equation}\label{eq:hist}
+            h_{u, i} = \begin{cases}
+                1 \quad \text{if } r_{u, i} > 0 \\
+                0 \quad \text{otherwise}
+            \end{cases}
+        \end{equation}
+
+        %Found 6040 users and 3883 products
+        %Filtered down to 6040 users and 3706 products
+        %6040 users, 3706 products
+        %1000209 interactions, 4.5\% sparsity
 
     \item[romeo]
 
-        An anonymous data set
+        An anonymous data set representing purchase history from an e-commerce client.
 
-        Found 8321 users and 722 products
-        8321 users, 722 products
-        205534 interactions, 3.4\% sparsity
+        %Found 8321 users and 722 products
+        %8321 users, 722 products
+        %205534 interactions, 3.4\% sparsity
 
-    \item[alpha1]
+    \item[alpha, alpha2]
 
-        An anonymous data set, filtered to only contain users with $\leq 2$ purchases.
+        Anonymous data sets representing purchase history from an e-commerce client.
 
-        Found 75007 users and 345674 products
-        75007 users, 345674 products
-        1945115 interactions, 0.0075\% sparsity
+        \textbf{alpha2} is a randomly sampled dataset filtered to only contain users with $\leq 2$ purchases and \textbf{alpha} is another randomly sampled data set.
 
-    \item[alpha2]
+        % >= 2
+        %Found 75007 users and 345674 products
+        %75007 users, 345674 products
+        %1945115 interactions, 0.0075\% sparsity
 
-        An anonymous data set.
+        %Found 100002 users and 219767 products
+        %100002 users, 219767 products
+        %904201 interactions, 0.0041\% sparsity
 
-        Found 100002 users and 219767 products
-        100002 users, 219767 products
-        904201 interactions, 0.0041\% sparsity
+    \item[eswc2015mov, eswc2015mus, eswc2015b]
 
-    \item[eswc2015mov]
+        \footnote{2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}
 
-        Movies 
+        %Movies
+        %Found 32159 users and 5389 products
+        %32159 users, 5389 products
+        %638268 interactions, 0.37\% sparsity
 
-        Found 32159 users and 5389 products
-        32159 users, 5389 products
-        638268 interactions, 0.37\% sparsity
+        %Music
+        %Found 52072 users and 6372 products
+        %52072 users, 6372 products
+        %1093851 interactions, 0.33\% sparsity
 
-    \item[eswc2015mus]
-
-        Music
-
-        Found 52072 users and 6372 products
-        52072 users, 6372 products
-        1093851 interactions, 0.33\% sparsity
-
-    \item[eswc2015b]
-
-        Books
-
-        Found 1398 users and 2609 products
-        1398 users, 2609 products
-        11600 interactions, 0.32\% sparsity
+        %Books
+        %Found 1398 users and 2609 products
+        %1398 users, 2609 products
+        %11600 interactions, 0.32\% sparsity
 
 \end{description}
 
