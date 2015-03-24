@@ -4,6 +4,7 @@
 
 Binary classifications are commonly evaluated using \textit{Precision}, \textit{Recall} and \textit{F-measure}.
 \Warning[TODO]{ Ref needed }
+\footnote{eswc competition uses \textit{F-measure}}
 
 First, \textit{true positives}, $TP$, is the sum of all correctly predicted positive samples.
 
@@ -44,9 +45,11 @@ In many ways precision and recall are competing measures, when optimizing for pr
     \mathit{F1} = 2 * P * R / (P + R)
 \end{equation}
 
-Another evaluation method commonly used to evaluate explicit feedback system with ratings is the root-mean-square error \rmse \hspace{0.2ex} \eqref{eq:rmse} where $\hat{R}$ is the predicted ratings for the user-item matrix $R$.
-\Warning[TODO]{ Conflicting variable names? }
+% TODO remove?
+%Another evaluation method commonly used to evaluate explicit feedback system with ratings is the root-mean-square error \rmse \hspace{0.2ex} \eqref{eq:rmse} where $\hat{R}$ is the predicted ratings for the user-item matrix $R$.
+%\Warning[TODO]{ Conflicting variable names? }
 
-\begin{equation} \label{eq:rmse}
-    \mathtt{RMSE} = \sqrt{\mathbf{E}\left\{ (\hat{R} - R)^2 \right\}}
-\end{equation}
+%\begin{equation} \label{eq:rmse}
+    %\mathtt{RMSE} = \sqrt{\mathbf{E}\left\{ (\hat{R} - R)^2 \right\}}
+%\end{equation}
+
