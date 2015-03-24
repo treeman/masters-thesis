@@ -1,7 +1,7 @@
 
 \section{System overview}\label{sec:res:sys}
 
-Describe the system as a whole here, and what parts have been done.
+\textit{Describe the system as a whole here, and what parts have been done.}
 
 %\begin{enumerate}
     %\item Reader module (inläsningsmodul, name????)
@@ -26,61 +26,39 @@ Describe the system as a whole here, and what parts have been done.
 
 \subsection{Reader module}
 
-Describe plugin based architecture here.
+\textit{Can describe how to dynamically locate modules with python, but that's not the purpose is it? Just describe that it can be done I guess?}
 
-Add plugin scripts to:
+The reader module takes data files, with client specific formatting, and stores the data in the databases. The data contains user interaction history of some sort, possibly as a list of user-item pairs, but it can also contain additional user and item information all in a single file or in several.
 
+To allow for flexibility the reader module uses a plugin system which can be selected at runtime. This is accomplished using python's dynamic module loading capabilities.
+
+Firstly the reader module will get a list of available plugins found in
 
 \begin{lstlisting}
     lib/reader_plugins
 \end{lstlisting}
 
-Basic look is:
+The plugin class shall have a single uppercase letter and the rest lowercase and reside in a file with all lowercase. For example a plugin which handles \textit{eswc} data could have the class ``Eswc'' inside a file ``eswc.py'' in the plugin directory.
 
-% TODO include files instead, or delegate to appendix?
-\begin{lstlisting}[language=python]
-class MyPlugin():
+Secondly the appropriate plugin will be selected via command line arguments and the plugin class will be handed control. The class should have two methods: ``add\_arguments'' which parses extra command line arguments and ``load'' which shall return a user hash and a product hash. \Appendixref{sec:eswc_plugin} describes a full example plugin which handles \textit{eswc} data.
 
-    def add_arguments(self, parser):
-        """Parse command line arguments"""
+With the selected data the reader module can then generate matlab data file output in the form of a ``.mat'' file, upload the data to the database or simply print some statistics. When generating a ``.mat'' file different ratios of training, validation and test sets can be set. The purpose of this option is to generate datasets used during prototyping and evaluation.
 
-        parser.description = "Load plugin data"
+The reader module will remove unused products from the dataset and it can limit the number of users and products. It does so in a couple of steps:
 
-        parser.add_argument('data_file', metavar='data_file', type=str,
-                            help='the file to parse')
-
-    def load(self, args):
-        """Load users and products."""
-
-        products = {}
-        users = {}
-
-        # Parse data file
-        with open(args.data_file) as csvfile:
-            reader = csv.DictReader(csvfile, delimiter=';', quoting=csv.QUOTE_NONE)
-
-            for row in reader:
-                user_id = row['shopper_id']
-                isbn = row['isbn']
-                title = row['description']
-
-                if user_id not in users:
-                    users[user_id] = User(user_id)
-
-                if isbn not in products:
-                    product = Product(isbn)
-                    product.isbn = isbn
-                    product.title = title
-                    products[isbn] = product
-
-                users[user_id].add_history(isbn, 1)
-
-        return users, products
-\end{lstlisting}
-
-An example plugin is described in appendix X. \Warning[TODO]{ Make it happen! }
-
-Can describe how to dynamically locate modules with python, but that's not the purpose is it? Just describe that it can be done I guess?
+\begin{enumerate}
+    \item Limit the number of products, if required
+        \begin{enumerate}
+            \item Randomly select the products to keep
+            \item Remove the removed products from the user history
+        \end{enumerate}
+    \item Remove users with too few products in history, if required to only regard users with a minimum number of interactions
+    \item Limit the number of users, if required
+        \begin{enumerate}
+            \item Randomly select the users to keep
+        \end{enumerate}
+    \item Remove unused products
+\end{enumerate}
 
 
 
@@ -97,3 +75,4 @@ Can describe how to dynamically locate modules with python, but that's not the p
 Database table design!
 
 \Warning[TODO]{ Title/content }
+
