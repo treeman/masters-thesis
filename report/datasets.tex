@@ -1,41 +1,38 @@
 \chapter{Datasets}\label{cha:datasets}
 
-Some of these are not publicly available.
+These are the datasets used by the thesis. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{romeo}) are given by some of Comordo's clients and they do not want the data to be publicly available, they are instead given brief summaries of the data structure and their size are made public.
 
-\Warning[TODO]{Cleanup}
+A summary of the datasets is given by \tableref{tab:datasets}. What follows is a more in depth description of the datasets and where they are taken from, if applicable.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{| c | r | r | r | r | l |}
+        \hline
+        \textbf{dataset}        & \textbf{users}    & \textbf{items}    & \textbf{elements} & \textbf{sparsity}  \\ \hline
+
+        \textit{alpha1}         &   75007           & 345674            & 1945115           & 0.0075\%           \\ \hline
+        \textit{alpha2}         &   100002          & 219767            & 904201            & 0.0041\%           \\ \hline
+        \textit{eswc2015movies} &   32169           & 5389              & 638268            & 0.37\%             \\ \hline
+        \textit{eswc2015music}  &   52072           & 6372              & 1093851           & 0.33\%             \\ \hline
+        \textit{eswc2015books}  &   1398            & 2609              & 11600             & 0.32\%             \\ \hline
+        \textit{movielens1m}    &   6040            & 3706              & 1000209           & 4.5\%              \\ \hline
+        \textit{romeo}          &   8321            & 722               & 205534            & 3.4\%              \\ \hline
+
+    \end{tabular}
+    \caption{A summary of the used datasets}
+    \label{tab:datasets}
+\end{table}
+
+\FloatBarrier
 
 \begin{description}
-    \item[movielens1m]
+    \item[alpha, alpha2] \hfill
 
-        The MovieLens 1M dataset \footnote{Grouplens: MovieLens dataset, 2015. \url{http://grouplens.org/datasets/movielens/}}.
+        Anonymous datasets representing purchase history provided by an e-commerce client.
 
-        Transform ratings $r_{u, i}$ to interaction history $h_{u, i}$ by
+        \textit{alpha} is a randomly sampled dataset. It contains 100002 users, 219767 products with 904201 interactions.
 
-        \begin{equation}\label{eq:hist}
-            h_{u, i} = \begin{cases}
-                1 \quad \text{if } r_{u, i} > 0 \\
-                0 \quad \text{otherwise}
-            \end{cases}
-        \end{equation}
-
-        %Found 6040 users and 3883 products
-        %Filtered down to 6040 users and 3706 products
-        %6040 users, 3706 products
-        %1000209 interactions, 4.5\% sparsity
-
-    \item[romeo]
-
-        An anonymous data set representing purchase history from an e-commerce client.
-
-        %Found 8321 users and 722 products
-        %8321 users, 722 products
-        %205534 interactions, 3.4\% sparsity
-
-    \item[alpha, alpha2]
-
-        Anonymous data sets representing purchase history from an e-commerce client.
-
-        \textbf{alpha2} is a randomly sampled dataset filtered to only contain users with $\leq 2$ purchases and \textbf{alpha} is another randomly sampled data set.
+        \textit{alpha2} is another randomly sampled dataset, independently sampled from \textit{alpha}, filtered to only contain users with $\leq 2$ purchases. It contains 75007 users, 345674 products with 1945115 interactions.
 
         % >= 2
         %Found 75007 users and 345674 products
@@ -46,9 +43,23 @@ Some of these are not publicly available.
         %100002 users, 219767 products
         %904201 interactions, 0.0041\% sparsity
 
-    \item[eswc2015mov, eswc2015mus, eswc2015b]
 
-        \footnote{2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}
+    \item[eswc2015movies, eswc2015music, eswc2015books] \hfill
+
+        These are the datasets used in the 2nd Linked Open Data-enabled Recommender Systems Challenge
+        \footnote{2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}.
+        The data have been collected from Facebook profiles about personal preferences, likes, for movies, books and music.
+        \footnote{DataSet | 2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/dataset/}}.
+
+        The datasets are originally split into training sets and evaluation sets. The evaluation sets does not contain any user-product mappings and for evaluation purposes this thesis will only concern itself with the training set part of the datasets.
+
+        The movie dataset contains 32159 users with 638268 likes for 6389 items. The dataset contains likes for movies, actors, directors, characters and genres.
+
+        The music dataset contains 52072 users with 1093851 likes for 6372 items. The dataset contains likes for albums, artists, bands, compositions and genres.
+
+        The book dataset contains 1398 users with 11600 likes for 2609 items. The dataset contains likes for books, characters, genres and writers.
+
+        For the purpose of this thesis, the different item types are treated as a single type. For example no care is taken to cross-reference liked genres with movies in that genre. The only thing considered is the user-item interaction history.
 
         %Movies
         %Found 32159 users and 5389 products
@@ -65,20 +76,37 @@ Some of these are not publicly available.
         %1398 users, 2609 products
         %11600 interactions, 0.32\% sparsity
 
+
+    \item[movielens1m] \hfill
+
+        The MovieLens 1M dataset \footnote{Grouplens: MovieLens dataset, 2015. \url{http://grouplens.org/datasets/movielens/}} is a collection of ratings (1-5) taken from the MovieLens website \footnote{MovieLens homepage. \url{https://movielens.org/}}.
+
+        Transform ratings $r_{u, i}$ to interaction history $h_{u, i}$ by
+
+        \begin{equation}\label{eq:hist}
+            h_{u, i} = \begin{cases}
+                1 \quad \text{if } r_{u, i} > 0 \\
+                0 \quad \text{otherwise}
+            \end{cases}
+        \end{equation}
+
+        The dataset contains 6040 users with 1000209 ratings for 3706 movies.
+
+        %Found 6040 users and 3883 products
+        %Filtered down to 6040 users and 3706 products
+        %6040 users, 3706 products
+        %1000209 interactions, 4.5\% sparsity
+
+
+    \item[romeo] \hfill
+
+        An anonymous dataset representing purchase history provided by an e-commerce client. It contains 8321 users, 722 products and 205534 interactions.
+
+        %Found 8321 users and 722 products
+        %8321 users, 722 products
+        %205534 interactions, 3.4\% sparsity
+
+
+
 \end{description}
-
-\begin{table}
-\centering
-\begin{tabular}{| l | r | r | r | r |}
-    \hline
-    origin      &   users   & items     & elements  & sparsity  \\ \hline
-
-    movielens1m &   6040    & 3706      & 1000209   & 4.5\%     \\ \hline
-    romeo       &   8321    & 722       & 205534    & 3.4\%     \\ \hline
-    alpha1      &   75007   & 345674    & 1945115   & 0.0075\%  \\ \hline
-    alpha2      &   100002  & 219767    & 904201    & 0.0041\%  \\ \hline
-    eswc2015    &   32169   & 5389      & 638268    & 0.37\%    \\ \hline
-
-\end{tabular}
-\end{table}
 
