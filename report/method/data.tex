@@ -3,5 +3,12 @@
 
 The available datasets are described in detail in \appendixref{cha:datasets}. All data will in unweighted binary form \eqref{eq:hist}.
 
-During supervised learning the datasets will be divided into training, validation and test sets with a ratio of 70\%, 15\% and 15\% respectively. When a validation set is not necessary, it will be ignored and only the training and test sets will be used.
+An alternative to unweighted binary data is weighted data, where $h_{u, i} = x$ means that user $u$ has interacted with item $i$ $x$ times. There is some support in the available datasets (\textit{alpha}, \textit{alpha2}) but most of the datasets does not, which is why the focus is on datasets in unweighted binary form.
+
+Another popular format is ratings, which \textit{movielens1m} is derived from. Generating recommendations with explicit feedback, such as ratings, is well researched but fundamentally different from implicit feedback systems. The focus on this thesis is recommendations for implicit feedback systems which is why ratings are not considered in their raw form.
+
+During supervised learning the datasets will be divided into training, validation and test sets with a ratio of 70\%, 15\% and 15\% respectively. When a validation set is not necessary, it will be ignored and only the training and test sets will be used. Alternatively a new split with only training and test sets could be used with, for example, a split of 80\% and 20\% could be used. This thesis uses the same approach because of simplicity, there's no need to track different kinds of splits for the same data.
+
+As mentioned in \sectionref{sec:background:theory:suplearn} there are different ratios commonly used to split datasets. There is no ratio which is always the best, they depend on the amount of data available, the modeled domain and the algorithms chosen. A split of 70/15/15 was chosen uniformly for simplicity reasons.
+
 

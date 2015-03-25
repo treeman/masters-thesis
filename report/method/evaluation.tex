@@ -1,55 +1,9 @@
 
-\newpage
-\section{Evaluation}\label{sec:eval}
+\section{Evaluation}\label{sec:method:eval}
 
-Binary classifications are commonly evaluated using \textit{Precision}, \textit{Recall} and \textit{F-measure}.
-\Warning[TODO]{ Ref needed }
-\footnote{eswc competition uses \textit{F-measure}}
+The performance of the algorithms will be evaluated using \textit{Precision}, \textit{Recall} and \textit{F-measure} compared to the test set.  
+\Warning[TODO]{ Comment on alternative evaluation methods. RMSE, rank, accuracy, ... ? }
 
-First, \textit{true positives}, $TP$, is the sum of all correctly predicted positive samples.
-
-\begin{equation} \label{eq:tp}
-    TP = \sum_{u, i} r_{u, i} = 1 \land \, h_{u, i} = 1
-\end{equation}
-
-Conversely \textit{false positives}, $FP$, is the sum of all falsely predicted positive samples.
-
-\begin{equation} \label{eq:fp}
-    FP = \sum_{u, i} r_{u, i} = 1 \land \, h_{u, i} = 0
-\end{equation}
-
-And \textit{false negatives}, $FN$, is the sum of all falsely predicted negative samples.
-
-\begin{equation} \label{eq:fn}
-    FN = \sum_{u, i} r_{u, i} = 0 \land \, h_{u, i} = 1
-\end{equation}
-
-Using \eqref{eq:tp}, \eqref{eq:fp} and \eqref{eq:fn} \textit{Precision} $P$ and \textit{Recall} $R$ is defined as
-
-\begin{equation} \label{eq:precision}
-    P = \TP / (\TP + \FP)
-\end{equation}
-
-\begin{equation} \label{eq:recall}
-    R = \TP / (\TP + \FN)
-\end{equation}
-
-Loosely precision signifies how well the recommended items correspond to the users' preferences and recall signifies how well the users' preferences fits with the recommendations.  
-
-In many ways precision and recall are competing measures, when optimizing for precision recall decreases and vice versa.  As the number of recommendations $K$ grow precision is expected to be lower and recall is expected to be higher. \citep{hu2008collaborative}
-
-
-\textit{F-measure}, $\mathit{F1}$, is defined as the harmonic mean of precision and recall \eqref{eq:f1} as a combined measure of precision and recall.
-
-\begin{equation} \label{eq:f1}
-    \mathit{F1} = 2 * P * R / (P + R)
-\end{equation}
-
-% TODO remove?
-%Another evaluation method commonly used to evaluate explicit feedback system with ratings is the root-mean-square error \rmse \hspace{0.2ex} \eqref{eq:rmse} where $\hat{R}$ is the predicted ratings for the user-item matrix $R$.
-%\Warning[TODO]{ Conflicting variable names? }
-
-%\begin{equation} \label{eq:rmse}
-    %\mathtt{RMSE} = \sqrt{\mathbf{E}\left\{ (\hat{R} - R)^2 \right\}}
-%\end{equation}
+Running time of the algorithms during learning and recommendation with predetermined parameters will be compared and evaluated.
+\Warning[TODO]{ What alternatives do we have? }
 
