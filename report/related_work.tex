@@ -1,78 +1,30 @@
 \chapter{Related Work}\label{cha:relwork}
 
-\textit{Need to anchor problem formulation here!}
+%\textit{Need to anchor problem formulation here!}
 
 \textit{Practically complete until halftime eval!}
 
-A lot of research has been put into recommender systems.
-\Warning[TODO]{ Netflix and related articles. }
-\Warning[TODO]{ ESWC and related articles. }
+A lot of research has been put into recommender systems \citep{bobadilla2013recommender}. Most articles are concerned with improving accuracy of recommender system results, such as optimizing for \rmse. This was the case for the popular Netflix Prize \citep{bennett2007netflix} which was conserned with recommending movies given user ratings for other movies. Explicit feedback recommender systems continue to be a well researched area \citep{bobadilla2013recommender}.
 
-According to \citep{lai2012hybrid} the Top-N Recommendation problem is the real problem of many on-line recommender systems.
+According to \citep{lai2012hybrid} the Top-N Recommendation problem is the real problem of many on-line recommender systems and it's common to seek improvements for recommendation quality, using \textit{Precision} or \textit{Recall} \citep{bobadilla2013recommender}. The 2nd Linked Open Data-enabled Recommender Systems Challenge
+\footnote{2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}
+is another competition which focuses on improving recommendation quality for the Top-N Recommendation problem as well as additional objectives such as diversity \citep{bobadilla2013recommender}.
 
-Most articles are concerned with improving accuracy of recommender system results, such as RMSE or MAE. It is also common to seek recommendations improvements using Precision or Recall.  \citep{bobadilla2013recommender}
+Implicit feedback systems have grown in popularity and are also being researched \citep{hu2008collaborative, bobadilla2013recommender}. Together with the research many versions of different recommender systems have been implemented, with recommender systems becoming more and more popular \citep{bobadilla2013recommender}. One of the most popular types are hybrid recommender systems which combine different types of data and algorithms \citep{bobadilla2013recommender, lai2012hybrid}. This was the winning approach for the Netflix Prize which combined 107 different algorithms in different ways to produce the final recommendations
+\footnote{ Netflix: Recommendations beyond 5 stars (Part 1), 2012. \url{http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html} }.
 
-Together with the research many versions of different recommender systems have been implemented \citep{bobadilla2013recommender}.
+A related approach is to organize the data into different subsets or clusters and then make recommendations using these subsets. This was negatively evaluated by \citep{cacheda2011comparison} however more positive results were given by a Clustered Low-Rank Approximation \citep{niklas, savas2011clustered}.  This was evaluated for user ratings using \rmse and speed benefits were theorized upon but not evaluated.
 
-Recently more importance has been placed on additional objectives, even at the expense of accuracy and precision, such as topic diversification and coverage serendipity. \citep{bobadilla2013recommender}
+The link-analysis algorithm compared favorably in recommendation quality by \citep{huang2007comparison}. But without any analysis of the algorithm's parameters and no mention of the relative speed of the algorithm.  Similarly katz-eig had some positive recommendation quality results \citep{shin2012multi} but no parameter analysis and no mention of the algorithm's speed.
 
-Hybrid recommender systems which combine different types of algorithms and recommender types have become popular. \citep{bobadilla2013recommender, lai2012hybrid}
-\Warning[TODO]{ Netflix }
+There is research for how to optimize and learn models for other algorithms, such as Alternating Least Square (ALS) or Stochastic Gradient Descent (SGD)
+\Warning[TODO]{ Ref!! }
+, but no such research has been done for link-analysis or katz-eig.
 
-A related approach is to organize the data into different subsets or clusters and then make recommendations using these subsets. This was negatively evaluated by \citep{cacheda2011comparison}. More positive results were given by a Clustered Low-Rank Approximation \citep{niklas, savas2011clustered}.  This was evaluated for user ratings using RMSE. Speed benefits were theorized on but not evaluated.
+%The link-analysis algorithm is introduced by \citep{huang2004link} and used by \citep{huang2007comparison}. They do not do an in-depth analyze of different values for $\eta$ nor $\gamma$, they only note the best values they found.
+%They evaluate the different algorithms using \textit{precision}, \textit{recall}, \textit{F-measure} and \textit{rank score}.
+%\Warning[TODO]{ Reformulate }
 
-The link-analysis algorithm is introduced by \citep{huang2004link} and used by \citep{huang2007comparison}. They do not do an in-depth analyze of different values for $\eta$ nor $\gamma$, they only note the best values they found.
-They evaluate the different algorithms using \textit{precision}, \textit{recall}, \textit{F-measure} and \textit{rank score}.
-\Warning[TODO]{ Reformulate }
+%The katz-eig algorithm was introduced in \citep{katz1953new}, described by \citep{liben2007link}, used by \citep{shin2012multi}. Some positive results in recommendation quality but no speed evaluation. No mention of parameter optimization.
+%\Warning[TODO]{ Read articles, reformulate, remove unnecessary citations }
 
-The katz-eig algorithm was introduced in \citep{katz1953new}, described by \citep{liben2007link}, used by \citep{shin2012multi}. Some positive results in recommendation quality but no speed evaluation. No mention of parameter optimization.
-\Warning[TODO]{ Read articles, reformulate, remove unnecessary citations }
-
-
-\section{Thoughts}
-
-A common deficiency for evaluation metrics is the lack of formalization. The metrics themselves are well defined but implementation details differ and are sometimes missing which can lead to different results between similar experiments.
-\Warning[TODO]{ Move to evaluation chapter? }
-\Warning[TODO]{ Comment on strange evaluation results using precision/recall/F1 definitions from another article? }
-
-
-Both algorithms are nearest neighbour algorithms? Also collaborative filtering? Or?
-
-They are model based algorithms though.
-
-Ignore the cold start problem.
-
-Ignore explaining recommendations.
-
-Different evaluation strategies include: Novelty Precision/Recall. Coverage. Trust Recall.
-
-See \citep{bobadilla2013recommender} for definitions.
-
-\begin{enumerate}
-    \item prediction evaluations (accuracy) (Quality of the predictions)
-
-        Such as Mean Absolute Error (MAE), Root of Mean Square Error (RMSE), Normalized Mean Average Error (NMAE)
-
-    \item evaluations for recommendations as sets (precision) (Quality of set of recommendations)
-
-        Precision, Recall, Receiver Operating Characteristic (ROC)
-
-    \item evaluation as ranked lists (Quality of list of recommendations)
-
-        half-life, discounted cumulative gain
-
-    \item diversity metrics
-\end{enumerate}
-
-Cross validation techniques:
-    random sub-sampling and k-fold cross validation
-
-Netflix has some comments on their recommender system.
-\url{http://techblog.netflix.com/2012/06/netflix-recommendations-beyond-5-stars.html}
-\url{http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html}
-
-$h_{u, i} = 0.7$ could mean that user $u$ has watched 70\% of the movie $i$, in the context of movie watching. \citep{hu2008collaborative}. Defining \textit{implicit feedback} systems.
-
-\citep{bennett2007netflix} is a summary of the netflix prize. Intro?
-
-ESWC 2014 discussions by \citep{di2014linked}, \citep{heitmann2014semstim}, \citep{ostuni2014linked}.
