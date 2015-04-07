@@ -3,15 +3,13 @@
 
 \Warning[TODO] { Avgränsningar? }
 
-Although the goal is to handle real time data, the data handled will still be of a smaller size, as some of the algorithms are not very fast. The algorithms are not optimized enough to handle the larger data sets which limits the abilities to make optimizations for them. Therefore data of smaller size will be the focus.
+Although the goal is to handle real time data, the data handled will still be of a smaller size, as some of the algorithms are not very fast. The algorithms are not optimized enough to handle the larger data in a reasonable amount of time, therefore data of smaller size will be the focus. But the runtime of the algorithms will still be a consideration during the selection and evaluation of optimization techniques.
 
-The algorithm's runtime will be a consideration during the selection and evaluation of optimization techniques.
+This thesis will focus on \textit{implicit feedback} systems with a binary classification recommender system as this is the focus for Comordo and ratings are not prioritized.
 
-This thesis will handle implicit feedback systems with a binary classification recommender system as this is the focus for Comordo and ratings are not as prioritized for them.
+The existing algorithms are currently written in Matlab which might negatively impact the runtime and handling of larger datasets. Focus will not be on porting them to a different language or platform, which could improve them speed wise, but focus will be on optimizing the existing algorithms in Matlab.
 
-The existing algorithms are currently written in Matlab which might negatively impact the runtime and handling of larger datasets. Focus will not be on porting them to a different language, which could improve them speed wise, but focus will be on optimizing the existing algorithms in Matlab.
+Proprietary datasets used and code produced during the thesis will not be publicly released. See \sectionref{cha:datasets} for a list of used datasets.
 
-Proprietary datasets used and code produced during the thesis will not be publicly released.
-
-\Warning[TODO] { Only a fixed set of inputs }
+The purpose is to lay a foundation for Comordo's recommender system, but it does not mean everything shall be built. See \sectionref{sec:task} for parts included and not included.
 
