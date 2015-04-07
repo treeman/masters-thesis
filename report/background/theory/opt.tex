@@ -1,0 +1,56 @@
+
+\subsection{Optimization}\label{sec:background:theory:opt}
+
+Most supervised learning algorithms try to minimize a cost function during the learning phase. This function computes a value given some learned parameters and it can vary with different algorithms. The cost function does not make a comparison between two different sets but it only operates on a single training set.
+
+For example a cost function could be defined as
+
+\begin{equation}
+    \min_{x_*, y_*} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - x_{u}^T y_i)^2
+\end{equation}
+
+where the optimization objective is $x_u$ and $y_i$. Usually stochastic gradient descent is used to find the parameters \cite{hu2008collaborative}. With regularization a possible cost function could be
+
+\begin{equation}
+    \min_{x_*, y_*} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - x_{u}^T y_i)^2 + \lambda(\|x_u\|^2 + \|y_i\|^2)
+\end{equation}
+
+where $\lambda$ is the regularization parameter found using model selection.
+
+This requires the algorithm to be modeled to use user and item vectors $x_u$ and $y_i$ which combine into the actual recommendation as $r_{u, i} = x_u^T y_i$. In effect a simpler cost function (without regularization) could be defined as
+
+\begin{equation}
+    \min_{r_{u, i}} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - r_{u, i})^2
+\end{equation}
+
+%\textit{Model selection} is the problem of choosing a set of parameters for a learning algorithm with the goal of optimizing the algorithm's performance on an independent data set.
+%\Warning[TODO]{ Reformulate }
+%\textit{Hyperparameter optimization}
+
+For algorithms where a cost function isn't applicable and during model selection where comparisions between more than a single training set are made, there are a couple of different techniques used:
+
+\subsubsection{Grid search}
+
+Grid search selects a limited parameter space where it evaluates the function. Suffers from the curse of dimensionality but is often embarrassingly parallel.
+\Warning[TODO]{ Ref }
+
+
+\subsubsection{Bayesian Optimization}
+
+Noisy black-box functions. Develop a statistical model over the function space and pick samples which trades of exploration and exploitation. Has been shown \citep{snoek2012practical} to give better results with fewer experiments than grid search.
+
+
+\subsubsection{Random Search}
+
+Grid search is exhaustive and possibly expensive, random search with a fixed limit of samples has been shown to be more effective in high-dimension spaces. \citep{bergstra2012random}
+
+
+\subsubsection{Gradient Based Optimization}
+
+For algorithms where it's possible to find a gradient, specialized optimization techniques can be used.
+\Warning[TODO]{ More? }
+\Warning[TODO]{ Ref }
+
+%\begin{equation} \label{eq:rmse}
+    %\mathtt{RMSE} = \sqrt{\mathbf{E}\left\{ (\hat{R} - R)^2 \right\}}
+%\end{equation}

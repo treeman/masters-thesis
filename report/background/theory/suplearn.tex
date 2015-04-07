@@ -16,13 +16,13 @@ then the polynomial degree $n = 1, 2, 3, ...$ represents different possible mode
 The different models represents the complexity of the hypothesis. A more complex model can make a better fit to the training data but that introduces the problem of \textit{overfitting} where the hypothesis fits the training data \textit{too} well and it will not fit the test data.
 \citep{norvigAI}
 
-The model selection is thus performed by evaluating performance on a \textit{validation set} (sometimes called a \textit{cross-validation set}). The reason not to both choose the model and evaluate the accuracy using the test set is that then we will have overfit the test set as we both choose the best model and then calculate the accuracy \textit{on the already best fit}.
+\textit{Model selection} is thus performed by evaluating performance on a \textit{validation set} (sometimes called a \textit{cross-validation set}). The reason not to both choose the model and evaluate the accuracy using the test set is that then we will have overfit the test set as we both choose the best model and then calculate the accuracy \textit{on the already best fit}.
 \citep{norvigAI}
 
 In practice you have a set of data which you randomly split into the training, test and validation sets. The recommended ratio differs, common recommendations include 60/20/20, 80/10/10, or 70/15/15 \footnote{As recommended by Andrew Ng, Stanford. \url{https://class.coursera.org/ml-006}} depending on domain and the size of the available data set. The training set is larger than the others.
 
 If there is no need for a validation set, which can be the case if there are no models to choose from, common training/test set ratios include 70/30, 80/20 \cite{hu2008collaborative} or 90/10.
-\Warning[TODO]{ Ref! }
+\Warning[TODO]{ More ref! }
 
 
 In summary machine learning for supervised learning is done in a couple of steps:
@@ -35,9 +35,5 @@ In summary machine learning for supervised learning is done in a couple of steps
     \item[Application] Apply the developed model to real world data and get results.
 \end{description}
 
-Another way to combat overfitting is with \textit{regularization}. Regularization searches for a hypothesis directly penalizes complexity.
-\Warning[TODO]{ cost functin not defined before }
-\Warning[TODO]{ write more about regularization }
+Another way to combat overfitting is with \textit{regularization}. Regularization searches for a hypothesis directly penalizes complexity.  Regularization still needs to select $\lambda$ using model selection.
 \citep{norvigAI}
-
-Regularization still needs to select $\lambda$ using the validation set.

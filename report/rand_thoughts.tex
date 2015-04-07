@@ -2,6 +2,7 @@
 
 \textit{Remove later, collect random things.}
 
+
 \section{Theory}
 
 Describe Collaborative Filtering!
@@ -11,95 +12,9 @@ Binary classifier, likes?
 Things I need to research more:
 
 \begin{enumerate}
-    \item Various optimization techniques?
     \item Collaborative filtering, neighbours? \cite{hu2008collaborative}
     \item Matrix factorization.
 \end{enumerate}
-
-Things to write about:
-
-\begin{enumerate}
-    \item LinkAnalysis. Written about in \cite{huang2007comparison}.
-\end{enumerate}
-
-
-\subsubsection{\cite{hu2008collaborative}}
-
-Usually minimize a cost function, with regularization such as:
-
-\begin{equation}
-    \min_{x_*, y_*} \sum_{r_{u,i} \text{ is known} } (r_{ui} - x_{u}^T y_i)^2 + \lambda(\|x_u\|^2 + \|y_i\|^2)
-\end{equation}
-
-Model as:
-
-\begin{equation}
-    p_{ui} = \begin{cases}
-        1 \quad r_{ui} > 0 \\
-        0 \quad r_{ui} = 0
-    \end{cases}
-\end{equation}
-
-Here $p_{ui}$ describes our confidence level for user $u$ to like item $i$.
-
-$r_{ui}$ described as how fully did user $u$ consume item $i$. For example if the value is $0.7$ then the user watched $70\%$ of the show. This is used by \cite{hu2008collaborative}.
-
-We however just use binary values.
-
-\cite{hu2008collaborative} use this cost function:
-
-\begin{equation}
-    \min_{x_*, y_*} \sum_{u,i} c_{ui} (p_{ui} - x_{u}^T y_i)^2 + \lambda(\sum_{u} \|x_u\|^2 + \sum_{i} \|y_i\|^2)
-\end{equation}
-
-This function accounts for (1) varying confidence levels (we don't need it as we don't use implicit ones) and (2) should account for all pairs, not just observer (not sure what to think about this).
-
-Use cross-validation to select $\lambda$.
-
-This cost function is very slow to compute though. Can we make do with the original one?
-
-Here $x_{u}^T y_i$ are our predicted values!
-
-Usually we use stochastic gradient descent to find parameters \cite{hu2008collaborative}.
-
-Describes link-analysis here.
-
-\Warning[TODO]{Mention discoveries!}
-
-Using $\eta$, but uses it as a constant. My findings are different. Possibly negative values?
-
-Using $\gamma$ in the range 0 to 1, but larger ones are also good.
-
-
-\subsection{Optimization}
-
-For ratings there are two state of the art prediction techniques:
-
-\begin{itemize}
-    \item ALS - Alternating Least Square
-    \item SGD - Stochastic Gradient Descent
-\end{itemize}
-
-Both minimizes \rmse.
-
-Gradient descent is an optimization technique in a multi-dimensional function space which walks in the gradient's direction.  This necessitates the use of a differential function.
-
-
-\subsubsection{Cost functions}
-
-Usually recommendation algorithms have an associated cost function to minimize, but ours don't seem to have one.
-
-
-\subsubsection{Non-smooth functions}
-
-This is what our functions seems to be?
-
-\url{http://scicomp.stackexchange.com/questions/1506/non-differentiable-global-optimization-problem}
-
-\url{http://www.amazon.com/dp/0898712564/?tag=stackoverfl08-20}
-
-etc...
-
 
 \section{Related Work}
 
@@ -139,14 +54,6 @@ See \citep{bobadilla2013recommender} for definitions.
 Cross validation techniques:
     random sub-sampling and k-fold cross validation
 
-Netflix has some comments on their recommender system.
-\url{http://techblog.netflix.com/2012/06/netflix-recommendations-beyond-5-stars.html}
-\url{http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html}
-
-$h_{u, i} = 0.7$ could mean that user $u$ has watched 70\% of the movie $i$, in the context of movie watching. \citep{hu2008collaborative}. Defining \textit{implicit feedback} systems.
-
-\citep{bennett2007netflix} is a summary of the netflix prize. Intro?
-
-ESWC 2014 discussions by \citep{di2014linked}, \citep{heitmann2014semstim}, \citep{ostuni2014linked}.
+ESWC 2014 discussions by \citep{di2014linked}, \citep{heitmann2014semstim}, \citep{ostuni2014linked}. Read them!
 
 
