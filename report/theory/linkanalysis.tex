@@ -1,8 +1,8 @@
 \section{The link-analysis algorithm}\label{sec:linkanalysis}
 
-\textit{Cleanup, mostly description from article. Reduce information?}
+%\textit{Cleanup, mostly description from article. Reduce information?}
 
-The link-analysis algorithm, as presented by \cite{huang2004link} and further discussed in \cite{huang2007comparison}. See the articles for more information.
+The \textit{link-analysis} algorithm, as presented by \cite{huang2004link} and further discussed in \cite{huang2007comparison}. See the articles for more information and in-depth examples. What follows is a condensed description of how the algorithm works.
 
 The algorithm is an adaptation of HITS \cite{kleinberg1999authoritative} which is a web page ranking algorithm to the recommendation domain. The original algorithm distinguish between \textit{Authoritative} pages which definitely contain high-quality information and \textit{Hub} pages which are comprehensive lists of links to authoritative pages. \citep{huang2007comparison}
 
@@ -12,12 +12,10 @@ The \textit{product representativeness} score $\PR(i, u)$ can be seen as a measu
 
 The \textit{consumer representativeness} score $\CR(u, \hat{u})$ measures how well $u$ as a hub for $\hat{u}$ associates with products of interests to $\hat{u}$.
 
-If $A$ is the user-item interaction history, as defined by \ref{eq:hist}, 
-\Warning[TODO]{ Using $A$ here, definition uses $h$! }
-then a recursive definition of the authority and hub scores can be defined as
+If $h_{u, i}$ is the user-item interaction history as defined by \ref{eq:hist} and $h$ is the interaction matrix then a recursive definition of the authority and hub scores can be defined as
 
 \begin{equation}
-    \PR = A' * \CR
+    \PR = h' * \CR
 \end{equation}
 
 \begin{equation}
@@ -27,7 +25,7 @@ then a recursive definition of the authority and hub scores can be defined as
 Where $B$ is a matrix such that:
 
 \begin{equation}
-    B_{i, j} = \frac{ A_{i, j} }{ \left(\sum_{j} A_{i, j}\right)^\gamma }
+    B_{u, i} = \frac{ h_{u, i} }{ \left(\sum_{i} h_{u, i}\right)^\gamma }
 \end{equation}
 
 Meaning $B$ normalizes the representativeness score a costumer receives from linked products by dividing it with the total number of products the customer is linked to.  $\gamma$ controls the extent to which a consumer is penalized for making many purchases.
@@ -41,11 +39,9 @@ $\CR_0$ is defined as
     \end{cases}
 \end{equation}
 
-in other words $\CR_0 = \eta * I_M$ where $I_M$ is an $M x M$ identity matrix.
-\Warning[TODO]{ $M$ not previously defined }
-It is included to maintain the high representativeness score for the target users themselves. This also necessitates a normalization step to keep the values on a consistent level.
+in other words $\CR_0 = \eta * I_M$ where $I_M$ is an $M x M$ identity matrix and $M$ is the number of users.  It is included to maintain the high representativeness score for the target users themselves. This also necessitates a normalization step to keep the values on a consistent level.
 
-In summary the link-analysis algorithm follow these steps:
+In summary the \textit{link-analysis} algorithm follow these steps:
 
 \begin{enumerate}
     \item Construct the interaction matrix $A$ and the associating matrix $B$.
@@ -54,10 +50,9 @@ In summary the link-analysis algorithm follow these steps:
     \item At each iteration $t = 1, \ldots, t_{max}$ perform:
 
         \begin{enumerate}
-            \item $\PR_t = A' * \CR_{t- 1}$
+            \item $\PR_t = h' * \CR_{t- 1}$
             \item $\CR_t = B * \PR_t$
             \item Normalize $\CR_t$ so each column adds up to 1
-                \Warning[TODO]{describe how?}
             \item $\CR_t = \CR_t + \CR_0$
         \end{enumerate}
 
@@ -68,5 +63,5 @@ In summary the link-analysis algorithm follow these steps:
 \end{enumerate}
 
 There are two parameters to the algorithm: $\gamma$ and $\eta$.
-\Warning[TODO]{ Describe them, what's their purpose }
+%\Warning[TODO]{ Describe them, what's their purpose }
 
