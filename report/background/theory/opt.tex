@@ -15,7 +15,7 @@ where the optimization objective is $x_u$ and $y_i$. Usually stochastic gradient
     \min_{x_*, y_*} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - x_{u}^T y_i)^2 + \lambda(\|x_u\|^2 + \|y_i\|^2)
 \end{equation}
 
-where $\lambda$ is the regularization parameter found using model selection.
+where $\lambda$ is the regularization parameter found using model selection. This directly penalizes larger values of $x_u$ and $y_i$ which in this case corresponds to an increase in complexity.
 
 This requires the algorithm to be modeled to use user and item vectors $x_u$ and $y_i$ which combine into the actual recommendation as $r_{u, i} = x_u^T y_i$. In effect a simpler cost function (without regularization) could be defined as
 
@@ -31,8 +31,7 @@ For algorithms where a cost function isn't applicable and during model selection
 
 \subsubsection{Grid search}
 
-Grid search selects a limited parameter space where it evaluates the function. Suffers from the curse of dimensionality but is often embarrassingly parallel.
-\Warning[TODO]{ Ref }
+Grid search selects a limited parameter space where it evaluates the function \footnote{Suggested by Andrew Ng, Stanford. \url{https://class.coursera.org/ml-006}}. Easily parallelized but it suffers from the curse of dimensionality.
 
 
 \subsubsection{Bayesian Optimization}
@@ -45,11 +44,11 @@ Noisy black-box functions. Develop a statistical model over the function space a
 Grid search is exhaustive and possibly expensive, random search with a fixed limit of samples has been shown to be more effective in high-dimension spaces. \citep{bergstra2012random}
 
 
-\subsubsection{Gradient Based Optimization}
+%\subsubsection{Gradient Based Optimization}
 
-For algorithms where it's possible to find a gradient, specialized optimization techniques can be used.
-\Warning[TODO]{ More? }
-\Warning[TODO]{ Ref }
+%For algorithms where it's possible to find a gradient, specialized optimization techniques can be used.
+%\Warning[TODO]{ More? }
+%\Warning[TODO]{ Ref }
 
 %\begin{equation} \label{eq:rmse}
     %\mathtt{RMSE} = \sqrt{\mathbf{E}\left\{ (\hat{R} - R)^2 \right\}}
