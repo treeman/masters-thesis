@@ -4,20 +4,20 @@
 
 \textit{Practically complete until halftime eval!}
 
-A lot of research has been put into recommender systems \citep{bobadilla2013recommender}. Most articles are concerned with improving accuracy of recommender system results, such as optimizing for \rmse. This was the case for the popular Netflix Prize \citep{bennett2007netflix} which was conserned with recommending movies given user ratings for other movies. Explicit feedback recommender systems continue to be a well researched area \citep{bobadilla2013recommender}.
+A lot of research has been put into recommender systems \citep{bobadilla2013recommender}. Most articles are concerned with improving accuracy of recommender system results, such as optimizing for \rmse. This was the case for the popular Netflix Prize \citep{bennett2007netflix} which was concerned with recommending movies given user ratings for other movies. Explicit feedback recommender systems continue to be a well researched area \citep{bobadilla2013recommender}.
 
 According to \citep{lai2012hybrid} the Top-N Recommendation problem is the real problem of many on-line recommender systems and it's common to seek improvements for recommendation quality, using \textit{Precision} or \textit{Recall} \citep{bobadilla2013recommender}. The 2nd Linked Open Data-enabled Recommender Systems Challenge
 \footnote{2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}
-is another competition which focuses on improving recommendation quality for the Top-N Recommendation problem as well as additional objectives such as diversity \citep{bobadilla2013recommender}.
+is another competition which focuses on improving recommendation quality for the Top-N Recommendation problem as well as additional objectives such as \textit{diversity} \citep{bobadilla2013recommender}.
 
 Implicit feedback systems have grown in popularity and are also being researched \citep{hu2008collaborative, bobadilla2013recommender}. Together with the research many versions of different recommender systems have been implemented, with recommender systems becoming more and more popular \citep{bobadilla2013recommender}. One of the most popular types are hybrid recommender systems which combine different types of data and algorithms \citep{bobadilla2013recommender, lai2012hybrid}. This was the winning approach for the Netflix Prize which combined 107 different algorithms in different ways to produce the final recommendations
 \footnote{ Netflix: Recommendations beyond 5 stars (Part 1), 2012. \url{http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html} }.
 
-A related approach is to organize the data into different subsets or clusters and then make recommendations using these subsets. This was negatively evaluated by \citep{cacheda2011comparison} however more positive results were given by a Clustered Low-Rank Approximation \citep{niklas, savas2011clustered}.  This was evaluated for user ratings using \rmse and speed benefits were theorized upon but not evaluated.
+A related approach is to organize the data into different subsets or clusters and then make recommendations using these subsets. This was negatively evaluated by \citep{cacheda2011comparison} however more positive results were given by a \textit{Clustered Low-Rank Approximation} \citep{niklas, savas2011clustered}.  This was evaluated for user ratings using \rmse and speed benefits were theorized upon but not evaluated.
 
-The link-analysis algorithm compared favorably in recommendation quality by \citep{huang2007comparison}. But without any analysis of the algorithm's parameters and no mention of the relative speed of the algorithm.  Similarly katz-eig had some positive recommendation quality results \citep{shin2012multi} but no parameter analysis and no mention of the algorithm's speed.
+The \textit{link-analysis} algorithm compared favorably in recommendation quality by \citep{huang2007comparison}. But without any analysis of the algorithm's parameters and no mention of the relative speed of the algorithm.  Similarly \textit{katz-eig} had some positive recommendation quality results \citep{shin2012multi} but no parameter analysis and no mention of the algorithm's speed.
 
-There is research for how to optimize and learn models for other algorithms, but no such research has been done for link-analysis or katz-eig.
+There is research for how to optimize and learn models for other algorithms, but no such research has been done for \textit{link-analysis} or \textit{katz-eig}.
 
 %The link-analysis algorithm is introduced by \citep{huang2004link} and used by \citep{huang2007comparison}. They do not do an in-depth analyze of different values for $\eta$ nor $\gamma$, they only note the best values they found.
 %They evaluate the different algorithms using \textit{precision}, \textit{recall}, \textit{F-measure} and \textit{rank score}.
