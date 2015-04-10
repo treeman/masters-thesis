@@ -14,6 +14,7 @@ A summary of the datasets is given by \tableref{tab:datasets}. What follows is a
 
         \textit{alpha}          &   100002          & 219767            & 904201            & 0.0041\%           \\ \hline
         \textit{alpha2}         &   75007           & 345674            & 1945115           & 0.0075\%           \\ \hline
+        \textit{alphaS}         &   16444           & 5000              & 26035             & 0.0316\%           \\ \hline
         \textit{eswc2015movies} &   32169           & 5389              & 638268            & 0.37\%             \\ \hline
         \textit{eswc2015music}  &   52072           & 6372              & 1093851           & 0.33\%             \\ \hline
         \textit{eswc2015books}  &   1398            & 2609              & 11600             & 0.32\%             \\ \hline
@@ -35,7 +36,9 @@ A summary of the datasets is given by \tableref{tab:datasets}. What follows is a
 
         \textit{alpha} is a randomly sampled dataset. It contains 100002 users, 219767 products with 904201 interactions.
 
-        \textit{alpha2} is another randomly sampled dataset, independently sampled from \textit{alpha}, filtered to only contain users with $\leq 2$ purchases. It contains 75007 users, 345674 products with 1945115 interactions.
+        \textit{alpha2} is another randomly sampled dataset, independently sampled from \textit{alpha}, filtered to only contain users with $\geq 2$ purchases. It contains 75007 users, 345674 products with 1945115 interactions.
+
+        \textit{alphaS} is a subset of \textit{alpha2}. It contains 16444 users, 5000 products with 26035 interactions.
 
         % >= 2
         %Found 75007 users and 345674 products
