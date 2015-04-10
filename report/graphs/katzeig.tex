@@ -11,7 +11,7 @@
 
 \subsection{Model selection}
 
-These are plots for possible models with rank $K$ low-rank approximation for \textit{katz-eig}.  All plots use $\beta = \frac{1}{|A_{train}|}$ and evaluated using a top-10 top list.
+These are plots for possible models with rank $K$ low-rank approximation for \textit{katz-eig}.  All plots use $\beta = \frac{1}{|h_{train}|}$ and evaluated using a top-10 top list.
 
 \FloatBarrier
 
@@ -119,17 +119,17 @@ A summary of the evaluations
     \centering
     \begin{tabular}{| c | r | r | r | r | l |}
         \hline
-        \textbf{dataset}        & \textbf{$\beta_{max} = \beta_{opt}$?}     & \textbf{diff between $\beta_{opt}$ and $\beta_{max}$ }    \\ \hline
+        \textbf{dataset}        & \textbf{diff between $\beta_{opt}$ and $\beta_{max}$ }    & \textbf{diff between $f_{min}$ and $f_{max}$} \\ \hline
 
-        \textit{alphaS}         &   yes     & 0~\%      \\ \hline
-        \textit{eswc2015books}  &   yes     & 0~\%      \\ \hline
-        \textit{eswc2015movies} &   no      & 0.039~\%  \\ \hline
-        \textit{movielens1m}    &   no      & 0.41~\%   \\ \hline
-        \textit{romeo}          &   no      & 0.072~\%  \\ \hline
+        \textit{alphaS}         & 0~\%      & 2.0~\%    \\ \hline
+        \textit{eswc2015books}  & 0~\%      & 0\%       \\ \hline
+        \textit{eswc2015movies} & 0.039~\%  & 0.28~\%   \\ \hline
+        \textit{movielens1m}    & 0.41~\%   & 0.41~\%   \\ \hline
+        \textit{romeo}          & 0.072~\%  & 2.1~\%    \\ \hline
 
 
     \end{tabular}
-    \caption{A summary of evaluating different $\beta$. $\beta_{max} = \frac{1}{|h_{train}|}$ is the maximally examined $\beta$ and $\beta_{opt}$ is the optimal $\beta$ found in the range $0 < \beta \leq \frac{1}{|h_{train}|}$. $K$ is individually optimized for the different datasets.}
+    \caption{A summary of evaluating different $\beta$. $\beta_{max} = \frac{1}{|h_{train}|}$ is the maximally examined $\beta$ and $\beta_{opt}$ is the optimal $\beta$ found in the range $0 < \beta \leq \frac{1}{|h_{train}|}$. $K$ is individually optimized for the different datasets. $f_{min}$ and $f_{max}$ are the minimal and maximal \textit{F1} values obtained.}
     \label{tab:katzeig_beta}
 \end{table}
 \Warning[TODO]{ Move to results section? }
