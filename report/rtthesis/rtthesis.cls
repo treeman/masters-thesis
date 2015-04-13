@@ -783,7 +783,7 @@
 
 \renewcommand{\cftmarktoc}{\markboth{\contentsname}{\contentsname}}  % Needed to not get CONTENTS (with capital letters) in the header of the Contents, should be loaded after tocloft
 
-\RequirePackage[margin=.5em, font={sl,small}]{subfig} % Must be loaded after tocloft.
+% \RequirePackage[margin=.5em, font={sl,small}]{subfig} % Must be loaded after tocloft.
 % tocbibind shall be loaded after hyperref.  Otherwise, some pdf bookmarks will be missing (like the one for the index).
 \RequirePackage[ chapter, nottoc ]{tocbibind} % Fix heading in bibs etc
 \renewcommand*\tocetcmark[1]{\markboth{#1}{#1}}
