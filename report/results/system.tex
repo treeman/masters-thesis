@@ -44,22 +44,27 @@ Secondly the appropriate plugin will be selected via command line arguments and 
 
 With the selected data the reader module can then generate matlab data file output in the form of a ``.mat'' file, upload the data to the database or simply print some statistics. When generating a ``.mat'' file different ratios of training, validation and test sets can be set. The purpose of this option is to generate datasets used during prototyping and evaluation.
 
-The reader module will remove unused products from the dataset and it can limit the number of users and products. It does so in a couple of steps:
+The reader module can remove unused products from the dataset and it can limit the number of users and products. It's possible to add constraints for a minimum number of users a product has interacted with and a minimum number of products a user has interacted with.  It does so in a couple of steps:
 
 \begin{enumerate}
+    \item \label{filter_users} Remove users with too few products in history, if required to
+    \item \label{filter_products} Remove products which too few users has interacted with, if required to
+
     \item Limit the number of products, if required
         \begin{enumerate}
             \item Randomly select the products to keep
-            \item Remove the removed products from the user history
+            %\item Remove the removed products from the user history
         \end{enumerate}
-    \item Remove users with too few products in history, if required to only regard users with a minimum number of interactions
     \item Limit the number of users, if required
         \begin{enumerate}
             \item Randomly select the users to keep
         \end{enumerate}
-    \item Remove unused products
+
+    \item Perform step \ref{filter_users} again
+    \item Perform step \ref{filter_products} again
 \end{enumerate}
 
+\Warning[TODO]{ Explain te reasoning behind the heuristic }
 
 
 \subsection{Input module}
