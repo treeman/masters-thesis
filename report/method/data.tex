@@ -1,6 +1,8 @@
 
 \section{Data}
 
+\Warning[TODO]{ Remove/alter this text! }
+
 The available datasets are described in detail in \appendixref{cha:datasets}. All data will in unweighted binary form \eqref{eq:hist}.
 
 An alternative to unweighted binary data is weighted data, where $h_{u, i} = x$ means that user $u$ has interacted with item $i$ $x$ times. There is some support in the available datasets (\textit{alpha}, \textit{alpha2}) but most of the datasets does not, which is why the focus is on datasets in unweighted binary form.
@@ -10,4 +12,121 @@ Another popular format is ratings, which \textit{movielens1m} is derived from. G
 During supervised learning the datasets will be divided into training, validation and test sets with a ratio of 70\%, 15\% and 15\% respectively. When a validation set is not necessary, it will be ignored and only the training and test sets will be used. Alternatively a new split with only training and test sets could be used with, for example, a split of 80\% and 20\% could be used. This thesis uses the same approach because of simplicity, there's no need to track different kinds of splits for the same data.
 
 As mentioned in \sectionref{sec:background:theory:suplearn} there are different ratios commonly used to split datasets. There is no ratio which is always the best, they depend on the amount of data available, the modeled domain and the algorithms chosen. A split of 70/15/15 was chosen early for simplicity reasons.
+
+
+\textit{Graph for number of interactions per user?}
+
+These are the datasets used by the thesis. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{romeo}) are given by some of Comordo's clients and they do not want the data to be publicly available, they are instead given brief summaries of the data structure and their size are made public.
+
+A summary of the datasets is given by \tableref{tab:datasets}. What follows is a more in depth description of the datasets and where they are taken from, if applicable.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{| c | r | r | r | r | l |}
+        \hline
+        \textbf{dataset}        & \textbf{users}    & \textbf{items}    & \textbf{elements} & \textbf{sparsity}  \\ \hline
+
+        \textit{alpha}          &   100002          & 219767            & 904201            & 0.0041\%           \\ \hline
+        \textit{alpha2}         &   75007           & 345674            & 1945115           & 0.0075\%           \\ \hline
+        \textit{alphaS}         &   16444           & 5000              & 26035             & 0.0316\%           \\ \hline
+        \textit{eswc2015movies} &   32169           & 5389              & 638268            & 0.37\%             \\ \hline
+        \textit{eswc2015music}  &   52072           & 6372              & 1093851           & 0.33\%             \\ \hline
+        \textit{eswc2015books}  &   1398            & 2609              & 11600             & 0.32\%             \\ \hline
+        \textit{movielens1m}    &   6040            & 3706              & 1000209           & 4.5\%              \\ \hline
+        \textit{romeo}          &   8321            & 722               & 205534            & 3.4\%              \\ \hline
+
+    \end{tabular}
+    \caption{A summary of the used datasets}
+    \label{tab:datasets}
+\end{table}
+
+\FloatBarrier
+
+\begin{description}
+    \item[alpha, alpha2, alphaS] \hfill
+
+        Anonymous datasets representing purchase history provided by an e-commerce client.
+        \Warning[TODO]{ Also models number of interactions, not binary? }
+
+        \textit{alpha} is a randomly sampled dataset. It contains 100002 users, 219767 products with 904201 interactions.
+
+        \textit{alpha2} is another randomly sampled dataset, independently sampled from \textit{alpha}, filtered to only contain users with $\geq 2$ purchases. It contains 75007 users, 345674 products with 1945115 interactions.
+
+        \textit{alphaS} is a subset of \textit{alpha2}. It contains 16444 users, 5000 products with 26035 interactions.
+
+        % >= 2
+        %Found 75007 users and 345674 products
+        %75007 users, 345674 products
+        %1945115 interactions, 0.0075\% sparsity
+
+        %Found 100002 users and 219767 products
+        %100002 users, 219767 products
+        %904201 interactions, 0.0041\% sparsity
+
+
+    \item[eswc2015movies, eswc2015music, eswc2015books] \hfill
+
+        These are the datasets used in the 2nd Linked Open Data-enabled Recommender Systems Challenge
+        \footnote{2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}.
+        The data have been collected from Facebook profiles about personal preferences, likes, for movies, books and music.
+        \footnote{DataSet | 2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/dataset/}}.
+
+        The datasets are originally split into training sets and evaluation sets. The evaluation sets does not contain any user-product mappings and for evaluation purposes this thesis will only concern itself with the training set part of the datasets.
+
+        The movie dataset contains 32159 users with 638268 likes for 6389 items. The dataset contains likes for movies, actors, directors, characters and genres.
+
+        The music dataset contains 52072 users with 1093851 likes for 6372 items. The dataset contains likes for albums, artists, bands, compositions and genres.
+
+        The book dataset contains 1398 users with 11600 likes for 2609 items. The dataset contains likes for books, characters, genres and writers.
+
+        For the purpose of this thesis, the different item types are treated as a single type. For example no care is taken to cross-reference liked genres with movies in that genre. The only thing considered is the user-item interaction history.
+
+        %Movies
+        %Found 32159 users and 5389 products
+        %32159 users, 5389 products
+        %638268 interactions, 0.37\% sparsity
+
+        %Music
+        %Found 52072 users and 6372 products
+        %52072 users, 6372 products
+        %1093851 interactions, 0.33\% sparsity
+
+        %Books
+        %Found 1398 users and 2609 products
+        %1398 users, 2609 products
+        %11600 interactions, 0.32\% sparsity
+
+
+    \item[movielens1m] \hfill
+
+        The MovieLens 1M dataset \footnote{Grouplens: MovieLens dataset, 2015. \url{http://grouplens.org/datasets/movielens/}} is a collection of ratings (1-5) taken from the MovieLens website \footnote{MovieLens homepage. \url{https://movielens.org/}}.
+
+        Transform ratings $r_{u, i}$ to interaction history $h_{u, i}$ by
+
+        \begin{equation}
+            h_{u, i} = \begin{cases}
+                1 \quad \text{if } r_{u, i} > 0 \\
+                0 \quad \text{otherwise}
+            \end{cases}
+        \end{equation}
+
+        The dataset contains 6040 users with 1000209 ratings for 3706 movies.
+
+        %Found 6040 users and 3883 products
+        %Filtered down to 6040 users and 3706 products
+        %6040 users, 3706 products
+        %1000209 interactions, 4.5\% sparsity
+
+
+    \item[romeo] \hfill
+
+        An anonymous dataset representing purchase history provided by an e-commerce client. It contains 8321 users, 722 products and 205534 interactions.
+
+        %Found 8321 users and 722 products
+        %8321 users, 722 products
+        %205534 interactions, 3.4\% sparsity
+
+
+
+\end{description}
 
