@@ -1,4 +1,4 @@
-\ProvidesClass{rtthesis}[2011/12/05 rtthesis Class v. 0.51]
+\ProvidesClass{rtthesis/rtthesis}[2011/12/05 rtthesis Class v. 0.51]
 \NeedsTeXFormat{LaTeX2e}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
