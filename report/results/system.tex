@@ -1,83 +1,22 @@
 
 \section{System overview}\label{sec:res:sys}
 
-\textit{Describe the system as a whole here, and what parts have been done.}
+Some changes were made to Commordo's original system sketch, as described in \sectionref{sec:sysoverview}. The system as a whole is described by \figureref{fig:sysfinal}.
 
-%\begin{enumerate}
-    %\item Reader module (inläsningsmodul, name????)
-    %\item Input module (indata) name???
-    %\item Output module (utdata)
-    %\item Purchase history db
-    %\item Product data db
-    %\item Parameters??? Or will we ignore this for the thesis work?
-    %\item Algorithm
-    %\item Control programs (But it's really just modifications of the algorithms)
-    %\item General/Personalized/Related recommendations db
-    %\item Remote API
-    %\item Web shop
-    %\item Admin web API?
-%\end{enumerate}
+The logic of the recommender system is built of two major parts: the \textit{reader module} and the \textit{recommender module}. Several modules from the original sketch has become submodules inside the recommender module. This is a logical grouping as the reader module and the recommender module are both implemented as separate scripts and the submodules represents a higher level description of the implemented functionality. 
 
-%\Warning[TODO]{ Need a figure which describes the different parts }
+The \textit{exporter module} is an utility module which generates recommendations from the database into another output format and serves statistics and as a developer debugging tool.  The remote API and the admin web interface are included in the system sketch, but they are not implemented by this thesis.
 
-%\input{results/input}
-%\input{results/data}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1.0\textwidth]{fig/system_overview_final.png}
+  \caption{Overview of the recommender system. Dotted lines represents interactions not implemented by the thesis and the thick lines depicts the flow of generating recommendations.}
+  \label{fig:sysfinal}
+\end{figure}
 
+\FloatBarrier
 
-\subsection{Reader module}
-
-\textit{Can describe how to dynamically locate modules with python, but that's not the purpose is it? Just describe that it can be done I guess?}
-
-The reader module takes data files, with client specific formatting, and stores the data in the databases. The data contains user interaction history of some sort, possibly as a list of user-item pairs, but it can also contain additional user and item information all in a single file or in several.
-
-To allow for flexibility the reader module uses a plugin system which can be selected at runtime. This is accomplished using python's dynamic module loading capabilities.
-
-Firstly the reader module will get a list of available plugins found in
-
-\begin{lstlisting}
-    lib/reader_plugins
-\end{lstlisting}
-
-The plugin class shall have a single uppercase letter and the rest lowercase and reside in a file with all lowercase. For example a plugin which handles \textit{eswc} data could have the class ``Eswc'' inside a file ``eswc.py'' in the plugin directory.
-
-Secondly the appropriate plugin will be selected via command line arguments and the plugin class will be handed control. The class should have two methods: ``add\_arguments'' which parses extra command line arguments and ``load'' which shall return a user hash and a product hash. \Appendixref{sec:eswc_plugin} describes a full example plugin which handles \textit{eswc} data.
-
-With the selected data the reader module can then generate matlab data file output in the form of a ``.mat'' file, upload the data to the database or simply print some statistics. When generating a ``.mat'' file different ratios of training, validation and test sets can be set. The purpose of this option is to generate datasets used during prototyping and evaluation.
-
-The reader module can remove unused products from the dataset and it can limit the number of users and products. It's possible to add constraints for a minimum number of users a product has interacted with and a minimum number of products a user has interacted with.  It does so in a couple of steps:
-
-\begin{enumerate}
-    \item \label{filter_users} Remove users with too few products in history, if required to
-    \item \label{filter_products} Remove products which too few users has interacted with, if required to
-
-    \item Limit the number of products, if required
-        \begin{enumerate}
-            \item Randomly select the products to keep
-            %\item Remove the removed products from the user history
-        \end{enumerate}
-    \item Limit the number of users, if required
-        \begin{enumerate}
-            \item Randomly select the users to keep
-        \end{enumerate}
-
-    \item Perform step \ref{filter_users} again
-    \item Perform step \ref{filter_products} again
-\end{enumerate}
-
-\Warning[TODO]{ Explain te reasoning behind the heuristic }
-
-
-\subsection{Input module}
-
-\subsection{Output module}
-
-\subsection{Control program}
-
-\textit{This isn't really ok...????}
-
-\subsection{Data storage}\label{sec:res:data}
-
-Database table design!
-
-\Warning[TODO]{ Title/content }
+\input{system/reader.tex}
+\input{system/recommender.tex}
+\input{system/exporter.tex}
 

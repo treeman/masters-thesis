@@ -1,0 +1,17 @@
+
+\subsection{Recommender module}
+
+The recommender module is the core of the recommender system. It is responsible for populating the databases with new recommendations and for optimizing the algorithms' parameters to new datasets.
+
+\Warning[TODO]{ More descriptions of the capabilities }
+
+Below follows a short description of the different submodules and their function.
+
+\begin{description}
+    \item[Input module] reads the interaction history from the database.
+    \item[Controller] selects which algorithm to use and if the purpose is to optimize the parameters or to generate recommendations.
+    \item[Parameter tuner] is responsible to optimize and fit the algorithms' to a new dataset.
+    \item[link-analysis, katz-eig] are the available recommender algorithms.
+    \item[Output module] populates the database with new recommendations.
+\end{description}
+
