@@ -10,7 +10,7 @@ The adaptation to the recommendation domain is achieved by introducing the \text
 
 The \textit{product representativeness} score $\PR(i, u)$ can be seen as a measure of the item $i$'s level of interest with respect to user $u$, or in other words $i$'s authority of $u$'s interests in $i$.
 
-The \textit{consumer representativeness} score $\CR(u, \hat{u})$ measures how well $u$ as a hub for $\hat{u}$ associates with products of interests to $\hat{u}$.
+The \textit{consumer representativeness} score $\CR(u, \hat{u})$ measures how well $u$ as a hub for $\hat{u}$ associates with items of interests to $\hat{u}$.
 
 If $h_{u, i}$ is the user-item interaction history as defined by \ref{eq:hist} and $h$ is the interaction matrix then a recursive definition of the authority and hub scores can be defined as
 
@@ -28,7 +28,7 @@ Where $B$ is a matrix such that:
     B_{u, i} = \frac{ h_{u, i} }{ \left(\sum_{i} h_{u, i}\right)^\gamma }
 \end{equation}
 
-Meaning $B$ normalizes the representativeness score a costumer receives from linked products by dividing it with the total number of products the customer is linked to.  $\gamma$ controls the extent to which a consumer is penalized for making many purchases.
+Meaning $B$ normalizes the representativeness score a costumer receives from linked items by dividing it with the total number of items the customer is linked to.  $\gamma$ controls the extent to which a consumer is penalized for making many purchases.
 
 $\CR_0$ is defined as
 

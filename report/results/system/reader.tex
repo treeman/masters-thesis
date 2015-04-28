@@ -17,7 +17,7 @@ Secondly the appropriate plugin will be selected via command line arguments and 
 
 With the selected data the reader module can then generate matlab data file output in the form of a ``.mat'' file, upload the data to the database or simply print some statistics. When generating a ``.mat'' file different ratios of training, validation and test sets can be set. The purpose of this option is to generate datasets used during prototyping and evaluation.
 
-The reader module can remove products and users from the dataset by introducing a couple of constraints:
+The reader module can remove items and users from the dataset by introducing a couple of constraints:
 
 \begin{enumerate}
     \item limit the maximum number of users in the dataset
@@ -31,13 +31,13 @@ The reason to limit the size of the dataset is due to the high computational com
 The reader module tries to comform to the constraints with these steps:
 
 \begin{enumerate}
-    \item \label{filter_users} Remove users with too few products in history, if required to
-    \item \label{filter_products} Remove products which too few users has interacted with, if required to
+    \item \label{filter_users} Remove users with too few items in history, if required to
+    \item \label{filter_items} Remove items which too few users has interacted with, if required to
 
-    \item Limit the number of products, if required
+    \item Limit the number of items, if required
         \begin{enumerate}
-            \item Randomly select the products to keep
-            %\item Remove the removed products from the user history
+            \item Randomly select the items to keep
+            %\item Remove the removed items from the user history
         \end{enumerate}
     \item Limit the number of users, if required
         \begin{enumerate}
@@ -45,10 +45,10 @@ The reader module tries to comform to the constraints with these steps:
         \end{enumerate}
 
     \item Perform step \ref{filter_users} again
-    \item Perform step \ref{filter_products} again
+    \item Perform step \ref{filter_items} again
 \end{enumerate}
 
 This will not produce a perfect solution and some constraints may not be fulfilled. If we for example want to want to constrain both the minimum number of item interactions each user has and the minimum number of user interaction each item has, we might fail to find a solution as the removal of some items may cause some users to have fewer than the constrained number of item interactions.
 
-The alternative is to introduce a constraint solver or iteratively perform step \ref{filter_users} and \ref{filter_products} until convergence, but that's a slow solution to a problem with inherently soft constraints. It is not very important if \textit{all} constraints hold, it is just an attempt to limit the size of the dataset. Therefore a faster but less correct solution was chosen.
+The alternative is to introduce a constraint solver or iteratively perform step \ref{filter_users} and \ref{filter_items} until convergence, but that's a slow solution to a problem with inherently soft constraints. It is not very important if \textit{all} constraints hold, it is just an attempt to limit the size of the dataset. Therefore a faster but less correct solution was chosen.
 
