@@ -3,7 +3,7 @@
 
 These are the datasets used by the thesis, a summary of the available datasets and their size is given by \tableref{tab:datasets}. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{alphaS}, \textit{romeo}) are given by some of Comordo's clients and they do not want the data to be publicly available. Instead a high level description of the datasets are given.
 
-All of the datasets will be in unweighted binary form \eqref{eq:hist}. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{alphaS}) support weighted binary form \eqref{eq:whist} but the other datasets does not, so they are transformed into unweighted binary form. Another given format is rating, which \textit{movielens1m} use. Generating recommendations with explicit feedback, such as ratings, is well researched but fundamentally different from implicit feedback systems. The focus of this thesis is on implicit feedback systems which is why ratings are not considered in their raw form, they are converted to unweighted binary form.
+All of the datasets will be in unweighted binary form \eqref{eq:hist}. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{alphaS}) support weighted form \eqref{eq:whist} but the other datasets does not, so they are transformed into unweighted binary form. Another given format is rating, which \textit{movielens1m} use. Generating recommendations with explicit feedback, such as ratings, is well researched but fundamentally different from implicit feedback systems. The focus of this thesis is on implicit feedback systems which is why ratings are not considered in their raw form, they are converted to unweighted binary form.
 \Warning[TODO]{ eq:whist is not defined! }
 
 During supervised learning the datasets will be divided into training, validation and test sets with a ratio of 70\%, 15\% and 15\% respectively. When a validation set is not necessary, it will be ignored and only the training and test sets will be used. This is done for simplicity and to reduce the number of different datasets needed to keep track of.  As mentioned in \sectionref{sec:background:theory:suplearn} there are different ratios commonly used to split datasets. There is no ratio which is always the best, they depend on the amount of data available, the modeled domain and the algorithms chosen. A split of 70/15/15 was chosen early for simplicity reasons.
@@ -35,7 +35,7 @@ What follows is a description of each available dataset and where they can be fo
 \begin{description}
     \item[alpha, alpha2, alphaS] \hfill
 
-        Anonymous datasets representing purchase history provided by an e-commerce client. The dataset is given in a weighted binary form \eqref{eq:whist} but is converted to unweighted binary form \eqref{eq:hist}.
+        Anonymous datasets representing purchase history provided by an e-commerce client. The dataset is given in a weighted form \eqref{eq:whist} but is converted to unweighted binary form \eqref{eq:hist}.
 
         \textit{alpha} is a randomly sampled dataset. It contains 100002 users, 219767 products with 904201 interactions.
 
@@ -90,14 +90,7 @@ What follows is a description of each available dataset and where they can be fo
 
         The MovieLens 1M dataset \footnote{Grouplens: MovieLens dataset, 2015. \url{http://grouplens.org/datasets/movielens/}} is a collection of ratings (1-5) taken from the MovieLens website \footnote{MovieLens homepage. \url{https://movielens.org/}}.
 
-        Transform ratings $r_{u, i}$ to unweighted binary form $h_{u, i}$ by
-
-        \begin{equation}
-            h_{u, i} = \begin{cases}
-                1 \quad \text{if } r_{u, i} > 0 \\
-                0 \quad \text{otherwise}
-            \end{cases}
-        \end{equation}
+        Ratings are transformed to unweighted binary form using \eqref{eq:rating2binary}.
 
         This is by no means a perfect transformation as a rating of 1 means the user has consumed an item but didn't enjoy it, while our model only concerns itself with interactions. Noise is introduced into the dataset and recommendation quality may suffer. It's also hard to evaluate the performance of the recommendations due to the noise.
 

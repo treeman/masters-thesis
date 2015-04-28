@@ -10,8 +10,7 @@ There can be multiple available models for the hypothesis, for example if the hy
 f(x) = a_n x^n + a_{n - 1} x^{n - 1} + ... + a_2 x^2 + a_1 x + a_0
 \end{equation}
 
-then the polynomial degree $n = 1, 2, 3, ...$ represents different possible models for the hypothesis \citep{norvigAI}. Other examples include the number of layers and the number of units in a neural network or the rank of a low rank approximation.
-\Warning[TODO]{ examples need ref }
+then the polynomial degree $n = 1, 2, 3, ...$ represents different possible models for the hypothesis \citep{norvigAI}. Other examples include the number of layers and the number of units in a neural network \footnote{Machine Learning, Stanford. \url{https://class.coursera.org/ml-006}} or the rank of a low rank approximation \footnote{katz-eig models this way, see \sectionref{sec:background:theory:katzeig}}.
 
 The different models represents the complexity of the hypothesis. A more complex model can make a better fit to the training data but that introduces the problem of \textit{overfitting} where the hypothesis fits the training data \textit{too} well and it will not fit the test data.
 \citep{norvigAI}
