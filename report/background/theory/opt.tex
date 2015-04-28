@@ -15,7 +15,7 @@ where the optimization objective is $x_u$ and $y_i$. Usually stochastic gradient
     \min_{x_*, y_*} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - x_{u}^T y_i)^2 + \lambda(\|x_u\|^2 + \|y_i\|^2)
 \end{equation}
 
-where $\lambda$ is the regularization parameter found using model selection. This directly penalizes larger values of $x_u$ and $y_i$ which in this case corresponds to an increase in complexity.
+where $\lambda$ is the regularization hyperparameter found using model selection. This directly penalizes larger values of $x_u$ and $y_i$ which in this case corresponds to an increase in complexity.
 
 This requires the algorithm to be modeled to use user and item vectors $x_u$ and $y_i$ which combine into the actual recommendation as $r_{u, i} = x_u^T y_i$. In effect a simpler cost function (without regularization) could be defined as
 

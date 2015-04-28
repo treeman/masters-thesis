@@ -5,3 +5,19 @@
 \textit{Did I do the research? Can I as a reader trust what the author is writing? After reading this part it should be clear to the reader that the question are good and well defined.}
 
 \textit{Something about evaluation process here?}
+
+The algorithms which produce recommendations produce predictions for each user-item pair, denoted $p_{u, i}$. For interaction history in unweighted binary form if $p_{u, i}$ is close to 1 it means item $i$ is predicted with high probability to user $u$ and a value close to 0 means it's not predicted. If the interaction history instead describes ratings the value corresponds to the predicted ratings the users would give, for example $p_{u, i} = 3.8$ means the algorithm is predicting user $u$ to rate item $i$ a 4, given ratings between 1 and 5.
+
+To produce top-N recommendations take the $N$ largest values of $p_{u, i}$ for each user. If it's important to recognize non-recommendations it is possible to set $r_{u, i} = 0$ if $p_{u, i} \leq \epsilon$, for some $\epsilon$, to accommodate for fewer than $N$ recommendations.
+
+This thesis will use an interaction history given in unweighted binary form and will produce recommendations for the Top-N recommender problem.
+
+To transform datasets with the more common explicit feedback style of ratings to an unweighted binary form a crude model \eqref{eq:rating2binary} will be used.
+
+\begin{equation} \label{eq:rating2binary}
+    h_{u, i} = \begin{cases}
+        1 \quad \text{user $u$ has rated item $i$} \\
+        0 \quad \text{otherwise}
+    \end{cases}
+\end{equation}
+

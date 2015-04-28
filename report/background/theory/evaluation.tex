@@ -1,11 +1,11 @@
 
 \subsection{Evaluation}\label{sec:background:theory:eval}
 
-\Warning[TODO]{ Move to methodology?? }
-
 A common technique to evaluate the quality of recommendations as sets is with \textit{Precision}, \textit{Recall} and \textit{F-measure}
 \footnote{The 2nd Linked Open Data-enabled Recommender Systems Challenge uses \textit{F-measure}, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}
 . \citep{bobadilla2013recommender}
+
+\Warning[TODO]{ Here $h_{u, i}$ isn't the interaction history, but the test/validation set }
 
 First, \textit{true positives}, $TP$, is the sum of all correctly predicted positive samples.
 
@@ -25,7 +25,7 @@ And \textit{false negatives}, $FN$, is the sum of all falsely predicted negative
     FN = \sum_{u, i} r_{u, i} = 0 \land \, h_{u, i} = 1
 \end{equation}
 
-Using \eqref{eq:tp}, \eqref{eq:fp} and \eqref{eq:fn} \textit{Precision} $P$ and \textit{Recall} $R$ is defined as
+Then \textit{Precision} $P$ and \textit{Recall} $R$ is defined as
 
 \begin{equation} \label{eq:precision}
     P = \TP / (\TP + \FP)
@@ -56,4 +56,5 @@ Another evaluation method commonly used to evaluate explicit feedback system wit
 \begin{equation} \label{eq:rmse}
     \mathtt{RMSE} = \sqrt{\mathbf{E}\left\{ (\mathit{pval} - h)^2 \right\}}
 \end{equation}
+\Warning[TODO]{ Matrices are usually big lettered! }
 

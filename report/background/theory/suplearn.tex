@@ -15,7 +15,10 @@ then the polynomial degree $n = 1, 2, 3, ...$ represents different possible mode
 The different models represents the complexity of the hypothesis. A more complex model can make a better fit to the training data but that introduces the problem of \textit{overfitting} where the hypothesis fits the training data \textit{too} well and it will not fit the test data.
 \citep{norvigAI}
 
-\textit{Model selection} is thus performed by evaluating performance with a \textit{validation set}. The reason not to both choose the model and evaluate the model using the test set is that then we will have overfit the test set as we both choose the best model and then evaluate with \textit{the already best fit}. \citep{norvigAI}
+\textit{Model selectin} is the act of choosing a set of parameters, selecting a model, with the goal of optimizing the algorithm's performance on an independent data set, a \textit{validation set}.  The reason not to both choose the model and evaluate the model using the test set is that then we will have overfit the test set as we both choose the best model and then evaluate with \textit{the already best fit}. \citep{norvigAI}
+
+
+%\textit{Model selection} is thus performed by evaluating performance with a \textit{validation set}. The reason not to both choose the model and evaluate the model using the test set is that then we will have overfit the test set as we both choose the best model and then evaluate with \textit{the already best fit}. \citep{norvigAI}
 
 The recommended ratio to split the training, validation and test set differs but common recommendations include 60/20/20, 80/10/10, or 70/15/15 \footnote{As recommended by Andrew Ng, Stanford. \url{https://class.coursera.org/ml-006}} depending on domain and the size of the available data set. It is important that the sets are pairwise disjunkt.
 
