@@ -1,24 +1,12 @@
 
 \section{Data}\label{sec:datasets}
 
-\Warning[TODO]{ Remove/alter this text! }
+These are the datasets used by the thesis, a summary of the available datasets and their size is given by \tableref{tab:datasets}. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{alphaS}, \textit{romeo}) are given by some of Comordo's clients and they do not want the data to be publicly available. Instead a high level description of the datasets are given.
 
-The available datasets are described in detail in \appendixref{cha:datasets}. All data will in unweighted binary form \eqref{eq:hist}.
+All of the datasets will be in unweighted binary form \eqref{eq:hist}. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{alphaS}) support weighted binary form \eqref{eq:whist} but the other datasets does not, so they are transformed into unweighted binary form. Another given format is rating, which \textit{movielens1m} use. Generating recommendations with explicit feedback, such as ratings, is well researched but fundamentally different from implicit feedback systems. The focus of this thesis is on implicit feedback systems which is why ratings are not considered in their raw form, they are converted to unweighted binary form.
+\Warning[TODO]{ eq:whist is not defined! }
 
-An alternative to unweighted binary data is weighted data, where $h_{u, i} = x$ means that user $u$ has interacted with item $i$ $x$ times. There is some support in the available datasets (\textit{alpha}, \textit{alpha2}) but most of the datasets does not, which is why the focus is on datasets in unweighted binary form.
-
-Another popular format is ratings, which \textit{movielens1m} is derived from. Generating recommendations with explicit feedback, such as ratings, is well researched but fundamentally different from implicit feedback systems. The focus on this thesis is recommendations for implicit feedback systems which is why ratings are not considered in their raw form.
-
-During supervised learning the datasets will be divided into training, validation and test sets with a ratio of 70\%, 15\% and 15\% respectively. When a validation set is not necessary, it will be ignored and only the training and test sets will be used. Alternatively a new split with only training and test sets could be used with, for example, a split of 80\% and 20\% could be used. This thesis uses the same approach because of simplicity, there's no need to track different kinds of splits for the same data.
-
-As mentioned in \sectionref{sec:background:theory:suplearn} there are different ratios commonly used to split datasets. There is no ratio which is always the best, they depend on the amount of data available, the modeled domain and the algorithms chosen. A split of 70/15/15 was chosen early for simplicity reasons.
-
-
-\textit{Graph for number of interactions per user?}
-
-These are the datasets used by the thesis. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{romeo}) are given by some of Comordo's clients and they do not want the data to be publicly available, they are instead given brief summaries of the data structure and their size are made public.
-
-A summary of the datasets is given by \tableref{tab:datasets}. What follows is a more in depth description of the datasets and where they are taken from, if applicable.
+During supervised learning the datasets will be divided into training, validation and test sets with a ratio of 70\%, 15\% and 15\% respectively. When a validation set is not necessary, it will be ignored and only the training and test sets will be used. This is done for simplicity and to reduce the number of different datasets needed to keep track of.  As mentioned in \sectionref{sec:background:theory:suplearn} there are different ratios commonly used to split datasets. There is no ratio which is always the best, they depend on the amount of data available, the modeled domain and the algorithms chosen. A split of 70/15/15 was chosen early for simplicity reasons.
 
 \begin{table}[h]
     \centering
@@ -42,17 +30,18 @@ A summary of the datasets is given by \tableref{tab:datasets}. What follows is a
 
 \FloatBarrier
 
+What follows is a description of each available dataset and where they can be found, if applicable.
+
 \begin{description}
     \item[alpha, alpha2, alphaS] \hfill
 
-        Anonymous datasets representing purchase history provided by an e-commerce client.
-        \Warning[TODO]{ Also models number of interactions, not binary? }
+        Anonymous datasets representing purchase history provided by an e-commerce client. The dataset is given in a weighted binary form \eqref{eq:whist} but is converted to unweighted binary form \eqref{eq:hist}.
 
         \textit{alpha} is a randomly sampled dataset. It contains 100002 users, 219767 products with 904201 interactions.
 
         \textit{alpha2} is another randomly sampled dataset, independently sampled from \textit{alpha}, filtered to only contain users with $\geq 2$ purchases. It contains 75007 users, 345674 products with 1945115 interactions.
 
-        \textit{alphaS} is a subset of \textit{alpha2}. It contains 16444 users, 5000 products with 26035 interactions.
+        \textit{alphaS} is a subset of \textit{alpha2}. It contains 16444 users, 5000 products with 26035 interactions. This is often used as \textit{alpha} and \textit{alpha2} are very large and the runtime is very long.
 
         % >= 2
         %Found 75007 users and 345674 products
@@ -68,18 +57,18 @@ A summary of the datasets is given by \tableref{tab:datasets}. What follows is a
 
         These are the datasets used in the 2nd Linked Open Data-enabled Recommender Systems Challenge
         \footnote{2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}.
-        The data have been collected from Facebook profiles about personal preferences, likes, for movies, books and music.
+        The data have been collected from Facebook profiles about personal preferences, ''likes``, for movies, books and music.
         \footnote{DataSet | 2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/dataset/}}.
 
-        The datasets are originally split into training sets and evaluation sets. The evaluation sets does not contain any user-product mappings and for evaluation purposes this thesis will only concern itself with the training set part of the datasets.
+        The datasets were originally split into training sets and evaluation sets. The evaluation sets does not contain any user-product mappings and for evaluation purposes this thesis will only concern itself with the training set part of the datasets.
 
-        The movie dataset contains 32159 users with 638268 likes for 6389 items. The dataset contains likes for movies, actors, directors, characters and genres.
+        \textit{eswc2015movies} contains 32159 users with 638268 likes for 6389 items. The dataset contains likes for movies, actors, directors, characters and genres.
 
-        The music dataset contains 52072 users with 1093851 likes for 6372 items. The dataset contains likes for albums, artists, bands, compositions and genres.
+        \textit{eswc2015music} contains 52072 users with 1093851 likes for 6372 items. The dataset contains likes for albums, artists, bands, compositions and genres.
 
-        The book dataset contains 1398 users with 11600 likes for 2609 items. The dataset contains likes for books, characters, genres and writers.
+        \textit{eswc2015books} contains 1398 users with 11600 likes for 2609 items. The dataset contains likes for books, characters, genres and writers.
 
-        For the purpose of this thesis, the different item types are treated as a single type. For example no care is taken to cross-reference liked genres with movies in that genre. The only thing considered is the user-item interaction history.
+        For the purpose of this thesis, the different item types are treated as a single type. For example no care is taken to cross-reference liked genres with movies in that genre. The only thing considered is the unweighted binary user-item interaction history.
 
         %Movies
         %Found 32159 users and 5389 products
@@ -101,7 +90,7 @@ A summary of the datasets is given by \tableref{tab:datasets}. What follows is a
 
         The MovieLens 1M dataset \footnote{Grouplens: MovieLens dataset, 2015. \url{http://grouplens.org/datasets/movielens/}} is a collection of ratings (1-5) taken from the MovieLens website \footnote{MovieLens homepage. \url{https://movielens.org/}}.
 
-        Transform ratings $r_{u, i}$ to interaction history $h_{u, i}$ by
+        Transform ratings $r_{u, i}$ to unweighted binary form $h_{u, i}$ by
 
         \begin{equation}
             h_{u, i} = \begin{cases}
@@ -109,6 +98,8 @@ A summary of the datasets is given by \tableref{tab:datasets}. What follows is a
                 0 \quad \text{otherwise}
             \end{cases}
         \end{equation}
+
+        This is by no means a perfect transformation as a rating of 1 means the user has consumed an item but didn't enjoy it, while our model only concerns itself with interactions. Noise is introduced into the dataset and recommendation quality may suffer. It's also hard to evaluate the performance of the recommendations due to the noise.
 
         The dataset contains 6040 users with 1000209 ratings for 3706 movies.
 
@@ -120,12 +111,13 @@ A summary of the datasets is given by \tableref{tab:datasets}. What follows is a
 
     \item[romeo] \hfill
 
-        An anonymous dataset representing purchase history provided by an e-commerce client. It contains 8321 users, 722 products and 205534 interactions.
+        An anonymous dataset representing purchase history provided by an e-commerce client. The dataset is in unweighted binary form.
+
+        The dataset contains 8321 users, 722 products and 205534 interactions.
 
         %Found 8321 users and 722 products
         %8321 users, 722 products
         %205534 interactions, 3.4\% sparsity
-
 
 
 \end{description}
