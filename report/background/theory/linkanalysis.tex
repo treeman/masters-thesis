@@ -2,6 +2,8 @@
 
 %\textit{Cleanup, mostly description from article. Reduce information?}
 
+\Warning[TODO]{ Detailed introduction/description! }
+
 The \textit{link-analysis} algorithm, as presented by \cite{huang2004link} and further discussed in \cite{huang2007comparison}. See the articles for more information and in-depth examples. What follows is a condensed description of how the algorithm works.
 
 The algorithm is an adaptation of HITS \cite{kleinberg1999authoritative} which is a web page ranking algorithm to the recommendation domain. The original algorithm distinguish between \textit{Authoritative} pages which definitely contain high-quality information and \textit{Hub} pages which are comprehensive lists of links to authoritative pages. \citep{huang2007comparison}
@@ -12,20 +14,20 @@ The \textit{product representativeness} score $\PR(i, u)$ can be seen as a measu
 
 The \textit{consumer representativeness} score $\CR(u, \hat{u})$ measures how well $u$ as a hub for $\hat{u}$ associates with items of interests to $\hat{u}$.
 
-If $h_{u, i}$ is the user-item interaction history as defined by \ref{eq:hist} and $h$ is the interaction matrix then a recursive definition of the authority and hub scores can be defined as
+If $h_{u, i}$ is the user-item interaction history as defined by \ref{eq:hist} and $A$ is the interaction matrix then a recursive definition of the authority and hub scores can be defined as
 
 \begin{equation}
-    \PR = h' * \CR
+    \PR = A' * \CR
 \end{equation}
 
 \begin{equation}
     \CR = B * \PR + \CR_0
 \end{equation}
 
-Where $B$ is a matrix such that:
+Where $B = (b_{u, i})$ is a matrix such that:
 
 \begin{equation}
-    B_{u, i} = \frac{ h_{u, i} }{ \left(\sum_{i} h_{u, i}\right)^\gamma }
+    b_{u, i} = \frac{ h_{u, i} }{ \left(\sum_{i} h_{u, i}\right)^\gamma }
 \end{equation}
 
 Meaning $B$ normalizes the representativeness score a costumer receives from linked items by dividing it with the total number of items the customer is linked to.  $\gamma$ controls the extent to which a consumer is penalized for making many purchases.
@@ -50,7 +52,7 @@ In summary the \textit{link-analysis} algorithm follow these steps:
     \item At each iteration $t = 1, \ldots, t_{max}$ perform:
 
         \begin{enumerate}
-            \item $\PR_t = h' * \CR_{t- 1}$
+            \item $\PR_t = A' * \CR_{t- 1}$
             \item $\CR_t = B * \PR_t$
             \item Normalize $\CR_t$ so each column adds up to 1
             \item $\CR_t = \CR_t + \CR_0$
@@ -58,10 +60,12 @@ In summary the \textit{link-analysis} algorithm follow these steps:
 
         Repeat until convergence.
 
-    \item Predicted user-item interaction is given by $\mathit{pval} = \PR'$.
+    \item Predicted user-item interaction is given by $P = \PR'$.
 
 \end{enumerate}
 
 There are two parameters to the algorithm: $\gamma$ and $\eta$.
 %\Warning[TODO]{ Describe them, what's their purpose }
+
+\Warning[TODO]{ Example run of the algorithm! }
 

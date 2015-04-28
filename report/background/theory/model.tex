@@ -12,14 +12,14 @@ Given a set of users $U$, a set of items $I$ and an interaction history $h_{u, i
 
 the \textit{recommender problem} is defined by producing a set of recommendations $r_{u, i}$
 
-\begin{equation}
+\begin{equation}\label{eq:binrec}
     r_{u, i} = \begin{cases}
         1 \quad \text{if item $i$ is recommended to user $u$} \\
         0 \quad \text{otherwise}
     \end{cases}
 \end{equation}
 
-to maximize the probability that user $u$ will want to interact with item $i$ in the future, for all users and items.  This definition is applicable for \textit{implicit feedback} systems which passively track different sorts of user behaviour. For example link following, interaction time and purchase history.
+to maximize the probability that user $u$ will want to interact with item $i$ in the future, for all users and items.  When $r_{u, i}$ is binary this is a \textit{binary classification} problem. This definition is applicable for \textit{implicit feedback} systems which passively track different sorts of user behaviour. For example link following, interaction time and purchase history.
 
 The recommender problem can be extended to the \textit{Top-N recommender problem} by introducing constraints \eqref{eq:constrain_N} which states that only $N$ recommendations can be presented for each user.
 
@@ -43,11 +43,11 @@ The converse of \textit{implicit feedback} is \textit{explicit feedback} where t
 
 \begin{equation}
     h_{u, i} = \begin{cases}
-        R \quad \text{the rating $R$ user $u$ gave item $i$} \\
+        x \quad \text{the rating $x$ user $u$ gave item $i$} \\
         \emptyset \quad \text{if the user $u$ did not rate item $i$}
     \end{cases}
 \end{equation}
 
 \Warning[TODO]{ Uses h for all equations? }
 
-With ratings $r_{u, i}$ changes to $r_{u, i} = \hat{R}$ where $\hat{R}$ is the rating user $u$ is predicted to give item $i$.
+With ratings $r_{u, i}$ changes to $r_{u, i} = \hat{x}$ where $\hat{x}$ is the rating user $u$ is predicted to give item $i$.
