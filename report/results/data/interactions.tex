@@ -1,0 +1,64 @@
+
+\subsection{Number of interactions}\label{sec:result:interactions}
+
+
+What follows is some graphs describing the number of interactions each user has and the number of interaction each item has in the datasets.
+
+\FloatBarrier
+
+\twopic{fig/data/alphaS_items_per_user.png}{fig/data/alphaS_users_per_item.png}{
+\textit{alphaS}
+}
+
+In \textit{alphaS} each user and each item has interactions with a small fraction of the available items and users. There are many users with very few interactions and also many items which few users has interacted with. In contrary to the appearance of these graphs, no users or items have 0 interactions. There are a couple of users with more than 400 interactions and there are some items which more than 600 users have bought.
+
+The graphs for \textit{alpha} and \textit{alpha2} are very similar but not included as the large dataset size makes the histogram barely visible. The basic appearance is the same with very many with few interactions and few with a lot of interactions, both for users and for items.
+
+\newpage
+
+\twopic{fig/data/eswc2015books_items_per_user.png}{fig/data/eswc2015books_users_per_item.png}{
+\textit{eswc2015books}
+}
+
+\twopic{fig/data/eswc2015movies_items_per_user.png}{fig/data/eswc2015movies_users_per_item.png}{
+\textit{eswc2015movies}
+}
+
+\twopic{fig/data/eswc2015music_items_per_user.png}{fig/data/eswc2015music_users_per_item.png}{
+\textit{eswc2015music}
+}
+
+\FloatBarrier
+
+All eswc datasets have similar distributions with more concentrated interactions. There is a lower limit for the number of interactions each user has, this is probably a constraint eswc introduced when creating the datasets. There are also no extreme outliers with many more interactions than the norm.
+
+The item interactions are more spread, with many items having interacted with relatively few user but some items having a lot of interactions.
+
+\newpage
+
+\twopic{fig/data/movielens1m_items_per_user.png}{fig/data/movielens1m_users_per_item.png}{
+\textit{movielens1m}
+}
+
+\twopic{fig/data/romeo_items_per_user.png}{fig/data/romeo_users_per_item.png}{
+\textit{romeo}
+}
+
+Both \textit{movielens1m} and \textit{romeo} have a more normalized look to them, especially with thenumber of user interactions per item compared to the other datasets. There are still outliers with many more interactions however.
+
+\FloatBarrier
+
+In general two distinct types of users can be identified. The first is a user with only a couple of item interactions, this appears to be the most common type of user. It could possibly be users who try out a service but for some reason they do not continue or they are new users who just recently started using the service. The other user type is the one with a lot of item interactions, way more than the norm, and they are quite rare
+\footnote{Parallels can be drawn to what is known as big spenders or ``whales'' in the social-gaming community. They make up a tiny group of the community but they drive most of the revenue for the game publishers. For a more in depth discussion see \\
+VentureBeat: What it means to be a ``whale'' — and why social gamers are just gamers, 2013. \\
+\url{http://venturebeat.com/2013/03/14/whales-and-why-social-gamers-are-just-gamers/} }
+.
+
+A similar classification can be made for items. The vast majority of items has only a couple of user interactions. Perhaps these are new items few users have found out about or niche items not interesting to most users. Then there are items with a lot more user interactions than what is common. This phenomenon with a few very popular items is also seen in mobile app stores where 1.6\% of app developers make more than the other 98.4\% combined
+\footnote{
+readwrite: Among Mobile App Developers, The Middle Class Has Disappeared, 2014. \\
+\url{http://readwrite.com/2014/07/22/app-developers-middle-class-opportunities}
+}
+.
+
+

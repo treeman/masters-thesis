@@ -1,0 +1,50 @@
+
+
+\subsection{Clusters}\label{sec:result:clusters}
+
+This is a simple clustering analysis of the datasets, clustered on a user basis.
+
+The clustering algorithm used is k-means, operating on $U * S$ if $U * S * V'$ forms a rank $k$ SVD approximation of the interaction matrix $A$. The resulting rows in the matrix (the user ones) are then reordered and grouped with respect to their clusters.
+
+This will try to group similar users next to each other. The used number of clusters is 10, this is not the optimal number of clusters for the datasets but the results are still useful for determining if there exists any clusters in the datasets.
+
+Some of the graphs will be sparse and some will appear to be very dense. This is mostly due to resolution issues as when the dataset grow, even though the sparsity might be lower, the number of data points grow but the size of each data point in the graphs are the same.
+
+\FloatBarrier
+
+\twopic{fig/data/alphaS_original.png}{fig/data/alphaS_10-clusters.png}{
+\textit{alphaS}
+}
+
+In \textit{alphaS} there are some clusters whith relatively few item interactions, but the other clusters aren't very prominent. Both \textit{alpha} and \textit{alpha2} are so large the resolution isn't enough to capture any individual data points so their graphs doesn't show anything of value so they are not included here.
+
+\twopic{fig/data/eswc2015books_original.png}{fig/data/eswc2015books_10-clusters.png}{
+\textit{eswc2015books}
+}
+
+\FloatBarrier
+
+\textit{eswc2015books} doesn't seem to have any major clusters, the dataset doesn't appear to have any structure except for a few streaks of very popular items.
+
+\FloatBarrier
+
+\twopic{fig/data/eswc2015movies_original.png}{fig/data/eswc2015movies_10-clusters.png}{
+\textit{eswc2015movies}
+}
+
+\twopic{fig/data/eswc2015music_original.png}{fig/data/eswc2015music_10-clusters.png}{
+\textit{eswc2015music}
+}
+
+\textit{eswc2015movies} and \textit{eswc2015music} in contrast display more prominent clusters. There are clusters who concentrate more on a subset of items, and there are clusters with higher interaction count.  Similarly \textit{movielens1m} and \textit{romeo} also have distinct clusters.
+
+\twopic{fig/data/movielens1m_original.png}{fig/data/movielens1m_10-clusters.png}{
+\textit{movielens1m}
+}
+
+\twopic{fig/data/romeo_original.png}{fig/data/romeo_10-clusters.png}{
+\textit{romeo}
+}
+
+\FloatBarrier
+
