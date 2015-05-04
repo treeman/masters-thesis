@@ -46,12 +46,8 @@ In many ways precision and recall are competing measures, when optimizing for pr
     \fmeasure = \frac{2 * \precision * \recall}{\precision + \recall}
 \end{equation}
 
-%\Warning[TODO]{ Evaluations for top-N }
-
-% TODO remove?
 Another evaluation method commonly used to evaluate explicit feedback system with ratings is the Root of Mean Square Error (\texttt{RMSE}).
 \citep{bobadilla2013recommender}
-%\Warning[TODO]{ Conflicting variable names? }
 
 \begin{equation} \label{eq:rmse}
     \mathtt{RMSE} = \sqrt{\frac{\sum_{u, i}^n (p_{u, i} - e_{u, i})^2}{n}}

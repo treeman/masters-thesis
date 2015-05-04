@@ -8,71 +8,86 @@
 \input{results/data}
 \newpage
 
-\Warning[TODO]{Reformat and reformulate graphs etc}
 
-\input{results/learning_curves.tex}
-\newpage
 
 \input{results/training_curves.tex}
 \newpage
 
-\input{results/katzeig.tex}
+\input{results/learning_curves.tex}
 \newpage
 
-\input{results/linkanalysis.tex}
+\input{results/parameters.tex}
 \newpage
 
 
+\section{Parameter tuning}
+
+\subsection{katz-eig}
+
+Compare different optimization approaches w.r.t. runtime and evaluation metric
+
+\subsection{link-analysis}
+
+Compare different optimization approaches w.r.t. runtime and evaluation metric
 
 
-\section{Big comparisons?}
-\Warning[TODO]{ title? Where? What? How? :) }
+\section{Algorithm comparison}
 
-Compare katz-eig, link-analysis, and some other algorithm?
-Also compare optimization w.r.t. time and evaluation.
+katz-eig/link-analysis learning vs non-learning runtime and recommendation quality on the different datasets.
 
-\begin{enumerate}
-    \item Running time
-    \item F-measure
-\end{enumerate}
+Possibly compare the different optimization approaches? Possibly merge with parameter tuning section?
 
 
-\textit{Unsure about the rest!}
+%\input{results/katzeig.tex}
+%\newpage
 
-\section{Optimization}\label{sec:res:opt}
-
-Optimization techniques in broad stroaks.
-
-Resulting graphs from LinkAnalysis. Use different kinds of datasets.
-
-\begin{itemize}
-    \item Graph over $\gamma$ with fixed $\eta$.
-    \item Graph over $\eta$ with fixed $\gamma$.
-    \item Graph over $\gamma$, $\eta$.
-    \item Graph over $T$, see that things flattens out.
-\end{itemize}
-
-Similarly for KatzEig.
-
-
-Compare custom\_neighbour, custom\_neighbour\_step, fminsearch, ... with each other. Compare runtime and accuracy over different kinds of datasets.
-
-Similarly for KatzEig.
+%\input{results/linkanalysis.tex}
+%\newpage
 
 
 
-\subsection{Julia}\label{subsec:res:julia}
-
-\Warning[TODO]{ Move to discussion? Conclusions? }
-
-Although not a focus of this thesis, some explorations with Julia has been undertaken.
 
 
-%\begin{chapter-appendix}
-%
-%\section{Ett par långa bevis}
-%
-%Det här är en appendix-del av det aktuella kapitlet.
-%
-%\end{chapter-appendix}
+%\textit{Unsure about the rest!}
+
+%\section{Big comparisons?}
+%\Warning[TODO]{ title? Where? What? How? :) }
+
+%Compare katz-eig, link-analysis, and some other algorithm?
+%Also compare optimization w.r.t. time and evaluation.
+
+%\begin{enumerate}
+    %\item Running time
+    %\item F-measure
+%\end{enumerate}
+
+
+%\section{Optimization}\label{sec:res:opt}
+
+%Optimization techniques in broad stroaks.
+
+%Resulting graphs from LinkAnalysis. Use different kinds of datasets.
+
+%\begin{itemize}
+    %\item Graph over $\gamma$ with fixed $\eta$.
+    %\item Graph over $\eta$ with fixed $\gamma$.
+    %\item Graph over $\gamma$, $\eta$.
+    %\item Graph over $T$, see that things flattens out.
+%\end{itemize}
+
+%Similarly for KatzEig.
+
+
+%Compare custom\_neighbour, custom\_neighbour\_step, fminsearch, ... with each other. Compare runtime and accuracy over different kinds of datasets.
+
+%Similarly for KatzEig.
+
+
+
+%\subsection{Julia}\label{subsec:res:julia}
+
+%\Warning[TODO]{ Move to discussion? Conclusions? }
+
+%Although not a focus of this thesis, some explorations with Julia has been undertaken.
+
 
