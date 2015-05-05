@@ -1,9 +1,46 @@
 
 \subsection{katz-eig}
 
-2D graphs be here.
+There are two parameters to \textit{katz-eig}: $\beta$, the link diminishing factor and $K$ specifying the $K$-rank approximation. $\beta$ is a continous value satisfying $0 < \beta \leq \frac{1}{\|A_{train}\|_2}$. If $\beta = 0$ then the algorithm will only output 0 and if $\beta > \frac{1}{\|A_{train}\|_2}$ the iterations will not converge. $K > 0$ is a discrete value.
 
-Transition into comments about $beta$, with some plots.
+What follows is plots over both of the parameters $K$ and $\beta$. The plots are evaluated using \textit{F-measure} w.r.t. the test set using top-10 recommendations.
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{fig/katzeig_beta_k/alphaS_katzeig.png}
+    \captionof{figure}{\textit{alphaS}}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{fig/katzeig_beta_k/eswc2015books_katzeig.png}
+    \captionof{figure}{\textit{eswc2015books}}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{fig/katzeig_beta_k/movielens_katzeig.png}
+    \captionof{figure}{\textit{movielens1m}}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{fig/katzeig_beta_k/romeo_katzeig.png}
+    \captionof{figure}{\textit{romeo}}
+\end{minipage}
+\end{figure}
+
+
+
+
+It seems like $beta$ doesn't have a very big impact on the function value. Some plots with a fixed $K$ follows to better see differences.
+
+The range examined is $0 < \beta \leq \beta_{max} = \frac{1}{\|A_{train}\|_2}$ with a $K$ selected to fit the specific dataset. Again evaluated using \textit{Precision}, \textit{Recall} and \textit{F-measure} w.r.t. the test set using the top-10 recommendations.
+
+\FloatBarrier
 
 \begin{figure}[h!]
 \centering
@@ -39,9 +76,9 @@ Transition into comments about $beta$, with some plots.
 
 \FloatBarrier
 
-\Tableref{tab:katzeig_beta} is a summary of the evaluated values.
+The difference between the optimal $\beta$ and an arbitrary selected $\beta$ isn't very large. Even smaller is the difference between the optimal $\beta$ and $\beta_{max}$.  \Tableref{tab:katzeig_beta} is a summary of the evaluated values.
 
-\begin{table}[h]
+\begin{table}[h!]
     \centering
     \begin{tabular}{| c | r | r | r | r | l |}
         \hline
@@ -55,7 +92,7 @@ Transition into comments about $beta$, with some plots.
 
 
     \end{tabular}
-    \caption{A summary of evaluating different $\beta$. $\beta_{max} = \frac{1}{|h_{train}|}$ is the maximally examined $\beta$ and $\beta_{opt}$ is the optimal $\beta$ found in the range $0 < \beta \leq \frac{1}{|h_{train}|}$. $K$ is individually optimized for the different datasets. $f_{min}$ and $f_{max}$ are the minimal and maximal \textit{F1} values obtained.}
+    \caption{A summary of evaluating different $\beta$. $\beta_{max} = \frac{1}{\|A_{train}\|_2}$ is the maximally examined $\beta$ and $\beta_{opt}$ is the optimal $\beta$ found in the range $0 < \beta \leq \beta_{max}$. $K$ is individually optimized for the different datasets. $f_{min}$ and $f_{max}$ are the minimal and maximal \textit{F1} values obtained.}
     \label{tab:katzeig_beta}
 \end{table}
 
@@ -63,7 +100,8 @@ Transition into comments about $beta$, with some plots.
 
 \newpage
 
-Later on comments/plots of $K$.
+
+The $K$-rank approximation represents different available models for \textit{katz-eig}. The following plots show different values of $K$, evaluated w.r.t. the test set. $\beta = \frac{1}{\|A_{train}\|}_2$ for all datasets. $K_{m}$ is the value of $K$ which gives the best \textit{F-measure} for each dataset.
 
 \FloatBarrier
 
@@ -72,12 +110,12 @@ Later on comments/plots of $K$.
 \begin{minipage}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{fig/katzeig_k/alphaS_katzeig_K.png}
-    \captionof{figure}{\textit{alphaS}}
+    \captionof{figure}{\textit{alphaS} $K_{m} = 13$}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{fig/katzeig_k/eswc2015books_katzeig_K.png}
-    \captionof{figure}{\textit{eswc2015books}}
+    \captionof{figure}{\textit{eswc2015books} $K_{m} = 1$}
 \end{minipage}
 \end{figure}
 
@@ -86,12 +124,12 @@ Later on comments/plots of $K$.
 \begin{minipage}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{fig/katzeig_k/eswc2015movies_katzeig_K.png}
-    \captionof{figure}{\textit{eswc2015movies}}
+    \captionof{figure}{\textit{eswc2015movies} $K_{m} = 5$}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{fig/katzeig_k/movielens_katzeig_K.png}
-    \captionof{figure}{\textit{movielens1m}}
+    \captionof{figure}{\textit{movielens1m} $K_{m} = 31$}
 \end{minipage}
 \end{figure}
 
@@ -100,8 +138,13 @@ Later on comments/plots of $K$.
 \begin{minipage}{.5\textwidth}
     %\centering
     \includegraphics[width=\linewidth]{fig/katzeig_k/romeo_katzeig_K.png}
-    \captionof{figure}{\textit{romeo}}
+    \captionof{figure}{\textit{romeo} $K_{m} = 8$}
 \end{minipage}%
 \end{figure}
 
 \FloatBarrier
+
+The function space w.r.t. $K$ is fairly smooth if not entirely convex. \textit{eswc2015books} is an outlier with a low optimal value $K = 1$ and many local optima. The other datasets display more smooth functions, but there are clear local optima with both \textit{alphaS} and \textit{romeo}.
+
+Also of note is that the functions start to decline at different $K$. \textit{eswc2015movies} declines already at $K = 5$ but it's only at around $K = 30$ \textit{movielens1m} starts to decline. As noted earlier \textit{eswc2015books} has it's optima already at $K = 1$.
+
