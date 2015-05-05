@@ -1,10 +1,17 @@
 
 \subsection{link-analysis}
 
+There are two parameters to \textit{link-analysis}: $\gamma$ and $\eta$. They are both continuous and both are undefined at 0.
+
+The following plot is evaluated using \textit{F-measure} w.r.t. the test set using top-10 recommendations over the parameter space of both $\gamma$ and $\eta$.
+
 \begin{figure}[h!]
     \includegraphics[width=\textwidth]{fig/link_eta_gamma/alphaS_link_eta.png}
     \caption{\textit{alphaS}}
+    \label{fig:linkalphaS}
 \end{figure}
+
+As noted before, the function is undefined at $\gamma = 0$ and $\eta = 0$. For \textit{alphaS} it appears $\gamma < 0$ is a very bad choice. Both $\eta > 0$ and $\eta < 0$ seems to be fair choices.
 
 \begin{figure}[h!]
 \centering
@@ -20,6 +27,8 @@
 \end{minipage}
 \end{figure}
 
+Similar observations can be made for \textit{movielens1m} and \textit{romeo}. The function space seems to be fairly smooth, almost convex. \textit{alphaS} has an anomaly at $\eta = -2$ and the parameters at 0 are exceptions.
+
 \FloatBarrier
 
 \begin{figure}[h!]
@@ -29,11 +38,11 @@
 
 \FloatBarrier
 
-A closer look at \textit{eswc2015books} reveal that the function space isn't as smooth as it might have seemed in the previous plots, several local optima can be seen. The function space if viewed with a lower level of detail is still fairly smooth and convex, with the exception of $eta = 0$.
+A closer look at \textit{eswc2015books}, ignoring $\gamma < 0$, reveals that the function space isn't as smooth as it might have seemed in the previous plots, several local optima can be seen. An anomaly around $\eta = -2$ is visible here as well.
 
 \newpage
 
-Then some comments of eta... Some have eta > 0 as their biggest value, and some have eta < 0.
+Interestingly some of the datasets have their maximum at $\eta > 0$ but others have $\eta < 0$. What follows is some plots over $\eta$ and a fixed $\gamma = 2$.
 
 \FloatBarrier
 
@@ -67,9 +76,13 @@ Then some comments of eta... Some have eta > 0 as their biggest value, and some 
 
 \FloatBarrier
 
+Here \textit{alphaS} and \textit{eswc2015books} have maximum \textit{F-measure} with $\eta < 0$ but \textit{movielens1m} and \textit{romeo} with $\eta > 0$.
+
+The actual optima, given optimization criteria of $\eta$ and $\gamma$, can be different. As can be seen in \figureref{fig:linkalphaS} the optima uses a smaller $\gamma$ and a positive $\eta$. But the local optima can still be found with either $\eta > 0$ or $\eta < 0$.
+
 \newpage
 
-And some comments of gamma... This seems to be the important parameter which varies the most!
+$\gamma$ is the parameter which seems to vary the function value the most. The following plots varies $\gamma$ while holding $\eta = 1$ constant.
 
 \FloatBarrier
 

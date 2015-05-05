@@ -2,17 +2,11 @@
 
 \textit{This is new theory here!}
 
-\textit{Did I do the research? Can I as a reader trust what the author is writing? After reading this part it should be clear to the reader that the question are good and well defined.}
+\Warning[QUEST]{ Should this be here or somewhere else? }
 
-\textit{Something about evaluation process here?}
+To produce top-N recommendations given predictions $p_{u, i}$ for each user $u$ and each item $i$, take the $N$ largest $p_{u_k, i} \, \forall i$ for each user $u_k$ and set $r_{u, i} = 1$ for these $N$ values. Set $r_{u, i} = 0$ for the rest. It is possible to set $r_{u, i} = 0$ if $p_{u, i} \leq \epsilon$, for some $\epsilon$, to accommodate for fewer than $N$ recommendations.
 
-\Warning[TODO]{ Rewrite this part }
-
-This thesis will use an interaction history given in unweighted binary form and will produce recommendations for the Top-N recommender problem.
-
-To produce top-N recommendations take the $N$ largest values of $p_{u, i}$ for each user. If it's important to recognize non-recommendations it is possible to set $r_{u, i} = 0$ if $p_{u, i} \leq \epsilon$, for some $\epsilon$, to accommodate for fewer than $N$ recommendations.
-
-To transform datasets with the more common explicit feedback style of ratings to an unweighted binary form a crude model \eqref{eq:rating2binary} will be used.
+To transform datasets with the more common explicit feedback style of ratings to an unweighted binary form a crude model \eqref{eq:rating2binary} was used.
 
 \begin{equation} \label{eq:rating2binary}
     h_{u, i} = \begin{cases}
