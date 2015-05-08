@@ -1,0 +1,65 @@
+
+\subsection{katz-eig}
+
+\textit{Compare different optimization approaches w.r.t. runtime and evaluation metric}
+
+The strategies for optimizing algorithm parameters for different datasets, or parameter tuning, has focused on keeping $\beta$ fixed and searching for $K$ which optimizes \textit{F-measure}. The analysis in \sectionref{sec:param:katzeig} showed that varying $\beta$ has a small effect on the algorithm's performance. If $\beta$ was fixed, the value of $\beta = \frac{1}{\|A_{train}\|_2}$ was used.
+
+What follows is a description of the different optimization techniques evaluated:
+
+\begin{description}
+    \item[grid]
+        Does a grid search over $K$, with a fixed step size. $\beta$ was fixed.
+    \item[grid-full]
+        Does a grid search over both $K$ and $\beta$, with fixed but possibly different step sizes.
+    \item[rand]
+        A random sampling over a subspace of $K$ with a fixed $\beta$. Depends on the size of the subset to sample over and the number of samples.
+    \item[hill]
+        Simple hill climbing algorithm which examines the neighbours of $K$. Uses a fixed $\beta$. Will find a local optima.
+    \item[stoch-hill]
+        An extension of the hill climbing algorithm which does a random restarts whenever a local optima is found. Also randomly jumps to a random $K$. Depends on the random jump probability, the subspace of $K$ and the number of iterationss.
+\end{description}
+
+\Tableref{tab:katzeig_tuning_F1} describes the performance of the different strategies measured by \textit{F-measure} and \tableref{tab:katzeig_tuning_sec} describes the runtime of the strategies.
+\Warning[TODO]{ Describe options etc given to the different strategies! }
+\Warning[TODO]{ Describe test setup somewhere. }
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | c | c | c | c | c | }
+        \hline
+        \textbf{}               & \textbf{grid} & \textbf{grid-full}    & \textbf{rand} & \textbf{hill} & \textbf{stoch-hill} \\ \hline
+
+
+        \textit{alphaS}         &               &                       &               &               &                       \\ \hline
+        \textit{eswc2015books}  &               &                       &               &               &                       \\ \hline
+        \textit{eswc2015movies} &               &                       &               &               &                       \\ \hline
+        \textit{movielens1m}    &               &                       &               &               &                       \\ \hline
+        \textit{romeo}          &               &                       &               &               &                       \\ \hline
+
+
+    \end{tabular}
+    \caption{Performance quality of different tuning strategies given by \textit{F-measure} over different datasets.}
+    \label{tab:katzeig_tuning_F1}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | c | c | c | c | c | }
+        \hline
+        \textbf{}               & \textbf{grid} & \textbf{grid-full}    & \textbf{rand} & \textbf{hill} & \textbf{stoch-hill} \\ \hline
+
+
+        \textit{alphaS}         &               &                       &               &               &                       \\ \hline
+        \textit{eswc2015books}  &               &                       &               &               &                       \\ \hline
+        \textit{eswc2015movies} &               &                       &               &               &                       \\ \hline
+        \textit{movielens1m}    &               &                       &               &               &                       \\ \hline
+        \textit{romeo}          &               &                       &               &               &                       \\ \hline
+
+
+    \end{tabular}
+    \caption{Runtime of different tuning strategies over different datasets.}
+    \label{tab:katzeig_tuning_sec}
+\end{table}
+\Warning[TODO]{ Need system specs! }
+

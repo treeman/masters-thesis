@@ -1,0 +1,36 @@
+
+\section{Algorithm comparison}
+
+katz-eig/link-analysis learning vs non-learning runtime and recommendation quality on the different datasets.
+
+Possibly compare the different optimization approaches? Possibly merge with parameter tuning section?
+
+\begin{enumerate}
+    \item Time to optimize for different datasets
+    \item Time to recommend given optimized parameters
+    \item Performance of recommendations given optimized parameters
+\end{enumerate}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | c | c | c | c | c | }
+        \hline
+        \textbf{}   & \textit{alphaS}   & \textit{eswc2015books} & \textit{eswc2015movies} & \textit{movielens1m}   & \textit{romeo} \\ \hline
+        $K$         & 13                & 1                      & 5                       & 31                     & 8              \\ \hline
+    \end{tabular}
+    \caption{Optimized parameters for \textit{katz-eig}. Found using grid search in $K \leq 100$.}
+    \label{tab:katzeig_params_used}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | c | c | c | c | c | }
+        \hline
+        \textbf{}   & \textit{alphaS}   & \textit{eswc2015books} & \textit{eswc2015movies} & \textit{movielens1m}   & \textit{romeo} \\ \hline
+        $\gamma$    &                   &                        &                         &                        &                \\ \hline
+        $\eta$      &                   &                        &                         &                        &                \\ \hline
+    \end{tabular}
+    \caption{Optimized parameters for \textit{link-analysis}.}
+    \label{tab:linkanalysis_params_used}
+\end{table}
+

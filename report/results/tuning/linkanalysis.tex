@@ -1,0 +1,52 @@
+
+\subsection{link-analysis}
+
+\textit{Compare different optimization approaches w.r.t. runtime and evaluation metric}
+
+\begin{description}
+    \item[grid]
+        Does a gridsearch over a subset of $\gamma$ and $\eta$, given a fixed step size.
+    \item[rand]
+        Randomly samples over a subspace of $\gamma$ and $\eta$, given a fixed number of samples.
+    \item[adapt-hill]
+        A hill climbing algorithm over both $\gamma$ and $\eta$. It starts with a fixed step size and compares the neighbours. If a local optima is found, the step size is decreased. Continues until a specified function, eta or gamma tolerance has been reached.
+\end{description}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | c | c | c | c | c | }
+        \hline
+        \textbf{}               & \textbf{grid} & \textbf{rand} & \textbf{adapt-hill} \\ \hline
+
+
+        \textit{alphaS}         &               &               &               \\ \hline
+        \textit{eswc2015books}  &               &               &               \\ \hline
+        \textit{eswc2015movies} &               &               &               \\ \hline
+        \textit{movielens1m}    &               &               &               \\ \hline
+        \textit{romeo}          &               &               &               \\ \hline
+
+
+    \end{tabular}
+    \caption{Performance quality of different tuning strategies given by \textit{F-measure} over different datasets.}
+    \label{tab:linkanalysis_tuning_F1}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | c | c | c | c | c | }
+        \hline
+        \textbf{}               & \textbf{grid} & \textbf{rand} & \textbf{adapt-hill} \\ \hline
+
+
+        \textit{alphaS}         &               &               &               \\ \hline
+        \textit{eswc2015books}  &               &               &               \\ \hline
+        \textit{eswc2015movies} &               &               &               \\ \hline
+        \textit{movielens1m}    &               &               &               \\ \hline
+        \textit{romeo}          &               &               &               \\ \hline
+
+
+    \end{tabular}
+    \caption{Runtime of different tuning strategies over different datasets.}
+    \label{tab:linkanalysis_tuning_sec}
+\end{table}
+\Warning[TODO]{ Need system specs! }
