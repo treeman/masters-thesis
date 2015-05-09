@@ -1,48 +1,48 @@
 
 \subsection{link-analysis}
 
-There are two parameters to \textit{link-analysis}: $\gamma$ and $\eta$. They are both continuous and both are undefined at 0.
+There are two parameters to \textit{link-analysis}: $\gamma$ and $\eta$, they are both continuous. At $\eta = 0$ all recommendations will always be 0.
 
 The following plot is evaluated using \textit{F-measure} w.r.t. the test set using top-10 recommendations over the parameter space of both $\gamma$ and $\eta$.
 
 \begin{figure}[h!]
-    \includegraphics[width=\textwidth]{fig/link_eta_gamma/alphaS_link_eta.png}
+    \includegraphics[width=\textwidth]{fig/link_eta_gamma/alphaS_link.png}
     \caption{\textit{alphaS}}
     \label{fig:linkalphaS}
 \end{figure}
 
-As noted before, the function is undefined at $\gamma = 0$ and $\eta = 0$. For \textit{alphaS} it appears $\gamma < 0$ is a very bad choice. Both $\eta > 0$ and $\eta < 0$ seems to be fair choices.
+For \textit{alphaS} it appears $\gamma < 0$ is a very bad choice. Both $\eta > 0$ and $\eta < 0$ seems to be fair choices, with $\eta > 0$ being slightly better. As long as $\eta > 0$, the specific choice of $\eta$ doesn't seem to matter that much. Curiously $\gamma = 0$ represents a peak. There's an anomaly at $\eta = -2$ which is markedly worse than $\eta = -1$ and $\eta = -3$.
 
 \begin{figure}[h!]
 \centering
 \begin{minipage}{.5\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{fig/link_eta_gamma/movielens_link_eta.png}
+    \includegraphics[width=\linewidth]{fig/link_eta_gamma/movielens_link.png}
     \captionof{figure}{\textit{movielens1m}}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{fig/link_eta_gamma/romeo_link_eta.png}
+    \includegraphics[width=\linewidth]{fig/link_eta_gamma/romeo_link.png}
     \captionof{figure}{\textit{romeo}}
 \end{minipage}
 \end{figure}
 
-Similar observations can be made for \textit{movielens1m} and \textit{romeo}. The function space seems to be fairly smooth, almost convex. \textit{alphaS} has an anomaly at $\eta = -2$ and the parameters at 0 are exceptions.
+Similarly for \textit{movielens1m} and \textit{romeo}, $\gamma > 0$ is generally better than $\gamma < 0$. This time $\gamma = 0$ does not represent the maximum function value. The function space seems to be fairly smooth, almost convex, except for $\eta = 0$. For \textit{movielens1m} $\eta < 0$ is the better choice.
 
 \FloatBarrier
 
 \begin{figure}[h!]
-    \includegraphics[width=\textwidth]{fig/link_eta_gamma/eswc2015books.png}
+    \includegraphics[width=\textwidth]{fig/link_eta_gamma/eswc2015books_link.png}
     \caption{\textit{eswc2015books}}
 \end{figure}
 
 \FloatBarrier
 
-A closer look at \textit{eswc2015books}, ignoring $\gamma < 0$, reveals that the function space isn't as smooth as it might have seemed in the previous plots, several local optima can be seen. An anomaly around $\eta = -2$ is visible here as well.
+A closer look at \textit{eswc2015books} reveals that the function space isn't as smooth as it might have seemed in the previous plots, several local optima can be seen. A decline around $\eta = -2$ is similar to that of \textit{alphaS}. Another similarity is that as long as $\eta > 0$, the exact value of $\eta$ doesn't seem to matter that much.
 
 \newpage
 
-Interestingly some of the datasets have their maximum at $\eta > 0$ but others have $\eta < 0$. What follows is some plots over $\eta$ and a fixed $\gamma = 2$.
+Interestingly some of the datasets have their maximum at $\eta > 0$ but others have $\eta < 0$. What follows is some plots over $\eta$ and a fixed $\gamma = 1$.
 
 \FloatBarrier
 
@@ -76,9 +76,9 @@ Interestingly some of the datasets have their maximum at $\eta > 0$ but others h
 
 \FloatBarrier
 
-Here \textit{alphaS} and \textit{eswc2015books} have maximum \textit{F-measure} with $\eta < 0$ but \textit{movielens1m} and \textit{romeo} with $\eta > 0$.
+Here \textit{alphaS} and \textit{eswc2015books} have maximum \textit{F-measure} with $\eta > 0$ but \textit{movielens1m} and \textit{romeo} with $\eta < 0$.
 
-The actual optima, given optimization criteria of $\eta$ and $\gamma$, can be different. As can be seen in \figureref{fig:linkalphaS} the optima uses a smaller $\gamma$ and a positive $\eta$. But the local optima can still be found with either $\eta > 0$ or $\eta < 0$.
+%The actual optima, given optimization criteria of $\eta$ and $\gamma$, can be different. As can be seen in \figureref{fig:linkalphaS} the optima uses a smaller $\gamma$ and a positive $\eta$. But the local optima can still be found with either $\eta > 0$ or $\eta < 0$.
 
 \newpage
 

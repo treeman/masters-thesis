@@ -48,19 +48,24 @@ In all following usages of \textit{katz-eig}, a value of $\epsilon = 0.01$ was u
 
 \subsection{link-analysis}
 
-\Warning[TODO]{ Finish this section! }
+\begin{figure}[h!]
+\centering
+\begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{fig/link_t/eswc2015books_link_t.png}
+    \captionof{figure}{\textit{eswc2015books}}
+\end{minipage}%
+%\begin{minipage}{.5\textwidth}
+    %\centering
+    %\includegraphics[width=\linewidth]{fig/katzeig_t/romeo_katzeig_t.png}
+    %\captionof{figure}{\textit{romeo}}
+%\end{minipage}
+\end{figure}
 
-\textit{Similar analysis as for katz-eig}
+\Warning[TODO]{ More plots }
 
-\textit{link-analysis} had it's maximum number of iterations fixed as $t_{max} = 3$ for the remained of this thesis.
+For \textit{link-analysis} convergence is also fast. The choice here was to fix $t_{max}$ to a fixed value instead of measuring convergence either by calculating $\| \PR_t - \PR_{t - 1} \|_2$
+or by explicitly calculating \textit{F-measure} and measuring the change. This was done because the iteration step in \textit{link-analysis}, in contrast to \textit{katz-eig}, handles large matrices and calculations such as these would be time consuming.
 
-
-%\begin{itemize}
-    %\item alphaS
-    %\item eswc2015movies
-    %\item eswc2015books (skip?)
-    %\item movielens1m
-    %\item romeo
-%\end{itemize}
-
+In all following usages of \textit{link-analysis}, the iteration count was fixed to $t_{max} = 3$.
 

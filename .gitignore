@@ -1,4 +1,6 @@
 *.pdf
+*.fig
+*~
 
 # Just a few latex temporary files...
 *.aux

@@ -3,49 +3,16 @@
 
 Learning curves plots the evaluation metric with respect to a varying training set size. The expectation here is that the algorithms should fit better the bigger the training set size becomes, given the same test set. The algorithms should produce better recommendations the more data they have to learn from. Learning curves is a good way to see if the algorithms work like they're supposed to.
 
-\Warning[TODO]{ Explain evaluations }
-\Warning[TODO]{ Insert/make plots }
+The evaluation uses the training matrix $A_{train}$ and the test set matrix $A_{test}$. For each step a random selection of a specific size is selected from $A_{train}$, recommendations are generated and evaluated against the same test set $A_{test}$. The dimensions of the matrices will the same, only the number of non-zero elements are increased with the training set size. This was done 10 times for each training set size as to remove variations from the random selection. The evaluation metric used was \textit{F-measure} with top-10 recommendations.
 
-%Learning curves plots the evaluation metric with respect to a varying training set size. Evaluated with a top-10 recommender list, using F-measure.
+Optimized parameters as described in \tableref{tab:katzeig_params_used} and \tableref{tab:linkanalysis_params_used} were used.
 
-%\textit{x-axis should it be training size or percent?}
+\twopic{fig/learning_curves/alphaS_learning_perf.png}{fig/learning_curves/alphaS_learning_time.png}{
+\textit{alphaS}
+}
+\twopic{fig/learning_curves/eswc2015books_learning_perf.png}{fig/learning_curves/eswc2015books_learning_time.png}{
+\textit{eswc2015books}
+}
 
-%\begin{itemize}
-    %\item alpha
-    %\item alpha2
-    %\item eswc2015movies
-    %\item eswc2015music
-    %\item eswc2015books
-    %\item movielens1m
-    %\item romeo
-%\end{itemize}
+A notable observation about the runtime is that the runtime for \textit{link-analysis} increases almost linearly with the increase in training set size, the runtime for \textit{katz-eig} is almost indifferent. This is to be expected as \textit{katz-eig} operates on a low-rank approximation of the interaction matrix $A_{train}$ while \textit{link-analysis} operates directly on the matrix. The sparse matrix format (\sectionref{sec:background:theory:matrix}) which discards zero elements during calculations is computationally more complex as the sparsity decreases.
 
-%\Warning[TODO]{ Generate better graphs!! }
-%\Warning[TODO]{ Why predetermined? Title is WRONG! }
-
-
-%\begin{figure}[ht]
-  %\centering
-    %\includegraphics[width=0.9\textwidth]{fig/learning_curves/movielens_learning_curves.png}
-    %\caption{Learning curves using \textit{movielens1m}
-        %Used a predetermined $\eta = -2$ and $\gamma = 1.8$ for link-analysis and $\beta = \frac{1}{|A_{train}|}$ with the model $K = 30$ for katz-eig.}
-%\end{figure}
-
-%\begin{figure}[ht]
-  %\centering
-    %\includegraphics[width=0.9\textwidth]{fig/learning_curves/eswc2015books_learning_curves.png}
-    %\caption{Learning curves using \textit{eswc2015books}
-        %Used a predetermined $\eta = -2$ and $\gamma = 1.8$ for link-analysis and $\beta = \frac{1}{|A_{train}|}$ with the model $K = 30$ for katz-eig.}
-%\end{figure}
-
-
-%%Used a predetermined $\eta = -2$ and $\gamma = 1.8$ for link-analysis and $\beta = \frac{1}{|A_{train}|}$ with the model $K = 10$ for katz-eig.
-
-
-%XXX link-analysis is slower the more training data we have.
-%katz-eig is practically indifferent.
-%plot time!
-
-\Warning[TODO]{ link is slower the more data we have, katz-eig is basically indifferent }
-
-%\FloatBarrier
