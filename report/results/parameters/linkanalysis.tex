@@ -3,7 +3,7 @@
 
 There are two parameters to \textit{link-analysis}: $\gamma$ and $\eta$, they are both continuous. At $\eta = 0$ all recommendations will always be 0.
 
-The following plot is evaluated using \textit{F-measure} w.r.t. the test set using top-10 recommendations over the parameter space of both $\gamma$ and $\eta$.
+The following plot is evaluated using \textit{F-measure}  over the parameter space of both $\gamma$ and $\eta$.
 
 \begin{figure}[h!]
     \includegraphics[width=\textwidth]{fig/link_eta_gamma/alphaS_link.png}
@@ -12,6 +12,8 @@ The following plot is evaluated using \textit{F-measure} w.r.t. the test set usi
 \end{figure}
 
 For \textit{alphaS} it appears $\gamma < 0$ is a very bad choice. Both $\eta > 0$ and $\eta < 0$ seems to be fair choices, with $\eta > 0$ being slightly better. As long as $\eta > 0$, the specific choice of $\eta$ doesn't seem to matter that much. Curiously $\gamma = 0$ represents a peak. There's an anomaly at $\eta = -2$ which is markedly worse than $\eta = -1$ and $\eta = -3$.
+
+\FloatBarrier
 
 \begin{figure}[h!]
 \centering
@@ -27,6 +29,8 @@ For \textit{alphaS} it appears $\gamma < 0$ is a very bad choice. Both $\eta > 0
 \end{minipage}
 \end{figure}
 
+\FloatBarrier
+
 Similarly for \textit{movielens1m} and \textit{romeo}, $\gamma > 0$ is generally better than $\gamma < 0$. This time $\gamma = 0$ does not represent the maximum function value. The function space seems to be fairly smooth, almost convex, except for $\eta = 0$. For \textit{movielens1m} $\eta < 0$ is the better choice.
 
 \FloatBarrier
@@ -38,7 +42,8 @@ Similarly for \textit{movielens1m} and \textit{romeo}, $\gamma > 0$ is generally
 
 \FloatBarrier
 
-A closer look at \textit{eswc2015books} reveals that the function space isn't as smooth as it might have seemed in the previous plots, several local optima can be seen. A decline around $\eta = -2$ is similar to that of \textit{alphaS}. Another similarity is that as long as $\eta > 0$, the exact value of $\eta$ doesn't seem to matter that much.
+A closer look at \textit{eswc2015books} reveals that the function space isn't as smooth as it might have seemed in the previous plots, several local optima can be seen.
+%A decline around $\eta = -2$ is similar to that of \textit{alphaS}. Another similarity is that as long as $\eta > 0$, the exact value of $\eta$ doesn't seem to matter that much.
 
 \newpage
 

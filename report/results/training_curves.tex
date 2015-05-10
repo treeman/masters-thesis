@@ -1,9 +1,9 @@
 
 \section{Training curves}\label{sec:graphs:training_curves}
 
-Both \textit{katz-eig} and \textit{link-analysis} are iterative algorithms. Their descriptions use the phrase "repeat until convergence".  With training curves, which plots the evaluation metric with the respect to epochs, the number of iterations, the effect of running more iterations can be seen.
+Both \textit{katz-eig} and \textit{link-analysis} are iterative algorithms. Their descriptions use the phrase ``repeat until convergence''.  With training curves, which plots the evaluation metric with the respect to epochs, the number of iterations, the effect of running more iterations can be seen.
 
-The plots have recommendations calculated using the training set and evaluated against the training set for \textit{Precision}, \textit{Recall} and \textit{F-measure} using the top-10 recommendations. Each $K$ are different for each dataset, using a learned optimal value, and $beta = \frac{1}{\|A_{train}\|_2}$.
+Each $K$ are different for each dataset, see \appendixref{app:opt_params}, and $beta = \frac{1}{\|A_{train}\|_2}$.
 
 \subsection{katz-eig}
 
@@ -25,6 +25,8 @@ In all following usages of \textit{katz-eig}, a value of $\epsilon = 0.01$ was u
 
 
 \subsection{link-analysis}
+
+Each $\gamma$ and $\eta$ are different for each dataset, see \appendixref{app:opt_params}.
 
 \twodiffpic{fig/link_t/alphaS_link_t.png}{\textit{alphaS}}
 {fig/link_t/eswc2015books_link_t.png}{\textit{eswc2015books}}

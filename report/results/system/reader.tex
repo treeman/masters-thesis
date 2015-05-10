@@ -51,4 +51,5 @@ The reader module tries to comform to the constraints with these steps:
 This will not produce a perfect solution and some constraints may not be fulfilled. If we for example want to want to constrain both the minimum number of item interactions each user has and the minimum number of user interaction each item has, we might fail to find a solution as the removal of some items may cause some users to have fewer than the constrained number of item interactions.
 
 The alternative is to introduce a constraint solver or iteratively perform step \ref{filter_users} and \ref{filter_items} until convergence, but that's a slow solution to a problem with inherently soft constraints. It is not very important if \textit{all} constraints hold, it is just an attempt to limit the size of the dataset. Therefore a faster but less correct solution was chosen.
+\Warning[QUEST]{ Result or discusssion? }
 
