@@ -124,17 +124,19 @@
     \end{figure}
 }
 
-\newcommand{\twopiccap}[4]{
+\newcommand{\twodiffpic}[4]{
     \begin{figure}[h!]
-        \begin{subfigure}[h!]{0.5\textwidth}
-            \includegraphics[width=\textwidth]{#1}
-            \caption{#2}
-        \end{subfigure}
-        ~
-        \begin{subfigure}[h!]{0.5\textwidth}
-            \includegraphics[width=\textwidth]{#3}
-            \caption{#4}
-        \end{subfigure}
+    \centering
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{#1}
+        \captionof{figure}{#2}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{#3}
+        \captionof{figure}{#4}
+    \end{minipage}
     \end{figure}
 }
 
