@@ -1,5 +1,5 @@
 
-\section{Training Curves}\label{sec:graphs:training_curves}
+\section{Training curves}\label{sec:graphs:training_curves}
 
 Both \textit{katz-eig} and \textit{link-analysis} are iterative algorithms. Their descriptions use the phrase "repeat until convergence".  With training curves, which plots the evaluation metric with the respect to epochs, the number of iterations, the effect of running more iterations can be seen.
 
@@ -9,33 +9,11 @@ The plots have recommendations calculated using the training set and evaluated a
 
 \FloatBarrier
 
-\begin{figure}[h!]
-\centering
-\begin{minipage}{.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{fig/katzeig_t/alphaS_katzeig_t.png}
-    \captionof{figure}{\textit{alphaS}}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{fig/katzeig_t/eswc2015movies_katzeig_t.png}
-    \captionof{figure}{\textit{eswc2015movies}}
-\end{minipage}
-\end{figure}
+\twopiccap{fig/katzeig_t/alphaS_katzeig_t.png}{\textit{alphaS}}
+{fig/katzeig_t/eswc2015movies_katzeig_t.png}{\textit{eswc2015movies}}
 
-\begin{figure}[h!]
-\centering
-\begin{minipage}{.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{fig/katzeig_t/movielens_katzeig_t.png}
-    \captionof{figure}{\textit{movielens1m}}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{fig/katzeig_t/romeo_katzeig_t.png}
-    \captionof{figure}{\textit{romeo}}
-\end{minipage}
-\end{figure}
+\twopiccap{fig/katzeig_t/movielens_katzeig_t.png}{\textit{movielens1m}}
+{fig/katzeig_t/romeo_katzeig_t.png}{\textit{romeo}}
 
 \FloatBarrier
 
@@ -48,19 +26,11 @@ In all following usages of \textit{katz-eig}, a value of $\epsilon = 0.01$ was u
 
 \subsection{link-analysis}
 
-\begin{figure}[h!]
-\centering
-\begin{minipage}{.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{fig/link_t/eswc2015books_link_t.png}
-    \captionof{figure}{\textit{eswc2015books}}
-\end{minipage}%
-%\begin{minipage}{.5\textwidth}
-    %\centering
-    %\includegraphics[width=\linewidth]{fig/katzeig_t/romeo_katzeig_t.png}
-    %\captionof{figure}{\textit{romeo}}
-%\end{minipage}
-\end{figure}
+\twopiccap{fig/link_t/alphaS_link_t.png}{\textit{alphaS}}
+{fig/link_t/eswc2015books_link_t.png}{\textit{eswc2015books}}
+
+\twopiccap{fig/link_t/movielens1m_link_t.png}{\textit{movielens1m}}
+{fig/link_t/romeo_link_t.png}{\textit{romeo}}
 
 \Warning[TODO]{ More plots }
 

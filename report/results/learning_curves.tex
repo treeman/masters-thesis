@@ -1,5 +1,5 @@
 
-\section{Learning Curves}\label{sec:graphs:learning_curves}
+\section{Learning curves}\label{sec:graphs:learning_curves}
 
 Learning curves plots the evaluation metric with respect to a varying training set size. The expectation here is that the algorithms should fit better the bigger the training set size becomes, given the same test set. The algorithms should produce better recommendations the more data they have to learn from. Learning curves is a good way to see if the algorithms work like they're supposed to.
 
@@ -13,6 +13,13 @@ Optimized parameters as described in \tableref{tab:katzeig_params_used} and \tab
 \twopic{fig/learning_curves/eswc2015books_learning_perf.png}{fig/learning_curves/eswc2015books_learning_time.png}{
 \textit{eswc2015books}
 }
+\twopic{fig/learning_curves/movielens_learning_perf.png}{fig/learning_curves/movielens_learning_time.png}{
+\textit{movielens1m}
+}
+\twopic{fig/learning_curves/romeo_learning_perf.png}{fig/learning_curves/romeo_learning_time.png}{
+\textit{romeo}
+}
 
 A notable observation about the runtime is that the runtime for \textit{link-analysis} increases almost linearly with the increase in training set size, the runtime for \textit{katz-eig} is almost indifferent. This is to be expected as \textit{katz-eig} operates on a low-rank approximation of the interaction matrix $A_{train}$ while \textit{link-analysis} operates directly on the matrix. The sparse matrix format (\sectionref{sec:background:theory:matrix}) which discards zero elements during calculations is computationally more complex as the sparsity decreases.
 
+\FloatBarrier

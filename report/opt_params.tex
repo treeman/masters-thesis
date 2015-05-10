@@ -1,0 +1,29 @@
+
+\chapter{Optimized parameters}\label{app:opt_params}
+
+During the thesis values of the algorithms' parmaters which would yield good results were used. This section is a summary of optimized values used to get good values of \textit{F-measure} on the corresponding dataset.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | c | c | c | c | c | }
+        \hline
+        \textbf{}   & \textit{alphaS}   & \textit{eswc2015books} & \textit{eswc2015movies} & \textit{movielens1m}   & \textit{romeo} \\ \hline
+        $K$         & 13                & 1                      & 5                       & 31                     & 8              \\ \hline
+    \end{tabular}
+    \caption{Optimized parameters for \textit{katz-eig}. Found using grid search in $K \leq 100$.}
+    \label{tab:katzeig_params_used}
+\end{table}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | c | c | c | c | c | }
+        \hline
+        \textbf{}   & \textit{alphaS}   & \textit{eswc2015books} & \textit{eswc2015movies} & \textit{movielens1m}   & \textit{romeo} \\ \hline
+        $\gamma$    & 1                 & 0                      &                         & 1                      & 2              \\ \hline
+        $\eta$      & 4                 & 2.5                    &                         & -3                     & -5             \\ \hline
+    \end{tabular}
+    \caption{Optimized parameters for \textit{link-analysis}.}
+    \label{tab:linkanalysis_params_used}
+\end{table}
+\Warning[TODO]{ How were they found? }
+

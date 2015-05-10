@@ -1,9 +1,7 @@
 
 \section{Algorithm comparison}
 
-katz-eig/link-analysis learning vs non-learning runtime and recommendation quality on the different datasets.
-
-Possibly compare the different optimization approaches? Possibly merge with parameter tuning section?
+\Warning[TODO]{ Compare with a simple top-list? Or something else easy? }
 
 \begin{enumerate}
     \item Time to optimize for different datasets
@@ -11,26 +9,37 @@ Possibly compare the different optimization approaches? Possibly merge with para
     \item Performance of recommendations given optimized parameters
 \end{enumerate}
 
+\Warning[XXX]{ Use other parameters than the one found with grid search? But use the one these strategies find? }
+
 \begin{table}[h!]
     \centering
-    \begin{tabular}{| c | c | c | c | c | c | }
+    \begin{tabular}{| c | c | c | }
         \hline
-        \textbf{}   & \textit{alphaS}   & \textit{eswc2015books} & \textit{eswc2015movies} & \textit{movielens1m}   & \textit{romeo} \\ \hline
-        $K$         & 13                & 1                      & 5                       & 31                     & 8              \\ \hline
+        \textbf{}               & \textbf{katz-eig} & \textbf{link-analysis} \\ \hline
+        \textit{alphaS}         & 0.322334 s        & 80.51777 s             \\ \hline
+        \textit{eswc2015books}  & 0.027862 s        & 1.527216 s             \\ \hline
+        \textit{eswc2015movies} & 48.76161 s        &                        \\ \hline
+        \textit{eswc2015music}  &                   &                        \\ \hline
+        \textit{movielens1m}    & 1.197174 s        & 75.92951 s             \\ \hline
+        \textit{romeo}          & 0.166743 s        &                        \\ \hline
     \end{tabular}
-    \caption{Optimized parameters for \textit{katz-eig}. Found using grid search in $K \leq 100$.}
-    \label{tab:katzeig_params_used}
+    \caption{Runtime of the algorithms using the full interaction history using the optimized parameters given in \appendixref{app:opt_params}.}
+    \label{tab:alg_full_time}
 \end{table}
 
 \begin{table}[h!]
     \centering
-    \begin{tabular}{| c | c | c | c | c | c | }
+    \begin{tabular}{| c | c | c | }
         \hline
-        \textbf{}   & \textit{alphaS}   & \textit{eswc2015books} & \textit{eswc2015movies} & \textit{movielens1m}   & \textit{romeo} \\ \hline
-        $\gamma$    & 1                 & 0                      &                         & 1                      &                \\ \hline
-        $\eta$      & 4                 & 2.5                    &                         & -3                     &                \\ \hline
+        \textbf{}               & \textbf{katz-eig} & \textbf{link-analysis} \\ \hline
+        \textit{alphaS}         & 0.002174          & \textbf{0.003208}      \\ \hline
+        \textit{eswc2015books}  & 0.020102          & \textbf{0.023537}      \\ \hline
+        \textit{eswc2015movies} & 0.048456          &                        \\ \hline
+        \textit{eswc2015music}  &                   &                        \\ \hline
+        \textit{movielens1m}    & \textbf{0.124839} & 0.090044               \\ \hline
+        \textit{romeo}          & 0.145914          &                        \\ \hline
     \end{tabular}
-    \caption{Optimized parameters for \textit{link-analysis}.}
-    \label{tab:linkanalysis_params_used}
+    \caption{Performance on \textit{F-measure} of the different algorithms using the optimized parameters given in \appendixref{app:opt_params}.}
+    \label{tab:alg_full_perf}
 \end{table}
 
