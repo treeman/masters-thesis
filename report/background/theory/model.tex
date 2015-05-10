@@ -39,7 +39,7 @@ A variation of the recommender problem is when the interaction history is in \te
 
 for example $h_{u, i} = 2$ means that the user $u$ has interacted with item $i$ 2 times. It is possible to allow \textit{implicit feedback} systems to log partial interactions, so $h_{u, i} = 0.7$ could mean that user $u$ has watched 70\% of the movie $i$, in the context of movie watching. \citep{hu2008collaborative}
 
-The converse of \textit{implicit feedback} is \textit{explicit feedback} where the users give direct input regarding their preferences, for example with movie ratings or with likes and dislikes.  Here the definition of the interaction history $h_{u, i}$ is the users' rating history.
+The converse of \textit{implicit feedback} is \textit{explicit feedback} where the users give direct input regarding their preferences, for example with movie ratings or with likes and dislikes.  Here the definition of the interaction history $h_{u, i}$ is the users' rating history:
 
 \begin{equation}
     h_{u, i} = \begin{cases}
@@ -50,4 +50,5 @@ The converse of \textit{implicit feedback} is \textit{explicit feedback} where t
 
 \Warning[QUEST]{ Uses h for all equations? }
 
-With ratings $r_{u, i}$ changes to $r_{u, i} = \hat{x}$ where $\hat{x}$ is the rating user $u$ is predicted to give item $i$.
+With ratings $r_{u, i}$ changes to $r_{u, i} = \hat{x}$ where $\hat{x}$ is the rating user $u$ is predicted to give item $i$. This is also a \textit{classification} problem, but the problem changes from assigning a binary value to wanting to predict a rating value.
+

@@ -3,7 +3,7 @@
 
 Although the goal is to handle real world data, the data considered in the thesis will be of a limited size compared to the larger real world data. The algorithms are not optimized enough to handle the larger data and they are not very fast even with fixed parameters, which makes the parameter tuning algorithms time consuming by default. But the runtime of the algorithms will still be a consideration during the selection and evaluation of optimization techniques.
 
-This thesis will focus on \textit{implicit feedback} systems with interaction history in \textit{unweighted binary form} \eqref{eq:hist} this is the focus for Comordo and ratings are not prioritized. Interactions in \textit{weighted form} \eqref{eq:whist} might be interesting for Comordo, but it is not considered in this thesis.
+This thesis will focus on \textit{implicit feedback} systems with interaction history in \textit{unweighted binary form} \eqref{eq:hist} which is the focus for Comordo. \textit{Explicit feedback} like ratings are not prioritized. Interactions in \textit{weighted form} \eqref{eq:whist} might be interesting for Comordo, but it is not considered in this thesis.
 
 The existing algorithms are currently written in Matlab which might negatively impact the runtime and handling of larger datasets. Focus will not be on porting them to a different language or platform, which could improve them speed wise, but the algorithms will be prototyped in Matlab.
 

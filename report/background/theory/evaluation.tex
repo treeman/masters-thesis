@@ -3,9 +3,10 @@
 
 A common technique to evaluate the quality of recommendations as sets is with \textit{Precision}, \textit{Recall} and \textit{F-measure}
 \footnote{The 2nd Linked Open Data-enabled Recommender Systems Challenge uses \textit{F-measure}, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}
-. \citep{bobadilla2013recommender}
+ \citep{bobadilla2013recommender}.
+ \Warning[XXX]{ Explain evaluations as sets more? }
 
-To evaluate between sets, let $r_{u, i}$ be the recommendations in binary form \eqref{eq:binrec} and let $e_{u, i}$ be the interaction history as described by the evaluation set. Practically it means $e_{u, i}$ could either represent the test set or the validation set.
+To evaluate between sets, let $r_{u, i}$ be the recommendations in binary form \eqref{eq:binrec} and let $e_{u, i}$ be the interaction history as described by the evaluation set. The evaluation set could be either the test set or the validation set, so $e_{u, i}$ could either represent the test set or the validation set.
 
 First, \textit{true positives}, $\TP$, is the sum of all correctly predicted positive samples.
 
@@ -39,14 +40,13 @@ Loosely \textit{Precision} signifies how well the recommended items correspond t
 
 In many ways precision and recall are competing measures, when optimizing for precision recall decreases and vice versa.  As the number of recommendations $N$ grow precision is expected to be lower and recall is expected to be higher. \citep{hu2008collaborative}
 
-
 \textit{F-measure}, denoted $\fmeasure$, is defined as the harmonic mean of precision and recall \eqref{eq:f1} as a combined measure of precision and recall.
 
 \begin{equation} \label{eq:f1}
     \fmeasure = \frac{2 * \precision * \recall}{\precision + \recall}
 \end{equation}
 
-Another evaluation method commonly used to evaluate explicit feedback system with ratings is the Root of Mean Square Error (\texttt{RMSE}).
+Another evaluation method commonly used to evaluate classifications with ratings is the Root of Mean Square Error (\texttt{RMSE}).
 \citep{bobadilla2013recommender}
 
 \begin{equation} \label{eq:rmse}

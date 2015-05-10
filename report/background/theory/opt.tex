@@ -27,21 +27,20 @@ Metrics such as \textit{F-measure} can be used directly as optimization criteria
 \footnote{Machine Learning, Stanford. \url{https://class.coursera.org/ml-006}}
 .
 
-There are a couple of generic optimization techniques used for optimizing cost functions and selecting parameters via recommender quality metrics such as \textit{F-measure}. In all cases the problem consists of minimizing or maximizing a target function. What follows are short descriptions of common techniques:
+There are a couple of generic optimization techniques used for optimizing cost functions and selecting parameters via recommender quality metrics such as \textit{F-measure}. In all cases the problem consists of minimizing or maximizing a target function. What follows are short descriptions of some common techniques:
 
 
 \subsubsection{Grid search}
 
-Grid search is a straightforward search technique which evaluates the function over a limited parameter space. This is a recommended approach
-\footnote{Suggested by Andrew Ng, Stanford. \url{https://class.coursera.org/ml-006}}
-for selecting the regularization parameter $\lambda$.
+Grid search is a straightforward search technique which evaluates the function over a limited parameter space. This is a recommended approach for selecting the regularization parameter $\lambda$
+\footnote{Suggested by Andrew Ng, Stanford. \url{https://class.coursera.org/ml-006}}.
 
 Grid search is easily parallelized but it suffers from the curse of dimensionality, where it's particularly slow if used to optimize multiple parameters.
 
 
 \subsubsection{Random search}
 
-Grid search is exhaustive and possibly expensive, random search with a fixed limit of samples has been shown to be more effective in high-dimension spaces. \citep{bergstra2012random}
+Grid search is exhaustive and possibly expensive, random search with a fixed limit of samples has been shown to be more effective in high-dimension spaces \citep{bergstra2012random}. Random search is easily parallelized but lacks guidance.
 
 
 \subsubsection{Hill climbing}
