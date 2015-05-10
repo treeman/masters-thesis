@@ -2,11 +2,11 @@
 
 A lot of research has been put into recommender systems \citep{bobadilla2013recommender}. Most articles are concerned with improving accuracy of recommender system results, such as minimizing \textit{Root of Mean Square Error} \prmse. This was the case for the popular Netflix Prize \citep{bennett2007netflix} which was concerned with recommending movies given user ratings for other movies. \textit{Explicit feedback} recommender systems continue to be a well researched area \citep{bobadilla2013recommender}. \textit{Implicit feedback} systems, which is the focus of this thesis, have grown in popularity and are being actively researched \citep{hu2008collaborative, bobadilla2013recommender}.
 
-According to \citep{lai2012hybrid} the \textit{Top-N Recommendation problem} is the real problem of many on-line recommender systems and it's common to seek improvements for recommendation quality, using \textit{Precision} or \textit{Recall} \citep{bobadilla2013recommender}. This is also the focus of this thesis.
+According to \citep{lai2012hybrid} the \textit{Top-N Recommendation problem} is the real problem of many on-line recommender systems and it's common to seek improvements for recommendation quality, using \textit{Precision}, \textit{Recall} or \textit{F-measure} \citep{bobadilla2013recommender}. This is also the focus of this thesis.
 
 The 2nd Linked Open Data-enabled Recommender Systems Challenge
 \footnote{2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}
-is another competition which focuses on improving recommendation quality for the Top-N Recommendation problem as well as additional objectives such as \textit{diversity} \citep{bobadilla2013recommender}. The recommender system challenge uses \textit{explicit feedback} in the form of likes, but the data format is compatible with the model this thesis uses \eqref{eq:hist}. They do use item meta-data such as genres, albums and actors which is not applicable to the general \textit{implicit feedback} system this thesis is focused on.
+is another competition which focuses on improving recommendation quality using \textit{F-measure} for the Top-N Recommendation problem as well as additional objectives such as \textit{diversity} \citep{bobadilla2013recommender}. The recommender system challenge uses \textit{explicit feedback} in the form of likes, but the data format is compatible with the model \eqref{eq:hist} this thesis uses. They use item meta-data such as genres, albums and actors which is not applicable to the general \textit{implicit feedback} system this thesis is focused on.
 
 Together with the research many versions of different recommender systems have been implemented, with recommender systems becoming more and more popular \citep{bobadilla2013recommender}. One of the most popular types are hybrid recommender systems which combine different types of data and algorithms \citep{bobadilla2013recommender, lai2012hybrid}. This was the winning approach for the Netflix Prize which combined 107 different algorithms in different ways to produce the final recommendations
 \footnote{ Netflix: Recommendations beyond 5 stars (Part 1), 2012. \url{http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html} }.
@@ -18,7 +18,7 @@ Optimization strategies for parameter tuning differ depending on the algorithms.
 \footnote{Recommended by Andrew Ng for the course Machine Learning, Stanford. \url{https://class.coursera.org/ml-006}}
 .
 
-The \textit{link-analysis} algorithm compared favorably in recommendation quality by \citep{huang2007comparison}. But without any analysis of the algorithm's parameters and no mention of the relative speed of the algorithm. The parameter values are simply stated but not commented on any further. No literature with further comments on the parameters could be found.
+The \textit{link-analysis} algorithm compared favorably in recommendation quality by \citep{huang2007comparison}. But without any analysis of the algorithms' parameters and no mention of the relative speed of the algorithm. The parameter values are simply stated but not commented on any further. No literature with further comments on the parameters could be found.
 
-Similarly \textit{katz-eig} had some positive recommendation quality results \citep{shin2012multi} but without parameter analysis and no mention of the algorithm's speed. No literature for parameter tuning could be found.
+Similarly \textit{katz-eig} had some positive recommendation quality results \citep{shin2012multi} but without parameter analysis and no mention of the algorithms' speed. No literature for parameter tuning could be found.
 
