@@ -3,7 +3,7 @@
 
 These are the datasets used by the thesis, a summary of the available datasets and their size is given by \tableref{tab:datasets}. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{alphaS}, \textit{romeo}) are given by some of Comordo's clients and they do not want the data to be publicly available. Instead a high level description of the datasets are given.
 
-All of the datasets will be in unweighted binary form \eqref{eq:hist}. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{alphaS}) support weighted form \eqref{eq:whist} but the other datasets does not, so they are transformed into unweighted binary form. Another given format is rating, which \textit{movielens1m} use. Generating recommendations with explicit feedback, such as ratings, is well researched but fundamentally different from implicit feedback systems. The focus of this thesis is on implicit feedback systems which is why ratings are not considered in their raw form, they are converted to unweighted binary form.
+All of the datasets will be in unweighted binary form \eqref{eq:hist}. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{alphaS}) support weighted form \eqref{eq:whist} but the other datasets does not, so they are transformed into unweighted binary form. Another given format is ratings, which \textit{movielens1m} use. Generating recommendations with explicit feedback, such as ratings, is well researched but fundamentally different from implicit feedback systems. The focus of this thesis is on implicit feedback systems which is why ratings are not considered in their raw form, they are converted to unweighted binary form.
 
 During supervised learning the datasets will be divided into training, validation and test sets with a ratio of 70\%, 15\% and 15\% respectively. The split was done by randomly distributing all items in the interaction history and distributing amongst the sets. In a matrix representation it can be thought as randomly assigning each non-zero value from the interaction matrix $A$ to either $A_{train}$, $A_{val}$ or $A_{test}$ while keeping all other elements as zero.
 
@@ -18,9 +18,9 @@ When a validation set is not necessary, it will be ignored and only the training
         \textit{alpha}          &   100002          & 219767            & 904201            & 0.0041\%           \\ \hline
         \textit{alpha2}         &   75007           & 345674            & 1945115           & 0.0075\%           \\ \hline
         \textit{alphaS}         &   16444           & 5000              & 26035             & 0.0316\%           \\ \hline
+        \textit{eswc2015books}  &   1398            & 2609              & 11600             & 0.32\%             \\ \hline
         \textit{eswc2015movies} &   32169           & 5389              & 638268            & 0.37\%             \\ \hline
         \textit{eswc2015music}  &   52072           & 6372              & 1093851           & 0.33\%             \\ \hline
-        \textit{eswc2015books}  &   1398            & 2609              & 11600             & 0.32\%             \\ \hline
         \textit{movielens1m}    &   6040            & 3706              & 1000209           & 4.5\%              \\ \hline
         \textit{romeo}          &   8321            & 722               & 205534            & 3.4\%              \\ \hline
 
@@ -63,11 +63,11 @@ What follows is a description of each available dataset and where they can be fo
 
         The datasets were originally split into training sets and evaluation sets. The evaluation sets does not contain any user-product mappings and for evaluation purposes this thesis will only concern itself with the training set part of the datasets.
 
+        \textit{eswc2015books} contains 1398 users with 11600 likes for 2609 items. The dataset contains likes for books, characters, genres and writers.
+
         \textit{eswc2015movies} contains 32159 users with 638268 likes for 6389 items. The dataset contains likes for movies, actors, directors, characters and genres.
 
         \textit{eswc2015music} contains 52072 users with 1093851 likes for 6372 items. The dataset contains likes for albums, artists, bands, compositions and genres.
-
-        \textit{eswc2015books} contains 1398 users with 11600 likes for 2609 items. The dataset contains likes for books, characters, genres and writers.
 
         For the purpose of this thesis, the different item types are treated as a single type. For example no care is taken to cross-reference liked genres with movies in that genre. The only thing considered is the unweighted binary user-item interaction history.
 
