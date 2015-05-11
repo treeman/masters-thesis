@@ -2,11 +2,11 @@
 
 \Warning[TODO]{ Detailed introduction/description! }
 
-The \textit{link-analysis} algorithm, as presented by \cite{huang2004link} and further discussed in \cite{huang2007comparison}. See the articles for more information and in-depth examples. What follows is a condensed description of how the algorithm works.
+The \textit{link-analysis} algorithm, as presented by \cite{huang2004link} and further discussed in \cite{huang2007comparison}.  See the articles for more information and in-depth examples. What follows is a condensed description of how the algorithm works.
 
 The algorithm is an adaptation of HITS \cite{kleinberg1999authoritative} which is a web page ranking algorithm to the recommendation domain. The original algorithm distinguish between \textit{Authoritative} pages which definitely contain high-quality information and \textit{Hub} pages which are comprehensive lists of links to authoritative pages. \citep{huang2007comparison}
 
-The adaptation to the recommendation domain is achieved by introducing the \textit{product representativeness} score $\PR$ and the \textit{consumer representativeness} score $\CR$.
+Adaptation to the recommendation domain is achieved by introducing the \textit{product representativeness} score $\PR$ and the \textit{consumer representativeness} score $\CR$.
 
 The \textit{product representativeness} score $\PR(i, u)$ can be seen as a measure of the item $i$'s level of interest with respect to user $u$, or in other words $i$'s authority of $u$'s interests in $i$.
 
@@ -64,5 +64,109 @@ In summary the \textit{link-analysis} algorithm follow these steps:
 
 There are two parameters to the algorithm: $\gamma$ and $\eta$.
 
-\Warning[TODO]{ Example run of the algorithm! }
+
+\subsubsection{Runtime exmple}
+
+This is a runtime example for \textit{link-analysis} using a simple interaction matrix \eqref{eq:exA}, corresponding to the interaction graph \figureref{fig:ex_graph}.
+
+\begin{equation}\label{eq:exA}
+  A = \kbordermatrix{
+    &    i_1 & i_2 & i_3 & i_4 \\
+    u_1 & 0   & 1   & 0   & 1  \\
+    u_2 & 0   & 1   & 1   & 1  \\
+    u_3 & 1   & 0   & 1   & 0
+  }
+\end{equation}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.3\linewidth]{fig/example_run/item_user_graph.png}
+    \caption{A graph representing interactions between each user and item.}
+    \label{fig:ex_graph}
+\end{figure}
+
+The following example uses $\gamma = 0.9$ and $\eta = 1$.
+
+
+\[
+  B = \kbordermatrix{
+    &    i_1 & i_2 & i_3 & i_4 \\
+    u_1 & 0         & 0.5359    & 0         & 0.5359  \\
+    u_2 & 0         & 0.3720    & 0.3720    & 0.3720  \\
+    u_3 & 0.5359    & 0         & 0.5359    & 0
+  },
+\;
+  \CR_0 = \kbordermatrix{
+    &    u_1 & u_2 & u_3 \\
+    u_1 & 1   & 0  & 0  \\
+    u_2 & 0   & 1  & 0  \\
+    u_3 & 0   & 0  & 1
+  }
+\]
+
+During the iterations the rows of $\PR$ will be representing each item and each column will be representing each user, this is the reverse of the interaction matrix $A$. The example therefore presents the transpose of $\PR$, $\PR'$.
+
+\[
+    \PR'_1 = \begin{pmatrix}
+        0 & 1 & 0 & 1 \\
+        0 & 1 & 1 & 1 \\
+        1 & 0 & 1 & 0
+    \end{pmatrix},
+\;
+    \CR_1 = \begin{pmatrix}
+        1.5902 & 0.4098 & 0 \\
+        0.3935 & 1.4098 & 0.1967 \\
+        0      & 0.2577 & 1.7423
+    \end{pmatrix}
+\]
+
+\[
+    \PR'_2 = \begin{pmatrix}
+             0 &  2.0000 &  0.4098 &  2.0000 \\
+        0.1967 &  1.8033 &  1.6065 &  1.8033 \\
+        1.7423 &  0.2577 &  2.0000 &  0.2577
+    \end{pmatrix},
+\;
+    \CR_2 = \begin{pmatrix}
+        1.5354 &  0.4098 &  0.0548 \\
+        0.3994 &  1.4008 &  0.1997 \\
+        0.0858 &  0.2909 &  1.6233
+    \end{pmatrix}
+\]
+
+\[
+    \PR'_3 = \begin{pmatrix}
+        0.0548 &  1.9452 &  0.4646 &  1.9452 \\
+        0.1997 &  1.8003 &  1.6006 &  1.8003 \\
+        1.6233 &  0.3767 &  1.9142 &  0.3767
+    \end{pmatrix},
+\;
+    \CR_3 = \begin{pmatrix}
+        1.5234 &  0.4067 &  0.0699 \\
+        0.3995 &  1.4007 &  0.1998 \\
+        0.1226 &  0.3015 &  1.5759
+    \end{pmatrix}
+\]
+
+After transposing $\PR$ and removing the items users already have interacted with in $A$, the prediction matrix $P$ becomes
+
+\[
+  P = \kbordermatrix{
+    &    i_1 & i_2 & i_3 & i_4 \\
+    u_1 &     0.0548 &  0 &  \mathbf{0.4646} &  0 \\
+    u_2 &     \mathbf{0.1997} &  0 &  0 &  0 \\
+    u_3 &     0 &  \mathbf{0.3767} &  0 &  \mathbf{0.3767}
+  }
+\]
+
+\Figureref{fig:ex_graph_link_rec} is a visualization of the most recommended items.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.3\linewidth]{fig/example_run/item_user_graph_link_rec.png}
+    \caption{A graph representing the most recommended item for each user. The dotted lines represent previous interactions.}
+    \label{fig:ex_graph_link_rec}
+\end{figure}
+
+\FloatBarrier
 

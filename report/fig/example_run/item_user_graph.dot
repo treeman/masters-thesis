@@ -1,0 +1,86 @@
+
+graph G {
+
+    //rankdir = LR;
+    //ranksep = 0.1
+    //ratio = 0.5;
+    nodesep = 0.1;
+
+    i1
+    i2
+    i3
+    i4
+
+    u1
+    u2
+    u3
+
+    { rank = same; i1; i2; i3; i4 }
+    { rank = same; u1; u2; u3 }
+
+    // Trick to force ordering
+    {
+        edge[style=invisible]
+        i1 -- i2 -- i3 -- i4
+        u1 -- u2 -- u3
+    }
+
+    i1 -- u3
+    i2 -- u1
+    i2 -- u2
+    i3 -- u2
+    i3 -- u3
+    i4 -- u2
+
+    //graph [style="rounded, filled", color=red, fillcolor=khaki, fontsize=10]
+    //node [shape=plaintext, fontsize=10.0]
+    //ratio = 0.5;
+    //size = "10,10";
+    //nodesep = 0.1;
+    //rankdir = LR;
+    //ranksep = 0.1
+
+    //{ rank = same; A }
+    //{ rank = same; B; H }
+    //{ rank = same; C1; C2; D; G }
+
+    //A -- B
+    //A -- H
+
+    //B -- C1
+
+    //H -- C2 [style=dotted]
+    //H -- D
+    //H -- G
+
+    //C1 [label=C]
+    //C2 [label=C]
+    //A [xlabel=1]
+    //B [xlabel=2, shape=plaintext]
+    //H [xlabel=3, style=filled]
+
+    //G [xlabel=4, shape=doublecircle, style=filled]
+
+    //A1 [label="app(A,B,[1,2,3])"]
+    //R1 [label="R1"]
+
+    //A2 [label="app(K,L,[2,3])"]
+    //R2 [label="R2"]
+
+    //A3 [label="app(K',L',[3])"]
+    //R3 [label="R3"]
+
+    //A4 [label="app(K'',L'',[])"]
+    //R4 [label="R4"]
+
+    //A1 -- R1
+    //A1 -- A2
+
+    //A2 -- R2
+    //A2 -- A3
+
+    //A3 -- R3
+    //A3 -- A4
+
+    //A4 -- R4
+}
