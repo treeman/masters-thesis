@@ -1,13 +1,16 @@
 
 \section{Limitations}\label{sec:intro:limitations}
 
-Although the goal is to handle real world data, the data considered in the thesis will be of a limited size compared to the larger real world data. The algorithms are not optimized enough to handle the larger data and they are not very fast even with fixed parameters, which makes the parameter tuning algorithms time consuming by default. But the runtime of the algorithms will still be a consideration during the selection and evaluation of optimization techniques.
+Although the goal was to handle real world data, the data considered in the thesis will be of a limited size compared to the larger real world data. The algorithms are not optimized enough to handle the larger data and they are not very fast even with fixed parameters, which makes the parameter tuning algorithms time consuming by default. But the runtime of the algorithms was still a consideration during the selection and evaluation of optimization techniques.
 
-This thesis will focus on \textit{implicit feedback} systems with interaction history in \textit{unweighted binary form} \eqref{eq:hist} which is the focus for Comordo. \textit{Explicit feedback} like ratings are not prioritized. Interactions in \textit{weighted form} \eqref{eq:whist} might be interesting for Comordo, but it is not considered in this thesis. The \textit{cold start problem} \citep{cacheda2011comparison} is not considered in this thesis.
+This thesis will focus on \textit{implicit feedback} systems with interaction history in \textit{unweighted binary form} \eqref{eq:hist} which is the focus for Comordo. \textit{Explicit feedback} like ratings were not prioritized. Interactions in \textit{weighted form} \eqref{eq:whist} might be interesting for Comordo, but it was not considered in this thesis. The \textit{cold start problem} \citep{cacheda2011comparison} was not considered in this thesis.
 
-The existing algorithms are currently written in Matlab which might negatively impact the runtime and handling of larger datasets. Focus will not be on porting them to a different language or platform, which could improve them speed wise, but the algorithms will be prototyped in Matlab.
+Core parts of the recommendation algorithms \textit{katz-eig} and \textit{link-analysis} existed before the thesis, but they were only runnable as Matlab scripts without any data handling and they lacked parameter tuning. There were also some optimization issues of the implementations. Further prototyping will continue to use Matlab, even though it might negatively implact the runtime and handling of larger datasets.
+Focus will not be on porting them to a different language or platform, which could improve them speed wise.
+
+%As The existing algorithms are currently written in Matlab which might negatively impact the runtime and handling of larger datasets. Focus will not be on porting them to a different language or platform, which could improve them speed wise, but the algorithms will be prototyped in Matlab.
 
 Proprietary datasets used and code produced during the thesis will not be publicly released. See \sectionref{sec:datasets} for a description of used datasets.
 
-The purpose is to lay a foundation for Comordo's recommender system, but it does not mean everything shall be built. See \sectionref{sec:task} for parts included and not included.
+The purpose was to lay a foundation for Comordo's recommender system, but it does not mean everything were to be built. See \sectionref{sec:task} for parts included and not included.
 

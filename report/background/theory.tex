@@ -1,7 +1,33 @@
 
 \section{Theory}\label{sec:theory}
 
-\Warning[QUEST]{ Text here? What should it contain? }
+This section introduces the mathematical theory behind the recommendation model, the evaluation of recommendations and a summary of the supervised learning process.
+\Warning[TODO]{ Make sure these are up to date }
+
+This is the basic process of producing recommendations:
+
+\begin{enumerate}
+    \item Given an interaction history $h_{u, i}$ and algorithm specific parameters the recommendation algorithm produce recommendations $p_{u, i}$.
+    \item The recommendations $p_{u, i}$, which are real values, are converted to binary recommendations $r_{u, i}$.
+\end{enumerate}
+
+The process of parameter tuning used is as follows:
+
+\begin{enumerate}
+    \item Split the interaction matrix $A$ into a training set $A_{train}$, a validation set $A_{val}$ and a test set $A_{test}$.
+    \item Evaluate different parameters by producing recommendations with $A_{train}$ and evaluating them against $A_{val}$ or $A_{test}$ with respect to \textit{F-measure}.
+    \item Select the best performing parameters with respect to \textit{F-measure}.
+\end{enumerate}
+
+% TODO restructure like so:
+% 1. Recommendation model (includes matrix representation)
+% 2. Recommendation prediction (how the algorithm's predictions relate)
+% 3. Supervised learning (includes how to learn using the training set)
+% 4. Evaluation (relate how evaluating using test/validation sets)
+% 5. Parameter optimization
+% 6. link-analysis
+% 7. katz-eig
+% 8. Unsupervised learning
 
 \input{background/theory/suplearn.tex}
 
