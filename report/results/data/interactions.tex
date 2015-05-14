@@ -13,8 +13,6 @@ The graph on the left describe how many users have a fixed number of item intera
 
 In \textit{alphaS} each user and each item has interactions with a small fraction of the available items and users. There are many users with very few interactions and also many items which few users has interacted with. There are no users or items without any interactions, but there are 11923 out of 16444 users and 2588 items out of 5000 with with only one interaction. This can be compared to the 26035 total interactions in the dataset. There are some users with more than 400 interactions and some items which have interacted with more 600 users.
 
-\Warning[TODO]{ Relate to this in clustering }
-
 \newpage
 
 \twopic{fig/data/eswc2015books_items_per_user.png}{fig/data/eswc2015books_users_per_item.png}{
@@ -58,12 +56,6 @@ VentureBeat: What it means to be a ``whale'' — and why social gamers are just 
 
 A similar classification can be made for items. The vast majority of items has only a couple of user interactions. Perhaps these are new items few users have found out about or niche items not interesting to most users. 
 A large fraction of the items in \textit{alphaS} and \textit{eswc2015books} have only one interaction (51\% and 43\%).  Then there are items with a lot more user interactions than what is common.
-This phenomenon with a few very popular items is also seen in mobile app stores where 1.6\% of app developers make more than the other 98.4\% combined
-\footnote{
-readwrite: Among Mobile App Developers, The Middle Class Has Disappeared, 2014. \\
-\url{http://readwrite.com/2014/07/22/app-developers-middle-class-opportunities}
-}
-.
 
 The following graphs display the number of the most popular items and the number of users they collectively interact with. This is useful for investigating how top heavy the datasets are. The dashed lines represents the number of items required to include 95\% of all users, a summary of the required number of items can be found in \tableref{tab:top_data}.
 
@@ -73,12 +65,12 @@ The following graphs display the number of the most popular items and the number
         \hline
         \textbf{dataset}        & \textbf{items needed}  & \textbf{items total} & \textbf{item ratio}  \\ \hline
 
-        \textit{alphaS}         &   3058          & 5000 & 61.16\%              \\ \hline
+        \textit{alphaS}         &   3058          & 5000 & 61\%              \\ \hline
         \textit{eswc2015books}  &   120           & 2609 & 4.6\%                \\ \hline
-        \textit{eswc2015movies} &   55            & 5389 & 1.02\%               \\ \hline
-        \textit{eswc2015music}  &   78            & 6372 & 1.22\%               \\ \hline
+        \textit{eswc2015movies} &   55            & 5389 & 1.0\%               \\ \hline
+        \textit{eswc2015music}  &   78            & 6372 & 1.2\%               \\ \hline
         \textit{movielens1m}    &   13            & 3706 & 0.35\%               \\ \hline
-        \textit{romeo}          &   21            & 722  & 2.91\%               \\ \hline
+        \textit{romeo}          &   21            & 722  & 2.9\%               \\ \hline
 
     \end{tabular}
     \caption{This table describes how many of the most used items are necessary to include in a set so 95\% of all users have interacted with the set.}
@@ -86,19 +78,19 @@ The following graphs display the number of the most popular items and the number
 \end{table}
 
 \twodiffpic{fig/data/alphaS_top_data.png}
-{\textit{alphaS}. 3058 of 5000 (61.16\%) of the items are necessary to include 95\% of all users.}
+{\textit{alphaS}. 3058 of 5000 (61\%) of the items are necessary to include 95\% of all users.}
 {fig/data/eswc2015books_top_data.png}
 {\textit{eswc2015books}. 120 of 2609 (4.6\%) of the items are necessary to include 95\% of all users.}
 
 \twodiffpic{fig/data/eswc2015movies_top_data.png}
-{\textit{eswc2015movies}. 55 of 5389 (1.02\%) of the items are necessary to include 95\% of all users.}
+{\textit{eswc2015movies}. 55 of 5389 (1.0\%) of the items are necessary to include 95\% of all users.}
 {fig/data/eswc2015music_top_data.png}
-{\textit{eswc2015music}. 78 of 6372 (1.22\%) of the items are necessary to include 95\% of all users.}
+{\textit{eswc2015music}. 78 of 6372 (1.2\%) of the items are necessary to include 95\% of all users.}
 
 \twodiffpic{fig/data/movielens1m_top_data.png}
 {\textit{movielens1m}. 13 of 3706 (0.35\%) of the items are necessary to include 95\% of all users.}
 {fig/data/romeo_top_data.png}
-{\textit{romeo}. 21 of 722 (2.91\%) of the items are necessary to include 95\% of all users.}
+{\textit{romeo}. 21 of 722 (2.9\%) of the items are necessary to include 95\% of all users.}
 
 %alphaS: 95\% of all users concentrated on 3058 of the items
 %eswc2015books: 95\% of all users concentrated on 120 of the items (2609 tot, 4.6\%)
@@ -106,5 +98,15 @@ The following graphs display the number of the most popular items and the number
 %eswc2015music: 95\% of all users concentrated on 78 of the items (6372 tot, 1.22\%)
 %movielens1m: 95\% of all users concentrated on 13 of the items (3706 tot, 0.35\%)
 %romeo: 95\% of all users concentrated on 21 of the items (722 tot, 2.91\%)
+
+Of the different datasets, \textit{alphaS} is a clear outlier. It is nowhere near as top heavy as the other datasets are, requiring over 60\% of all items to reach 95\% of the users. This can in part be explained by the large number of users with only one interaction, 11923 out of 16444 users or in other words 72\% of all users have only one item interaction.
+    
+In contrast \textit{eswc2015books} require 4.6\% of the items and \textit{romeo} require 2.9\% of the items, which means few of the popular items are required to include most of the users. The other datasets are even more top heavy with \textit{eswc2015movies} and \textit{eswc2015music} only require 1.0\% and 1.2\% of the items. For \textit{movielens1m} only 0.35\%, namely 13, of the items are needed. In order words this means that 95\% of all users in the dataset has seen at least one movie from the 13 most watched movies.
+
+This phenomena where very few of the most popular items command the attention of most of the user base is also seen in mobile app stores where 1.6\% of app developers make more than the other 98.4\% combined
+\footnote{
+readwrite: Among Mobile App Developers, The Middle Class Has Disappeared, 2014. \\
+\url{http://readwrite.com/2014/07/22/app-developers-middle-class-opportunities}
+}.
 
 \FloatBarrier

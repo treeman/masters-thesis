@@ -1,0 +1,59 @@
+
+\subsubsection{Compactness using k-means}
+
+This is the clustering process used to cluster on a user-level with \textit{k-means}. The goal is to reorder the users so similar users are situated next to each other in the interaction matrix $A$.
+
+\begin{enumerate}
+    \item Approximate the interaction matrix $A$ by a rank $k$ SVD approximation, $U * S * V'$ where $S$ is a $k\,x\,k$ matrix representing the $k$ largest singular values.
+    \item Locate $k$ clusters with \textit{k-means}, operating on $U * S$.
+    \item Reorder the rows, representing the users, in $A$ using the clustering information.
+\end{enumerate}
+
+A $k$ rank approximation of $A$ is used for two reasons. The first is to remove noise and to introduce similarities to users and items. This works by approximating similar rows with the same row, and similarly for columns. This has an added side effect of removing noise, rare or odd interactions, from the matrix. The second reason is for speed reasons, using an approximation speeds up the implementation of the \textit{k-means} algorithm in practice. This is further magnified by only operating on $U * S$ instead of $U * S * V'$ by trading approximation accuracy for speed.
+
+\textit{k-means} clusters, or classifies, 2D-points into $k$ clusters. Using the clustering information for the users, each row in the interaction matrix $A$ are reordered so all users in the same cluster are next to each other.
+
+For \textit{k-means} the hard part is finding a good $k$ value. This experiment was more concerned about finding information about any clusters, not about finding the optimal amount, so the number of clusters $k = 10$ was fixed.
+
+The graphs display a clustered interaction matrix, reordered user wise.
+If there are visible clusters the expected thing to see is horizontal bands of similar user patterns. Vertical bars represents items, or a set of items, with many interactions.  Some of the graphs will be sparse and some will appear to be very dense. This is mostly due to resolution issues as when the dataset grow, even though the sparsity might be lower, the number of data points grow but the size of each data point in the graphs are the same.
+
+\FloatBarrier
+
+\twodiffpic{fig/data/alphaS_10-clusters.png}{\textit{alphaS}}
+{fig/data/eswc2015books_10-clusters.png}{\textit{eswc2015books}}
+
+\FloatBarrier
+
+In \textit{alphaS} there are some clusters whith relatively few item interactions, but the other clusters aren't very prominent. Both \textit{alpha} and \textit{alpha2} are so large the resolution isn't enough to capture any individual data points so their graphs doesn't show anything of value so they are not included here.
+\textit{eswc2015books} doesn't seem to have any major clusters, the dataset doesn't appear to have any structure except for a few streaks of very popular items.
+
+\twodiffpic{fig/data/eswc2015movies_10-clusters.png}{\textit{eswc2015movies}}
+{fig/data/eswc2015music_10-clusters.png}{\textit{eswc2015music}}
+
+\textit{eswc2015movies} and \textit{eswc2015music} in contrast display more prominent clusters. There are clusters who concentrate more on a subset of items, and there are clusters with higher interaction count.  Similarly \textit{movielens1m} and \textit{romeo} appear to have some clusters.
+
+\twodiffpic{fig/data/movielens1m_10-clusters.png}{\textit{movielens1m}}
+{fig/data/romeo_10-clusters.png}{\textit{romeo}}
+
+\FloatBarrier
+
+Although it possible to discern some structure or some structures from the clustering graphs, it is not so clear. The following graphs does the same clustering on the user level, but they also sort the items with the most popular item to the left.
+
+\FloatBarrier
+
+\twodiffpic{fig/data/alphaS_10-clusters_item_sorted.png}{\textit{alphaS}}
+{fig/data/eswc2015books_10-clusters_item_sorted.png}{\textit{eswc2015books}}
+
+\twodiffpic{fig/data/eswc2015movies_10-clusters_item_sorted.png}{\textit{eswc2015movies}}
+{fig/data/eswc2015music_10-clusters_item_sorted.png}{\textit{eswc2015music}}
+
+\twodiffpic{fig/data/movielens1m_10-clusters_item_sorted.png}{\textit{movielens1m}}
+{fig/data/romeo_10-clusters_item_sorted.png}{\textit{romeo}}
+
+\FloatBarrier
+
+With the items sorted the clustering on the user level are more visible. No clear clusters can be seen in either \textit{alphaS} or \textit{eswc2015books} and some grouping can be seen in the other datasets. The problem is if the apparent clusters share any items, it is not clear from these graphs.
+
+What can be said is that there are some popular items with many interactions and there are items with few interactions. Similarly users with more interactions, which appear to be grouped together, exists. These are all findings supported by the interaction analysis in \sectionref{sec:result:interactions}.
+
