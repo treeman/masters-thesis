@@ -141,6 +141,24 @@
     \end{figure}
 }
 
+\newcommand{\twodiffpiclabel}[6]{
+    \begin{figure}[h!]
+    \centering
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{#1}
+        \captionof{figure}{#2}
+        \label{#3}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{#4}
+        \captionof{figure}{#5}
+        \label{#6}
+    \end{minipage}
+    \end{figure}
+}
+
 \usepackage{kbordermatrix}
 
 % Define kbordermatrix style

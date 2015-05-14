@@ -1,8 +1,9 @@
 
 \subsection{Number of interactions}\label{sec:result:interactions}
 
-
 What follows is some graphs describing the number of interactions each user has and the number of interaction each item has in the datasets.
+
+The graph on the left describe how many users have a fixed number of item interactions and conversely the graph on the right describe how many items have a set number of user interactions. The histograms are also represented in logarithmic scale.
 
 \FloatBarrier
 
@@ -10,9 +11,9 @@ What follows is some graphs describing the number of interactions each user has 
 \textit{alphaS}
 }
 
-In \textit{alphaS} each user and each item has interactions with a small fraction of the available items and users. There are many users with very few interactions and also many items which few users has interacted with. In contrary to the appearance of these graphs, no users or items have 0 interactions. There are a couple of users with more than 400 interactions and there are some items which more than 600 users have bought.
+In \textit{alphaS} each user and each item has interactions with a small fraction of the available items and users. There are many users with very few interactions and also many items which few users has interacted with. There are no users or items without any interactions, but there are 11923 out of 16444 users and 2588 items out of 5000 with with only one interaction. This can be compared to the 26035 total interactions in the dataset. There are some users with more than 400 interactions and some items which have interacted with more 600 users.
 
-The graphs for \textit{alpha} and \textit{alpha2} are very similar but not included as the large dataset size makes the histogram barely visible. The basic appearance is the same with very many with few interactions and few with a lot of interactions, both for users and for items.
+\Warning[TODO]{ Relate to this in clustering }
 
 \newpage
 
@@ -30,9 +31,10 @@ The graphs for \textit{alpha} and \textit{alpha2} are very similar but not inclu
 
 \FloatBarrier
 
-All eswc datasets have similar distributions with more concentrated interactions. There is a lower limit for the number of interactions each user has, this is probably a constraint eswc introduced when creating the datasets. There are also no extreme outliers with many more interactions than the norm.
+All \textit{eswc} datasets have similar distributions with more concentrated interactions. There is a lower limit for the number of interactions each user has, this is probably a constraint used when the datasets were made.
+There are also no extreme user outliers with many more interactions than the norm.
 
-The item interactions are more spread, with many items having interacted with relatively few user but some items having a lot of interactions.
+The item interactions are more spread, with many items having interacted with relatively few user but some items having a lot of interactions. \textit{eswc2015books} have 1134 out of 2609 items with only one user interaction. \textit{eswc2015movies} and \textit{eswc2015music} in comparison have 2 out of 5389 items and 1 out of 6372 items with one user interaction.
 
 \newpage
 
@@ -44,7 +46,7 @@ The item interactions are more spread, with many items having interacted with re
 \textit{romeo}
 }
 
-Both \textit{movielens1m} and \textit{romeo} have a more normalized look to them, especially with the number of user interactions per item compared to the other datasets. There are still outliers with many more interactions however.
+Both \textit{movielens1m} and \textit{romeo} have a more normalized look to them, especially with the number of user interactions per item compared to the other datasets. There are still outliers with many more interactions however. There are no users with less than 2 item interactions and there are no items without a user interaction. 114 out of 3706 items and 17 of 722 items have 1 user interaction in \textit{movielens1m} and \textit{romeo} respectively.
 
 \FloatBarrier
 
@@ -52,47 +54,57 @@ In general two distinct types of users can be identified. The first is a user wi
 \footnote{Parallels can be drawn to what is known as big spenders or ``whales'' in the social-gaming community. They make up a tiny group of the community but they drive most of the revenue for the game publishers. For a more in depth discussion see \\
 VentureBeat: What it means to be a ``whale'' — and why social gamers are just gamers, 2013. \\
 \url{http://venturebeat.com/2013/03/14/whales-and-why-social-gamers-are-just-gamers/} }
-.
+. They do not exist in the \textit{eswc} datasets.
 
-A similar classification can be made for items. The vast majority of items has only a couple of user interactions. Perhaps these are new items few users have found out about or niche items not interesting to most users. Then there are items with a lot more user interactions than what is common. This phenomenon with a few very popular items is also seen in mobile app stores where 1.6\% of app developers make more than the other 98.4\% combined
+A similar classification can be made for items. The vast majority of items has only a couple of user interactions. Perhaps these are new items few users have found out about or niche items not interesting to most users. 
+A large fraction of the items in \textit{alphaS} and \textit{eswc2015books} have only one interaction (51\% and 43\%).  Then there are items with a lot more user interactions than what is common.
+This phenomenon with a few very popular items is also seen in mobile app stores where 1.6\% of app developers make more than the other 98.4\% combined
 \footnote{
 readwrite: Among Mobile App Developers, The Middle Class Has Disappeared, 2014. \\
 \url{http://readwrite.com/2014/07/22/app-developers-middle-class-opportunities}
 }
 .
 
-\twodiffpic{fig/data/alphaS_top_data.png}{\textit{alphaS}}
-{fig/data/eswc2015books_top_data.png}{\textit{eswc2015books}}
+The following graphs display the number of the most popular items and the number of users they collectively interact with. This is useful for investigating how top heavy the datasets are. The dashed lines represents the number of items required to include 95\% of all users, a summary of the required number of items can be found in \tableref{tab:top_data}.
 
-\twodiffpic{fig/data/eswc2015movies_top_data.png}{\textit{eswc2015movies}}
-{fig/data/eswc2015music_top_data.png}{\textit{eswc2015music}}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | r | r | r | r | r | l |}
+        \hline
+        \textbf{dataset}        & \textbf{items needed}  & \textbf{items total} & \textbf{item ratio}  \\ \hline
 
-\twodiffpic{fig/data/movielens1m_top_data.png}{\textit{movielens1m}}
-{fig/data/romeo_top_data.png}{\textit{romeo}}
+        \textit{alphaS}         &   3058          & 5000 & 61.16\%              \\ \hline
+        \textit{eswc2015books}  &   120           & 2609 & 4.6\%                \\ \hline
+        \textit{eswc2015movies} &   55            & 5389 & 1.02\%               \\ \hline
+        \textit{eswc2015music}  &   78            & 6372 & 1.22\%               \\ \hline
+        \textit{movielens1m}    &   13            & 3706 & 0.35\%               \\ \hline
+        \textit{romeo}          &   21            & 722  & 2.91\%               \\ \hline
 
-%alphaS: 95\% of all users concentrated on 3058 of the items (26035 tot, 11.75\%)
+    \end{tabular}
+    \caption{This table describes how many of the most used items are necessary to include in a set so 95\% of all users have interacted with the set.}
+    \label{tab:top_data}
+\end{table}
+
+\twodiffpic{fig/data/alphaS_top_data.png}
+{\textit{alphaS}. 3058 of 5000 (61.16\%) of the items are necessary to include 95\% of all users.}
+{fig/data/eswc2015books_top_data.png}
+{\textit{eswc2015books}. 120 of 2609 (4.6\%) of the items are necessary to include 95\% of all users.}
+
+\twodiffpic{fig/data/eswc2015movies_top_data.png}
+{\textit{eswc2015movies}. 55 of 5389 (1.02\%) of the items are necessary to include 95\% of all users.}
+{fig/data/eswc2015music_top_data.png}
+{\textit{eswc2015music}. 78 of 6372 (1.22\%) of the items are necessary to include 95\% of all users.}
+
+\twodiffpic{fig/data/movielens1m_top_data.png}
+{\textit{movielens1m}. 13 of 3706 (0.35\%) of the items are necessary to include 95\% of all users.}
+{fig/data/romeo_top_data.png}
+{\textit{romeo}. 21 of 722 (2.91\%) of the items are necessary to include 95\% of all users.}
+
+%alphaS: 95\% of all users concentrated on 3058 of the items
 %eswc2015books: 95\% of all users concentrated on 120 of the items (2609 tot, 4.6\%)
 %eswc2015movies: 95\% of all users concentrated on 55 of the items (5389 tot, 1.02\%)
 %eswc2015music: 95\% of all users concentrated on 78 of the items (6372 tot, 1.22\%)
 %movielens1m: 95\% of all users concentrated on 13 of the items (3706 tot, 0.35\%)
 %romeo: 95\% of all users concentrated on 21 of the items (722 tot, 2.91\%)
-
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{| c | r | r | r | r | l |}
-        \hline
-        \textbf{dataset}        & \textbf{items}  & \textbf{item ratio} \\ \hline
-
-        \textit{alphaS}         &   3058          & 11.75\%             \\ \hline
-        \textit{eswc2015books}  &   120           & 4.6\%                \\ \hline
-        \textit{eswc2015movies} &   55            & 1.02\%               \\ \hline
-        \textit{eswc2015music}  &   78            & 1.22\%               \\ \hline
-        \textit{movielens1m}    &   13            & 0.35\%               \\ \hline
-        \textit{romeo}          &   21            & 2.91\%               \\ \hline
-
-    \end{tabular}
-    \caption{This table describes how many of the most used items are necessary to include 95\% of all users}
-    \label{tab:top_data}
-\end{table}
 
 \FloatBarrier

@@ -105,10 +105,18 @@ A transformation from the interaction matrix $A$ to the adjacency matrix $A_{f}$
 \end{equation}
 
 \begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.3\linewidth]{fig/spectral_data/eswc2015books_adj.png}
-    \caption{Adjacency matrix for \textit{eswc2015books}}
-    %\label{fig:ex_graph_link_rec}
+    \begin{subfigure}[h!]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{fig/spectral_data/eswc2015books_original.png}
+        \caption{Interaction matrix $A$}
+        \label{fig:spec:book:orig}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[h!]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{fig/spectral_data/eswc2015books_adj.png}
+        \caption{Adjacency matrix $A_f$}
+        \label{fig:spec:book:adj}
+    \end{subfigure}
+    \caption{This figure illustrates the original interaction matrix \ref{fig:spec:book:orig} for \textit{eswc2015books} and the related adjecency matrix \ref{fig:spec:book:adj}. Here the matrix $A$ has been moved to the upper right corner of $A_f$ as well as mirrored at the bottom left.}
 \end{figure}
 
 There are different kinds of Laplacians in literature, the one used here is the simple Laplacian $L = D - A_f$ where $D$ is a diagonal matrix called the degree matrix, representing the sum of the degrees at each node $i$:
@@ -128,29 +136,139 @@ The principal idea is that if good clusters can be identified, then the Laplacia
     \end{pmatrix}
     \sim
     \begin{pmatrix}
-        L_{1, 1} & 0         & 0         \\
-        0        & L_{2, 2} & 0      \\
+        L_{1, 1} & 0         & 0        \\
+        0        & L_{2, 2}  & 0        \\
         0        & 0         & L_{3, 3}
     \end{pmatrix}
 \end{equation}
 
-Then also the lowest eigenvalues and eigenvectors correspond...
+Then also the lowest eigenvalues and their related eigenvectors correspond to different clusters. In this case the 3 smallest eigenvalues and eigenvector pair would correspond to each cluster, or block, in $L$.
 
-\twodiffpic{fig/spectral_data/eswc2015books_eig_sort.png}
-{Sorted by sorting the 2nd eigenvector}
-{fig/spectral_data/eswc2015books_kmeans_sort.png}
-{Sorted by k-means clustering of the 2nd eigenvector}
+To be able to identify different clusters, the sorted eigenvalues must have a gap. \Figureref{fig:spec:book:eigv} give a concrete example for \textit{eswc2015books}. It is reasonable to expect there to be 4 clusters in the adjacency matrix $A_f$. Note that this doesn't mean that there are as many clusters in the interaction matrix $A$, as there is duplicate information in $A_f$. There might be large areas without interactions, but the indexes might correspond to user-user or item-item which will not have any interactions.
 
-%/fig/spectral_data 
-%eswc2015books_adj.png
+The subspace to find clusters in is some subset of the eigenvectors corresponding to the smallest eigenvalues. The subspaced used here is simply the eigenvector corresponding to the 2nd smallest eigenvalue. \Figureref{fig:spec:book:eigsort} displays the adjacency matrix $A_f$ for \textit{eswc2015books} ordered by the ordering used when sorting the subspace. There might be some clustering visible, one small square to the top left end one larger square at the bottom right, but it's hard to identify.
 
-%eswc2015books_eig_sort.png
-%eswc2015books_eigv.png
-%eswc2015books_kmeans_sort.png
-%eswc2015books_spectral_clust.png
+\FloatBarrier
 
-\twodiffpic{fig/spectral_data/eswc2015books_eigv.png}
-{The smallest eigenvalues}
+\twodiffpiclabel{fig/spectral_data/eswc2015books_eigv.png}
+{The smallest eigenvalues of $L$ for \textit{eswc2015books}.}
+{fig:spec:book:eigv}
+{fig/spectral_data/eswc2015books_eig_sort.png}
+{Adjacency matrix $A$ of \textit{eswc2015books}, sorted by the reordering used when sorting the 2nd smallest eigenvector of $L$.}
+{fig:spec:book:eigsort}
+
+\FloatBarrier
+
+If instead of simply sorting the subspace, \textit{k-means} is used to find a clustering in the subspace, and that ordering is then used to reorder the adjacency matrix. \Figureref{fig:spec:book:kmeans} displays the adjacency matrix $A_f$ received for \textit{eswc2015books}. There are several, very clear, clusters visible. The same clustering information was used to reveal clusters in
+the original interaction matrix $A$, visible in \figureref{fig:spec:book:clust}.
+
+\FloatBarrier
+
+\twodiffpiclabel{fig/spectral_data/eswc2015books_kmeans_sort.png}
+{Adjacency matrix $A_f$ of \textit{eswc2015books}, subspace clustered with \textit{k-means}.}
+{fig:spec:book:kmeans}
 {fig/spectral_data/eswc2015books_spectral_clust.png}
-{Original matrix sorted using spectral clustering}
+{Interaction matrix $A$ of \textit{eswc2015books}, reordered using \textit{k-means} clustering information.}
+{fig:spec:book:clust}
 
+\FloatBarrier
+
+What follows is a similar analysis for other datasets.
+
+\FloatBarrier
+
+\twodiffpiclabel{fig/spectral_data/alphaS_eigv.png}
+{The smallest eigenvalues of $L$ for \textit{alphaS}.}
+{fig:spec:alphaS:eigv}
+{fig/spectral_data/alphaS_eig_sort.png}
+{Adjacency matrix $A$ of \textit{alphaS}, sorted by the subspace ordering.}
+{fig:spec:alphaS:eigsort}
+
+\twodiffpiclabel{fig/spectral_data/alphaS_kmeans_sort.png}
+{Adjacency matrix $A_f$ of \textit{alphaS}, subspace clustered with \textit{k-means}.}
+{fig:spec:alphaS:kmeans}
+{fig/spectral_data/alphaS_spectral_clust.png}
+{Interaction matrix $A$ of \textit{alphaS}, reordered using \textit{k-means} clustering information.}
+{fig:spec:alphaS:clust}
+
+\FloatBarrier
+
+\textit{alphaS} have many clusters which is evident in the clustered interaction matrix in \figureref{fig:spec:alphaS:clust}. This is supported by the large number of small eigenvalues in \figureref{fig:spec:alphaS:eigv} preceeding a gap and also visible even without resorting to clustering but simply sorting the subspace in \figureref{fig:spec:alphaS:eigsort}.
+
+\FloatBarrier
+
+\twodiffpiclabel{fig/spectral_data/eswc2015movies_eigv.png}
+{The smallest eigenvalues of $L$ for \textit{eswc2015movies}.}
+{fig:spec:eswc2015movies:eigv}
+{fig/spectral_data/eswc2015movies_eig_sort.png}
+{Adjacency matrix $A$ of \textit{eswc2015movies}, sorted by the subspace ordering.}
+{fig:spec:eswc2015movies:eigsort}
+
+\twodiffpiclabel{fig/spectral_data/eswc2015movies_kmeans_sort.png}
+{Adjacency matrix $A_f$ of \textit{eswc2015movies}, subspace clustered with \textit{k-means}.}
+{fig:spec:eswc2015movies:kmeans}
+{fig/spectral_data/eswc2015movies_spectral_clust.png}
+{Interaction matrix $A$ of \textit{eswc2015movies}, reordered using \textit{k-means} clustering information.}
+{fig:spec:eswc2015movies:clust}
+
+\FloatBarrier
+
+There might be some clustering in \textit{eswc2015movies}, maybe in the top right corner in \figureref{fig:spec:eswc2015movies:clust}, but the plots are not very clear. The reason it looks like there are clear clusters in \figureref{fig:spec:eswc2015movies:kmeans} is the large difference between the number of users and the number of items and the white space are simple item-item or user-user which never have any interactions between them.
+
+\textit{eswc movies/music movielens might do with only eigenvalues and final matrix!}
+
+\FloatBarrier
+
+\twodiffpiclabel{fig/spectral_data/eswc2015music_eigv.png}
+{The smallest eigenvalues of $L$ for \textit{eswc2015music}.}
+{fig:spec:eswc2015music:eigv}
+{fig/spectral_data/eswc2015music_eig_sort.png}
+{Adjacency matrix $A$ of \textit{eswc2015music}, sorted by the subspace ordering.}
+{fig:spec:eswc2015music:eigsort}
+
+\twodiffpiclabel{fig/spectral_data/eswc2015music_kmeans_sort.png}
+{Adjacency matrix $A_f$ of \textit{eswc2015music}, subspace clustered with \textit{k-means}.}
+{fig:spec:eswc2015music:kmeans}
+{fig/spectral_data/eswc2015music_spectral_clust.png}
+{Interaction matrix $A$ of \textit{eswc2015music}, reordered using \textit{k-means} clustering information.}
+{fig:spec:eswc2015music:clust}
+
+\FloatBarrier
+
+\twodiffpiclabel{fig/spectral_data/movielens1m_eigv.png}
+{The smallest eigenvalues of $L$ for \textit{movielens1m}.}
+{fig:spec:movielens1m:eigv}
+{fig/spectral_data/movielens1m_eig_sort.png}
+{Adjacency matrix $A$ of \textit{movielens1m}, sorted by the subspace ordering.}
+{fig:spec:movielens1m:eigsort}
+
+\twodiffpiclabel{fig/spectral_data/movielens1m_kmeans_sort.png}
+{Adjacency matrix $A_f$ of \textit{movielens1m}, subspace clustered with \textit{k-means}.}
+{fig:spec:movielens1m:kmeans}
+{fig/spectral_data/movielens1m_spectral_clust.png}
+{Interaction matrix $A$ of \textit{movielens1m}, reordered using \textit{k-means} clustering information.}
+{fig:spec:movielens1m:clust}
+
+\FloatBarrier
+
+\textit{movielens1m} has some distinct clusters, visible in \figureref{fig:spec:movielens1m:clust}. The large eigenvalue gap in \figureref{fig:spec:movielens1m:eigv} supports this finding.
+
+\FloatBarrier
+
+\twodiffpiclabel{fig/spectral_data/romeo_eigv.png}
+{The smallest eigenvalues of $L$ for \textit{romeo}.}
+{fig:spec:romeo:eigv}
+{fig/spectral_data/romeo_eig_sort.png}
+{Adjacency matrix $A$ of \textit{romeo}, sorted by the subspace ordering.}
+{fig:spec:romeo:eigsort}
+
+\twodiffpiclabel{fig/spectral_data/romeo_kmeans_sort.png}
+{Adjacency matrix $A_f$ of \textit{romeo}, subspace clustered with \textit{k-means}.}
+{fig:spec:romeo:kmeans}
+{fig/spectral_data/romeo_spectral_clust.png}
+{Interaction matrix $A$ of \textit{romeo}, reordered using \textit{k-means} clustering information.}
+{fig:spec:romeo:clust}
+
+\FloatBarrier
+
+\newpage
