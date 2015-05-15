@@ -1,0 +1,39 @@
+
+graph G {
+    nodesep = 0.1;
+
+    i1
+    i2
+    i3
+    i4
+
+    u1
+    u2
+    u3
+
+    { rank = same; i1; i2; i3; i4 }
+    { rank = same; u1; u2; u3 }
+
+    // Trick to force ordering
+    {
+        edge[style=invisible]
+        i1 -- i2 -- i3 -- i4
+        u1 -- u2 -- u3
+    }
+
+    {
+        edge[style=dotted]
+        i1 -- u3
+        i4 -- u2
+    }
+
+    {
+        //edge[style=dashed]
+        i2 -- u1
+        i2 -- u2
+    }
+
+    i3 -- u2
+    i3 -- u3
+}
+

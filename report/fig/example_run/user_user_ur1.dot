@@ -1,0 +1,26 @@
+
+digraph G {
+    //nodesep = 0.3;
+    //rankdir = LR;
+
+    u1
+    u3
+    u2
+
+    //{ rank = same; u1; u2; }
+    //{ rank = same; u3; }
+
+    {
+        edge[style=dotted]
+        u1 -> u1  [label = 1.59]
+        u2 -> u2  [label = 1.41]
+        u3 -> u3  [label = 1.74]
+    }
+
+    u1 -> u2 [label = " 0.41 "]
+    u2 -> u1 [label = " 0.39 "]
+
+    u2 -> u3 [label = " 0.20 "]
+    u3 -> u2 [label = " 0.25"]
+}
+

@@ -124,6 +124,28 @@ During the iterations the rows of $\IR$ will be representing each item and each 
     \end{pmatrix}
 \]
 
+\FloatBarrier
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[h!]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{fig/example_run/item_user_ir1.png}
+        \caption{$\IR_1$}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[h!]{0.15\textwidth}
+        \includegraphics[width=\textwidth]{fig/example_run/user_user_ur1.png}
+        \caption{$\UR_1$}
+        \label{fig:link:ur1}
+    \end{subfigure}
+    \caption{Visual representation of the first iteration. The full lines in $\UR_1$ represents new connections, which come from the full connections in $\IR_1$.}
+    \label{fig:link:it1}
+\end{figure}
+
+\FloatBarrier
+
+The first iteration does not alter the item representativeness matrix. In the user representativeness matrix links between users are made through one shared item.  As seen in \figureref{fig:link:it1} a connection is made between $u_1$ and $u_2$, through $i_2$ and a connection between $u_2$ and $u_3$ through $i_3$.
+
 \[
     \IR'_2 = \begin{pmatrix}
              0 &  2.0000 &  0.4098 &  2.0000 \\
@@ -137,6 +159,19 @@ During the iterations the rows of $\IR$ will be representing each item and each 
         0.0858 &  0.2909 &  1.6233
     \end{pmatrix}
 \]
+
+\FloatBarrier
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.3\textwidth]{fig/example_run/item_user_ir2.png}
+    \caption{Visual representation of $\IR_2$. The full lines represents new connections.}
+    \label{fig:link:ir2}
+\end{figure}
+
+\FloatBarrier
+
+New connections in $\IR_2$ are made by using item connections from related users from $\UR_1$. In \figureref{fig:link:ir2} new connections for $u_3$ are made to $i_2$ and $i_4$ because $u_2$ is now representing $u_3$ in \figureref{fig:link:ur1}, and $u_2$ has connections with $i_2$ and $i_4$.
 
 \[
     \IR'_3 = \begin{pmatrix}
@@ -152,7 +187,7 @@ During the iterations the rows of $\IR$ will be representing each item and each 
     \end{pmatrix}
 \]
 
-After transposing $\IR$ and removing the items users already have interacted with in $A$, the prediction matrix $P$ becomes
+After transposing $\IR_3$ and removing the items users already have interacted with in $A$, the prediction matrix $P$ becomes
 
 \[
   P = \kbordermatrix{
@@ -163,7 +198,7 @@ After transposing $\IR$ and removing the items users already have interacted wit
   }
 \]
 
-\Figureref{fig:ex_graph_link_rec} is a visualization of the most recommended items.
+\Figureref{fig:ex_graph_link_rec} is a visualization of the most recommended item for each user.
 
 \begin{figure}[h!]
     \centering
