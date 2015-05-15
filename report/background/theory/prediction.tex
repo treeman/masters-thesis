@@ -1,7 +1,11 @@
 
 \subsection{Recommendation prediction}\label{sec:background:theory:pred}
 
-The algorithms which produce binary classification recommendations produce predictions for each user-item pair, denoted $p_{u, i}$. Generally the higher the value of $p_{u, i}$ the more likely is it that user $u$ will interact with item $i$. In a classification context when the interaction history describes ratings the value corresponds to the predicted ratings user $u$ would give $i$. For example if $p_{u, i} = 3.8$ means a user $u$ is predicted to rate item $i$ a 4, given discrete ratings between 1 and 5.
+The algorithms which produce binary classification recommendations produce predictions for each user-item pair, denoted $p_{u, i}$. Generally the higher the value of $p_{u, i}$ the more likely is it that user $u$ will interact with item $i$. The predictions $p_{u, i}$ corresponds to the prediction matrix $P = (p_{u, i})$.
+
+$p_{u, i}$ forms the bases for the recommendation set $r_{u, i}$. To produce Top-$N$ recommendations take the $N$ largest $p_{u_k, i} \, \forall i$ for each user $u_k$ and set $r_{u_k, i} = 1$ for these $N$ values. Set $r_{u_k, i} = 0$ for the rest. It is possible to set $r_{u, i} = 0$ if $p_{u, i} \leq \epsilon$, for some $\epsilon$, to accommodate for fewer than $N$ recommendations.
+
+In a classification context when the interaction history describes ratings the value corresponds to the predicted ratings user $u$ would give $i$. The recommendations $r_{u, i}$ then becomes the closest discrete rating value of $p_{u, i}$. For example $p_{u, i} = 3.8$ means a user $u$ is predicted to rate item $i$ a 4, so $r_{u, i} = 4$, given discrete ratings between 1 and 5.
 
 Some algorithms also output a confidence value $c_{u, i}$ which denotes how certain the predicted values are. This is relevant when predicting ratings, for example $p_{u, i} = 4.0$ may seem like a surely predicted 4 rating but a low value of $c_{u, i}$ means we might not want to recommend that item anyway.
 

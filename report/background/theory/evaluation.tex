@@ -1,26 +1,27 @@
 
 \subsection{Evaluation}\label{sec:background:theory:eval}
 
-A common technique to evaluate the quality of recommendations as sets is with \textit{Precision}, \textit{Recall} and \textit{F-measure}
+A common technique to evaluate the accuracy, or the quality of recommendations, as sets is with \textit{Precision}, \textit{Recall} and \textit{F-measure}
 \footnote{The 2nd Linked Open Data-enabled Recommender Systems Challenge uses \textit{F-measure}, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}
  \citep{bobadilla2013recommender}.
- \Warning[XXX]{ Explain evaluations as sets more? }
+Evaluating as sets is done in the evaluation and model selection phase of supervised learning.
 
-To evaluate between sets, let $r_{u, i}$ be the recommendations in binary form \eqref{eq:binrec} and let $e_{u, i}$ be the interaction history as described by the evaluation set. The evaluation set could be either the test set or the validation set, so $e_{u, i}$ could either represent the test set or the validation set.
+To evaluate between sets, let $r_{u, i}$ be the final recommendations in binary form \eqref{eq:binrec} produced by the training set $A_{train}$. It's possible to evaluate Top-$N$ recommendations by simply constraining the recommendation set $r_{u, i}$ \eqref{eq:constrain_N}.
+Let $e_{u, i}$ be the interaction history as described by the evaluation set. The evaluation set could either be the test set $A_{test}$ or the validation set $A_{val}$, so $e_{u, i}$ should either represent $A_{test}$ or $A_{val}$.
 
-First, \textit{true positives}, $\TP$, is the sum of all correctly predicted positive samples.
+First define \textit{true positives} $\TP$ as the sum of all correctly predicted positive samples.
 
 \begin{equation} \label{eq:tp}
     \TP = \sum_{u, i} r_{u, i} = 1 \land \, e_{u, i} = 1
 \end{equation}
 
-Conversely \textit{false positives}, $\FP$, is the sum of all falsely predicted positive samples.
+Conversely \textit{false positives} $\FP$ is the sum of all falsely predicted positive samples.
 
 \begin{equation} \label{eq:fp}
     \FP = \sum_{u, i} r_{u, i} = 1 \land \, e_{u, i} = 0
 \end{equation}
 
-And \textit{false negatives}, $\FN$, is the sum of all falsely predicted negative samples.
+And \textit{false negatives} $\FN$ is the sum of all falsely predicted negative samples.
 
 \begin{equation} \label{eq:fn}
     \FN = \sum_{u, i} r_{u, i} = 0 \land \, e_{u, i} = 1
@@ -40,7 +41,7 @@ Loosely \textit{Precision} signifies how well the recommended items correspond t
 
 In many ways precision and recall are competing measures, when optimizing for precision recall decreases and vice versa.  As the number of recommendations $N$ grow precision is expected to be lower and recall is expected to be higher. \citep{hu2008collaborative}
 
-\textit{F-measure}, denoted $\fmeasure$, is defined as the harmonic mean of precision and recall \eqref{eq:f1} as a combined measure of precision and recall.
+\textit{F-measure} $\fmeasure$ is defined as the harmonic mean of precision and recall \eqref{eq:f1} as a combined measure of precision and recall.
 
 \begin{equation} \label{eq:f1}
     \fmeasure = \frac{2 * \precision * \recall}{\precision + \recall}
@@ -50,6 +51,6 @@ Another evaluation method commonly used to evaluate classifications with ratings
 \citep{bobadilla2013recommender}
 
 \begin{equation} \label{eq:rmse}
-    \mathtt{RMSE} = \sqrt{\frac{\sum_{u, i}^n (p_{u, i} - e_{u, i})^2}{n}}
+    \mathtt{RMSE} = \sqrt{\frac{\sum_{u, i}^n (r_{u, i} - e_{u, i})^2}{n}}
 \end{equation}
 

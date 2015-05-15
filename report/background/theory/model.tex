@@ -21,14 +21,29 @@ the \textit{recommender problem} is defined by producing a set of recommendation
 
 to maximize the probability that user $u$ will want to interact with item $i$ in the future, for all users and items.  When $r_{u, i}$ is binary this is a \textit{binary classification} problem. This definition is applicable for \textit{implicit feedback} systems which passively track different sorts of user behaviour. For example link following, interaction time and purchase history.
 
-The recommender problem can be extended to the \textit{Top-N recommender problem} by introducing constraints \eqref{eq:constrain_N} which states that only $N$ recommendations can be presented for each user.
+It is sometimes notationally convenient to treat the interaction history as a matrix. The whole interaction history $h_{u, i}$ will in matrix form be denoted by the interaction matrix $A = (h_{u, i})$, with each row representing each user and each column representing each item.
+
+For example an interaction matrix
+
+\[
+  A = \kbordermatrix{
+    &   i_1 & i_2 & i_3 & i_4 \\
+    u_1 & 1 & 0 & 1 & 0 \\
+    u_2 & 0 & 0 & 1 & 1 \\
+  }
+\]
+
+with 2 users and 4 items corresponds to the interaction history: $h_{1, 1} = 1$, $h_{1, 3} = 1$, $h_{2, 3} = 1$ and $h_{2, 4} = 1$.  The recommendation set $r_{u, i}$ will be represented by the recommendation matrix $R = (r_{u, i})$.
+
+Implementation wise the matrices are often stored in a sparse format which only stores nonzero elements in memory. This can significantly speed up both computations and storage usage, depending on the sparsity of the matrix. The sparse format lends itself very well for interaction history in unweighted binary form \eqref{eq:hist} as the nonexistent interactions are modeled as zero elements in the matrix.
+
+The recommender problem can be extended to the \textit{Top-N recommender problem} by introducing constraints \eqref{eq:constrain_N} (for a binary classifier) which states that only $N$ recommendations can be presented for each user.
 
 \begin{equation}\label{eq:constrain_N}
     \sum_i r_{u, i} \leq N \quad \forall u
 \end{equation}
 
-
-A variation of the recommender problem is when the interaction history is in \textit{weighted form}, when the values increase with each interaction
+A variation of the recommender problem is when the interaction history is in \textit{weighted form} \eqref{eq:whist}, when the values increase with each interaction
 
 \begin{equation}\label{eq:whist}
     h_{u, i} = \begin{cases}
@@ -39,16 +54,23 @@ A variation of the recommender problem is when the interaction history is in \te
 
 for example $h_{u, i} = 2$ means that the user $u$ has interacted with item $i$ 2 times. It is possible to allow \textit{implicit feedback} systems to log partial interactions, so $h_{u, i} = 0.7$ could mean that user $u$ has watched 70\% of the movie $i$, in the context of movie watching. \citep{hu2008collaborative}
 
-The converse of \textit{implicit feedback} is \textit{explicit feedback} where the users give direct input regarding their preferences, for example with movie ratings or with likes and dislikes.  Here the definition of the interaction history $h_{u, i}$ is the users' rating history:
+The converse of \textit{implicit feedback} is \textit{explicit feedback} where the users give direct input regarding their preferences, for example with movie ratings or with likes and dislikes.  Here the definition of the interaction history $h_{u, i}$ is the users' rating history \eqref{eq:rhist}.
 
-\begin{equation}
+\begin{equation}\label{eq:rhist}
     h_{u, i} = \begin{cases}
-        x \quad \text{the rating $x$ user $u$ gave item $i$} \\
+        x \quad \text{the rating user $u$ gave item $i$} \\
         \emptyset \quad \text{if the user $u$ did not rate item $i$}
     \end{cases}
 \end{equation}
 
-\Warning[QUEST]{ Uses h for all equations? }
-
 With ratings $r_{u, i}$ changes to $r_{u, i} = \hat{x}$ where $\hat{x}$ is the rating user $u$ is predicted to give item $i$. This is also a \textit{classification} problem, but the problem changes from assigning a binary value to wanting to predict a rating value.
+
+To transform datasets with the more common explicit feedback style of ratings to an unweighted binary form a crude model \eqref{eq:rating2binary} can be used.
+
+\begin{equation} \label{eq:rating2binary}
+    h_{u, i} = \begin{cases}
+        1 \quad \text{user $u$ has rated item $i$} \\
+        0 \quad \text{otherwise}
+    \end{cases}
+\end{equation}
 

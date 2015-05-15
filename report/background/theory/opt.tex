@@ -3,25 +3,26 @@
 
 Most supervised learning algorithms try to minimize a cost function during the learning phase. This function computes a value given some learned parameters and it can vary with different algorithms. The cost function does not make a comparison between two different sets but computes a metric from a single set.
 
-For example a cost function could be defined as
+A simple cost function (without regularization) could be defined as
+
+\begin{equation}
+    \min_{r_{u, i}} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - r_{u, i})^2
+\end{equation}
+
+A typical recommendation model associates each user $u$ with a user-factors vector $x_u$ and each item $i$ with an item-factors vector $y_i$ such that $r_{u, i} = x_u^T y_i$
+\citep{hu2008collaborative}. In such a case a cost function could be defined as
 
 \begin{equation}
     \min_{x_*, y_*} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - x_{u}^T y_i)^2
 \end{equation}
 
-where the optimization objective is $x_u$ and $y_i$. Usually stochastic gradient descent is used to find the parameters \cite{hu2008collaborative}. With regularization a possible cost function could be
+where the the optimization objective is $x_u$ and $y_i$. Usually stochastic gradient descent is used to find the parameters \cite{hu2008collaborative}. With regularization a possible cost function could be
 
 \begin{equation}\label{eq:exreg}
     \min_{x_*, y_*} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - x_{u}^T y_i)^2 + \lambda(\|x_u\|^2 + \|y_i\|^2)
 \end{equation}
 
 where $\lambda$ is the regularization hyperparameter found using \textit{model selection}. This directly penalizes larger values of $x_u$ and $y_i$ which in this case corresponds to an increase in complexity.
-
-This requires the algorithm to be modeled to use user and item vectors $x_u$ and $y_i$ which combine into the actual recommendation as $r_{u, i} = x_u^T y_i$. In effect a simpler cost function (without regularization) could be defined as
-
-\begin{equation}
-    \min_{r_{u, i}} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - r_{u, i})^2
-\end{equation}
 
 Metrics such as \textit{F-measure} can be used directly as optimization criteria if a suitable cost function is hard to find. It is also a common way of evaluating different models during model selection, the hyperparameter $\lambda$ in equation \eqref{eq:exreg} can be evaluated in this way
 \footnote{Machine Learning, Stanford. \url{https://class.coursera.org/ml-006}}
@@ -50,19 +51,18 @@ Is a technique for finding a local optima from a given starting point. The neigh
 
 \subsubsection{Gradient based approaches}
 
-Variations of gradient based optimization techniques such as stochastic gradient descent can be used to optimize functions given that a gradient can be found. The search is similar to that of hill climbing, but is guided by the gradient.  This is a fast and popular method for optimizing learning parameters.
+Variations of gradient based optimization techniques such as stochastic gradient descent can be used to optimize functions given that a gradient can be found. The search is similar to that of hill climbing, but is guided by the gradient and optimizes for a local optima.  This is a fast and popular method for optimizing learning parameters.
 \cite{hu2008collaborative}
 
 
 \subsubsection{Simulated annealing}
 
-Simulated annealing is a probabilistic heuristic optimization technique used for finding global optima in a limited search space. It works by randomly jumping to neighbouring points with decreasing probability until it converges on a global optima.
-\Warning[QUEST]{ Better explanation? }
+Simulated annealing is a probabilistic heuristic optimization technique used for finding global optima in a limited search space. It works by randomly jumping to neighbouring points with decreasing probability until it converges on a local optima. However it is more likely to find a better local optima than a gradient based approach.
 
 
 \subsubsection{Bayesian optimization}
 
-Bayesian optimization develops a statistical model over the function space and optimization picks samples which trades of exploration and exploitation.  With \textit{Gaussian process priors}, a form of statistical modeling of a function, Bayesian optimization has been shown to give better results with fewer experiments than grid search. \citep{snoek2012practical}
+Bayesian optimization develops a statistical model over the function space and evaluates the function sparsely which trades of exploration and exploitation.  With \textit{Gaussian process priors}, a form of statistical modeling of a function, Bayesian optimization has been shown to give better results with fewer evaluations than grid search. \citep{snoek2012practical}
 
 %Explanation of Gaussian processes and it's use for machine learning \citep{rasmussen2006gaussian}.
 
