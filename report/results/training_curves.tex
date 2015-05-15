@@ -36,7 +36,7 @@ Each $\gamma$ and $\eta$ are different for each dataset, see \appendixref{app:op
 
 \Warning[TODO]{ More plots }
 
-For \textit{link-analysis} convergence is also fast. The choice here was to fix $t_{max}$ to a fixed value instead of measuring convergence either by calculating $\| \PR_t - \PR_{t - 1} \|_2$
+For \textit{link-analysis} convergence is also fast. The choice here was to fix $t_{max}$ to a fixed value instead of measuring convergence either by calculating $\| \IR_t - \IR_{t - 1} \|_2$
 or by explicitly calculating \textit{F-measure} and measuring the change. This was done because the iteration step in \textit{link-analysis}, in contrast to \textit{katz-eig}, handles large matrices and calculations such as these would be time consuming.
 
 In all following usages of \textit{link-analysis}, the iteration count was fixed to $t_{max} = 3$.

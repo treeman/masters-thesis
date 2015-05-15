@@ -21,7 +21,7 @@ the \textit{recommender problem} is defined by producing a set of recommendation
 
 to maximize the probability that user $u$ will want to interact with item $i$ in the future, for all users and items.  When $r_{u, i}$ is binary this is a \textit{binary classification} problem. This definition is applicable for \textit{implicit feedback} systems which passively track different sorts of user behaviour. For example link following, interaction time and purchase history.
 
-It is sometimes notationally convenient to treat the interaction history as a matrix. The whole interaction history $h_{u, i}$ will in matrix form be denoted by the interaction matrix $A = (h_{u, i})$, with each row representing each user and each column representing each item.
+It is sometimes notationally convenient to treat the interaction history as a matrix. The whole interaction history $h_{u, i}$ will in matrix form be denoted by the interaction matrix $A = (h_{u, i})$, with each row representing each user and each column representing each item. The underlying structure forms a bipartite graph with one set representing the users and the other the items.
 
 For example an interaction matrix
 

@@ -1,68 +1,73 @@
+\newpage
 \subsection{The link-analysis algorithm}\label{sec:background:theory:linkanalysis}
 
-\Warning[TODO]{ Detailed introduction/description! }
+The \textit{link-analysis} algorithm is an adaption of a web page ranking algorithm HITS \cite{kleinberg1999authoritative} to the recommendation domain \cite{huang2004link, huang2007comparison}.
 
-The \textit{link-analysis} algorithm, as presented by \cite{huang2004link} and further discussed in \cite{huang2007comparison}.  See the articles for more information and in-depth examples. What follows is a condensed description of how the algorithm works.
+The original algorithm distinguish between two types of web pages:
 
-The algorithm is an adaptation of HITS \cite{kleinberg1999authoritative} which is a web page ranking algorithm to the recommendation domain. The original algorithm distinguish between \textit{Authoritative} pages which definitely contain high-quality information and \textit{Hub} pages which are comprehensive lists of links to authoritative pages. \citep{huang2007comparison}
+\begin{enumerate}
+    \item \textit{Authoritative} pages which contain definite high quality information
+    \item \textit{Hub} pages basically are lists of links to the authoritative pages
+\end{enumerate}
 
-Adaptation to the recommendation domain is achieved by introducing the \textit{product representativeness} score $\PR$ and the \textit{consumer representativeness} score $\CR$.
+The authoritative score of a page is proportional to the hub scores linking to it. Similarly the hub score of a page is proportional to the authoritative scores of the pages it's linking to. These definitions are mutually reinforcing, good hub pages have links to many authoritative pages and good authoritative pages have links from many hubs.
 
-The \textit{product representativeness} score $\PR(i, u)$ can be seen as a measure of the item $i$'s level of interest with respect to user $u$, or in other words $i$'s authority of $u$'s interests in $i$.
+Adaptation to the recommendation domain is achieved by introducing the \textit{item representativeness} score $\IR$ and the \textit{user representativeness} score $\UR$. The difference between the recommendation domain and the web page ranking domain is that in the recommendation domain the aim is to produce personal recommendations where as in the web page domain generally popular pages are sought after.
 
-The \textit{consumer representativeness} score $\CR(u, \hat{u})$ measures how well $u$ as a hub for $\hat{u}$ associates with items of interests to $\hat{u}$.
+The \textit{item representativeness} score $\IR(i, u)$ can be seen as a measure of the item $i$'s level of interest with respect to user $u$, or in other words $i$'s authority of $u$'s interests in $i$. This is an analogy to the authoritative page score. Intuitively if it's a high score then the item $i$ can be recommended to user $u$.
 
-If $h_{u, i}$ is the user-item interaction history as defined by \ref{eq:hist} and $A$ is the interaction matrix then a recursive definition of the authority and hub scores can be defined as
+The \textit{user representativeness} score $\UR(u, \hat{u})$ measures how well $u$ as a hub for $\hat{u}$ associates with items of interests to $\hat{u}$. This is analogous to the hub page score. Intuitively it's a measure for how similar the users $u$ and $\hat{u}$ are to each other.
+
+A direct definition of the item and user representativeness scores is as follows where $A$ is the interaction matrix:
 
 \begin{equation}
-    \PR = A' * \CR
+    \IR = A' * \UR
 \end{equation}
 
 \begin{equation}
-    \CR = B * \PR + \CR_0
+    \UR = A * \IR
 \end{equation}
 
-Where $B = (b_{u, i})$ is a matrix such that:
+There are two inherent problems with these definitions. The first is if a user has interactions with all items that user will have the highest user representativeness $\UR$ for all users, even though such a user provides little information. The second problem is that $\IR$ and $\UR$ will converge to matrices with identical columns. This leads to item representativeness scores independent of users.
+
+To address these problems the user representativeness score is redefined as
 
 \begin{equation}
-    b_{u, i} = \frac{ h_{u, i} }{ \left(\sum_{i} h_{u, i}\right)^\gamma }
+    \UR = B * \IR + \UR_0
 \end{equation}
 
-Meaning $B$ normalizes the representativeness score a costumer receives from linked items by dividing it with the total number of items the customer is linked to.  $\gamma$ controls the extent to which a consumer is penalized for making many purchases.
-
-$\CR_0$ is defined as
+Where $B$ is the normalization of the users $A$ with respect to the total number of items the user has interacted with
 
 \begin{equation}
-    \CR_{i, j}^0 = \begin{cases}
-        \eta \quad \text{if } \; i = j \\
-        0    \quad \text{otherwise}
-    \end{cases}
+    B_{u, i} = \frac{ A_{u, i} }{ \left(\sum_{i} A_{u, i}\right)^\gamma }
 \end{equation}
 
-in other words $\CR_0 = \eta * I_M$ where $I_M$ is an $M x M$ identity matrix and $M$ is the number of users.  It is included to maintain the high representativeness score for the target users themselves. This also necessitates a normalization step to keep the values on a consistent level.
+The effect of introducing $B$ is that a user $u$ with more item interactions than another user $\hat{u}$, to get a high user representativeness score $\UR(u, \hat{u})$ the user $u$ needs to have overlapping purchases with $\hat{u}$. The parameter $\gamma$ controls the extent to which a user is penalized for making many purchases.
+
+$\UR_0$ is defined as a diagonal matrix with $\eta$ on the diagonal. In other words $\UR_0 = \eta * I_M$ where $I_M$ is an $M\,x\,M$ identity matrix and $M$ is the number of users. It is included to maintain the high representativeness score for the target users themselves, which prevents $\IR$ and $\UR$ to converge to identical columns.
+
+This also necessitates a normalization step of $\UR$ to keep the values on a consistent level, otherwise numerical problems could occur when the values keep growing.
 
 In summary the \textit{link-analysis} algorithm follow these steps:
 
 \begin{enumerate}
     \item Construct the interaction matrix $A$ and the associating matrix $B$.
 
-    \item Set $\CR_0 = \eta * I_M$.
+    \item Set $\UR_0 = \eta * I_M$.
     \item At each iteration $t = 1, \ldots, t_{max}$ perform:
 
         \begin{enumerate}
-            \item $\PR_t = A' * \CR_{t- 1}$
-            \item $\CR_t = B * \PR_t$
-            \item Normalize $\CR_t$ so each column adds up to 1
-            \item $\CR_t = \CR_t + \CR_0$
+            \item $\IR_t = A' * \UR_{t- 1}$
+            \item $\UR_t = B * \IR_t$
+            \item Normalize $\UR_t$ so each column adds up to 1
+            \item $\UR_t = \UR_t + \UR_0$
         \end{enumerate}
 
         Repeat until convergence.
 
-    \item Predicted user-item interaction is given by $P = \PR'$.
+    \item The predicted matrix is given by $P = \IR'$.
 
 \end{enumerate}
-
-There are two parameters to the algorithm: $\gamma$ and $\eta$.
 
 
 \subsubsection{Runtime exmple}
@@ -96,7 +101,7 @@ The following example uses $\gamma = 0.9$ and $\eta = 1$.
     u_3 & 0.5359    & 0         & 0.5359    & 0
   },
 \;
-  \CR_0 = \kbordermatrix{
+  \UR_0 = \kbordermatrix{
     &    u_1 & u_2 & u_3 \\
     u_1 & 1   & 0  & 0  \\
     u_2 & 0   & 1  & 0  \\
@@ -104,16 +109,16 @@ The following example uses $\gamma = 0.9$ and $\eta = 1$.
   }
 \]
 
-During the iterations the rows of $\PR$ will be representing each item and each column will be representing each user, this is the reverse of the interaction matrix $A$. The example therefore presents the transpose of $\PR$, $\PR'$.
+During the iterations the rows of $\IR$ will be representing each item and each column will be representing each user, this is the reverse of the interaction matrix $A$. The example therefore presents the transpose of $\IR$, $\IR'$.
 
 \[
-    \PR'_1 = \begin{pmatrix}
+    \IR'_1 = \begin{pmatrix}
         0 & 1 & 0 & 1 \\
         0 & 1 & 1 & 1 \\
         1 & 0 & 1 & 0
     \end{pmatrix},
 \;
-    \CR_1 = \begin{pmatrix}
+    \UR_1 = \begin{pmatrix}
         1.5902 & 0.4098 & 0 \\
         0.3935 & 1.4098 & 0.1967 \\
         0      & 0.2577 & 1.7423
@@ -121,13 +126,13 @@ During the iterations the rows of $\PR$ will be representing each item and each 
 \]
 
 \[
-    \PR'_2 = \begin{pmatrix}
+    \IR'_2 = \begin{pmatrix}
              0 &  2.0000 &  0.4098 &  2.0000 \\
         0.1967 &  1.8033 &  1.6065 &  1.8033 \\
         1.7423 &  0.2577 &  2.0000 &  0.2577
     \end{pmatrix},
 \;
-    \CR_2 = \begin{pmatrix}
+    \UR_2 = \begin{pmatrix}
         1.5354 &  0.4098 &  0.0548 \\
         0.3994 &  1.4008 &  0.1997 \\
         0.0858 &  0.2909 &  1.6233
@@ -135,20 +140,20 @@ During the iterations the rows of $\PR$ will be representing each item and each 
 \]
 
 \[
-    \PR'_3 = \begin{pmatrix}
+    \IR'_3 = \begin{pmatrix}
         0.0548 &  1.9452 &  0.4646 &  1.9452 \\
         0.1997 &  1.8003 &  1.6006 &  1.8003 \\
         1.6233 &  0.3767 &  1.9142 &  0.3767
     \end{pmatrix},
 \;
-    \CR_3 = \begin{pmatrix}
+    \UR_3 = \begin{pmatrix}
         1.5234 &  0.4067 &  0.0699 \\
         0.3995 &  1.4007 &  0.1998 \\
         0.1226 &  0.3015 &  1.5759
     \end{pmatrix}
 \]
 
-After transposing $\PR$ and removing the items users already have interacted with in $A$, the prediction matrix $P$ becomes
+After transposing $\IR$ and removing the items users already have interacted with in $A$, the prediction matrix $P$ becomes
 
 \[
   P = \kbordermatrix{
