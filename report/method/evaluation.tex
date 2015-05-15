@@ -1,15 +1,15 @@
 
 \section{Evaluation}\label{sec:method:eval}
 
-Recommendation quality was evaluated using \textit{Precision}, \textit{Recall} and \textit{F-measure} with top-10 recommendations. Focus was on \textit{F-measure} as a combined measure of \textit{Precision} and \textit{Recall}.
+Recommendation quality was evaluated using \textit{Precision}, \textit{Recall} and \textit{F-measure} with top-10 recommendations, as described in \sectionref{sec:background:theory:eval}. Focus was on \textit{F-measure} as a combined measure of \textit{Precision} and \textit{Recall}.
 
 The following steps describes the steps taken to produce evaluations given the training, validation and test sets $A_{train}$, $A_{val}$ and $A_{test}$:
 
 \begin{enumerate}
-    \item Produce recommendation predictions $p_{u, i}$ from $A_{train}$ with the chosen algorithm.
-    \item Transform $p_{u, i}$ to a set of binary recommendations $r_{u, i}$ using the top-10 most predicted items for each user, by the process described in \chapterref{cha:theory}.
-    \item Evaluate \textit{F-measure}, as described in \sectionref{sec:background:theory:eval}, with $e_{u, i}$ representing $A_{val}$ or $A_{test}$, depending on which set to evaluate against.
+    \item Produce recommendation predictions matrix $P$ from $A_{train}$ with the chosen algorithm.
+    \item Transform $P$ to the recommendation matrix $R$ using the top-10 most predicted items for each user.
+    \item Evaluate \textit{F-measure} with $e_{u, i}$ representing $A_{val}$ or $A_{test}$, depending on which set to evaluate against.
 \end{enumerate}
 
-If not explicitly noted, the evaluation set was the test set.
+The validation set $A_{val}$ was used to evaluate the choice of $k$ as the rank-$k$ SVD approximation in \textit{katz-eig}. All other evaluations were done against the test set $A_{test}$.
 

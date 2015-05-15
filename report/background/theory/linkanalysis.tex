@@ -21,7 +21,7 @@ The \textit{user representativeness} score $\UR(u, \hat{u})$ measures how well $
 A direct definition of the item and user representativeness scores is as follows where $A$ is the interaction matrix:
 
 \begin{equation}
-    \IR = A' * \UR
+    \IR = A^T * \UR
 \end{equation}
 
 \begin{equation}
@@ -57,7 +57,7 @@ In summary the \textit{link-analysis} algorithm follow these steps:
     \item At each iteration $t = 1, \ldots, t_{max}$ perform:
 
         \begin{enumerate}
-            \item $\IR_t = A' * \UR_{t- 1}$
+            \item $\IR_t = A^T * \UR_{t- 1}$
             \item $\UR_t = B * \IR_t$
             \item Normalize $\UR_t$ so each column adds up to 1
             \item $\UR_t = \UR_t + \UR_0$
@@ -65,7 +65,7 @@ In summary the \textit{link-analysis} algorithm follow these steps:
 
         Repeat until convergence.
 
-    \item The predicted matrix is given by $P = \IR'$.
+    \item The predicted matrix is given by $P = \IR^T$.
 
 \end{enumerate}
 
@@ -108,10 +108,10 @@ The following example uses $\gamma = 0.9$ and $\eta = 1$.
   }
 \]
 
-During the iterations the rows of $\IR$ will be representing each item and each column will be representing each user, this is the reverse of the interaction matrix $A$. The example therefore presents the transpose of $\IR$, $\IR'$.
+During the iterations the rows of $\IR$ will be representing each item and each column will be representing each user, this is the reverse of the interaction matrix $A$. The example therefore presents the transpose of $\IR$, $\IR^T$.
 
 \[
-    \IR'_1 = \begin{pmatrix}
+    \IR^T_1 = \begin{pmatrix}
         0 & 1 & 0 & 1 \\
         0 & 1 & 1 & 1 \\
         1 & 0 & 1 & 0
@@ -147,7 +147,7 @@ During the iterations the rows of $\IR$ will be representing each item and each 
 The first iteration does not alter the item representativeness matrix. In the user representativeness matrix links between users are made through one shared item.  As seen in \figureref{fig:link:it1} a connection is made between $u_1$ and $u_2$, through $i_2$ and a connection between $u_2$ and $u_3$ through $i_3$.
 
 \[
-    \IR'_2 = \begin{pmatrix}
+    \IR^T_2 = \begin{pmatrix}
              0 &  2.0000 &  0.4098 &  2.0000 \\
         0.1967 &  1.8033 &  1.6065 &  1.8033 \\
         1.7423 &  0.2577 &  2.0000 &  0.2577
@@ -174,7 +174,7 @@ The first iteration does not alter the item representativeness matrix. In the us
 New connections in $\IR_2$ are made by using item connections from related users from $\UR_1$. In \figureref{fig:link:ir2} new connections for $u_3$ are made to $i_2$ and $i_4$ because $u_2$ is now representing $u_3$ in \figureref{fig:link:ur1}, and $u_2$ has connections with $i_2$ and $i_4$.
 
 \[
-    \IR'_3 = \begin{pmatrix}
+    \IR^T_3 = \begin{pmatrix}
         0.0548 &  1.9452 &  0.4646 &  1.9452 \\
         0.1997 &  1.8003 &  1.6006 &  1.8003 \\
         1.6233 &  0.3767 &  1.9142 &  0.3767

@@ -1,28 +1,32 @@
 \newpage
 \subsection{The katz-eig algorithm}\label{sec:background:theory:katzeig}
 
-\Warning[TODO]{ Detailed introduction/description! }
+The \textit{katz-eig} algorithm used is an adaptation \citep{shin2012multi} of a link prediction measure Katz \citep{katz1953new}. Katz is defined as follows, if $A$ is the interaction matrix and the measure is used to produce recommendation predictions
 
-The original algorithm \cite{katz1953new} is a link prediction algorithm. A short description of how the algorithm works will follow.
+\begin{equation}
+    P = \sum_{t=1}^{\infty} \beta^t A^t = (I - \beta A)^{-1} - I
+\end{equation}
 
-If $A$ is the interaction matrix then this the algorithm proposed:
+where $I$ is the identity matrix. The intuition is that for each iteration $t$, one link in the interaction graph defined by user-item pairs is traversed and propagated to introduce transitive connections in the graph. The parameter $\beta \leq \| A \|_2$ represents the link dampening, links far away adds a smaller weight than links closer to the initial node.
+
+The problem with this definition is computational complexity, computing the Katz measure takes $\BigO{n^3}$ time which is not practical for large matrices. This is why the Singular Value Decomposition (SVD) is used.
+
+$A$ can be approximated by a rank $k$ SVD so $A \approx U * S * V^T$. $S$ is a $k\,x\,k$ diagonal matrix with the elements representing the $k$ largest singular values. Then the Katz measure can be approximated by
 
 \begin{equation}
     P = \sum_{t=1}^{\infty} \beta^t A^t
+    \approx \sum_{t=1}^{\infty} \beta^t (U * S * V^T)^t
+    \approx U \left( \sum_{t=1}^{\infty} \beta^t S^t \right) V^T
 \end{equation}
 
-Here $A^t$ can be seen as the $t$:th link value and $\beta$ signifies the diminishing return for links further away.
-
-\Warning[TODO]{ Example run of the algorithm! }
-
-As an additional modification the algorithm used in this thesis doesn't operate directly on $A$, but operates on a $k$ rank approximation of $A$.
+Exponentiation was moved from the large interaction matrix $A$ to the small $k\,x\,k$ diagonal matrix $S$ which makes the iterative part of the algorithm very fast. Much of the information about the matrix is still contained in $U$ and $V$. The complexity of the algorithm is now on calculating the SVD approximation.
 
 % Originally introduced by \cite{katz1953new}, described and used by \cite{liben2007link}.
 
 Concretely the \textit{katz-eig} algorithm follow these steps:
 
 \begin{enumerate}
-    \item Construct $U, S, V$ so $U * S * V'$ forms a rank $k$ approximation of $A$. Let $S_0 = S$.
+    \item Construct $U, S, V$ so $U * S * V^T$ forms a rank $k$ SVD approximation of $A$. Let $S_0 = S$.
 
     \item At each iteration $t = 1, \ldots, t_{max}$ perform:
 
@@ -32,11 +36,11 @@ Concretely the \textit{katz-eig} algorithm follow these steps:
 
         Repeat until convergence.
 
-    \item Predicted user-item interaction is given by $P = U * S_{t_{max}} * V'$.
+    \item The prediction matrix is given by $P = U * S_{t_{max}} * V^T$.
 
 \end{enumerate}
 
-There are two parameters to the algorithm: $\beta$ and $k$.
+%There are two parameters to the algorithm: $\beta$ and $k$.
 
 
 \subsubsection{Runtime exmple}
@@ -76,7 +80,7 @@ V = \begin{pmatrix}
 \]
 
 \[
-    U * S * V' = \begin{pmatrix}
+    U * S * V^T = \begin{pmatrix}
        -0.2436 &  0.9491  & 0.1928 &  0.9491 \\
         0.2182 &  1.0455  & 0.8273 &  1.0455 \\
         0.8782 & -0.0254  & 1.0964 & -0.0254
@@ -109,7 +113,7 @@ Initially $S_0$ = $S$. Then $S_t$ is calculated iteratively
 
 until convergence or as in our case $t_{max} = 3$. The recommendations are then given by
 \[
-    U * S_3 * V' = \kbordermatrix{
+    U * S_3 * V^T = \kbordermatrix{
         &    i_1 & i_2 & i_3 & i_4 \\
         u_1 &   -0.0266 &  0.1181 &  0.0286 &  0.1181 \\
         u_2 &    0.0276 &  0.1324 &  0.1048 &  0.1324 \\
@@ -127,7 +131,7 @@ After removing the the items users already have interacted with in $A$, the pred
     }
 \]
 
-\Figureref{fig:ex_graph_link_rec} is a visualization of the most recommended items.
+\Figureref{fig:ex_graph_link_rec} is a visualization of the most recommended item for each user.
 
 \begin{figure}[h!]
     \centering
