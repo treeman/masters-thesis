@@ -21,7 +21,7 @@ Optimized parameters as described in \appendixref{app:opt_params} were used.
 }
 \FloatBarrier
 
-A notable observation about the runtime is that the runtime for \textit{link-analysis} increases almost linearly with the increase in training set size, the runtime for \textit{katz-eig} is almost indifferent. This is to be expected as \textit{katz-eig} operates on a low-rank approximation of the interaction matrix $A_{train}$ while \textit{link-analysis} operates directly on the matrix. The sparse matrix format (\sectionref{sec:background:theory:matrix}) which discards zero elements during calculations is computationally more complex as the sparsity decreases.
+A notable observation about the runtime is that the runtime for \textit{link-analysis} increases almost linearly with the increase in training set size, the runtime for \textit{katz-eig} is almost indifferent. This is to be expected as \textit{katz-eig} operates on a low-rank approximation of the interaction matrix $A_{train}$ while \textit{link-analysis} operates directly on the matrix. The sparse matrix format (\sectionref{sec:background:theory:model}) which discards zero elements during calculations is computationally more complex as the sparsity decreases.
 \Warning[QUEST]{ Discussion? }
 
 \FloatBarrier
