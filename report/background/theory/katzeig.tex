@@ -93,6 +93,10 @@ V = \begin{pmatrix}
     \end{pmatrix}
 \]
 
+Notable here is that some valid recommendations could be made directly from the approximation matrix. In fact for this example there would be no difference in recommendations if $t_{max} = 0$ and the approximation matrix was used directly.
+
+Intuitively a rank $k$ SVD matrix approximations blurs together similar users and items. The value of $k$ specifies the blurring degree, the higher $k$ the more of the original matrix will be retained.
+
 Initially $S_0$ = $S$. Then $S_t$ is calculated iteratively
 \[
     S_1 = \begin{pmatrix}
