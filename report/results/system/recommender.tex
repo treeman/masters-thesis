@@ -3,8 +3,6 @@
 
 The recommender module is the core of the recommender system. It is responsible for populating the databases with new recommendations and for optimizing the algorithms' parameters to new datasets.
 
-\Warning[TODO]{ More descriptions of the capabilities }
-
 Below follows a short description of the different submodules and their function.
 
 \begin{description}
@@ -14,4 +12,8 @@ Below follows a short description of the different submodules and their function
     \item[link-analysis, katz-eig] are the available recommender algorithms.
     \item[Output module] populates the database with new recommendations.
 \end{description}
+
+When learning parameters the recommender module stores the found optimal parameters in the database. Then when generating personal recommendations the stored parameters can be used.
+
+As an additional feature apart from generating personal recommendations, the recommender module can populate the database with general recommendations, which recommends the most popular items, and related recommendations which creates recommendations on an item level.
 

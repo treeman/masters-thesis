@@ -38,7 +38,7 @@ What follows is plots over both of the parameters $K$ and $\beta$.
 
 It seems like $beta$ doesn't have a very big impact on the function value. Some plots with a fixed $K$ follows to better see differences.
 
-The range examined is $0 < \beta \leq \beta_{max} = \frac{1}{\|A_{train}\|_2}$ with a $K$ selected to fit the specific dataset.
+The range examined is $0 < \beta \leq \beta_{max} = \frac{1}{\|A_{train}\|_2}$ with a $K$ optimized as described in \appendixref{app:opt_params}.
 
 \FloatBarrier
 
@@ -101,7 +101,7 @@ The difference between the optimal $\beta$ and an arbitrary selected $\beta$ isn
 \newpage
 
 
-The $K$-rank approximation represents different available models for \textit{katz-eig}. The following plots show different values of $K$. $\beta = \frac{1}{\|A_{train}\|}_2$ for all datasets. $K_{m}$ is the value of $K$ which gives the best \textit{F-measure} for each dataset.
+The $K$-rank approximation represents different available models for \textit{katz-eig}. The following plots show different values of $K$. $\beta = \frac{1}{\|A_{train}\|}_2$ for all datasets as the difference between it and the optimal value is neglible. $K_{m}$ is the value of $K$ which gives the best \textit{F-measure} for each dataset.
 
 \FloatBarrier
 
@@ -133,34 +133,7 @@ The $K$-rank approximation represents different available models for \textit{kat
 \end{minipage}
 \end{figure}
 
-\Warning[TODO]{ Plot of \textit{eswc2015movies}? }
-
-%\begin{figure}[h!]
-%\centering
-%\begin{minipage}{.5\textwidth}
-    %\centering
-    %\includegraphics[width=\linewidth]{fig/katzeig_k/eswc2015movies_katzeig_K.png}
-    %\captionof{figure}{\textit{eswc2015movies} $K_{m} = 5$}
-%\end{minipage}%
-%\begin{minipage}{.5\textwidth}
-    %\centering
-    %\includegraphics[width=\linewidth]{fig/katzeig_k/movielens_katzeig_K.png}
-    %\captionof{figure}{\textit{movielens1m} $K_{m} = 31$}
-%\end{minipage}
-%\end{figure}
-
-%\begin{figure}[h!]
-%%\centering
-%\begin{minipage}{.5\textwidth}
-    %%\centering
-    %\includegraphics[width=\linewidth]{fig/katzeig_k/romeo_katzeig_K.png}
-    %\captionof{figure}{\textit{romeo} $K_{m} = 8$}
-%\end{minipage}%
-%\end{figure}
-
 \FloatBarrier
 
 The function space with respect to $K$ is fairly smooth if not entirely convex. \textit{eswc2015books} is an outlier with a low optimal value $K = 1$ and many local optima. The other datasets display more smooth functions, but there are clear local optima with both \textit{alphaS} and \textit{romeo}.
-
-Also of note is that the functions start to decline at different $K$. \textit{eswc2015movies} declines already at $K = 5$ but it's only at around $K = 30$ \textit{movielens1m} starts to decline. As noted earlier \textit{eswc2015books} has it's optima already at $K = 1$.
 

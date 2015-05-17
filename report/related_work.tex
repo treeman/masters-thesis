@@ -11,14 +11,14 @@ is another competition which focuses on improving recommendation quality using \
 Together with the research many versions of different recommender systems have been implemented, with recommender systems becoming more and more popular \citep{bobadilla2013recommender}. One of the most popular types are hybrid recommender systems which combine different types of data and algorithms \citep{bobadilla2013recommender, lai2012hybrid}. This was the winning approach for the Netflix Prize which combined 107 different algorithms in different ways to produce the final recommendations
 \footnote{ Netflix: Recommendations beyond 5 stars (Part 1), 2012. \url{http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html} }.
 
-A related approach is to organize the data into different subsets or clusters and then make recommendations using these subsets. This was negatively evaluated by \citep{cacheda2011comparison} however more positive results were given by a \textit{Clustered Low-Rank Approximation} \citep{niklas, savas2011clustered}.  This was evaluated for user ratings using \rmse and speed benefits were theorized upon but not evaluated.
-\Warning[TODO]{ Shall we use or don't use this clustering? If not, remove/rework this section? }
+%A related approach is to organize the data into different subsets or clusters and then make recommendations using these subsets. This was negatively evaluated by \citep{cacheda2011comparison} however more positive results were given by a \textit{Clustered Low-Rank Approximation} \citep{niklas, savas2011clustered}.  This was evaluated for user ratings using \rmse and speed benefits were theorized upon but not evaluated.
+%\Warning[TODO]{ Shall we use or don't use this clustering? If not, remove/rework this section? }
 
 Optimization strategies for parameter tuning differ depending on the algorithms. Alternating-least-squares is an algorithm with it's own optimization process and variations of gradient descent is a popular choice for optimizing continuous functions \citep{hu2008collaborative}. These are not applicable and no literature concerning parameter optimization could be found for either \textit{link-analysis} nor \textit{katz-eig}.  Grid search seems to be the recommended approach for optimizing hyperparameters
 \footnote{Recommended by Andrew Ng for the course Machine Learning, Stanford. \url{https://class.coursera.org/ml-006}}
 .
 
-The \textit{link-analysis} algorithm compared favorably in recommendation quality by \citep{huang2007comparison}. But without any analysis of the algorithms' parameters and no mention of the relative speed of the algorithm. The parameter values are simply stated but not commented on any further. No literature with further comments on the parameters could be found.
+The \textit{link-analysis} algorithm compared favorably in recommendation quality by \citep{huang2007comparison}. But without any analysis of the algorithms' parameters. The parameter values are simply stated but not commented on any further. No literature with further comments on the parameters could be found. Relatively poor runtime performance was noted \citep{huang2004link} but no actual comparisons were found.
 
-Similarly \textit{katz-eig} had some positive recommendation quality results \citep{shin2012multi} but without parameter analysis and no mention of the algorithms' speed. No literature for parameter tuning could be found.
+Similarly \textit{katz-eig} had some positive recommendation quality results \citep{shin2012multi} but without parameter analysis and no mention of the algorithm's speed. No literature for parameter tuning could be found.
 

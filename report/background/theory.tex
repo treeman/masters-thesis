@@ -1,8 +1,10 @@
 
 \section{Theory}\label{sec:theory}
 
-This section introduces the mathematical theory behind the recommendation model, the evaluation of recommendations and a summary of the supervised learning process.
-\Warning[TODO]{ Make sure these are up to date }
+This section introduces the mathematical theory behind the recommendation model, a summary of the supervised learning process and some theory about the evaluation metrics \textit{Precision}, \textit{Recall} and \textit{F-measure}. Then a brief overview of optimization techniques is given and then explanation of the recommendation algorithms \textit{link-analysis} and \textit{katz-eig}. The section is finished by a brief mention of unsupervised learning techniques, mainly about clustering.
+
+%This section introduces the mathematical theory behind the recommendation model, the evaluation of recommendations and a summary of the supervised learning process.
+%\Warning[TODO]{ Make sure these are up to date }
 
 This is the basic process of producing recommendations:
 
@@ -19,17 +21,6 @@ The process of parameter tuning used is as follows:
     \item Select the best performing parameters with respect to \textit{F-measure}.
 \end{enumerate}
 
-% TODO restructure like so:
-% 1. Recommendation model (includes matrix representation)
-% 2. Recommendation prediction (how the algorithm's predictions relate)
-% 3. Supervised learning (includes how to learn using the training set)
-% 4. Evaluation (relate how evaluating using test/validation sets)
-% 5. Parameter optimization
-% 6. link-analysis
-% 7. katz-eig
-% 8. Unsupervised learning
-
-
 \input{background/theory/model.tex}
 \input{background/theory/prediction.tex}
 \input{background/theory/suplearn.tex}
@@ -40,19 +31,4 @@ The process of parameter tuning used is as follows:
 \input{background/theory/katzeig.tex}
 
 \input{background/theory/unsuplearn.tex}
-
-%\input{background/theory/suplearn.tex}
-
-%\input{background/theory/model.tex}
-%\input{background/theory/prediction.tex}
-%\input{background/theory/matrix.tex}
-
-%\input{background/theory/evaluation.tex}
-
-%\input{background/theory/opt.tex}
-%\input{background/theory/linkanalysis.tex}
-%\newpage
-%\input{background/theory/katzeig.tex}
-
-%\input{background/theory/unsuplearn.tex}
 

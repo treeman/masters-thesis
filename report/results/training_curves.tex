@@ -3,7 +3,7 @@
 
 Both \textit{katz-eig} and \textit{link-analysis} are iterative algorithms. Their descriptions use the phrase ``repeat until convergence''.  With training curves, which plots the evaluation metric with the respect to epochs, the number of iterations, the effect of running more iterations can be seen.
 
-Each $K$ are different for each dataset, see \appendixref{app:opt_params}, and $beta = \frac{1}{\|A_{train}\|_2}$.
+Each $K$ are different for each dataset, see \appendixref{app:opt_params}, and $\beta = \frac{1}{\|A_{train}\|_2}$.
 
 \subsection{katz-eig}
 
@@ -33,8 +33,6 @@ Each $\gamma$ and $\eta$ are different for each dataset, see \appendixref{app:op
 
 \twodiffpic{fig/link_t/movielens1m_link_t.png}{\textit{movielens1m}}
 {fig/link_t/romeo_link_t.png}{\textit{romeo}}
-
-\Warning[TODO]{ More plots }
 
 For \textit{link-analysis} convergence is also fast. The choice here was to fix $t_{max}$ to a fixed value instead of measuring convergence either by calculating $\| \IR_t - \IR_{t - 1} \|_2$
 or by explicitly calculating \textit{F-measure} and measuring the change. This was done because the iteration step in \textit{link-analysis}, in contrast to \textit{katz-eig}, handles large matrices and calculations such as these would be time consuming.

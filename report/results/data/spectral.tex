@@ -15,7 +15,6 @@ charlesmartin14: Spectral Clustering: A quick overview, 2012. \\
 \end{enumerate}
 
 In our particular case, the interaction matrix $A$ is defined as rows corresponding to users and columns corresponding to items. The affinity matrix needs to be square, but the interaction matrix is not. There are other more complex ways of creating an affinity matrix, but for this purpose modelling an adjacency matrix is sufficient.
-%\Warning[TODO]{ What complex ways? }
 
 A transformation from the interaction matrix $A$ to the adjacency matrix $A_{f}$ is made by having both users and items as both row and column indices and mirroring the interactions. $A_{f}$ will then be a symmetric, square matrix. Equation \eqref{eq:make_adj} illustrates an example of the matrix structure and \figureref{fig:spec:book:matrix} gives a concrete example for \textit{eswc2015books}.
 
@@ -182,97 +181,4 @@ The adjacency matrices for the following datasets are not plotted and only the e
 Clusters are visible in the final clustering of the interaction matrix $A$ for all datasets. It's supported by their respective eigenvalue plot, with all datasets have a prominent gap. \textit{eswc2015movies}, \textit{eswc2015music} and \textit{movielens1m} have clusters but they are messier than that of \textit{romeo} or \textit{alphaS}. Part of the reason is the visualization technique where a sparse interaction matrix will produce cleaner visualizations.
 
 This analysis searched for a fixed number of clusters $k = 10$, with \textit{alphaS} using $k = 15$. It is by no means the optimal number of clusters and there might be more clusters in the datasets and there might fewer but ``better fitting'' clusters. The point of this analysis was not to cluster the datasets in an optimal way, but to examine if the datasets have any clusters, which can be said that they have.
-\Warning[QUEST]{ Discussion? }
 
-%\textit{Spectral clustering} gave superior results over \textit{k-means}. This can be attributed to the clustering approach where 
-%\Warning[QUEST]{ Discussion? }
-
-
-
-
-%% No eigenvalues
-%\twodiffpiclabel{fig/spectral_data/eswc2015music_spectral_clust.png}
-%{Interaction matrix $A$ of \textit{eswc2015music}, reordered using \textit{k-means} clustering information.}
-%{fig:spec:eswc2015music:clust}
-%{fig/spectral_data/eswc2015movies_spectral_clust.png}
-%{Interaction matrix $A$ of \textit{eswc2015movies}, reordered using \textit{k-means} clustering information.}
-%{fig:spec:eswc2015movies:clust}
-
-%\twodiffpiclabel{fig/spectral_data/movielens1m_spectral_clust.png}
-%{Interaction matrix $A$ of \textit{movielens1m}, reordered using \textit{k-means} clustering information.}
-%{fig:spec:movielens1m:clust}
-%{fig/spectral_data/romeo_spectral_clust.png}
-%{Interaction matrix $A$ of \textit{romeo}, reordered using \textit{k-means} clustering information.}
-%{fig:spec:romeo:clust}
-
-
-
-%\twodiffpiclabel{fig/spectral_data/eswc2015movies_eigv.png}
-%{The smallest eigenvalues of $L$ for \textit{eswc2015movies}.}
-%{fig:spec:eswc2015movies:eigv}
-%{fig/spectral_data/eswc2015movies_eig_sort.png}
-%{Adjacency matrix $A$ of \textit{eswc2015movies}, sorted by the subspace ordering.}
-%{fig:spec:eswc2015movies:eigsort}
-
-%\twodiffpiclabel{fig/spectral_data/eswc2015movies_kmeans_sort.png}
-%{Adjacency matrix $A_f$ of \textit{eswc2015movies}, subspace clustered with \textit{k-means}.}
-%{fig:spec:eswc2015movies:kmeans}
-%{fig/spectral_data/eswc2015movies_spectral_clust.png}
-%{Interaction matrix $A$ of \textit{eswc2015movies}, reordered using \textit{k-means} clustering information.}
-%{fig:spec:eswc2015movies:clust}
-
-%\FloatBarrier
-
-%\FloatBarrier
-
-%\twodiffpiclabel{fig/spectral_data/eswc2015music_eigv.png}
-%{The smallest eigenvalues of $L$ for \textit{eswc2015music}.}
-%{fig:spec:eswc2015music:eigv}
-%{fig/spectral_data/eswc2015music_eig_sort.png}
-%{Adjacency matrix $A$ of \textit{eswc2015music}, sorted by the subspace ordering.}
-%{fig:spec:eswc2015music:eigsort}
-
-%\twodiffpiclabel{fig/spectral_data/eswc2015music_kmeans_sort.png}
-%{Adjacency matrix $A_f$ of \textit{eswc2015music}, subspace clustered with \textit{k-means}.}
-%{fig:spec:eswc2015music:kmeans}
-%{fig/spectral_data/eswc2015music_spectral_clust.png}
-%{Interaction matrix $A$ of \textit{eswc2015music}, reordered using \textit{k-means} clustering information.}
-%{fig:spec:eswc2015music:clust}
-
-%\FloatBarrier
-
-%\twodiffpiclabel{fig/spectral_data/movielens1m_eigv.png}
-%{The smallest eigenvalues of $L$ for \textit{movielens1m}.}
-%{fig:spec:movielens1m:eigv}
-%{fig/spectral_data/movielens1m_eig_sort.png}
-%{Adjacency matrix $A$ of \textit{movielens1m}, sorted by the subspace ordering.}
-%{fig:spec:movielens1m:eigsort}
-
-%\twodiffpiclabel{fig/spectral_data/movielens1m_kmeans_sort.png}
-%{Adjacency matrix $A_f$ of \textit{movielens1m}, subspace clustered with \textit{k-means}.}
-%{fig:spec:movielens1m:kmeans}
-%{fig/spectral_data/movielens1m_spectral_clust.png}
-%{Interaction matrix $A$ of \textit{movielens1m}, reordered using \textit{k-means} clustering information.}
-%{fig:spec:movielens1m:clust}
-
-%\FloatBarrier
-
-%\textit{movielens1m} has some distinct clusters, visible in \figureref{fig:spec:movielens1m:clust}. The large eigenvalue gap in \figureref{fig:spec:movielens1m:eigv} supports this finding.
-
-%\FloatBarrier
-
-%\twodiffpiclabel{fig/spectral_data/romeo_eigv.png}
-%{The smallest eigenvalues of $L$ for \textit{romeo}.}
-%{fig:spec:romeo:eigv}
-%{fig/spectral_data/romeo_eig_sort.png}
-%{Adjacency matrix $A$ of \textit{romeo}, sorted by the subspace ordering.}
-%{fig:spec:romeo:eigsort}
-
-%\twodiffpiclabel{fig/spectral_data/romeo_kmeans_sort.png}
-%{Adjacency matrix $A_f$ of \textit{romeo}, subspace clustered with \textit{k-means}.}
-%{fig:spec:romeo:kmeans}
-%{fig/spectral_data/romeo_spectral_clust.png}
-%{Interaction matrix $A$ of \textit{romeo}, reordered using \textit{k-means} clustering information.}
-%{fig:spec:romeo:clust}
-
-%\FloatBarrier

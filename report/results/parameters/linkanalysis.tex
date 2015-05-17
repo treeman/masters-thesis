@@ -43,11 +43,10 @@ Similarly for \textit{movielens1m} and \textit{romeo}, $\gamma > 0$ is generally
 \FloatBarrier
 
 A closer look at \textit{eswc2015books} reveals that the function space isn't as smooth as it might have seemed in the previous plots, several local optima can be seen.
-%A decline around $\eta = -2$ is similar to that of \textit{alphaS}. Another similarity is that as long as $\eta > 0$, the exact value of $\eta$ doesn't seem to matter that much.
 
 \newpage
 
-Interestingly some of the datasets have their maximum at $\eta > 0$ but others have $\eta < 0$. What follows is some plots over $\eta$ and a fixed $\gamma = 1$.
+Interestingly some of the datasets have their maximum at $\eta > 0$ but others have $\eta < 0$. What follows is some plots over $\eta$ and a fixed $\gamma = 1$. The value of $\gamma = 1$ was chosen as a fixed point as the variation of $\eta$ at that interval seems like a good point to examine for variations, as seen in the previous 3D plots.
 
 \FloatBarrier
 
@@ -81,13 +80,11 @@ Interestingly some of the datasets have their maximum at $\eta > 0$ but others h
 
 \FloatBarrier
 
-Here \textit{alphaS} and \textit{eswc2015books} have maximum \textit{F-measure} with $\eta > 0$ but \textit{movielens1m} and \textit{romeo} with $\eta < 0$.
-
-%The actual optima, given optimization criteria of $\eta$ and $\gamma$, can be different. As can be seen in \figureref{fig:linkalphaS} the optima uses a smaller $\gamma$ and a positive $\eta$. But the local optima can still be found with either $\eta > 0$ or $\eta < 0$.
+Here \textit{alphaS} and \textit{eswc2015books} have maximum \textit{F-measure} with $\eta > 0$ but \textit{movielens1m} and \textit{romeo} with $\eta < 0$. Other than the choice of which sign, the actual value does not seem to matter that much, with some local minimas around $\eta = -2$ for \textit{alphaS} and \textit{eswc2015books}.
 
 \newpage
 
-$\gamma$ is the parameter which seems to vary the function value the most. The following plots varies $\gamma$ while holding $\eta = 1$ constant.
+$\gamma$ is the parameter which seems to vary the function value the most. The following plots varies $\gamma$ while holding $\eta = 1$ constant. $\eta = 1$ was chosen as it appears to be universally good value according to the previous 3D plots.
 
 \FloatBarrier
 
@@ -120,3 +117,6 @@ $\gamma$ is the parameter which seems to vary the function value the most. The f
 \end{figure}
 
 \FloatBarrier
+
+Generally $\gamma > 0$ seems like a better choice than $\gamma < 0$. Overall the function space looks fairly smooth with a nice hill shape being visible in all plots. No other local optimas appear to be visible.
+
