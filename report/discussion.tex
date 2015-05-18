@@ -3,8 +3,81 @@
 \textit{Can free form sections here}
 
 \section{Recommender systems}
-
 \textit{Overall design of recommender systems and the one I designed}
+
+The recommender system developed in this thesis is bare bones with not many features. It's reasonable as it's just a first prototype, or a core, for a larger recommender system to be built upon.
+
+The list of features a modern recommender system could have is large. An important feature is the act of explaining recommendations which can be seen in both Netflix and Spotify. According to Netflix
+\footnote{\textit{Ref here}}
+explaining recommendations improves the effectiveness of the recommender system a lot. This is also supported by the literature
+\Warning[TODO]{ Ref }. The reasoning is that it increases the trust for the recommendations, if the recommendations come with a note ``Recommended to you because you watched Die Hard'' and if you liked Die Hard you're more likely to take the recommendations seriously.
+
+Another important feature is diversity of the recommendations. Netflixed notes
+\footnote{\textit{ref here}}
+that one user account might represent several different people. So a family could share an account at Netflix and use it to watch a variety of different movies, the kids might watch animated movies but the father in the house might watch action movies and someone else might only care for drama. In such cases it's very important not to only recommend one kind of movie but rather recommend different kinds of movies. For example a list of only action movies is not as useful as a mix of action, drama and animated movies.
+
+\textit{Diversity}
+\Warning[TODO]{ Ref }
+is a metric analogous to \textit{F-measure} but it instead values diversified recommendations. Other recommender algorithms (or a combinations of algorithms) might be needed for more diversity in their recommendations.
+
+The distinction between offline and online recommender systems is something not considered in the recommender system design by this thesis, but it's an important one. Instead of generating recommendations on a fixed schedule, like once a day, it is desirable to generate recommendations in real time. The way Netflix does it is to use faster and simpler algorithms for real time recommendations and more advanced supervised learning algorithms for offline recommendations which are more computationally complex.
+%As the complexity of the system grows the line between offline and online algorithms become more blurred and ...
+
+\subsection{System}
+
+In the future the functionality of the exporter module could be replaced by either the remote API or the admin web interface.
+
+The filtering functionality in the reader module could be moved to an external tool operating directly on the database. This would allow for a more efficient input of the interaction history data by streaming it directly into the database. The current implementation loads it all into memory and thereafter populates the database, which might cause memory problems if large interaction history is given.
+
+Extensions to allow for metadata about the interactions could be beneficial. Filtering away very old interactions or the ability to split the training and test sets depending on the interaction date can be very useful.
+
+
+\section{Datasets}
+
+The usage of the \textit{movielens1m} dataset can be questioned as the dataset is made up by ratings and then converted to unweighted binary form. This introduces a lot of noise and the question is what conclusions can be drawn from such a dataset.
+
+The optimal parameters for \textit{eswc2015books} are fairly strange. For \textit{katz-eig} $K = 1$ gives the best recommendation quality, but that means the recommendations are given by a rank-1 approximation. Also for \textit{link-analysis} $\gamma = 0$ gives the best recommendation quality. Which means that no penalizing users with many purchases occur.
+
+
+\section{Evaluation}
+
+The evaluation metric of \textit{F-measure} can be questioned/discussed...? Why no cost function? Probably would be better (if could be found, but can it?) ?
+
+Alternative evaluation metrics. \rmse, rank, accuracy, diversity.
+
+A common deficiency for evaluation metrics is the lack of formalization. The metrics themselves are well defined but implementation details differ and are sometimes missing which can lead to different results between similar experiments.
+
+
+\section{Parameter analysis}
+
+\subsection{katz-eig}
+
+\subsection{link-analysis}
+
+Changes of $\eta$ as long as $\eta > 0$ appears to not have a very big impact. This can be explained as the role of $\eta$ is to keep the user representativeness score high for each user to itself. The normalization step in the nextcoming iteration removes the impact of larger value of $\eta$.
+
+$\eta < 0 $ is harder to explain...
+
+Referenced article introduces $\eta = 1$, but treats it as a constant. No further comments about it!
+
+Same article: $\gamma$ is said to be in the range 0 to 1, but I found that larger ones are good and often even better.
+
+
+\section{Parameter tuning}
+
+Optimization technique interesting to try is bayesian optimization!
+
+Clustering would be nice to explore.
+
+The lack of an easy cost function to optimize against is a hinderance. In practice calculating the top-10 recommendations is a slow process and a faster way to evaluate the recommendation quality given a set of parameters would give a nice speed improvement.
+
+
+\section{Algorithm comparisons}
+
+\textit{katz-eig} has much better runtime performance compared to \textit{link-analysis} and generates comparable recommendation quality. \textit{link-analysis} have slightly better quality for sparse datasets, which is supported by the literature. In fact the primary motivation for \textit{link-analysis} is to generate recommendations for sparse data. But still, \textit{katz-eig} gives comparable performance.
+
+Optimization is very expensive, but generating recommendations for the full datasets for both algorithms are fairly fast. They can both be useful commercially when run offline.
+
 
 \section{All the rest...}
 
@@ -14,18 +87,4 @@
 
 \input{discussion/results.tex}
 \input{discussion/method.tex}
-
-Future direction/thoughts about recommender systems.
-
-Combinations of different algorithms instead of one super algorithm to rule them all.
-
-Diversity is important! Netflix has identified that one account is used by the whole family, so diverse recommendations to fulfill the need of the different family members are needed. Diversity is a measure for that, also used by the eswc competition.
-
-Explaining recommendations increases the trust for the recommendations and make them more effective.
-
-Offline/online and generating recommendations in real time.
-
-Changes of $\eta$ as long as $\eta > 0$ appears to not have a very big impact. This can be explained as the role of $\eta$ is to keep the user representativeness score high for each user to itself. The normalization step in the nextcoming iteration removes the impact of larger value of $\eta$.
-
-$\eta < 0 $ is harder to explain...
 

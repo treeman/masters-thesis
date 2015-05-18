@@ -13,19 +13,20 @@
 
 \begin{table}[h!]
     \centering
-    \begin{tabular}{| c | c | c | }
+    \begin{tabular}{| c | c | c | c | c |}
         \hline
-        \textbf{}               & \textbf{katz-eig} & \textbf{link-analysis} \\ \hline
-        \textit{alphaS}         & 0.322334 s        & 80.51777 s             \\ \hline
-        \textit{eswc2015books}  & 0.027862 s        & 1.527216 s             \\ \hline
-        \textit{eswc2015movies} & 48.76161 s        &                        \\ \hline
-        \textit{eswc2015music}  &                   &                        \\ \hline
-        \textit{movielens1m}    & 1.197174 s        & 75.92951 s             \\ \hline
-        \textit{romeo}          & 0.166743 s        &                        \\ \hline
+        \textbf{}               & \multicolumn{2}{c|}{\textbf{katz-eig}} & \multicolumn{2}{c|}{\textbf{katz-eig}} \\ \hline
+        \textit{alphaS}         & 0.322334 s & 0.1        & 80.51777 s   & 0.1           \\ \hline
+        \textit{eswc2015books}  & 0.027862 s & 0.1        & 1.527216 s   & 0.1           \\ \hline
+        \textit{eswc2015movies} & 48.76161 s & 0.1        &              & 0.1           \\ \hline
+        \textit{eswc2015music}  &            & 0.1        &              & 0.1           \\ \hline
+        \textit{movielens1m}    & 1.197174 s & 0.1        & 75.92951 s   & 0.1           \\ \hline
+        \textit{romeo}          & 0.166743 s & 0.1        &              & 0.1           \\ \hline
     \end{tabular}
     \caption{Runtime of the algorithms using the full interaction history using the optimized parameters given in \appendixref{app:opt_params}.}
     \label{tab:alg_full_time}
 \end{table}
+\Warning[TODO]{ avg over 10 runs, std dev, remove these }
 
 \begin{table}[h!]
     \centering

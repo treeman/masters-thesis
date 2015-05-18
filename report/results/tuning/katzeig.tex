@@ -9,9 +9,9 @@ What follows is a description of the different optimization techniques evaluated
 
 \begin{description}
     \item[grid]
-        Does a grid search over $K$, with a fixed step size. $\beta$ was fixed.
+        Does a grid search over $K$, with a fixed step size. $\beta$ was fixed. $0 < K \leq 50$ was examined.
     \item[grid-full]
-        Does a grid search over both $K$ and $\beta$, with fixed but possibly different step sizes.
+        Does a grid search over both $K$ and $\beta$, with fixed but possibly different step sizes. $0 < K \leq 50$ was examined.
     \item[rand]
         A random sampling over a subspace of $K$ with a fixed $\beta$. Depends on the size of the subset to sample over and the number of samples.
     \item[hill]
@@ -62,4 +62,5 @@ What follows is a description of the different optimization techniques evaluated
     \label{tab:katzeig_tuning_sec}
 \end{table}
 \Warning[TODO]{ Need system specs! }
+\Warning[TODO]{ Need std variance! }
 
