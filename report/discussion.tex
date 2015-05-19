@@ -68,7 +68,7 @@ In the future the filtering functionality in the reader module could be moved to
 
 The datasets were examined both with regards to the number of interactions and examined if there were any clusters. \textit{alphaS} was an outlier as it had many users (51\%) with only one interaction. To generate recommendations a list of popular items could be provided and the users could be removed from the training and test sets for a general speedup and keeping the relative recommendation quality as high or possibly higher. The many one-item users explains the requirement for 61\% of all users to be able to reach 95\% of the users in \tableref{tab:top_data}.
 
-The sparsity of data in \textit{alphaS} explains the better recommendation accuracy for \textit{link-analysis} compared to \textit{katz-eig} (\tableref{tab:alg_full_perf}) as \textit{link-analysis} was specifically designed to solve the sparse data problem \citep{huang2004link, huang2007comparison}. Similar results can be seen for \textit{eswc2015books} which supports the claim in the literature.
+The sparsity of data in \textit{alphaS} explains the better recommendation accuracy for \textit{link-analysis} compared to \textit{katz-eig} (\tableref{tab:alg_full_perf}) as \textit{link-analysis} was specifically designed to solve the sparse data problem \citep{huang2004link, huang2007comparison}. Similar results can be seen for \textit{eswc2015books} and in the learning curves for \textit{movielens1m} and \textit{romeo} which supports the claim in the literature.
 
 The optimal parameters for \textit{eswc2015books} are fairly strange. For \textit{katz-eig} $K = 1$ gives the best recommendation quality, but that means the recommendations are given by a rank-1 approximation.
 \Warning[TODO]{ Why? }
@@ -88,13 +88,6 @@ Different types evaluation metrics have been used throughout the literature. The
 %A common deficiency for evaluation metrics is the lack of formalization. The metrics themselves are well defined but implementation details differ and are sometimes missing which can lead to different results between similar experiments.
 
 
-%\section{Parameter analysis}
-
-%Referenced article introduces $\eta = 1$, but treats it as a constant. No further comments about it!
-
-%Same article: $\gamma$ is said to be in the range 0 to 1, but I found that larger ones are good and often even better.
-
-
 \section{Optimization}
 
 \textit{Talk about the different optimization techniques here}
@@ -111,43 +104,40 @@ The same papers \cite{huang2004link, huang2007comparison} mentions that investig
 
 Analysis of $\gamma$ in \sectionref{sec:param:link} suggests that \textit{F-measure} is almost convex with a clear ``hill'' in the function space. There are small local maxima however but as a whole it follows a clear hill form. This suggests that a hill climbing optimization strategy might perform well for these datasets. It might also be worthwhile to keep $\eta$ fixed as was done in \cite{huang2004link, huang2007comparison}.
 
-This is supported by the tests in \sectionref{sec:tuning:link} which show that an adaptive hill climbing algorithm produce recommendations almost as good as a full blown grid search in only a fraction of the time needed. The difference in recommendation quality between optimizing over both $\gamma$ and $\eta$ compared to just optimizing over $\gamma$ while $\eta = 1 \text{ or } -1$ is small, but the runtime difference is not.
+This is supported by the tests in \sectionref{sec:tuning:link} which show that an adaptive hill climbing strategy produce recommendations almost as good as a full blown grid search in only a fraction of the time needed. The difference in recommendation quality between optimizing over both $\gamma$ and $\eta$ compared to just optimizing over $\gamma$ while $\eta = 1 \text{ or } -1$ is small, but the runtime difference is not.
+
+\textit{Simulated annealing} and \textit{bayesian optimization} are popular optimization strategies which could be interesting to try in future work. They could specifically be used to optimize over $\gamma$ . What they have against them is that the function space has a very prominent hill shape for these datasets and they might not be able to beat a hill climbing strategy.
 
 \subsection{katz-eig}
 
-The impact of varying $\beta$ was very small, as shown in \sectionref{sec:param:katzeig}. It's surprising as according to the model $\beta$ represents the link dampening. Another surprising result is that the training curves in \sectionref{sec:training:katz} show that the number of iterations does not have a sizable effect on \textit{F-measure}. There is some improvement, but it's a very minor one.
+The impact of varying $\beta$ was very small, as shown in \sectionref{sec:param:katzeig}. It's surprising as according to the model $\beta$ represents the link dampening.  This means that fixing $\beta$ to a constant value while optimizing over $K$ could give speed improvements while retaining recommendation quality. Another surprising result is that the training curves in \sectionref{sec:training:katz} show that the number of iterations does not have a sizable effect on \textit{F-measure}. There is some improvement, but it's a very minor one.
 
 These results suggests that \textit{katz-eig} gives very similar recommendations as directly using a SVD-$k$ approximation would, which is what happens when $\beta = 0$. The number of iterations intuitively represents how many links are followed, but if the recommendation quality is the same regardless of the number of iterations, then only one link followed is enough. Recommendations based on SVD is an acknowledged way of generating good predictions \citep{bobadilla2013recommender} so the assumption is reasonable.
 
-%These results suggests that \textit{katz-eig} could in fact be replaced by a rank $k$ SVD approximation. This is what happens when $\beta = 0
+Varying $K$ however affects \textit{F-measure} a lot more, as seen in \sectionref{sec:param:katzeig}. Although a bit jagged, the plots indicate a ``hill'' shape which suggests that a hill climbing strategy could be a viable optimization strategy. As seen in \sectionref{sec:param:katzeig} this does seem to be the case as a hill climbing strategy produce nearly as good a result as a full grid search. A variant with random jumps and restarts was also tried but the standard hill climber outperformed the stochastic version.
+
+\textit{Simulated annealing} and \textit{bayesian optimization} are possibly better optimization strategies, especially if other kinds of datasets display a more jagged \textit{F-measure} function space. It would be interesting to try them in future work.
+
+%Clustering would be nice to explore.
+
+%The lack of an easy cost function to optimize against is a hindrance. In practice calculating the top-10 recommendations is a slow process and a faster way to evaluate the recommendation quality given a set of parameters would give a nice speed improvement.
 
 
-\vspace{1cm}
+%\section{Algorithm comparisons}
 
-Optimization technique interesting to try is bayesian optimization!
+%\textit{Draw overall conclusions of the different algorithms}
 
-Clustering would be nice to explore.
+%\textit{katz-eig} has much better runtime performance compared to \textit{link-analysis} and generates comparable recommendation quality. \textit{link-analysis} have slightly better quality for sparse datasets, which is supported by the literature. In fact the primary motivation for \textit{link-analysis} is to generate recommendations for sparse data. But still, \textit{katz-eig} gives comparable performance.
 
-The lack of an easy cost function to optimize against is a hinderance. In practice calculating the top-10 recommendations is a slow process and a faster way to evaluate the recommendation quality given a set of parameters would give a nice speed improvement.
-
-Future work: Bayesian optimization and simulated annealing.
+%Optimization is very expensive, but generating recommendations for the full datasets for both algorithms are fairly fast. They can both be useful commercially when run offline.
 
 
-\section{Algorithm comparisons}
+%\section{All the rest...}
 
-\textit{Draw overall conclusions of the different algorithms}
+%\begin{enumerate}
+    %\item ??
+%\end{enumerate}
 
-\textit{katz-eig} has much better runtime performance compared to \textit{link-analysis} and generates comparable recommendation quality. \textit{link-analysis} have slightly better quality for sparse datasets, which is supported by the literature. In fact the primary motivation for \textit{link-analysis} is to generate recommendations for sparse data. But still, \textit{katz-eig} gives comparable performance.
-
-Optimization is very expensive, but generating recommendations for the full datasets for both algorithms are fairly fast. They can both be useful commercially when run offline.
-
-
-\section{All the rest...}
-
-\begin{enumerate}
-    \item ??
-\end{enumerate}
-
-\input{discussion/results.tex}
-\input{discussion/method.tex}
+%\input{discussion/results.tex}
+%\input{discussion/method.tex}
 
