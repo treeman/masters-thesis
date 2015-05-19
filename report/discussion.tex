@@ -5,6 +5,9 @@
 \section{Recommender systems}
 \textit{Overall design of recommender systems and the one I designed}
 
+One of the purposes of this thesis was to lay the foundation of Comordo Technologies' recommender system and a goal was to make it so that the recommender system could easily be extended. Input of data into the system was accomplished by a plugin system which could easily be extended to read data of different formats. A further extension could be to use the same approach for the exporter module. The longterm goal for Comordo is to create a REST based API which makes the extension a lower priority. It could still be useful if Comordo's clients wants to test the recommendations Comordo can give them by offline processing of interaction data. A plugin system designed in this way is very flexible as it can accomodate different input and output formats with little programming effort. Input in a standard form is also easy to accomodate, for example an interaction matrix already created and stored in a ``.mat'' data file.
+
+
 The recommender system developed in this thesis is bare bones with not many features. It's reasonable as it's just a first prototype, or a core, for a larger recommender system to be built upon.
 
 The list of features a modern recommender system could have is large. An important feature is the act of explaining recommendations which can be seen in both Netflix and Spotify. According to Netflix
