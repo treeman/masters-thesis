@@ -28,9 +28,9 @@ A direct definition of the item and user representativeness scores is as follows
     \UR = A * \IR
 \end{equation}
 
-There are two inherent problems with these definitions. The first is if a user has interactions with all items that user will have the highest user representativeness $\UR$ for all users, even though such a user provides little information. The second problem is that $\IR$ and $\UR$ will converge to matrices with identical columns. This leads to item representativeness scores independent of users.
+There are two inherent problems with these definitions. The first is if a user has interactions with all items then that user will have the highest user representativeness $\UR$ for all users, even though such a user provides little information. The second problem is that $\IR$ and $\UR$ will converge to matrices with identical columns. This leads to item representativeness scores $\IR(i, u)$ which are independent of the user $u$ chosen and depend only on the item $i$.  \cite{huang2004link, huang2007comparison}
 
-To address these problems the user representativeness score is redefined as
+To address these problems the user representativeness score is redefined \cite{huang2007comparison} as
 
 \begin{equation}
     \UR = B * \IR + \UR_0
@@ -69,7 +69,7 @@ In summary the \textit{link-analysis} algorithm follow these steps:
 
 \end{enumerate}
 
-
+\newpage
 \subsubsection{Runtime example}
 
 This is a runtime example for \textit{link-analysis} using a simple interaction matrix \eqref{eq:exA}, corresponding to the interaction graph \figureref{fig:ex_graph}.
@@ -86,7 +86,7 @@ This is a runtime example for \textit{link-analysis} using a simple interaction 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.3\linewidth]{fig/example_run/item_user_graph.png}
-    \caption{A graph representing the interaction history between each user and item.}
+    \caption{A graph representing the interaction history between each user and item, describing the interaction matrix in \eqref{eq:exA}.}
     \label{fig:ex_graph}
 \end{figure}
 
@@ -111,17 +111,23 @@ The following example uses $\gamma = 0.9$ and $\eta = 1$.
 During the iterations the rows of $\IR$ will be representing each item and each column will be representing each user, this is the reverse of the interaction matrix $A$. The example therefore presents the transpose of $\IR$, $\IR^T$.
 
 \[
-    \IR^T_1 = \begin{pmatrix}
-        0 & 1 & 0 & 1 \\
-        0 & 1 & 1 & 1 \\
-        1 & 0 & 1 & 0
-    \end{pmatrix},
-\;
-    \UR_1 = \begin{pmatrix}
-        1.5902 & 0.4098 & 0 \\
-        0.3935 & 1.4098 & 0.1967 \\
-        0      & 0.2577 & 1.7423
-    \end{pmatrix}
+    \IR^T_1 = \left(A^T * \UR_0\right)^T 
+    = \kbordermatrix{
+        &    i_1 & i_2 & i_3 & i_4 \\
+        u_1 &     0 & 1 & 0 & 1 \\
+        u_2 &     0 & 1 & 1 & 1 \\
+        u_3 &     1 & 0 & 1 & 0
+    }
+\]
+\[
+\UR_1
+= norm\left(B * \IR_1\right) + \UR_0 
+    = \kbordermatrix{
+      &    u_1 & u_2 & u_3 \\
+      u_1 &  1.5902 & 0.4098 & 0 \\
+      u_2 &  0.3935 & 1.4098 & 0.1967 \\
+      u_3 &  0      & 0.2577 & 1.7423
+    }
 \]
 
 \FloatBarrier
@@ -138,26 +144,32 @@ During the iterations the rows of $\IR$ will be representing each item and each 
         \caption{$\UR_1$}
         \label{fig:link:ur1}
     \end{subfigure}
-    \caption{Visual representation of the first iteration. The full lines in $\UR_1$ represents new connections, which come from the full connections in $\IR_1$.}
+    \caption{Visual representation of the first iteration. The full lines in $\UR_1$ (b) represents new connections, which come from the new connections in $\IR_1$ (a) also represented by full lines.}
     \label{fig:link:it1}
 \end{figure}
 
-\FloatBarrier
-
 The first iteration does not alter the item representativeness matrix. In the user representativeness matrix links between users are made through one shared item.  As seen in \figureref{fig:link:it1} a connection is made between $u_1$ and $u_2$, through $i_2$ and a connection between $u_2$ and $u_3$ through $i_3$.
 
+\FloatBarrier
+
 \[
-    \IR^T_2 = \begin{pmatrix}
-             0 &  2.0000 &  0.4098 &  2.0000 \\
-        0.1967 &  1.8033 &  1.6065 &  1.8033 \\
-        1.7423 &  0.2577 &  2.0000 &  0.2577
-    \end{pmatrix},
-\;
-    \UR_2 = \begin{pmatrix}
-        1.5354 &  0.4098 &  0.0548 \\
-        0.3994 &  1.4008 &  0.1997 \\
-        0.0858 &  0.2909 &  1.6233
-    \end{pmatrix}
+    \IR^T_2 = \left(A^T * \UR_1\right)^T 
+    = \kbordermatrix{
+        &    i_1 & i_2 & i_3 & i_4 \\
+        u_1 &      0 &  2.0000 &  0.4098 &  2.0000 \\
+        u_2 & 0.1967 &  1.8033 &  1.6065 &  1.8033 \\
+        u_3 & 1.7423 &  0.2577 &  2.0000 &  0.2577
+    }
+\]
+\[
+    \UR_2
+    = norm\left(B * \IR_2\right) + \UR_0 
+    = \kbordermatrix{
+      &    u_1 & u_2 & u_3 \\
+      u_1 &   1.5354 &  0.4098 &  0.0548 \\
+      u_2 &   0.3994 &  1.4008 &  0.1997 \\
+      u_3 &   0.0858 &  0.2909 &  1.6233
+    }
 \]
 
 \FloatBarrier
@@ -173,18 +185,25 @@ The first iteration does not alter the item representativeness matrix. In the us
 
 New connections in $\IR_2$ are made by using item connections from related users from $\UR_1$. In \figureref{fig:link:ir2} new connections for $u_3$ are made to $i_2$ and $i_4$ because $u_2$ is now representing $u_3$ in \figureref{fig:link:ur1}, and $u_2$ has connections with $i_2$ and $i_4$.
 
+\newpage % Layout things!
 \[
-    \IR^T_3 = \begin{pmatrix}
-        0.0548 &  1.9452 &  0.4646 &  1.9452 \\
-        0.1997 &  1.8003 &  1.6006 &  1.8003 \\
-        1.6233 &  0.3767 &  1.9142 &  0.3767
-    \end{pmatrix},
-\;
-    \UR_3 = \begin{pmatrix}
-        1.5234 &  0.4067 &  0.0699 \\
-        0.3995 &  1.4007 &  0.1998 \\
-        0.1226 &  0.3015 &  1.5759
-    \end{pmatrix}
+    \IR^T_3 = \left(A^T * \UR_2\right)^T 
+    = \kbordermatrix{
+        &    i_1 & i_2 & i_3 & i_4 \\
+        u_1 & 0.0548 &  1.9452 &  0.4646 &  1.9452 \\
+        u_2 & 0.1997 &  1.8003 &  1.6006 &  1.8003 \\
+        u_3 & 1.6233 &  0.3767 &  1.9142 &  0.3767
+    }
+\]
+\[
+    \UR_3
+    = norm\left(B * \IR_3\right) + \UR_0 
+    = \kbordermatrix{
+        &    u_1 & u_2 & u_3 \\
+        u_1 & 1.5234 &  0.4067 &  0.0699 \\
+        u_2 & 0.3995 &  1.4007 &  0.1998 \\
+        u_3 & 0.1226 &  0.3015 &  1.5759
+    }
 \]
 
 After transposing $\IR_3$ and removing the items users already have interacted with in $A$, the prediction matrix $P$ becomes
@@ -198,12 +217,12 @@ After transposing $\IR_3$ and removing the items users already have interacted w
   }
 \]
 
-\Figureref{fig:ex_graph_link_rec} is a visualization of the most recommended item for each user.
+\Figureref{fig:ex_graph_link_rec} is a visualization of $P$ displaying the single most recommended item for each user.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.3\linewidth]{fig/example_run/item_user_graph_link_rec.png}
-    \caption{A graph representing the most recommended item for each user. The dotted lines represent previous interactions.}
+    \caption{A graph representing the most recommended item for each user. The dotted lines represent the interaction history.}
     \label{fig:ex_graph_link_rec}
 \end{figure}
 

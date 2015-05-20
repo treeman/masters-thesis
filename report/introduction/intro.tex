@@ -1,11 +1,25 @@
 
 \section{Introduction}\label{sec:intro:intro}
 
-The introduction chapter presents the purpose and the goals of the thesis, what questions the thesis aims to answer and the limitations of the thesis.
+Being able to make choices, of any kind, has always been an important skill and perhaps it's more important now than ever before. It's hard to choose what products to buy, what music to listen to, what posts to read and what videos to watch as there are so many choices but a limited amount of time. In Youtube alone over 300 hours of video is uploaded every minute
+\footnote{Youtube Statistics, 2015. \url{http://www.youtube.com/yt/press/statistics.html}}.
 
-This thesis examines the construction of a recommender system and the evaluation of two different recommender algorithms, \textit{link-analysis} and \textit{katz-eig}. Both of the algorithms had their parameter space analysed and different optimization strategies were evaluated using several different datasets. The recommender system was built for Comordo Technologies as their core to later be built upon and extended.
+This is why content providers and e-commerce are using recommendations, where items believed to appeal to the consumer are presented more prominently on the sites. Recommendations have become an important part of their business and companies such as Netflix are investing heavily into making their recommendations better
+\footnote{
+Netflix: Recommendations beyond 5 stars (Part 1), 2012.
+\url{http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html}
+}
+\footnote{
+Netflix: Recommendations beyond 5 stars (Part 2), 2012.
+\url{http://techblog.netflix.com/2012/06/netflix-recommendations-beyond-5-stars.html}
+}.
 
-\textit{Conclusion/result summary here}
+A common practice among e-commerce is to produce \textit{related recommendations} where items are linked to related, similar, items. Another type is \textit{personal recommendations} where items are recommended specifically for a single user given their interaction history.
 
-\Warning[TODO]{ A short summary of the conclusions/results here? }
+There are simple algorithms to produce these recommendations, like recommending the most popular or the most watched movies. They are fast and easy to make but algorithms based on machine learning can produce more relevant recommendations. They work by learning from the data and building a model used to make predictions. The drawback is computational cost and complexity.
+
+\textit{Explicit feedback} recommender systems, which are concerned with ratings or other voluntary user feedback, have been researched extensively but \textit{implicit feedback}, which passively collect information about the user, is not as extensively researched. \citep{hu2008collaborative, bobadilla2013recommender}
+
+
+This thesis examines the construction of a recommender system using implicit feedback and the evaluation of two different recommender algorithms, \textit{link-analysis} and \textit{katz-eig}. Both of the algorithms had their parameter space analysed and different optimization strategies were evaluated using several different datasets. The recommender system was built for Comordo Technologies as their core to later be built upon and extended.
 

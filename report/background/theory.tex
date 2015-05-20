@@ -3,14 +3,13 @@
 
 This section introduces the mathematical theory behind the recommendation model, a summary of the supervised learning process and some theory about the evaluation metrics \textit{Precision}, \textit{Recall} and \textit{F-measure}. Then a brief overview of optimization techniques is given and then explanation of the recommendation algorithms \textit{link-analysis} and \textit{katz-eig}. The section is finished by a brief mention of unsupervised learning techniques, mainly about clustering.
 
-%This section introduces the mathematical theory behind the recommendation model, the evaluation of recommendations and a summary of the supervised learning process.
-%\Warning[TODO]{ Make sure these are up to date }
-
 This is the basic process of producing recommendations:
 
 \begin{enumerate}
-    \item Given an interaction history $h_{u, i}$ and algorithm specific parameters the recommendation algorithm produce recommendations $p_{u, i}$.
-    \item The recommendations $p_{u, i}$, which are real values, are converted to binary recommendations $r_{u, i}$.
+    \item Given an interaction history $h_{u, i}$, $u \in Users$, $i \in Items$ and algorithm specific parameters the recommendation algorithm produce recommendations $p_{u, i}$.
+        %\\
+        %$p_{u, i} = 0$ whenever $h_{u, i} = 1 \; \forall \,u, i$ so no items are recommended if interactions have already been made.
+    \item The recommendations $p_{u, i}$, which are real values, are converted to binary recommendations $r_{u, i}$ by selecting the $N$ largest $p_{u, i}$ as $r_{u, i} = 1$.
 \end{enumerate}
 
 The process of parameter tuning used is as follows:

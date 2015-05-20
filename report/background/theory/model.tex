@@ -1,7 +1,7 @@
 
 \subsection{Recommendation model}\label{sec:background:theory:model}
 
-Given a set of users $U$, a set of items $I$ and an interaction history $h_{u, i}$ given in \textit{unweighted binary form}
+Given a set of users $U$, a set of items $I$ and an interaction history $h_{u, i}$, $u \in U$, $i \in I$ given in \textit{unweighted binary form}
 
 \begin{equation}\label{eq:hist}
     h_{u, i} = \begin{cases}
@@ -19,7 +19,13 @@ the \textit{recommender problem} is defined by producing a set of recommendation
     \end{cases}
 \end{equation}
 
-to maximize the probability that user $u$ will want to interact with item $i$ in the future, for all users and items.  When $r_{u, i}$ is binary this is a \textit{binary classification} problem. This definition is applicable for \textit{implicit feedback} systems which passively track different sorts of user behaviour. For example link following, interaction time and purchase history.
+to maximize the probability that user $u$ will want to interact with item $i$ in the future, for all users and items.  When $r_{u, i}$ is binary this is a \textit{binary classification} problem. This definition is applicable for \textit{implicit feedback} systems which passively track different sorts of user behaviour. For example link following, interaction time and purchase history. 
+
+As an additional constraint \eqref{eq:nodup} no recommendations can be made for items already interacted with.
+
+\begin{equation}\label{eq:nodup}
+    r_{u, i} = 0 \text{ whenever } h_{u, i} = 1 \quad \forall \, u, i
+\end{equation}
 
 It is sometimes notationally convenient to treat the interaction history as a matrix. The whole interaction history $h_{u, i}$ will in matrix form be denoted by the interaction matrix $A = (h_{u, i})$, with each row representing each user and each column representing each item. The underlying structure forms a bipartite graph with one set representing the users and the other the items.
 

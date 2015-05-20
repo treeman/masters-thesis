@@ -40,9 +40,8 @@ Concretely the \textit{katz-eig} algorithm follow these steps:
 
 \end{enumerate}
 
-%There are two parameters to the algorithm: $\beta$ and $k$.
 
-
+\newpage
 \subsubsection{Runtime example}
 
 This is a runtime example for \textit{katz-eig} using a simple interaction matrix \eqref{eq:exA_katz}, which is the same matrix as in the example for \textit{link-analysis} (see \sectionref{sec:background:theory:linkanalysis}).
@@ -95,7 +94,7 @@ V = \begin{pmatrix}
 
 Notable here is that some valid recommendations could be made directly from the approximation matrix. In fact for this example there would be no difference in recommendations if $t_{max} = 0$ and the approximation matrix was used directly.
 
-Intuitively a rank $k$ SVD matrix approximations blurs together similar users and items. The value of $k$ specifies the blurring degree, the higher $k$ the more of the original matrix will be retained.
+Intuitively a matrix approximation blurs together similar users and items. In a rank $k$ matrix approximation the value of $k$ specifies the blurring degree, the higher $k$ the more of the original matrix will be retained.
 
 Initially $S_0$ = $S$. Then $S_t$ is calculated iteratively
 \[
@@ -125,6 +124,7 @@ until convergence or as in our case $t_{max} = 3$. The recommendations are then 
     }
 \]
 
+\newpage
 After removing the items users already have interacted with in $A$, the prediction matrix $P$ becomes
 \[
     P = \kbordermatrix{
@@ -135,12 +135,12 @@ After removing the items users already have interacted with in $A$, the predicti
     }
 \]
 
-\Figureref{fig:ex_graph_link_rec} is a visualization of the most recommended item for each user.
+\Figureref{fig:ex_graph_katz_rec} is a visualization of $P$ displaying the single most recommended item for each user.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.3\linewidth]{fig/example_run/item_user_graph_katz_rec.png}
-    \caption{A graph representing the most recommended item for each user. The dotted lines represent previous interactions.}
+    \caption{A graph representing the most recommended item for each user. The dotted lines represent the interaction history.}
     \label{fig:ex_graph_katz_rec}
 \end{figure}
 

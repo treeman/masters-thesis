@@ -8,13 +8,13 @@ The training set can be seen as the history available, what has happened before.
 
 In summary machine learning for supervised learning is done in a couple of steps:
 
-\begin{description}
-    \item[Preface] Split data set into training, test and validation sets.
-    \item[Training phase] Train the hypothesis, in our case select the algorithms' parameters, using the training set.
-    \item[Model selection] Select model using the validation set. (Optional)
-    \item[Evaluation] Estimate the accuracy using the test set.
-    \item[Application] Apply the developed model to real world data and get results.
-\end{description}
+\begin{enumerate}
+    \item \textbf{Preface} Split data set into training, test and validation sets.
+    \item \textbf{Training phase} Train the hypothesis, in our case select the algorithms' parameters, using the training set.
+    \item \textbf{Model selection} Select model using the validation set. (Optional)
+    \item \textbf{Evaluation} Estimate the accuracy using the test set.
+    \item \textbf{Application} Apply the developed model to real world data and get results.
+\end{enumerate}
 
 There can be multiple available models for the hypothesis, for example if the hypothesis is a polynomial function of the form
 
@@ -38,6 +38,6 @@ depending on domain and the size of the available data set. It is important that
 If there is no need for a validation set, which can be the case if there are no models to choose from, common training/test set ratios include 70/30, 80/20 or 90/10 \cite{hu2008collaborative, norvigAI}
 \footnote{Andrew Ng also mentions these values}.
 
-Another way to combat overfitting is with \textit{regularization}. Regularization searches for a hypothesis which directly penalizes complexity.  Regularization still needs to select the hyperparameter $\lambda$ using model selection.
-\citep{norvigAI}
+Another way to combat overfitting is with \textit{regularization}. Regularization searches for a hypothesis which directly penalizes complexity.  Regularization still needs to select the hyperparameter $\lambda$ using model selection
+\citep{norvigAI}. This will be explained further in \sectionref{sec:background:theory:opt}.
 

@@ -1,0 +1,29 @@
+
+\section{Problem definition}\label{sec:intro:problem}
+
+The purpose of this thesis can be split in two larger parts. The first is to lay the foundation of Comordo Technologies' recommender system which could later be built upon and extended. At the end of this thesis the goal was to have a recommendation system which could load data supplied by Comordo's clients, produce recommendations and store them together with their recommendations in a database.
+
+The second part is to analyze and create optimization strategies for \textit{katz-eig} and \textit{link-analysis} which optimize the algorithm's parameters for different datasets automatically. Parameter optimization should be done in a reasonable amount of time so the system can be commercially useful.
+
+The recommendation algorithms depend on a couple of parameters which directly affects the quality of the recommendations made and the parameter values are different depending on the dataset the recommendations are being made for.  Recommendation quality, or how good the recommendations are, is measured by the probability that a user interacts with the recommendation given by the system in the future where only recommendations to items not previously interacted with can be given. The goal of the optimization process is to maximize this probability for a specific dataset.
+
+Core parts of the recommendation algorithms \textit{katz-eig} and \textit{link-analysis} existed before the thesis, but they were only runnable as Matlab scripts without any data handling and they lacked parameter tuning. There were also some optimization issues with the implementations. Focus is not on porting them to a different language or platform, which could improve them speed wise, but to adapt the existing code.
+
+\newpage
+\subsection{Guiding questions}\label{sec:intro:questions}
+
+\begin{itemize}
+
+    \item How can a recommender system be designed to allow for easily extendible input- and output handling?
+
+
+    \item How can learning and recommendation using \textit{link-analysis} and \textit{katz-eig} be performed in practice, with regards to speed and recommendation quality?
+
+        \begin{itemize}
+            \item How shall learning and optimization of their parameters be done?
+        \end{itemize}
+
+        To answer that question, an exploration of the function space of the parameters with regards to the evaluation criteria might be necessary.
+
+\end{itemize}
+
