@@ -1,0 +1,109 @@
+
+\subsection{Result}
+
+This presents a comparison between the best performing optimization strategies for \textit{katz-eig} and \textit{link-analysis} and compares the algorithms against each other. The optimized parameters given in \appendixref{app:opt_params} summarises the best performing parameters found for the different datasets. These are the parameters used for the comparison.
+
+Firstly \tableref{tab:alg_full_time} displays the runtime for the algorithms to produce recommendations using the full interaction matrix $A$. The same results is visualized in \figureref{fig:rec_speed}.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | c | c | c | c |}
+        \hline
+        \textbf{}               & \multicolumn{2}{c|}{\textbf{katz-eig}} & \multicolumn{2}{c|}{\textbf{link-analysis}} \\ \hline
+        \textit{alphaS}         & 3.434409 s & 1.038829 & 10.307018 s  & 0.068634       \\ \hline
+        \textit{eswc2015books}  & 0.027989 s & 0.004293 & 0.720686 s   & 0.016339       \\ \hline
+        \textit{eswc2015movies} & 1.382029 s & 0.516727 & x            & x              \\ \hline
+        \textit{eswc2015music}  & 2.001985 s & 0.159226 & x            & x              \\ \hline
+        \textit{movielens1m}    & 1.410586 s & 0.107071 & 154.404908 s & 18.179708      \\ \hline
+        \textit{romeo}          & 0.216897 s & 0.032052 & 40.477119 s  & 0.114363       \\ \hline
+    \end{tabular}
+    \caption{Runtime of the algorithms using the full interaction history using the optimized parameters given in \appendixref{app:opt_params}.}
+    \label{tab:alg_full_time}
+\end{table}
+
+\begin{figure}[h!]
+    \begin{subfigure}[h!]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{fig/comp/comp_rec_speed.png}
+        \caption{}
+        %\label{fig:rec_speed}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[h!]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{fig/comp/comp_rec_speed_log.png}
+        \caption{}
+        %\label{fig:rec_speed_log}
+    \end{subfigure}
+    \caption{Comparison of the runtime of generating recommendations for the full dataset for the different algorithms. (b) shows the speed with logarithmic y-axis. Both plots include the standard deviation of the 10 runs made.}
+    \label{fig:rec_speed}
+\end{figure}
+
+Conclusively \textit{katz-eig} is far superior speed wise. Only \textit{alphaS} is somewhat close. The difference for \textit{movielens1m} and \textit{romeo} is extreme. The bad complexity for matrix multiplication can be blamed as both datasets are larger than the rest and less sparse and \textit{link-analysis} does several full matrix multiplications but \textit{katz-eig} does not.
+
+The time for optimizing the parameters is shown in \tableref{tab:alg_opt_time} and visualized \figureref{fig:opt_speed}.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | c | c | c | c |}
+        \hline
+        \textbf{}               & \multicolumn{2}{c|}{\textbf{katz-eig}} & \multicolumn{2}{c|}{\textbf{link-analysis}} \\ \hline
+        \textit{alphaS}         & 41.876401     & 9.106161         & 26.978338     & 0.877453      \\ \hline
+        \textit{eswc2015books}  & 1.871681      & 0.023562         & 3.245297      & 0.026975      \\ \hline
+        \textit{eswc2015movies} & 52.749416     & 5.194185         & x             & x             \\ \hline
+        \textit{eswc2015music}  & 141.664568    & 5.769257         & x             & x             \\ \hline
+        \textit{movielens1m}    & 31.249456     & 0.190485         & 244.484291    & 58.205089     \\ \hline
+        \textit{romeo}          & 3.781222      & 0.012321         & 81.478788     & 4.675901      \\ \hline
+    \end{tabular}
+    \caption{Runtime for optimizing the different algorithms for the different datasets. Uses the fastest optimization strategy.}
+    \label{tab:alg_opt_time}
+\end{table}
+
+\begin{figure}[h!]
+    \begin{subfigure}[h!]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{fig/comp/comp_rec_opt_time.png}
+        \caption{}
+        %\label{fig:rec_speed}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[h!]{0.5\textwidth}
+        \includegraphics[width=\textwidth]{fig/comp/comp_rec_opt_time_log.png}
+        \caption{}
+        %\label{fig:rec_speed_log}
+    \end{subfigure}
+    \caption{The runtime for paramater optimization for the different algorithms. (b) shows the speed with logarithmic y-axis. Both plots include the standard deviation of the 10 runs made.}
+    \label{fig:opt_speed}
+\end{figure}
+
+\FloatBarrier
+
+Again \textit{katz-eig} is superior speed wise, except for \textit{alphaS} where it is slightly slower. The speed difference between the parameter optimization for the algorithms is less than it is for generating the final recommendations. Optimizing for \textit{eswc2015books} is almost as fast for \textit{link-analysis} as for \textit{katz-eig} but the difference is still large for \textit{movielens1m} and \textit{romeo}.
+
+Finally the recommendation quality of the algorithms is given in \tableref{tab:alg_full_perf} and visualized in \figureref{fig:alg_comp_perf}.
+
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| c | c | c | }
+        \hline
+        \textbf{}               & \textbf{katz-eig} & \textbf{link-analysis} \\ \hline
+        \textit{alphaS}         & 0.002174          & \textbf{0.003208}      \\ \hline
+        \textit{eswc2015books}  & 0.020102          & \textbf{0.023537}      \\ \hline
+        \textit{eswc2015movies} & \textbf{0.048456} & x                      \\ \hline
+        \textit{eswc2015music}  & \textbf{0.054448} & x                      \\ \hline
+        \textit{movielens1m}    & \textbf{0.124839} & 0.090044               \\ \hline
+        \textit{romeo}          & \textbf{0.145914} & 0.134655               \\ \hline
+    \end{tabular}
+    \caption{Performance on \textit{F-measure} of the different algorithms using the optimized parameters given in \appendixref{app:opt_params}.}
+    \label{tab:alg_full_perf}
+\end{table}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig/comp/comp_rec_quality.png}
+    \caption{Comparison of the recommendation quality given from the different algorithms, given the optimized parameters specified in \appendixref{app:opt_params}.}
+    \label{fig:alg_comp_perf}
+\end{figure}
+
+For \textit{alphaS} and \textit{eswc2015books} \textit{link-analysis} generates slightly better recommendations compared to \textit{katz-eig} but the difference is very small. For \textit{movielens1m} and \textit{romeo} \textit{katz-eig} provides better recommendations.
+
+Conclusively \textit{katz-eig} provides overall similar or better recommendations and is much faster than \textit{link-analysis}. For sparse matrices \textit{link-analysis} is comparable but for larger and less sparse matrices \textit{katz-eig} is superior.
+

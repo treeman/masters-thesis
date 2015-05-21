@@ -1,7 +1,7 @@
 
 \section{Training curves}\label{sec:graphs:training_curves}
 
-Both \textit{katz-eig} and \textit{link-analysis} are iterative algorithms. This section examines their stopping criteria.  Training curves which plots the evaluation metric with respect to the number of iterations is useful to see the effect of running more iterations. This is then used to define when the algorithms break their loops.
+Both \textit{katz-eig} and \textit{link-analysis} are iterative algorithms but the descriptions of the algorithms does not specify how many iterations to run. This section examines the stopping criteria for when to stop the iterations.  Training curves which plots the evaluation metric with respect to the number of iterations is useful to see the effect of running more iterations. This is then used to define when the algorithms break their loops.
 
 
 \subsection{katz-eig}\label{sec:training:katz}
@@ -16,13 +16,13 @@ Each $K$ are different for each dataset, see \appendixref{app:opt_params}, selec
 \twodiffpic{fig/katzeig_t/movielens_katzeig_t.png}{\textit{movielens1m}}
 {fig/katzeig_t/romeo_katzeig_t.png}{\textit{romeo}}
 
-\FloatBarrier
+The jagged line in the plots represents $\|S_t - S_{t - 1}\|_2$, which is a measure of the difference between the current iteration $t$ and the previous iteration. This is made as a measure of the convergence criteria, when $S_t \approx S_{t - 1}$ the iterations stops having effect. What can be seen is that $S_t$ converges in relatively few iterations and there is practically no difference in \textit{F-measure}. It means that more iterations have no real impact.
 
-The jagged line represents $\|S_t - S_{t - 1}\|_2$, which is a measure of the difference between the current iteration $t$ and the previous iteration. This is made as a measure of the convergence criteria, when $S_t \approx S_{t - 1}$ the iterations stops having effect. What can be seen is that $S_t$ converges to a value in relatively few iterations and there is practically no difference in \textit{F-measure}. It means that more iterations have no real impact.
+\FloatBarrier % Layout
 
-The convergence criteria is kept and is used to break iterations when $\|S_t - S_{t - 1}\|_2 < \epsilon$ and $\epsilon = 0.01$ is used. In practice it means $< 10$ iterations are done for all datasets. The iteration count could instead be fixed, but the matrix $S_t$ is small and the calculations inside the iteration loop are of low complexity so the convergence is instead calculated.
+The convergence criteria is kept and is used to break iterations when $\|S_t - S_{t - 1}\|_2 < \epsilon$ with $\epsilon = 0.01$. In practice it means $< 10$ iterations are done for all datasets. The iteration count could instead be fixed, but the matrix $S_t$ is small and the calculations inside the iteration loop are of low complexity so the convergence is calculated instead of assumed.
 
-In all following usages of \textit{katz-eig}, a value of $\epsilon = 0.01$ is used to break iterations if $\|S_t - S_{t - 1}\|_2 < \epsilon$.
+In all following usages of \textit{katz-eig}, a value of $\epsilon = 0.01$ is used to break iterations when $\|S_t - S_{t - 1}\|_2 < \epsilon$.
 
 \newpage
 
@@ -38,7 +38,7 @@ Each $\gamma$ and $\eta$ are selected for optimal performance with respect to ea
 {fig/link_t/romeo_link_t.png}{\textit{romeo}}
 
 For \textit{link-analysis} convergence is also fast. The choice here is to fix $t_{max}$ to a fixed value instead of measuring convergence either by calculating $\| \IR_t - \IR_{t - 1} \|_2$
-or by explicitly calculating \textit{F-measure} and measuring the change. This is done because the iteration step in \textit{link-analysis}, in contrast to \textit{katz-eig}, handles large matrices and calculations such as these are time consuming.
+or by explicitly calculating \textit{F-measure} and measuring the change. This is done because the iteration step in \textit{link-analysis}, in contrast to \textit{katz-eig}, handles large matrices which makes the calculations very time consuming.
 
 In all following usages of \textit{link-analysis}, the iteration count is fixed to $t_{max} = 3$.
 
