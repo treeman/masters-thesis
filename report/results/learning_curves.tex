@@ -23,5 +23,11 @@ Optimized parameters as described in \appendixref{app:opt_params} were used. The
 
 A notable observation about the runtime is that the runtime for \textit{link-analysis} increases almost linearly with the increase in training set size, the runtime for \textit{katz-eig} is almost indifferent. This is to be expected as \textit{katz-eig} operates on a low-rank approximation of the interaction matrix $A_{train}$ while \textit{link-analysis} operates directly on the matrix. The sparse matrix format (\sectionref{sec:background:theory:model}) which discards zero elements during calculations is computationally more complex as the sparsity decreases.
 
+Another observation is that \textit{link-analysis} seems to generate better recommendations for the sparse datasets \textit{alphaS} and \textit{eswc2015books} and also for \textit{movielens1m} and \textit{romeo} a short while when the training size was smaller.
+
+The large variation in \textit{F-measure} for \textit{katz-eig} for \textit{alphaS} and \textit{eswc2015books} can be explained by the sparsity of the datasets. As the training set is randomly selected for each run up to a selected number interactions, it's possible that a large number of users with very few interactions are selected, which makes for a bad basis for recommendations. This is especially true for \textit{alphaS} where most of the users only have one interaction.
+
+The same variation is not seen with \textit{link-analysis} as the recommendations are produced on a link-following basis instead of trying to blur together users like \textit{katz-eig} does.
+
 \FloatBarrier
 

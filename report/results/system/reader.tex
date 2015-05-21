@@ -15,7 +15,7 @@ The plugin class shall have a single uppercase letter and the rest lowercase and
 
 Secondly the appropriate plugin will be selected via command line arguments and the plugin class will be handed control. The class should have two methods: ``add\_arguments'' which parses extra command line arguments and ``load'' which shall return a user hash and a product hash. \Appendixref{sec:eswc_plugin} describes a full example plugin which handles \textit{eswc} data.
 
-With the selected data the reader module can then generate matlab data file output in the form of a ``.mat'' file, upload the data to the database or simply print some statistics. When generating a ``.mat'' file different ratios of training, validation and test sets can be set. The purpose of this option is to generate datasets used during prototyping and evaluation.
+With the selected data the reader module can then generate Matlab data file output in the form of a ``.mat'' file, upload the data to the database or simply print some statistics. When generating a ``.mat'' file different ratios of training, validation and test sets can be set. The purpose of this option is to generate datasets used during prototyping and evaluation.
 
 The reader module can remove items and users from the dataset by introducing a couple of constraints:
 
@@ -26,9 +26,9 @@ The reader module can remove items and users from the dataset by introducing a c
     \item remove items which too few users has interacted with
 \end{enumerate}
 
-The reason to limit the size of the dataset is due to the high computational complexity and the bad performance on large datasets. The removal of items or users with too few interactions is because of the difficulty of generating recommendations for items or users with no history. This is known as the \textit{cold start problem} and it's a known difficulty in recommendation systems \citep{cacheda2011comparison}.
+The reason to limit the size of the dataset is due to the high computational complexity and the bad performance on large datasets. The removal of items or users with too few interactions is because of the difficulty of generating recommendations for items or users with no history. This is known as the \textit{cold start problem} and it's a known difficulty in recommendation systems \citep{cacheda2011comparison} outside the scope of this thesis.
 
-The reader module tries to comform to the constraints with these steps:
+The reader module tries to conform to the constraints with these steps:
 
 \begin{enumerate}
     \item \label{filter_users} Remove users with too few items in history, if required to
@@ -37,7 +37,6 @@ The reader module tries to comform to the constraints with these steps:
     \item Limit the number of items, if required
         \begin{enumerate}
             \item Randomly select the items to keep
-            %\item Remove the removed items from the user history
         \end{enumerate}
     \item Limit the number of users, if required
         \begin{enumerate}
@@ -50,5 +49,5 @@ The reader module tries to comform to the constraints with these steps:
 
 This will not produce a perfect solution and some constraints may not be fulfilled. If we for example want to want to constrain both the minimum number of item interactions each user has and the minimum number of user interaction each item has, we might fail to find a solution as the removal of some items may cause some users to have fewer than the constrained number of item interactions.
 
-The alternative is to introduce a constraint solver or iteratively perform step \ref{filter_users} and \ref{filter_items} until convergence, but that's a slow solution to a problem with inherently soft constraints. It is not very important if \textit{all} constraints hold, it is just an attempt to limit the size of the dataset. Therefore a faster but less correct solution was chosen.
+The alternative is to introduce a constraint solver or iteratively perform step \ref{filter_users} and \ref{filter_items} until convergence, but that's a slow solution to a problem with inherently soft constraints. It is not very important if \textit{all} constraints hold, it is just an attempt to limit the size of the dataset. Therefore a faster but less correct heuristic was chosen.
 

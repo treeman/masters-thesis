@@ -1,11 +1,12 @@
 
 \section{Training curves}\label{sec:graphs:training_curves}
 
-Both \textit{katz-eig} and \textit{link-analysis} are iterative algorithms. Their descriptions use the phrase ``repeat until convergence''.  With training curves, which plots the evaluation metric with the respect to epochs, the number of iterations, the effect of running more iterations can be seen.
+Both \textit{katz-eig} and \textit{link-analysis} are iterative algorithms. This section examines their stopping criteria.  Training curves which plots the evaluation metric with respect to the number of iterations is useful to see the effect of running more iterations. This is then used to define when the algorithms break their loops.
 
-Each $K$ are different for each dataset, see \appendixref{app:opt_params}, and $\beta = \frac{1}{\|A_{train}\|_2}$.
 
 \subsection{katz-eig}\label{sec:training:katz}
+
+Each $K$ are different for each dataset, see \appendixref{app:opt_params}, selected for optimal performance and $\beta = \frac{1}{\|A_{train}\|_2}$ was fixed.
 
 \FloatBarrier
 
@@ -17,7 +18,9 @@ Each $K$ are different for each dataset, see \appendixref{app:opt_params}, and $
 
 \FloatBarrier
 
-The jagged line represents $\|S_t - S_{t - 1}\|_2$, which is a measure of the difference between the current iteration $t$ and the previous iteration. This was made as a measure of the convergence criteria. Convergence was reached with relatively few iterations, but the matrix $S$ is small and the calculation has low complexity.
+The jagged line represents $\|S_t - S_{t - 1}\|_2$, which is a measure of the difference between the current iteration $t$ and the previous iteration. This was made as a measure of the convergence criteria, when $S_t \approx S_{t - 1}$ the iterations stops having effect. What can be seen is that $S_t$ converges to a value in relatively few iterations and there is practically no difference in \textit{F-measure}. It means that more iterations have no real impact.
+
+The convergence criteria was kept and was used to break iterations when $\|S_t - S_{t - 1}\|_2 < \epsilon$ and $\epsilon = 0.01$ was used. In practice it means $< 10$ iterations were done for all datasets. The iteration count could instead be fixed, but the matrix $S_t$ is small and the calculations inside the iteration loop are of low complexity so the convergence was instead calculated.
 
 In all following usages of \textit{katz-eig}, a value of $\epsilon = 0.01$ was used to break iterations if $\|S_t - S_{t - 1}\|_2 < \epsilon$.
 
@@ -26,7 +29,7 @@ In all following usages of \textit{katz-eig}, a value of $\epsilon = 0.01$ was u
 
 \subsection{link-analysis}\label{sec:training:link}
 
-Each $\gamma$ and $\eta$ are different for each dataset, see \appendixref{app:opt_params}.
+Each $\gamma$ and $\eta$ are selected for optimal performance with respect to each dataset, see \appendixref{app:opt_params}.
 
 \twodiffpic{fig/link_t/alphaS_link_t.png}{\textit{alphaS}}
 {fig/link_t/eswc2015books_link_t.png}{\textit{eswc2015books}}
@@ -35,7 +38,7 @@ Each $\gamma$ and $\eta$ are different for each dataset, see \appendixref{app:op
 {fig/link_t/romeo_link_t.png}{\textit{romeo}}
 
 For \textit{link-analysis} convergence is also fast. The choice here was to fix $t_{max}$ to a fixed value instead of measuring convergence either by calculating $\| \IR_t - \IR_{t - 1} \|_2$
-or by explicitly calculating \textit{F-measure} and measuring the change. This was done because the iteration step in \textit{link-analysis}, in contrast to \textit{katz-eig}, handles large matrices and calculations such as these would be time consuming.
+or by explicitly calculating \textit{F-measure} and measuring the change. This was done because the iteration step in \textit{link-analysis}, in contrast to \textit{katz-eig}, handles large matrices and calculations such as these are time consuming.
 
 In all following usages of \textit{link-analysis}, the iteration count was fixed to $t_{max} = 3$.
 

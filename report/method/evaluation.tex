@@ -1,7 +1,7 @@
 
 \section{Evaluation}\label{sec:method:eval}
 
-Recommendation quality was evaluated using \textit{Precision}, \textit{Recall} and \textit{F-measure} with top-10 recommendations, as described in \sectionref{sec:background:theory:eval}. Focus was on \textit{F-measure} as a combined measure of \textit{Precision} and \textit{Recall}.
+Recommendation quality is evaluated using \textit{Precision}, \textit{Recall} and \textit{F-measure} with top-10 recommendations, as described in \sectionref{sec:background:theory:eval}. Focus is on \textit{F-measure} as a combined measure of \textit{Precision} and \textit{Recall}.
 
 The following steps describes the steps taken to produce evaluations given the training, validation and test sets $A_{train}$, $A_{val}$ and $A_{test}$:
 
@@ -11,5 +11,5 @@ The following steps describes the steps taken to produce evaluations given the t
     \item Evaluate \textit{F-measure} with $e_{u, i}$ representing $A_{val}$ or $A_{test}$, depending on which set to evaluate against.
 \end{enumerate}
 
-The validation set $A_{val}$ was used to evaluate the choice of $k$ as the rank-$k$ SVD approximation in \textit{katz-eig}. All other evaluations were done against the test set $A_{test}$.
+The validation set $A_{val}$ is used to evaluate the choice of $k$ as the rank-$k$ SVD approximation in \textit{katz-eig}. All other evaluations are done against the test set $A_{test}$.
 
