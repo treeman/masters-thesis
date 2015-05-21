@@ -1,5 +1,5 @@
 
-\section{Data}\label{sec:datasets}
+\section{Descr?}\label{sec:datasets}
 
 These are the datasets used by the thesis, a summary of the available datasets and their size is given by \tableref{tab:datasets}. Some of the datasets (\textit{alpha}, \textit{alpha2}, \textit{alphaS}, \textit{romeo}) are given by some of Comordo's clients and they do not want the data to be publicly available. Instead a high level description of the datasets are given.
 
@@ -116,3 +116,12 @@ What follows is a description of each available dataset and where they can be fo
 
 \end{description}
 
+\Warning[TODO]{ Stich together }
+
+This section contains an analysis of the available datasets. Some of the datasets are very large and later in the thesis all datasets were not used as the runtime was so long. For example not all datasets were handled in the parameter analysis in \sectionref{sec:parameters}. Specifically the datasets \textit{alpha}, \textit{alpha2} and \textit{eswc2015music} are often excluded and \textit{eswc2015movies} is also excluded sometimes.
+
+The data is analyzed in two ways. Firstly the number of interactions is examined, both with respect to users and to items. All datasets are found to be top heavy, with \textit{alphaS} less so, with few very popular items encompassing most of the user base. Secondly clusters in the datasets is searched for with respect to compactness, or user similarities, using \textit{k-means} and on connectivity using \textit{spectral clustering}. Connected clusters are identified in all datasets.
+
+\input{data/interactions.tex}
+
+\input{data/clusters.tex}
