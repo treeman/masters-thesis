@@ -18,7 +18,7 @@ $A$ can be approximated by a rank $k$ SVD so $A \approx U * S * V^T$. $S$ is a $
     \approx U \left( \sum_{t=1}^{\infty} \beta^t S^t \right) V^T
 \end{equation}
 
-Exponentiation was moved from the large interaction matrix $A$ to the small $k\,x\,k$ diagonal matrix $S$ which makes the iterative part of the algorithm very fast. Much of the information about the matrix is still contained in $U$ and $V$. The complexity of the algorithm is now on calculating the SVD approximation.
+Exponentiation is moved from the large interaction matrix $A$ to the small $k\,x\,k$ diagonal matrix $S$ which makes the iterative part of the algorithm very fast. Much of the information about the matrix is still contained in $U$ and $V$. The complexity of the algorithm is now on calculating the SVD approximation.
 
 \newpage
 Concretely the \textit{katz-eig} algorithm follow these steps:

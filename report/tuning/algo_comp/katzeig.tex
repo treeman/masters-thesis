@@ -3,19 +3,19 @@
 
 \textit{Compare different optimization approaches w.r.t. runtime and evaluation metric}
 
-The strategies for optimizing algorithm parameters for different datasets, or parameter tuning, has focused on keeping $\beta$ fixed and searching for $K$ which optimizes \textit{F-measure}. The analysis in \sectionref{sec:param:katzeig} showed that varying $\beta$ has a small effect on the algorithm's performance. So $\beta$ was fixed to $\beta = \frac{1}{\|A_{train}\|_2}$.
+The strategies for optimizing algorithm parameters for different datasets, or parameter tuning, has focused on keeping $\beta$ fixed and searching for $K$ which optimizes \textit{F-measure}. The analysis in \sectionref{sec:param:katzeig} showed that varying $\beta$ has a small effect on the algorithm's performance. So $\beta$ is fixed to $\beta = \frac{1}{\|A_{train}\|_2}$.
 
 What follows is a description of the different optimization techniques evaluated:
 
 \begin{description}
     \item[grid]
-        Does a grid search over $K$, with a fixed step size. $\beta$ was fixed. $0 < K \leq 50$ was examined and a step size of 1 was used.
+        Does a grid search over $K$, with a fixed step size. $\beta$ is fixed. $0 < K \leq 50$ is examined and a step size of 1 is used.
     \item[rand]
-        A random sampling over a subspace of $K$ with a fixed $\beta$. Depends on the size of the subset to sample over and the number of samples. $0 < K \leq 50$ was examined and 12 random samples were used meaning 24\% of the subspace was examined.
+        A random sampling over a subspace of $K$ with a fixed $\beta$. Depends on the size of the subset to sample over and the number of samples. $0 < K \leq 50$ is examined and 12 random samples are used meaning 24\% of the subspace is examined.
     \item[hill]
-        Simple hill climbing algorithm which examines the neighbours of $K$. Uses a fixed $\beta$. Will find a local optima. A step size of 1 was used.
+        Simple hill climbing algorithm which examines the neighbours of $K$. Uses a fixed $\beta$. Will find a local optima. A step size of 1 is used.
     \item[stoch-hill]
-        An extension of the hill climbing algorithm which does a random restarts whenever a local optima is found. Also randomly jumps to a random $K$. Depends on the random jump probability, the subspace of $K$ and the number of iterationss. A step size of 1 was used and the restrinction was $0 < K \leq 50$. 12 samples were used meaning 24\% of the subspace was examined.
+        An extension of the hill climbing algorithm which does a random restarts whenever a local optima is found. Also randomly jumps to a random $K$. Depends on the random jump probability, the subspace of $K$ and the number of iterationss. A step size of 1 is used and the restrinction is $0 < K \leq 50$. 12 samples are used meaning 24\% of the subspace is examined.
 \end{description}
 
 \begin{figure}[h!]

@@ -1,4 +1,14 @@
 
-\chapter{Data set}\label{cha:data}
+\chapter{Data}\label{cha:data}
+
+This chapter lists and describes the datasets used by the thesis, their contents and if possible where to find them.
+
+Then the data is analyzed in two ways. Firstly the number of interactions is examined, both with respect to users and to items. All datasets are found to be top heavy, with \textit{alphaS} less so, with few very popular items encompassing most of the user base. Secondly clusters in the datasets is searched for with respect to compactness, or user similarity, using \textit{k-means} and on connectivity using \textit{spectral clustering}. Connected clusters are identified in all datasets.
 
 \input{data/descr.tex}
+
+\input{data/interactions.tex}
+
+\newpage
+\input{data/clusters.tex}
+

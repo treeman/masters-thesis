@@ -1,9 +1,9 @@
 
-\subsection{Number of interactions}\label{sec:result:interactions}
+\section{Number of interactions}\label{sec:result:interactions}
 
-What follows is some graphs describing the number of interactions each user has and the number of interaction each item has in the datasets.
+What follows is some plots describing the number of interactions each user has and the number of interaction each item has in the datasets. It's useful for identifying outliers and possibly for identifying defining features of a dataset.
 
-The graph on the left describe how many users have a fixed number of item interactions and conversely the graph on the right describe how many items have a set number of user interactions. The histograms are also represented in logarithmic scale.
+The plot on the left describe how many users have a fixed number of item interactions and conversely the plot on the right describe how many items have a set number of user interactions. The histograms are also represented in logarithmic scale.
 
 \FloatBarrier
 
@@ -34,7 +34,7 @@ There are also no extreme user outliers with many more interactions than the nor
 
 The item interactions are more spread, with many items having interacted with relatively few user but some items having a lot of interactions. \textit{eswc2015books} have 1134 out of 2609 items with only one user interaction. \textit{eswc2015movies} and \textit{eswc2015music} in comparison have 2 out of 5389 items and 1 out of 6372 items with one user interaction.
 
-\newpage
+%\newpage
 
 \twopic{fig/data/movielens1m_items_per_user.png}{fig/data/movielens1m_users_per_item.png}{
 \textit{movielens1m}
@@ -54,10 +54,10 @@ VentureBeat: What it means to be a ``whale'' — and why social gamers are just 
 \url{http://venturebeat.com/2013/03/14/whales-and-why-social-gamers-are-just-gamers/} }
 . They do not exist in the \textit{eswc} datasets.
 
-A similar classification can be made for items. The vast majority of items has only a couple of user interactions. Perhaps these are new items few users have found out about or niche items not interesting to most users. 
+A similar classification can be made for items. The vast majority of items has only a couple of user interactions. Perhaps these are new items few users have found out about or niche items not interesting to most users.
 A large fraction of the items in \textit{alphaS} and \textit{eswc2015books} have only one interaction (51\% and 43\%).  Then there are items with a lot more user interactions than what is common.
 
-The following graphs display the number of the most popular items and the number of users they collectively interact with. This is useful for investigating how top heavy the datasets are. The dashed lines represents the number of items required to include 95\% of all users, a summary of the required number of items can be found in \tableref{tab:top_data}.
+The following plots display the number of the most popular items and the number of users they collectively interact with. This is useful for investigating how top heavy the datasets are. The dashed lines represents the number of items required to include 95\% of all users, a summary of the required number of items can be found in \tableref{tab:top_data}.
 
 \begin{table}[h!]
     \centering
@@ -100,7 +100,7 @@ The following graphs display the number of the most popular items and the number
 %romeo: 95\% of all users concentrated on 21 of the items (722 tot, 2.91\%)
 
 Of the different datasets, \textit{alphaS} is a clear outlier. It is nowhere near as top heavy as the other datasets are, requiring over 60\% of all items to reach 95\% of the users. This can in part be explained by the large number of users with only one interaction, 11923 out of 16444 users or in other words 72\% of all users have only one item interaction.
-    
+
 In contrast \textit{eswc2015books} require 4.6\% of the items and \textit{romeo} require 2.9\% of the items, which means few of the popular items are required to include most of the users. The other datasets are even more top heavy with \textit{eswc2015movies} and \textit{eswc2015music} only require 1.0\% and 1.2\% of the items. For \textit{movielens1m} only 0.35\%, namely 13, of the items are needed. In order words this means that 95\% of all users in the dataset has seen at least one movie from the 13 most watched movies.
 
 This phenomena where very few of the most popular items command the attention of most of the user base is also seen in mobile app stores where 1.6\% of app developers make more than the other 98.4\% combined

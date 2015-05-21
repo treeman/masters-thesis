@@ -1,5 +1,5 @@
 
-\subsubsection{Connectivity using Spectral Clustering}
+\subsection{Connectivity using Spectral Clustering}
 
 The process for clustering with spectral clustering is as follows
 \footnote{A clear explanation of spectral clustering is given by \\
@@ -89,7 +89,7 @@ then also the lowest eigenvalues and their related eigenvectors correspond to di
 
 To be able to identify different clusters, the sorted eigenvalues must have a gap. \Figureref{fig:spec:book:eigv} gives a concrete example for \textit{eswc2015books} (another example of clear clusters is \figureref{fig:spec:alphaS:eigv} for \textit{alphaS}). It is reasonable to expect there to be clear clusters in the adjacency matrix $A_f$, as there is a clear gap in the sorted eigenvalues. Note that this doesn't mean that there are clusters in the interaction matrix $A$, as there is duplicate information in $A_f$. There might be large areas without interactions, but the indexes might correspond to user-user or item-item which will not have any interactions. But it's a reasonable expectation.
 
-The subspace to find clusters in is some subset of the eigenvectors corresponding to the smallest eigenvalues. The subspace used here is simply the eigenvector corresponding to the 2nd smallest eigenvalue \footnote{A practical example which used the same subspace was used as a reference. \\
+The subspace to find clusters in is some subset of the eigenvectors corresponding to the smallest eigenvalues. The subspace used here is simply the eigenvector corresponding to the 2nd smallest eigenvalue \footnote{A practical example which used the same subspace is used as a reference. \\
 Spectral Graph Partitioning and the Laplacian with Matlab, 2006. \\
 \url{https://www.cs.purdue.edu/homes/dgleich/demos/matlab/spectral/spectral.html}
 }.
@@ -196,7 +196,7 @@ Clusters are visible in the final clustering of the interaction matrix $A$ for a
 
 The datasets \textit{eswc2015movies}, \textit{eswc2015music} and \textit{movielens1m} also have clusters but they are messier than that of \textit{romeo} or \textit{alphaS}. Part of the reason is the visualization technique where a sparse interaction matrix will produce a cleaner visualization.
 
-This analysis searched for a fixed number of clusters $k = 10$, with \textit{alphaS} using $k = 15$. It is by no means the optimal number of clusters and there might be more clusters in the datasets and there might fewer but ``better fitting'' clusters. The point of this analysis was not to cluster the datasets in an optimal way, but to examine if the datasets have any clusters.
+This analysis searched for a fixed number of clusters $k = 10$, with \textit{alphaS} using $k = 15$. It is by no means the optimal number of clusters and there might be more clusters in the datasets and there might fewer but ``better fitting'' clusters. The point of this analysis is not to cluster the datasets in an optimal way, but to examine if the datasets have any clusters.
 
 It's very hard to make recommendations for a dataset without any similarity between users, a random dataset for example, and the existence of clusters show that there is some structure in the dataset which could be used to make predictions. The intuition is that in a well clustered dataset users are tightly coupled with users of similar taste and reduces the noise of outlining interactions and a better approximation of the user's preferences can be made.
 
