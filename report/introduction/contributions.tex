@@ -1,5 +1,9 @@
 
 \section{Contributions}\label{sec:intro:contributions}
 
-Analyzed the parameter space over \textit{F-measure} for \textit{katz-eig} and \textit{link-analysis} and found that ...
+A first version of Comordo's recommender system is built based around the recommender algorithms \textit{katz-eig} and \textit{link-analysis} with parameter optimization and flexible input- and output handling. The designed system can later be built upon and extended.
+
+The parameter space over \textit{F-measure} for \textit{katz-eig} and \textit{link-analysis} is analyzed and for these datasets changes in $\beta$ for \textit{katz-eig}  have negligible effect. There are two plateaus at $\eta < 0$ and $\eta > 0$ for \textit{link-analysis} and either one can give a global maximum.
+
+An effective parameter optimization strategy for \textit{katz-eig} is to fix $\beta = \| A_{train} \|_2$ and optimize $K$ using a hill climbing algorithm. For \textit{link-analysis} an effective strategy is to set $\eta = 1$ or $\eta = -1$ and optimize $\gamma$ using an adaptive hill climbing algorithm.
 

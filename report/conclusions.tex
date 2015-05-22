@@ -1,16 +1,10 @@
 \chapter{Conclusions}\label{cha:conclusions}
 
-\textit{remove -was- }
+A recommender system with the recommendation algorithms \textit{katz-eig} and \textit{link-analysis} is built and optimization strategies for learning the algorithms' parameters and fit them to different datasets are implemented and evaluated. Interactions in the datasets themselves are analyzed and clusters are found for all datasets.
 
-A recommender system with the recommendation algorithms \textit{katz-eig} and \textit{link-analysis} was built and optimization strategies for learning the algorithms' parameters and fit them to different datasets were implemented and evaluated.
+Recommendation quality is measured using \textit{F-measure} and the effect of varying the different parameters for the algorithms is analyzed. Varying $\beta$ for \textit{katz-eig} has little no effect and \textit{link-analysis} varies mostly depending on the sign with respect to $\eta$. The best parameter optimization strategy for \textit{katz-eig} is to fix $\beta = \| A_{train}\|_2$ and optimize $K$ using a hill climbing algorithm. It gives similar recommendation quality compared to a full grid search but with better speed. Similarly the best optimization strategy for \textit{link-analysis} only examines $\eta = 1$ and $\eta = -1$ while using an adaptive hill climbing algorithm to optimize $\gamma$.
 
-The recommender system uses a dynamic plugin system for flexible and easily extendible input handling.
+For the available datasets \textit{katz-eig} gives better or comparable recommendation quality compared to \textit{link-analysis}, where \textit{link-analysis} gives slightly better recommendations with sparse datasets. \textit{katz-eig} is superior speed wise.
 
-The datasets were analyzed and clusters were found in all datasets. Recommendation quality was measured using \textit{F-measure} and the effect of varying the different parameters were analyzed.  Varying $\beta$ for \textit{katz-eig} has little to no effect and values of $\eta$ mostly varies depending on the sign.
-
-The best optimization strategy for \textit{katz-eig} was to fix $\beta = \| A \|_2$ and optimize $K$ using a hill climbing algorithm. It gave similar recommendation quality compared to a full grid search but with better speed. Similarly the best optimization strategy for \textit{link-analysis} only examines $\eta = 1 \text{ or } -1$ and uses an adaptive hill climbing algorithm to search for $\gamma$.
-
-\textit{katz-eig} gives better or comparable recommendation quality compared to \textit{link-analysis}, where \textit{link-analysis} gives slightly better performance with sparse data. \textit{katz-eig} is superior speed wise.
-
-For future work \textit{bayesian optimization} and \textit{simulated annealing} could be explored as possibly more efficient optimization strategies.  The recommender system could be extended with regards to diversity and explaining recommendations.
+For future work \textit{bayesian optimization} and \textit{simulated annealing} could be explored as possibly more efficient optimization strategies.  The recommender system could be extended with regards to diversity and ability to explain the recommendations.
 

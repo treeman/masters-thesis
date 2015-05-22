@@ -1,14 +1,21 @@
 \chapter{Discussion}\label{cha:discussion}
 
-\textit{Can free form sections here}
+This chapter discusses the thesis and future work. The chapter starts by discussing recommender systems in general and the recommender system built for Comordo and gives some possible directions for future work on Comordo's recommender system. Then a discussion of the used datasets with comments about some surprising results for specific datasets. Discussion around the evaluation method for recommendation quality follow with thoughts about other metrics to try in future work follow. The chapter concludes with discussing parameter tunining for the different algorithms with comments about some optimization strategies to be tried in future work.
+
 
 \section{Recommender systems}
 
-\textit{Overall design of recommender systems and some future work for the one I designed}
+One of the purposes of this thesis is to lay the foundation of Comordo Technologies' recommender system. A guiding question in \sectionref{sec:intro:questions} asked how a recommender system could be designed to allow for easily extendible input- and output handling.
 
-\textit{Remove -was-!!!!!}
+This question is answered by the plugin system described in \sectionref{sec:res:sys}. A dynamic plugin system designed in this way is very flexible and it can accommodate different formats with little programming effort. Input in a standard form is also easy to handle, for example an interaction matrix already created and stored in a ``.mat'' data file, as a standard plugin can handle such a case.
 
-The recommender system developed in this thesis is very bare bones compared to some larger commercial examples. It's reasonable as the purpose was to produce a first prototype, or a core, for Comordo Technologies to built upon and extend.  Larger examples of integrated recommender systems include Netflix, Spotify, Youtube and Amazon.
+It's not enough to only have support for a standard format as Comordo's e-commerce clients use different formats and different types of data. It's possible multiple files in a non-standard format or some preprocessing are needed to handle data from a client. This makes some customization unavoidable and the plugin system allows for this customization.
+
+The recommender system developed in this thesis is very bare bones compared to some larger commercial examples. It's reasonable as the purpose is to produce a first prototype, or a core, for Comordo Technologies to built upon and extend.
+
+%Larger examples of integrated recommender systems include Netflix, Spotify, Youtube and Amazon.
+
+\subsection{Future work}
 
 The list of features of a modern recommender system could have is large. An important feature is the act of explaining recommendations, which can be seen in both Netflix and Spotify. Netflix notes
 \footnote{
@@ -16,10 +23,9 @@ Netflix: Recommendations beyond 5 stars (Part 1), 2012.
 \url{http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html}
 }
 that explanations improve trusts in the recommender system and makes the recommendations more effective. This is also supported in the literature where it is noted that good recommendations should be accompanied with an explanation \citep{hu2008collaborative}.
+The intuition is that if the recommendations come with a note ``Recommended to you because you watched Die Hard'' and if you liked Die Hard you're more likely to value the recommendations.
 
-The intuition is if the recommendations come with a note ``Recommended to you because you watched Die Hard'' and if you liked Die Hard you're more likely to value the recommendations.
-
-Extending Comordo's recommender system with explanations would be a good direction for future work. Developing algorithms which examine the linked structure could be a possible way of generating explanations, this approach would be especially suited for \textit{link-analysis} but it might also be possible for \textit{katz-eig}. Using a different set of recommendation algorithms with explicit support for explanations might be another possible approach.
+Extending Comordo's recommender system with explanations would be a worthwhile direction for future work. Developing algorithms which examine the linked structure could be a possible way of generating explanations, this approach would be especially suited for \textit{link-analysis} but it might also be possible for \textit{katz-eig}. Using a different set of recommendation algorithms with support for explanations \citep{hu2008collaborative} might be another possible approach.
 
 Another feature which has gained some popularity lately \citep{bobadilla2013recommender} is diversifying the recommendations. For Netflix it is common that a user account not just represents a single person but a whole household which is why Netflix values diversity in their recommendations
 \footnote{
@@ -28,14 +34,7 @@ Netflix: Recommendations beyond 5 stars (Part 1), 2012.
 }.
 Diversity is the act of recommending different types of items, in the Netflix example instead of only recommending action movies the recommendations include different genres like drama, animated or horror. This isn't just relevant when several persons share one account but it also accommodates for different moods of a single person.
 
-The aptly named \textit{Diversity} \citep{bobadilla2013recommender} is a metric, similar to \textit{F-measure}, which measures the diversity of the recommendations
-. In conjunction with \textit{F-measure}, \textit{Diversity} was the evaluation metric used for the 2nd Linked Open Data-enabled Recommender Systems Challenge
-\footnote{
-Evaluation | 2nd Linked Open Data-enabled Recommender Systems Challenge, 2015.
-\url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/tasks/evaluation-service/}
-}.
-
-Including considerations for diversity into Comordo's recommender system is another good direction for the future, possibly by optimizing for \textit{Diversity} instead of \textit{F-measure}. It's also something Comordo's clients have mentioned.
+Including considerations for diversity into Comordo's recommender system is another good direction for the future. It's also something Comordo's clients have shown interest in.
 
 The distinction between offline and online recommender systems is something not considered in the recommender system design by this thesis, but it's an important one. Instead of generating recommendations on a fixed schedule, like once a day, it is desirable to generate recommendations in real time. The way Netflix does it
 \footnote{
@@ -48,55 +47,65 @@ As the complexity of the system grows the line between offline and online algori
 When Comordo finalizes their remote API the online/offline distinction should be thought about. I imagine functionality for generating recommendations in real time, so a consumer at the e-commerce website can get instant feedback, would be appreciated by their clients.
 
 
-\subsection{Implementation}
+%\subsection{Implementation}
 
-\textit{Some comments on the implementation}
-
-One of the purposes of this thesis was to lay the foundation of Comordo Technologies' recommender system and a goal was to make it so that the recommender system could easily be extended. Input of data into the system was accomplished by a plugin system which could easily be extended to read data of different formats. A plugin system designed in this way is very flexible as it can accomodate different input and output formats with little programming effort. Input in a standard form is also easy to accomodate, for example an interaction matrix already created and stored in a ``.mat'' data file.
+%\textit{Some comments on the implementation}
 
 %A further extension could be to use the same approach for the exporter module. The longterm goal for Comordo is to create a REST based API which makes the extension a lower priority. It could still be useful if Comordo's clients wants to test the recommendations Comordo can give them by offline processing of interaction data.
 
 %In the future the functionality of the exporter module could be replaced by either the remote API or the admin web interface.
 
-In the future the filtering functionality in the reader module could be moved to an external tool operating directly on the database. This would allow for a more efficient reading of the interaction data by streaming it directly into the database. The current implementation loads it all into memory and thereafter populates the database, which might cause memory problems if large data is given.
+%In the future the filtering functionality in the reader module could be moved to an external tool operating directly on the database. This would allow for a more efficient reading of the interaction data by streaming it directly into the database. The current implementation loads it all into memory and thereafter populates the database, which might cause memory problems if large data is given.
 
 %Extensions to allow for metadata about the interactions could be beneficial. Filtering away very old interactions or the ability to split the training and test sets depending on the interaction date can be very useful.
 
 
 \section{Datasets}
 
-\textit{alpha} and \textit{alpha2} were too large to be run on my test setup due to low memory. \textit{eswc2015movies} and \textit{eswc2015music} were not runnable with \textit{link-analysis} as Matlab crashed for unknown reasons when attempts were made. My suspicion is on memory problems there as well. A better setup will be needed to be able to process datasets such as these, or a filtering of the datasets to smaller size would be needed. Optimization of the algorithms with respect to memory usage were not done and improvements could be made.
+\textit{alpha} and \textit{alpha2} are too large to be run on my test setup due to low memory and \textit{eswc2015movies} and \textit{eswc2015music} are not runnable with \textit{link-analysis} as Matlab crashed for unknown reasons when attempts were made. My suspicion is on memory problems there as well. A better setup will be needed to be able to process datasets such as these, or a filtering of the datasets to smaller size would be needed. Optimization of the algorithms with respect to memory usage is not done and improvements could be made.
 
+The datasets are examined both with regards to the number of interactions and examined if there are any clusters. \textit{alphaS} is an outlier as it had many users (51\%) with only one interaction. To generate recommendations a list of popular items could be provided and the users could be removed from the training and test sets for a general speedup and keeping the relative recommendation quality as high or possibly higher. The many one-item users explains the requirement for 61\% of all users to be able to reach 95\% of the users in \tableref{tab:top_data}.
 
-The datasets were examined both with regards to the number of interactions and examined if there were any clusters. \textit{alphaS} was an outlier as it had many users (51\%) with only one interaction. To generate recommendations a list of popular items could be provided and the users could be removed from the training and test sets for a general speedup and keeping the relative recommendation quality as high or possibly higher. The many one-item users explains the requirement for 61\% of all users to be able to reach 95\% of the users in \tableref{tab:top_data}.
+The sparsity of data in \textit{alphaS} explains the better recommendation accuracy for \textit{link-analysis} compared to \textit{katz-eig} (\tableref{tab:alg_full_perf}) as \textit{link-analysis} is specifically designed to solve the sparse data problem \citep{huang2004link, huang2007comparison}. Similar results can be seen for \textit{eswc2015books} and in the learning curves for \textit{movielens1m} and \textit{romeo} which supports the claim in the literature.
 
-The sparsity of data in \textit{alphaS} explains the better recommendation accuracy for \textit{link-analysis} compared to \textit{katz-eig} (\tableref{tab:alg_full_perf}) as \textit{link-analysis} was specifically designed to solve the sparse data problem \citep{huang2004link, huang2007comparison}. Similar results can be seen for \textit{eswc2015books} and in the learning curves for \textit{movielens1m} and \textit{romeo} which supports the claim in the literature.
+The optimal parameters for \textit{eswc2015books} are fairly strange. For \textit{katz-eig} $K = 1$ gives the best recommendation quality, but that means the recommendations are given by a rank-1 approximation. I don't have a good explanation for it, a more in-depth look at the dataset and the generated recommendations would be needed.
 
-The optimal parameters for \textit{eswc2015books} are fairly strange. For \textit{katz-eig} $K = 1$ gives the best recommendation quality, but that means the recommendations are given by a rank-1 approximation.
-\Warning[TODO]{ Why? }
-
-Also for \textit{link-analysis} $\gamma = 0$ gives the best recommendation quality, which means that no penalizing users with many purchases occur. This could be explained by the low variance of the users interaction count. All users have a very similar amount of interactions and the point of $\gamma$ was to penalize the user representativeness score $UR(u, \hat{u})$ if $u$ had more interactions than $\hat{u}$. If they have a similar amount, it doesn't matter.
+Also for \textit{link-analysis} $\gamma = 0$ gives the best recommendation quality, which means that no penalization of users with many purchases occur. This could be explained by the low variance of the users interaction count. All users have a very similar amount of interactions and the point of $\gamma$ is to penalize the user representativeness score $UR(u, \hat{u})$ if $u$ had more interactions than $\hat{u}$. If they have a similar amount, it doesn't matter.
 
 
 \section{Evaluation}
 
-Different types evaluation metrics have been used throughout the literature. The one used in this thesis, \textit{F-measure}, is a popular one but other metrics could yield different results. As mentioned before \textit{Diversity} is another popular metric.  \textit{Rank Score} \cite{huang2007comparison} is another metric designed to rate a ranked list, list with the most recommended items, which is what is evaluated in thesis. \textit{Rank Score} and \textit{F-measure} was used to evaluate \textit{link-analysis} \cite{huang2007comparison}. For future work it would be interesting to evaluate \textit{link-analysis} and \textit{katz-eig} using \textit{Diversity}.
+Different types of evaluation metrics have been used throughout the literature. The one used in this thesis, \textit{F-measure}, is a popular one but other metrics could yield different results. \textit{Diversity} \citep{bobadilla2013recommender} is a metric which measures the diversity of the recommendations. In conjunction with \textit{F-measure}, \textit{Diversity} was the evaluation metric used for the 2nd Linked Open Data-enabled Recommender Systems Challenge
+\footnote{
+Evaluation | 2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \\
+\url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/tasks/evaluation-service/}
+}.
+\textit{Rank Score} \cite{huang2007comparison} is another metric designed to rate a ranked list, list with the most recommended items, which is what is evaluated in thesis. \textit{Rank Score} and \textit{F-measure} is used to evaluate \textit{link-analysis} \cite{huang2007comparison}. For future work it would be interesting to evaluate \textit{link-analysis} and \textit{katz-eig} using these metrics to see if the parameter analysis differ.
 
 
-%The evaluation metric of \textit{F-measure} can be questioned/discussed...? Why no cost function? Probably would be better (if could be found, but can it?) ?
+\section{Parameter tuning}
 
-%Alternative evaluation metrics. \rmse, rank, accuracy, diversity.
+The second of the two large parts of the thesis is to analyze and create parameter optimization strategies for \textit{katz-eig} and \textit{link-analysis}. This is specified by the guiding questions in \sectionref{sec:intro:questions} and focus is placed on how to generate recommendations in practice.
 
-%A common deficiency for evaluation metrics is the lack of formalization. The metrics themselves are well defined but implementation details differ and are sometimes missing which can lead to different results between similar experiments.
+First a recommender system around the algorithms is built containing all infrastructure necessary to generate recommendations, see \sectionref{sec:res:sys}. Then the analysis of the parameter space with regards to recommendation quality guides the evaluation of suitable optimization strategies which then completes the parameter optimization part of the thesis.
 
+\textit{katz-eig} generally has much better runtime performance compared to \textit{link-analysis} and generates similar or better recommendation quality. \textit{link-analysis} gives slightly better recommendation quality for sparse datasets. It's expected as the primary motivation for \textit{link-analysis} is to generate recommendations for sparse data, but \textit{katz-eig} still gives comparable recommendations even for these datasets.
 
-\section{Optimization}
+Optimization is very expensive, but generating recommendations for the full datasets for both algorithms is fairly fast. Both algorithms can both be useful commercially when the recommendations are generated offline. The only reason to use \textit{link-analysis} over \textit{katz-eig} is if a known dataset is very sparse and fairly small otherwise \textit{katz-eig} is the superior choice.
 
-\textit{Talk about the different optimization techniques here}
+\subsection{Parameters of katz-eig}
 
-\subsection{link-analysis}
+The impact of varying $\beta$ is very small, as shown in \sectionref{sec:param:katzeig}. It's surprising as according to the model $\beta$ represents the link dampening.  This means that fixing $\beta$ to a constant value while optimizing over $K$ could give speed improvements while retaining recommendation quality. Another surprising result is that the training curves in \sectionref{sec:training:katz} show that the number of iterations does not have a sizable effect on \textit{F-measure}. There is some improvement, but it's a very minor one.
 
-The paper introducing \textit{link-analysis} \cite{huang2004link} does not include $\eta$ in the description. It is instead introduced by the same authors in a later paper \cite{huang2007comparison} but there it is just set to $\eta = 1$ without further comments or analysis.
+These results suggests that \textit{katz-eig} gives very similar recommendations as directly using a SVD-$k$ approximation would, which is what happens when $\beta = 0$. The number of iterations intuitively represents how many links are followed, but if the recommendation quality is the same regardless of the number of iterations, then only one link followed is enough. Recommendations based on SVD, or low rank matrix approximation in general, is an acknowledged way of generating good predictions \citep{bobadilla2013recommender} so the assumption is reasonable.
+
+The intuition that a low rank approximation could form the direct basis for recommendations is that the effect of a matrix approximation necessarily blurs rows and columns, meaning the user and item interaction history is blurred leading to users with similar interactions are blurred together.
+
+Varying $K$ however affects \textit{F-measure} a lot more, as seen in \sectionref{sec:param:katzeig}. Although a bit jagged, the plots indicate a ``hill'' shape which suggests that a hill climbing strategy could be a viable optimization strategy. As seen in \sectionref{sec:opt:katzeig} this does seem to be the case as a hill climbing strategy produce nearly as good a result as a full grid search. A variant with random jumps and restarts is also tried but the standard hill climber outperformed the stochastic version.
+
+\subsection{Parameters of link-analysis}
+
+The paper introducing \textit{link-analysis} \cite{huang2004link} does not include $\eta$ in the description. It is instead introduced by the same authors in a later paper \cite{huang2007comparison} but there it is just set to $\eta = 1$ without further comments or analysis, which is surprising.
 
 The analysis in \sectionref{sec:param:link} shows that $\eta = 1$ is a well performing value. The modelling of \textit{link-analysis} supports it as the most logical value, which probably is why they chose it. When $\eta > 1$ very similar results as $\eta = 1$ are obtained. This can be explained by the algorithm description. The purpose of $\UR_0 = \eta * I_M$ is to keep a high user representativeness score for the user itself. It doesn't matter that much how high the value is, as long as it's higher than the surrounding values. With the normalization step included in the iterations a value of $\eta \geq 1$ makes sure of that. Worth pointing out is that the optimal parameters can have $\eta > 1$, but it's not with a very big margin. Inaccuracy in multiplications is a plausible explanation.
 
@@ -104,42 +113,19 @@ More interesting and harder to explain is values $\eta < 0$, which can be even b
 
 The same papers \cite{huang2004link, huang2007comparison} mentions that investigations with $0 \leq \gamma \leq 1$ have been made and then a value of 0.9 was a good value. My investigations include a larger interval and optimal values for $\gamma$ can be found outside that range, \textit{romeo} has a local maxima with $\gamma = 2$. The findings in this thesis however do support the claim that 0.9 is a reasonably good value.
 
-Analysis of $\gamma$ in \sectionref{sec:param:link} suggests that \textit{F-measure} is almost convex with a clear ``hill'' in the function space. There are small local maxima however but as a whole it follows a clear hill form. This suggests that a hill climbing optimization strategy might perform well for these datasets. It might also be worthwhile to keep $\eta$ fixed as was done in \cite{huang2004link, huang2007comparison}.
+Analysis of $\gamma$ in \sectionref{sec:param:link} suggests that \textit{F-measure} is almost convex with a clear ``hill'' in the function space. There are small local maxima however but as a whole it follows a clear hill form. This suggests that a hill climbing optimization strategy might perform well for these datasets. It might also be worthwhile to keep $\eta$ fixed as is done in \cite{huang2004link, huang2007comparison}.
 
 This is supported by the tests in \sectionref{sec:tuning:link} which show that an adaptive hill climbing strategy produce recommendations almost as good as a full blown grid search in only a fraction of the time needed. The difference in recommendation quality between optimizing over both $\gamma$ and $\eta$ compared to just optimizing over $\gamma$ while $\eta = 1 \text{ or } -1$ is small, but the runtime difference is not.
 
-\textit{Simulated annealing} and \textit{bayesian optimization} are popular optimization strategies which could be interesting to try in future work. They could specifically be used to optimize over $\gamma$ . What they have against them is that the function space has a very prominent hill shape for these datasets and they might not be able to beat a hill climbing strategy.
+\subsection{Future work}
 
-\subsection{katz-eig}
+Due to time constraints several optimization techniques are not examined by this thesis. Stochastic hill climbing is examined for \textit{katz-eig} but not for \textit{link-analysis}. It's not a very promising strategy as the parameter space still has a clear hill shape, but depending on the exact implementation it could still be a promising technique. The fixed parameters for the examined algorithms were not optimized and performance improvements could be gained by tweaking them more.
 
-The impact of varying $\beta$ was very small, as shown in \sectionref{sec:param:katzeig}. It's surprising as according to the model $\beta$ represents the link dampening.  This means that fixing $\beta$ to a constant value while optimizing over $K$ could give speed improvements while retaining recommendation quality. Another surprising result is that the training curves in \sectionref{sec:training:katz} show that the number of iterations does not have a sizable effect on \textit{F-measure}. There is some improvement, but it's a very minor one.
+\textit{Simulated annealing} a way of randomly sample, similar to the random sampling and stochastic hill climbing investigated for \textit{katz-eig}, and the expectation is that simulated annealing might outperform these strategies. \textit{Bayesian optimization} is another promising optimization strategy to try.
 
-These results suggests that \textit{katz-eig} gives very similar recommendations as directly using a SVD-$k$ approximation would, which is what happens when $\beta = 0$. The number of iterations intuitively represents how many links are followed, but if the recommendation quality is the same regardless of the number of iterations, then only one link followed is enough. Recommendations based on SVD is an acknowledged way of generating good predictions \citep{bobadilla2013recommender} so the assumption is reasonable.
-
-Varying $K$ however affects \textit{F-measure} a lot more, as seen in \sectionref{sec:param:katzeig}. Although a bit jagged, the plots indicate a ``hill'' shape which suggests that a hill climbing strategy could be a viable optimization strategy. As seen in \sectionref{sec:param:katzeig} this does seem to be the case as a hill climbing strategy produce nearly as good a result as a full grid search. A variant with random jumps and restarts was also tried but the standard hill climber outperformed the stochastic version.
-
-\textit{Simulated annealing} and \textit{bayesian optimization} are possibly better optimization strategies, especially if other kinds of datasets display a more jagged \textit{F-measure} function space. It would be interesting to try them in future work.
+For future work it would be interesting to examine the performance of optimizing on $K$ for \textit{katz-eig} and on $\gamma$ or on $\gamma$ and $\eta$ for \textit{link-analysis} using simulated annealing and bayesian optimization. The central question is if these strategies can outperform the regular hill climbing algorithm for datasets such as these with very prominent hill shapes.
 
 %Clustering would be nice to explore.
 
 %The lack of an easy cost function to optimize against is a hindrance. In practice calculating the top-10 recommendations is a slow process and a faster way to evaluate the recommendation quality given a set of parameters would give a nice speed improvement.
-
-
-%\section{Algorithm comparisons}
-
-%\textit{Draw overall conclusions of the different algorithms}
-
-%\textit{katz-eig} has much better runtime performance compared to \textit{link-analysis} and generates comparable recommendation quality. \textit{link-analysis} have slightly better quality for sparse datasets, which is supported by the literature. In fact the primary motivation for \textit{link-analysis} is to generate recommendations for sparse data. But still, \textit{katz-eig} gives comparable performance.
-
-%Optimization is very expensive, but generating recommendations for the full datasets for both algorithms are fairly fast. They can both be useful commercially when run offline.
-
-
-%\section{All the rest...}
-
-%\begin{enumerate}
-    %\item ??
-%\end{enumerate}
-
-%\input{discussion/results.tex}
-%\input{discussion/method.tex}
 
