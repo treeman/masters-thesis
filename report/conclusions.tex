@@ -1,6 +1,6 @@
 \chapter{Conclusions}\label{cha:conclusions}
 
-A recommender system with the recommendation algorithms \textit{katz-eig} and \textit{link-analysis} is built and optimization strategies for learning the algorithms' parameters and fit them to different datasets are implemented and evaluated. Interactions in the datasets themselves are analyzed and clusters are found for all datasets.
+A recommender system with the recommendation algorithms \textit{katz-eig} and \textit{link-analysis} is built. Optimization strategies for learning the algorithms' parameters and fit them to different datasets are implemented and evaluated. Interactions in the datasets themselves are analyzed and clusters are found in all datasets.
 
 Recommendation quality is measured using \textit{F-measure} and the effect of varying the different parameters for the algorithms is analyzed. Varying $\beta$ for \textit{katz-eig} has little no effect and \textit{link-analysis} varies mostly depending on the sign with respect to $\eta$. The best parameter optimization strategy for \textit{katz-eig} is to fix $\beta = \| A_{train}\|_2$ and optimize $K$ using a hill climbing algorithm. It gives similar recommendation quality compared to a full grid search but with better speed. Similarly the best optimization strategy for \textit{link-analysis} only examines $\eta = 1$ and $\eta = -1$ while using an adaptive hill climbing algorithm to optimize $\gamma$.
 

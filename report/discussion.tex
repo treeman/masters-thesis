@@ -1,6 +1,6 @@
 \chapter{Discussion}\label{cha:discussion}
 
-This chapter discusses the thesis and future work. The chapter starts by discussing recommender systems in general and the recommender system built for Comordo and gives some possible directions for future work on Comordo's recommender system. Then a discussion of the used datasets with comments about some surprising results for specific datasets. Discussion around the evaluation method for recommendation quality follow with thoughts about other metrics to try in future work follow. The chapter concludes with discussing parameter tunining for the different algorithms with comments about some optimization strategies to be tried in future work.
+This chapter discusses the thesis and future work. The chapter starts by discussing recommender systems in general and the recommender system built for Comordo and gives some possible directions for future work on Comordo's recommender system. After that comes a discussion of the used datasets with comments about some surprising results for specific datasets. Discussion around the evaluation method for recommendation quality follow with thoughts about other metrics to try in future work follow. The chapter concludes with discussing parameter tuning for the different algorithms with comments about some optimization strategies to be tried in future work.
 
 
 \section{Recommender systems}
@@ -17,13 +17,12 @@ The recommender system developed in this thesis is very bare bones compared to s
 
 \subsection{Future work}
 
-The list of features of a modern recommender system could have is large. An important feature is the act of explaining recommendations, which can be seen in both Netflix and Spotify. Netflix notes
-\footnote{
+The list of features of a modern recommender system could have is large. An important feature is the act of explaining recommendations, which can be seen in both Netflix and Spotify. Netflix notes that explanations improve trusts in the recommender system and makes the recommendations more effective \footnote{
 Netflix: Recommendations beyond 5 stars (Part 1), 2012.
 \url{http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html}
-}
-that explanations improve trusts in the recommender system and makes the recommendations more effective. This is also supported in the literature where it is noted that good recommendations should be accompanied with an explanation \citep{hu2008collaborative}.
-The intuition is that if the recommendations come with a note ``Recommended to you because you watched Die Hard'' and if you liked Die Hard you're more likely to value the recommendations.
+}.
+This is also supported in the literature where it is noted that good recommendations should be accompanied with an explanation \citep{hu2008collaborative}.
+The intuition is that if the recommendations come with a note ``Recommended to you because you watched \textit{Die Hard}'' and if you liked \textit{Die Hard} you're more likely to value the recommendations.
 
 Extending Comordo's recommender system with explanations would be a worthwhile direction for future work. Developing algorithms which examine the linked structure could be a possible way of generating explanations, this approach would be especially suited for \textit{link-analysis} but it might also be possible for \textit{katz-eig}. Using a different set of recommendation algorithms with support for explanations \citep{hu2008collaborative} might be another possible approach.
 
