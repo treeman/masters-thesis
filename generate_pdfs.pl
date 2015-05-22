@@ -98,6 +98,7 @@ sub generate_pdf {
         $copy2tmp,
         $pdflatex,
         $bibtex,
+        $pdflatex, # Three fricking times yeah!
         $pdflatex,
         $pdflatex,
         $move_cmd);
