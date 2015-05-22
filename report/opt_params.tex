@@ -1,31 +1,35 @@
 
 \chapter{Optimized parameters}\label{app:opt_params}
 
-During the thesis values of the algorithms' parmaters which would yield good results are used. This section is a summary of optimized values used to get good values of \textit{F-measure} on the corresponding dataset.
+During the thesis values of the algorithms' parameters which would yield good results are used. This section is a summary of optimized values used to get good values of \textit{F-measure} on the corresponding dataset.
 
 \begin{table}[h!]
     \centering
-    \begin{tabular}{| c | c | c | c | c | c | c |}
+    \begin{tabular}{| c | c |}
         \hline
-        \textbf{}   & \textit{alphaS}   & \textit{eswc2015books} & \textit{eswc2015movies} & \textit{eswc2015music} & \textit{movielens1m}   & \textit{romeo} \\ \hline
-        $K$         & 13                & 1                      & 5                       & 4                       & 31                     & 8              \\ \hline
+        \textbf{dataset}                & K \\ \hline
+        \textit{alphaS}         & 13 \\ \hline
+        \textit{eswc2015books}  & 1 \\ \hline
+        \textit{eswc2015movies} & 5 \\ \hline
+        \textit{eswc2015music}  & 4 \\ \hline
+        \textit{movielens1m}    & 31 \\ \hline
+        \textit{romeo}          & 8 \\ \hline
     \end{tabular}
-    \caption{Optimized parameters for \textit{katz-eig}. Found using grid search in $K \leq 100$.}
+    \caption{Optimized parameters for \textit{katz-eig}. $\beta = \|A_{train}\|_2$. Found using grid search over $1 \leq K \leq 100$.}
     \label{tab:katzeig_params_used}
 \end{table}
 
 \begin{table}[h!]
     \centering
-    \begin{tabular}{| c | c | c | c | c | c | }
+    \begin{tabular}{| c | c | c |}
         \hline
-        \textbf{}   & \textit{alphaS}   & \textit{eswc2015books} & \textit{eswc2015movies} & \textit{movielens1m}   & \textit{romeo} \\ \hline
-        $\gamma$    & 1                 & 0                      &                         & 1                      & 2              \\ \hline
-        $\eta$      & 4                 & 2.5                    &                         & -3                     & -5             \\ \hline
+        \textbf{dataset} & \textbf{$\gamma$} & \textbf{$\eta$} \\ \hline
+        \textit{alphaS}         & 1    & 4 \\ \hline
+        \textit{eswc2015books}  & 0    & 2.5 \\ \hline
+        \textit{movielens1m}    & 1    & -3 \\ \hline
+        \textit{romeo}          & 2    & -5 \\ \hline
     \end{tabular}
-    \caption{Optimized parameters for \textit{link-analysis}. Found using grid search over $-10 \leq \gamma \leq 10$ and $-10 \leq \eta \leq 10$ with a step size of 1 (or 0.5 as with \textit{eswc2015books}.}
+    \caption{Optimized parameters for \textit{link-analysis}. Found using grid search over $-10 \leq \gamma \leq 10$ and $-10 \leq \eta \leq 10$ with a step size of 1 (or 0.5 for \textit{eswc2015books}).}
     \label{tab:linkanalysis_params_used}
 \end{table}
-\Warning[TODO]{ How were they found? }
-
-\Warning[TODO]{ Cleanup this one }
 
