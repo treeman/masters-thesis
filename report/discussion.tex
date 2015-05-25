@@ -9,9 +9,9 @@ One of the purposes of this thesis is to lay the foundation of Comordo Technolog
 
 This question is answered by the plugin system described in \sectionref{sec:res:sys}. A dynamic plugin system designed in this way is very flexible and it can accommodate different formats with little programming effort. Input in a standard form is also easy to handle, for example an interaction matrix already created and stored in a ``.mat'' data file, as a standard plugin can handle such a case.
 
-It's not enough to only have support for a standard format as Comordo's e-commerce clients use different formats and different types of data. It's possible multiple files in a non-standard format or some preprocessing are needed to handle data from a client. This makes some customization unavoidable and the plugin system allows for this customization.
+It is not enough to only have support for a standard format as Comordo's e-commerce clients use different formats and different types of data. It is possible multiple files in a non-standard format or some preprocessing are needed to handle data from a client. This makes some customization unavoidable and the plugin system allows for this customization.
 
-The recommender system developed in this thesis is very bare bones compared to some larger commercial examples. It's reasonable as the purpose is to produce a first prototype, or a core, for Comordo Technologies to built upon and extend.
+The recommender system developed in this thesis is very bare bones compared to some larger commercial examples. It is reasonable as the purpose is to produce a first prototype, or a core, for Comordo Technologies to built upon and extend.
 
 %Larger examples of integrated recommender systems include Netflix, Spotify, Youtube and Amazon.
 
@@ -33,9 +33,9 @@ Netflix: Recommendations beyond 5 stars (Part 1), 2012.
 }.
 Diversity is the act of recommending different types of items, in the Netflix example instead of only recommending action movies the recommendations include different genres like drama, animated or horror. This isn't just relevant when several persons share one account but it also accommodates for different moods of a single person.
 
-Including considerations for diversity into Comordo's recommender system is another good direction for the future. It's also something Comordo's clients have shown interest in.
+Including considerations for diversity into Comordo's recommender system is another good direction for the future. It is also something Comordo's clients have shown interest in.
 
-The distinction between offline and online recommender systems is something not considered in the recommender system design by this thesis, but it's an important one. Instead of generating recommendations on a fixed schedule, like once a day, it is desirable to generate recommendations in real time. The way Netflix does it
+The distinction between offline and online recommender systems is something not considered in the recommender system design by this thesis, but it is an important one. Instead of generating recommendations on a fixed schedule, like once a day, it is desirable to generate recommendations in real time. The way Netflix does it
 \footnote{
 Netflix: System Architectures for Personalization and Recommendation, 2013.
 \url{http://techblog.netflix.com/2013/03/system-architectures-for.html}
@@ -88,13 +88,13 @@ The second of the two large parts of the thesis is to analyze and create paramet
 
 First a recommender system around the algorithms is built containing all infrastructure necessary to generate recommendations, see \sectionref{sec:res:sys}. Then the analysis of the parameter space with regards to recommendation quality guides the evaluation of suitable optimization strategies which then completes the parameter optimization part of the thesis.
 
-\textit{katz-eig} generally has much better runtime performance compared to \textit{link-analysis} and generates similar or better recommendation quality. \textit{link-analysis} gives slightly better recommendation quality for sparse datasets. It's expected as the primary motivation for \textit{link-analysis} is to generate recommendations for sparse data, but \textit{katz-eig} still gives comparable recommendations even for these datasets.
+\textit{katz-eig} generally has much better runtime performance compared to \textit{link-analysis} and generates similar or better recommendation quality. \textit{link-analysis} gives slightly better recommendation quality for sparse datasets. It is expected as the primary motivation for \textit{link-analysis} is to generate recommendations for sparse data, but \textit{katz-eig} still gives comparable recommendations even for these datasets.
 
 Optimization is very expensive, but generating recommendations for the full datasets for both algorithms is fairly fast. Both algorithms can both be useful commercially when the recommendations are generated offline. The only reason to use \textit{link-analysis} over \textit{katz-eig} is if a known dataset is very sparse and fairly small otherwise \textit{katz-eig} is the superior choice.
 
 \subsection{Parameters of katz-eig}
 
-The impact of varying $\beta$ is very small, as shown in \sectionref{sec:param:katzeig}. It's surprising as according to the model $\beta$ represents the link dampening.  This means that fixing $\beta$ to a constant value while optimizing over $K$ could give speed improvements while retaining recommendation quality. Another surprising result is that the training curves in \sectionref{sec:training:katz} show that the number of iterations does not have a sizable effect on \textit{F-measure}. There is some improvement, but it's a very minor one.
+The impact of varying $\beta$ is very small, as shown in \sectionref{sec:param:katzeig}. It is surprising as according to the model $\beta$ represents the link dampening.  This means that fixing $\beta$ to a constant value while optimizing over $K$ could give speed improvements while retaining recommendation quality. Another surprising result is that the training curves in \sectionref{sec:training:katz} show that the number of iterations does not have a sizable effect on \textit{F-measure}. There is some improvement, but it is a very minor one.
 
 These results suggests that \textit{katz-eig} gives very similar recommendations as directly using a SVD-$k$ approximation would, which is what happens when $\beta = 0$. The number of iterations intuitively represents how many links are followed, but if the recommendation quality is the same regardless of the number of iterations, then only one link followed is enough. Recommendations based on SVD, or low rank matrix approximation in general, is an acknowledged way of generating good predictions \citep{bobadilla2013recommender} so the assumption is reasonable.
 
@@ -106,7 +106,7 @@ Varying $K$ however affects \textit{F-measure} a lot more, as seen in \sectionre
 
 The paper introducing \textit{link-analysis} \cite{huang2004link} does not include $\eta$ in the description. It is instead introduced by the same authors in a later paper \cite{huang2007comparison} but there it is just set to $\eta = 1$ without further comments or analysis, which is surprising.
 
-The analysis in \sectionref{sec:param:link} shows that $\eta = 1$ is a well performing value. The modelling of \textit{link-analysis} supports it as the most logical value, which probably is why they chose it. When $\eta > 1$ very similar results as $\eta = 1$ are obtained. This can be explained by the algorithm description. The purpose of $\UR_0 = \eta * I_M$ is to keep a high user representativeness score for the user itself. It doesn't matter that much how high the value is, as long as it's higher than the surrounding values. With the normalization step included in the iterations a value of $\eta \geq 1$ makes sure of that. Worth pointing out is that the optimal parameters can have $\eta > 1$, but it's not with a very big margin. Inaccuracy in multiplications is a plausible explanation.
+The analysis in \sectionref{sec:param:link} shows that $\eta = 1$ is a well performing value. The modelling of \textit{link-analysis} supports it as the most logical value, which probably is why they chose it. When $\eta > 1$ very similar results as $\eta = 1$ are obtained. This can be explained by the algorithm description. The purpose of $\UR_0 = \eta * I_M$ is to keep a high user representativeness score for the user itself. It doesn't matter that much how high the value is, as long as it is higher than the surrounding values. With the normalization step included in the iterations a value of $\eta \geq 1$ makes sure of that. Worth pointing out is that the optimal parameters can have $\eta > 1$, but it is not with a very big margin. Inaccuracy in multiplications is a plausible explanation.
 
 More interesting and harder to explain is values $\eta < 0$, which can be even better than $\eta > 0$. I have come to no reasonable explanation and it might be worth investigating further.
 
@@ -118,7 +118,7 @@ This is supported by the tests in \sectionref{sec:tuning:link} which show that a
 
 \subsection{Future work}
 
-Due to time constraints several optimization techniques are not examined by this thesis. Stochastic hill climbing is examined for \textit{katz-eig} but not for \textit{link-analysis}. It's not a very promising strategy as the parameter space still has a clear hill shape, but depending on the exact implementation it could still be a promising technique. The fixed parameters for the examined algorithms were not optimized and performance improvements could be gained by tweaking them more.
+Due to time constraints several optimization techniques are not examined by this thesis. Stochastic hill climbing is examined for \textit{katz-eig} but not for \textit{link-analysis}. It is not a very promising strategy as the parameter space still has a clear hill shape, but depending on the exact implementation it could still be a promising technique. The fixed parameters for the examined algorithms were not optimized and performance improvements could be gained by tweaking them more.
 
 \textit{Simulated annealing} a way of randomly sample, similar to the random sampling and stochastic hill climbing investigated for \textit{katz-eig}, and the expectation is that simulated annealing might outperform these strategies. \textit{Bayesian optimization} is another promising optimization strategy to try.
 

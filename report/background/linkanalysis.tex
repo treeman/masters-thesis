@@ -9,13 +9,13 @@ The original algorithm distinguish between two types of web pages:
     \item \textit{Hub} pages basically are lists of links to the authoritative pages
 \end{enumerate}
 
-The authoritative score of a page is proportional to the hub scores linking to it. Similarly the hub score of a page is proportional to the authoritative scores of the pages it's linking to. These definitions are mutually reinforcing, good hub pages have links to many authoritative pages and good authoritative pages have links from many hubs.
+The authoritative score of a page is proportional to the hub scores linking to it. Similarly the hub score of a page is proportional to the authoritative scores of the pages it is linking to. These definitions are mutually reinforcing, good hub pages have links to many authoritative pages and good authoritative pages have links from many hubs.
 
 Adaptation to the recommendation domain is achieved by introducing the \textit{item representativeness} score $\IR$ and the \textit{user representativeness} score $\UR$. The difference between the recommendation domain and the web page ranking domain is that in the recommendation domain the aim is to produce personal recommendations where as in the web page domain generally popular pages are sought after.
 
-The \textit{item representativeness} score $\IR(i, u)$ can be seen as a measure of the item $i$'s level of interest with respect to user $u$, or in other words $i$'s authority of $u$'s interests in $i$. This is an analogy to the authoritative page score. Intuitively if it's a high score then the item $i$ can be recommended to user $u$.
+The \textit{item representativeness} score $\IR(i, u)$ can be seen as a measure of the item $i$'s level of interest with respect to user $u$, or in other words $i$'s authority of $u$'s interests in $i$. This is an analogy to the authoritative page score. Intuitively if it is a high score then the item $i$ can be recommended to user $u$.
 
-The \textit{user representativeness} score $\UR(u, \hat{u})$ measures how well $u$ as a hub for $\hat{u}$ associates with items of interests to $\hat{u}$. This is analogous to the hub page score. Intuitively it's a measure for how similar the users $u$ and $\hat{u}$ are to each other.
+The \textit{user representativeness} score $\UR(u, \hat{u})$ measures how well $u$ as a hub for $\hat{u}$ associates with items of interests to $\hat{u}$. This is analogous to the hub page score. Intuitively it is a measure for how similar the users $u$ and $\hat{u}$ are to each other.
 
 A direct definition of the item and user representativeness scores is as follows where $A$ is the interaction matrix:
 

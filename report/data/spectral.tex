@@ -87,15 +87,13 @@ The principal idea is that if good clusters can be identified, then the Laplacia
 
 then also the lowest eigenvalues and their related eigenvectors correspond to different clusters. In this case the 3 smallest eigenvalues and eigenvector pair would correspond to each cluster, or block, in $L$.
 
-To be able to identify different clusters, the sorted eigenvalues must have a gap. \Figureref{fig:spec:book:eigv} gives a concrete example for \textit{eswc2015books} (another example of clear clusters is \figureref{fig:spec:alphaS:eigv} for \textit{alphaS}). It is reasonable to expect there to be clear clusters in the adjacency matrix $A_f$, as there is a clear gap in the sorted eigenvalues. Note that this doesn't mean that there are clusters in the interaction matrix $A$, as there is duplicate information in $A_f$. There might be large areas without interactions, but the indexes might correspond to user-user or item-item which will not have any interactions. But it's a reasonable expectation.
+To be able to identify different clusters, the sorted eigenvalues must have a gap. \Figureref{fig:spec:book:eigv} gives a concrete example for \textit{eswc2015books} (another example of clear clusters is \figureref{fig:spec:alphaS:eigv} for \textit{alphaS}). It is reasonable to expect there to be clear clusters in the adjacency matrix $A_f$, as there is a clear gap in the sorted eigenvalues. Note that this doesn't mean that there are clusters in the interaction matrix $A$, as there is duplicate information in $A_f$. There might be large areas without interactions, but the indexes might correspond to user-user or item-item which will not have any interactions. But it is a reasonable expectation.
 
 The subspace to find clusters in is some subset of the eigenvectors corresponding to the smallest eigenvalues. The subspace used here is simply the eigenvector corresponding to the 2nd smallest eigenvalue \footnote{A practical example which used the same subspace is used as a reference. \\
 Spectral Graph Partitioning and the Laplacian with Matlab, 2006. \\
 \url{https://www.cs.purdue.edu/homes/dgleich/demos/matlab/spectral/spectral.html}
 }.
 \Figureref{fig:spec:book:eigsort} displays the adjacency matrix $A_f$ for \textit{eswc2015books} ordered by the ordering used when sorting the subspace. 
-
-%There is some kind of structure in the graph, but it's hard to identify what it represents. The expectation is to find clusters represented by squares along the diagonal and there are some outlines of squares along the diagonal.
 
 \FloatBarrier
 
@@ -106,7 +104,7 @@ Spectral Graph Partitioning and the Laplacian with Matlab, 2006. \\
 {Adjacency matrix $A$ of \textit{eswc2015books}, sorted by the ordering used when sorting the 2nd smallest eigenvector of $L$.}
 {fig:spec:book:eigsort}
 
-The interpretation of \figureref{fig:spec:book:eigv} is that one clear cluster is to be expected due to the gap between the first and second eigenvalue. Some other blurred clusters can be expected as the eigenvalues increase with a decreasing amount. If there are clear clusters the expectation is see square along the diagonal in \figureref{fig:spec:book:eigsort}. There are some horizontal and vertical lines which might be outlines of some triangles, but it's hard to see.
+The interpretation of \figureref{fig:spec:book:eigv} is that one clear cluster is to be expected due to the gap between the first and second eigenvalue. Some other blurred clusters can be expected as the eigenvalues increase with a decreasing amount. If there are clear clusters the expectation is see square along the diagonal in \figureref{fig:spec:book:eigsort}. There are some horizontal and vertical lines which might be outlines of some triangles, but it is hard to see.
 
 If instead of simply sorting the subspace, \textit{k-means} is used to find a clustering in the subspace, and that ordering is then used to reorder the adjacency matrix. \Figureref{fig:spec:book:kmeans} displays the adjacency matrix $A_f$ for \textit{eswc2015books}. 
 
@@ -147,10 +145,10 @@ The large number of zero eigenvalues in \figureref{fig:spec:alphaS:eigv} suggest
 
 \FloatBarrier
 
-The final clustering for \textit{alphaS} in \figureref{fig:spec:alphaS:clust} reveal that \textit{alphaS} does have a large number of distinct clusters.  From the clustering made here it's possible to identify groups of users with specialized interests, with a subset of appealing items. This could possibly be used to identify personas
+The final clustering for \textit{alphaS} in \figureref{fig:spec:alphaS:clust} reveal that \textit{alphaS} does have a large number of distinct clusters.  From the clustering made here it is possible to identify groups of users with specialized interests, with a subset of appealing items. This could possibly be used to identify personas
 \footnote{
 A persona is a description for a class of users or a description of a typical user.
-This is a requested feature from Comordo's e-commerce clients and spectral clustering could form a base for creating or researching personas for a specific dataset. This process however is not automated and it's just a bi-product of this thesis and it's not pursued further.
+This is a requested feature from Comordo's e-commerce clients and spectral clustering could form a base for creating or researching personas for a specific dataset. This process however is not automated and it is just a bi-product of this thesis and not pursued further.
 }
 in the dataset.
 
@@ -192,11 +190,11 @@ The adjacency matrices for the following datasets are not plotted and only the e
 
 \newpage
 
-Clusters are visible in the final clustering of the interaction matrix $A$ for all dataset, but with less clear clustering than for \textit{alphaS}. It's supported by their respective eigenvalue plot, with all datasets have a prominent gap but only a single eigenvalue of zero. \Figureref{fig:spec:romeo:eigv} show that there are two other groups of eigenvalues with a gap between them suggesting there might be more prominent clusters in the dataset, which is supported by the clustering in \figureref{fig:spec:romeo:clust}.
+Clusters are visible in the final clustering of the interaction matrix $A$ for all dataset, but with less clear clustering than for \textit{alphaS}. It is supported by their respective eigenvalue plot, with all datasets have a prominent gap but only a single eigenvalue of zero. \Figureref{fig:spec:romeo:eigv} show that there are two other groups of eigenvalues with a gap between them suggesting there might be more prominent clusters in the dataset, which is supported by the clustering in \figureref{fig:spec:romeo:clust}.
 
 The datasets \textit{eswc2015movies}, \textit{eswc2015music} and \textit{movielens1m} also have clusters but they are messier than that of \textit{romeo} or \textit{alphaS}. Part of the reason is the visualization technique where a sparse interaction matrix will produce a cleaner visualization.
 
 This analysis searched for a fixed number of clusters $k = 10$, with \textit{alphaS} using $k = 15$. It is by no means the optimal number of clusters and there might be more clusters in the datasets and there might fewer but ``better fitting'' clusters. The point of this analysis is not to cluster the datasets in an optimal way, but to examine if the datasets have any clusters.
 
-It's very hard to make recommendations for a dataset without any similarity between users, a random dataset for example, and the existence of clusters show that there is some structure in the dataset which could be used to make predictions. The intuition is that in a well clustered dataset users are tightly coupled with users of similar taste and reduces the noise of outlining interactions and a better approximation of the user's preferences can be made.
+It is very hard to make recommendations for a dataset without any similarity between users, a random dataset for example, and the existence of clusters show that there is some structure in the dataset which could be used to make predictions. The intuition is that in a well clustered dataset users are tightly coupled with users of similar taste and reduces the noise of outlining interactions and a better approximation of the user's preferences can be made.
 
