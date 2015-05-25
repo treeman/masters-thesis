@@ -93,7 +93,7 @@ What follows is a description of each available dataset and where they can be fo
 
         Ratings are transformed to unweighted binary form using \eqref{eq:rating2binary}.
 
-        This is by no means a perfect transformation as a rating of 1 means the user has consumed an item but didn't enjoy it, while our model only concerns itself with interactions. Noise is introduced into the dataset and recommendation quality may suffer. It's also hard to evaluate the performance of the recommendations due to the noise.
+        This is by no means a perfect transformation as a rating of 1 means the user has consumed an item but didn't enjoy it, while our model only concerns itself with interactions. Noise is introduced into the dataset and the recommendations loose relevance with respect to the original unmodified dataset. It is still possible to evaluate recommendation using \textit{F-measure} with respect to the new dataset in unweighted binary form, but no relevant conclusions can be made for the users themselves.
 
         The dataset contains 6040 users with 1000209 ratings for 3706 movies.
 
