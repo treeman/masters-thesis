@@ -4,7 +4,9 @@ A recommender system with the recommendation algorithms \textit{katz-eig} and \t
 
 Recommendation quality is measured using \textit{F-measure} and the effect of varying the different parameters for the algorithms is analyzed. Varying $\beta$ for \textit{katz-eig} has little no effect and \textit{link-analysis} varies mostly depending on the sign with respect to $\eta$. The best parameter optimization strategy for \textit{katz-eig} is to fix $\beta = \| A_{train}\|_2$ and optimize $K$ using a hill climbing algorithm. It gives similar recommendation quality compared to a full grid search but with better speed. Similarly the best optimization strategy for \textit{link-analysis} only examines $\eta = 1$ and $\eta = -1$ while using an adaptive hill climbing algorithm to optimize $\gamma$.
 
-For the available datasets \textit{katz-eig} gives better or comparable recommendation quality compared to \textit{link-analysis}, where \textit{link-analysis} gives slightly better recommendations with sparse datasets. \textit{katz-eig} is superior speed wise.
+%For the available datasets \textit{katz-eig} gives better or comparable recommendation quality compared to \textit{link-analysis}, where \textit{link-analysis} gives slightly better recommendations with sparse datasets. \textit{katz-eig} is superior speed wise.
+
+For the sparse datasets \textit{link-analysis} gives slightly better recommendation quality compared to \textit{katz-eig} and \textit{katz-eig} gives better recommendations for the other less sparse datasets. \textit{katz-eig} is superior speed wise.
 
 For future work \textit{bayesian optimization} and \textit{simulated annealing} could be explored as possibly more efficient optimization strategies.  The recommender system could be extended with regards to diversity and ability to explain the recommendations.
 

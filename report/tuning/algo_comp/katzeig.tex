@@ -32,13 +32,13 @@ The following plots compares the recommendation quality and runtime of the diffe
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{fig/comp/comp_katz_speed.png}
-    \caption{Comparison of the runtime of the different optimization strategies for \textit{katz-eig}, given the optimized parameters specified in \appendixref{app:opt_params}.}
+    \caption{Comparison of the runtime of the different optimization strategies for \textit{katz-eig}, given the optimized parameters specified in \sectionref{sec:opt_params}.}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{fig/comp/comp_katz_speed_log.png}
-    \caption{Comparison of the runtime of the different optimization strategies for \textit{katz-eig}, given the optimized parameters specified in \appendixref{app:opt_params}. In a log scale.}
+    \caption{Comparison of the runtime of the different optimization strategies for \textit{katz-eig}, given the optimized parameters specified in \sectionref{sec:opt_params}. In a log scale.}
 \end{figure}
 
 The runtime is very poor for the grid based approach as expected. The random algorithms also have poor performance, but this could be corrected by reducing the maximum number of samples they try. Reducing them might reduce the recommendation quality which already is worse than that of the regular hill climbing algorithm.

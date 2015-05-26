@@ -5,7 +5,7 @@ Learning curves plots the evaluation metric with respect to a varying training s
 
 The evaluation uses the training matrix $A_{train}$ and the test set matrix $A_{test}$. For each step a random selection of a specific size is selected from $A_{train}$, recommendations are generated and evaluated against the same test set $A_{test}$. The dimensions of the matrices will the same, only the number of non-zero elements are increased with the training set size. This is done 10 times for each training set size as to remove variations from the random selection. Ideally more repetitions should be done but due to time constraints they were not.
 
-Optimized parameters as described in \appendixref{app:opt_params} are used. The plots also describe the standard deviation.
+Optimized parameters as described in \sectionref{sec:opt_params} are used. The plots also describe the standard deviation.
 
 \twopic{fig/learning_curves/alphaS_learning_perf.png}{fig/learning_curves/alphaS_learning_time.png}{
 \textit{alphaS}
