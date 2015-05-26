@@ -7,15 +7,13 @@ What follows is a description of the different optimization strategies evaluated
 
 \begin{description}
     \item[grid]
-        Does a grid search over a subset of $\gamma$ and $\eta$, given a fixed step size. $-10 \leq \gamma \leq 10$ x $-10 \leq \eta \leq 10$ was examined with a step size of 1.
+        Does a \textit{grid search} over a subset of $\gamma$ and $\eta$, given a fixed step size. $-10 \leq \gamma \leq 10$ x $-10 \leq \eta \leq 10$ was examined with a step size of 1.
     %\item[rand]
         %Randomly samples over a subspace of $\gamma$ and $\eta$, given a fixed number of samples.
     \item[adapt-hill]
-        A hill climbing algorithm over both $\gamma$ and $\eta$. It starts with a fixed step size and compares the neighbours. If a local optima is found, the step size is decreased. Continues until a specified function, eta or gamma tolerance has been reached. An initial step size of 1 is used and a $\eta$ tolerance of 1 and a $\gamma$ tolerance of 0.5 is used. The algorithm aborts whenever a function tolerance of $< 0.01$ is reached.
+        An \textit{adaptive hill climbing} algorithm over both $\gamma$ and $\eta$. It starts with a fixed step size and compares the neighbours. If a local optima is found, the step size is decreased. Continues until a specified function, eta or gamma tolerance has been reached. An initial step size of 1 is used and a $\eta$ tolerance of 1 and a $\gamma$ tolerance of 0.5 is used. The algorithm aborts whenever a function tolerance of $< 0.01$ is reached.
     \item[adapt-hill-gamma]
         Similar to \textbf{adapt-hill}, but instead of searching over $\eta$ it keeps $\eta = 1$ and optimizes over $\gamma$. When a local optima is found, $\eta = -1$ is tried.
-    %\item[sim-ann]
-        %Simulated annealing over $\gamma$. Try $\eta = 1$ and $\eta = -1$.
 \end{description}
 
 

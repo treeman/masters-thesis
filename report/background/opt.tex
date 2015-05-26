@@ -46,7 +46,7 @@ Grid search is exhaustive and possibly expensive, random search with a fixed lim
 
 \subsubsection{Hill climbing}
 
-Hill climbing is a technique for finding a local optima from a given starting point. The neighbours of the current state are examined and the state is moved to the neighbour with a better function value until a local optima has been found. Variations for continuous functions exists which decrease the step size dynamically to increase the precision and there are other variations as well. \citep{norvigAI}
+Hill climbing is a technique for finding a local optima from a given starting point. The neighbours of the current state are examined and the state is moved to the neighbour with a better function value until a local optima has been found. For continuous functions a variation called \textbf{adaptive hill climbing} exists which decrease the step size dynamically whenever a local optima is found to increase the precision. Other variations which incorporate random jumps exists, here collectively named \textbf{stochastic hill climbing}. \citep{norvigAI}
 
 
 \subsubsection{Gradient based approaches}

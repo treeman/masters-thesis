@@ -7,13 +7,13 @@ What follows is a description of the different optimization strategies evaluated
 
 \begin{description}
     \item[grid]
-        Does a grid search over $K$, with a fixed step size. $\beta$ is fixed. $1 \leq K \leq 50$ is examined and a step size of 1 is used.
+        Does a \textit{grid search} over $K$, with a fixed step size. $\beta$ is fixed. $1 \leq K \leq 50$ is examined and a step size of 1 is used.
     \item[rand]
-        A random sampling over a subspace of $K$ with a fixed $\beta$. Depends on the size of the subset to sample over and the number of samples. $1 \leq K \leq 50$ is examined and 12 random samples are used meaning 24\% of the subspace is examined.
+        \textit{Random search} over a subspace of $K$ with a fixed $\beta$. Depends on the size of the subset to sample over and the number of samples. $1 \leq K \leq 50$ is examined and 12 random samples are used meaning 24\% of the subspace is examined.
     \item[hill]
-        Hill climbing algorithm using steepest descent which examines the neighbours of $K$ and moves to the best neighbour, will find a local optima. Uses a fixed $\beta$ and a step size of 1 is used.
+        A \textit{hill climbing} algorithm using steepest descent which examines the neighbours of $K$ and moves to the best neighbour, will find a local optima. Uses a fixed $\beta$ and a step size of 1 is used.
     \item[stoch-hill]
-        An extension of the hill climbing algorithm which does a random restart whenever a local optima is found. Also randomly jumps to a random $K$ by a 10\% probability whenever a step is taken. Depends on the random jump probability, the subspace of $K$ and the number of iterations. A step size of 1 is used, the space restriction is $1 \leq K \leq 50$ and 12 samples are used meaning 24\% of the subspace is examined. The algorithm never revisits an old value.
+        A type of \textit{stochastic hill climbing} algorithm which does a random restart whenever a local optima is found. Also randomly jumps to a random $K$ by a 10\% probability whenever a step is taken. Depends on the random jump probability, the subspace of $K$ and the number of iterations. A step size of 1 is used, the space restriction is $1 \leq K \leq 50$ and 12 samples are used meaning 24\% of the subspace is examined. The algorithm never revisits an old value.
 \end{description}
 
 The following plots compares the recommendation quality and runtime of the different optimization strategies.
