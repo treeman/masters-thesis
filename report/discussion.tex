@@ -104,6 +104,8 @@ First a recommender system around the algorithms is built containing all infrast
 
 Optimization is very expensive, but generating recommendations for the full datasets for both algorithms is fairly fast. Both algorithms can both be useful commercially when the recommendations are generated offline. The only reason to use \textit{link-analysis} over \textit{katz-eig} is if a known dataset is very sparse and fairly small otherwise \textit{katz-eig} is the superior choice.
 
+In general gradient descent strategies and in particular the popular stochastic gradient descent... TODO
+
 \subsection{Parameters of katz-eig}
 
 The impact of varying $\beta$ is very small, as shown in \sectionref{sec:param:katzeig}. It is surprising as according to the model $\beta$ represents the link dampening.  This means that fixing $\beta$ to a constant value while optimizing over $K$ could give speed improvements while retaining recommendation quality. Another surprising result is that the training curves in \sectionref{sec:training:katz} show that the number of iterations does not have a sizable effect on \textit{F-measure}. There is some improvement, but it is a very minor one.
