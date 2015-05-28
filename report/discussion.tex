@@ -61,7 +61,11 @@ When Comordo finalizes their remote API the online/offline distinction should be
 
 \section{Datasets}
 
-The datasets \textit{alpha} and \textit{alpha2} are too large to be run on my test setup due to low memory and \textit{eswc2015movies} and \textit{eswc2015music} are not runnable with \textit{link-analysis} as Matlab crashed for unknown reasons when attempts were made. My suspicion is on memory problems there as well. A better setup will be needed to be able to process datasets such as these, or a filtering of the datasets to smaller size would be needed. Optimization of the algorithms with respect to memory usage is not done and improvements could be made.
+At the start of this thesis Comordo did not have access to the client specific datasets \textit{alpha}, \textit{alpha}, \textit{alphaS} and \textit{romeo}, they came later during the work. They are interesting because they are real datasets from Comordo's actual clients which makes them commercially interesting to study. Before acquiring these datasets \textit{movielens1m} was the primary dataset used. It was chosen as it is a real life dataset with many interactions used in other work \citep{niklas}. The datasets \textit{eswc2015books}, \textit{eswc2015movies} and \textit{eswc2015music} are interesting to examine as they form the basis of a recent recommender systems challenge
+\footnote{2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/}}.
+They were included to increase the number of datasets in the study.
+
+The datasets \textit{alpha} and \textit{alpha2} are too large to be run on my test setup due to low memory which is why \textit{alphaS} is used instead. Also \textit{eswc2015movies} and \textit{eswc2015music} are not runnable with \textit{link-analysis} as Matlab crashed for unknown reasons when attempts were made. My suspicion is on memory problems there as well. A better setup will be needed to be able to process datasets such as these, or a filtering of the datasets to smaller size would be needed. Optimization of the algorithms with respect to memory usage outside the scope of this thesis but improvements could be made.
 
 The datasets are examined both with regards to the number of interactions and examined if there are any clusters. \textit{alphaS} is an outlier as it had many users (51\%) with only one interaction. To generate recommendations a list of popular items could be provided and the users could be removed from the training and test sets for a general speedup and keeping the relative recommendation quality as high or possibly higher. The many one-item users explains the requirement for 61\% of all users to be able to reach 95\% of the users in \tableref{tab:top_data}.
 
@@ -89,7 +93,7 @@ Evaluation | 2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \
 
 Another defining feature is that in this thesis only recommendations for new items are generated. This makes sense for some of Comordo's clients as they are concerned with recommending new products, but other businesses might want to recommend old products as well. Modifying the evaluation process to also include old products might change both the performance and the behaviour of the algorithms. This is something which might be pursued more in future work.
 
-The reasoning for evaluating \textit{F-measure} against a top-10 list of recommendations instead of the whole recommendation matrix with some threshold is also because it's most interesting for Comordo and their clients.
+The reasoning for evaluating \textit{F-measure} against a top-10 list of recommendations instead of the whole recommendation matrix with some threshold is also because it's most interesting for Comordo and their clients. A top 10 list was chosen for simplicity instead of evaluating different number of recommendations which would make the analysis more complex and time consuming.
 
 In the end the reasoning for using \textit{F-measure} is one of simplicity. \textit{Precision}, \textit{Recall} and \textit{F-measure} is in some ways the basic way of evaluating recommendations which can form a good basis and other metrics which measure more specific things (like \textit{Diversity}) can complement and extend that basis. This extension is expanded upon more in \sectionref{sec:disc:recsys:future} of future work for Comordo's recommendation system.
 
@@ -104,7 +108,8 @@ First a recommender system around the algorithms is built containing all infrast
 
 Optimization is very expensive, but generating recommendations for the full datasets for both algorithms is fairly fast. Both algorithms can both be useful commercially when the recommendations are generated offline. The only reason to use \textit{link-analysis} over \textit{katz-eig} is if a known dataset is very sparse and fairly small otherwise \textit{katz-eig} is the superior choice.
 
-In general gradient descent strategies and in particular the popular stochastic gradient descent... TODO
+In general gradient descent strategies and in particular the popular stochastic gradient descent were not evaluated as a suitable cost function, with a gradient, for \textit{katz-eig} or \textit{link-analysis} could not be find.
+
 
 \subsection{Parameters of katz-eig}
 
