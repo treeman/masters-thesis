@@ -15,7 +15,7 @@ The recommender system developed in this thesis is very bare bones compared to s
 
 %Larger examples of integrated recommender systems include Netflix, Spotify, Youtube and Amazon.
 
-\subsection{Future work}
+\subsection{Future work}\label{sec:disc:recsys:future}
 
 The list of features of a modern recommender system could have is large. An important feature is the act of explaining recommendations, which can be seen in both Netflix and Spotify. Netflix notes that explanations improve trusts in the recommender system and makes the recommendations more effective \footnote{
 Netflix: Recommendations beyond 5 stars (Part 1), 2012.
@@ -61,15 +61,21 @@ When Comordo finalizes their remote API the online/offline distinction should be
 
 \section{Datasets}
 
-\textit{alpha} and \textit{alpha2} are too large to be run on my test setup due to low memory and \textit{eswc2015movies} and \textit{eswc2015music} are not runnable with \textit{link-analysis} as Matlab crashed for unknown reasons when attempts were made. My suspicion is on memory problems there as well. A better setup will be needed to be able to process datasets such as these, or a filtering of the datasets to smaller size would be needed. Optimization of the algorithms with respect to memory usage is not done and improvements could be made.
+The datasets \textit{alpha} and \textit{alpha2} are too large to be run on my test setup due to low memory and \textit{eswc2015movies} and \textit{eswc2015music} are not runnable with \textit{link-analysis} as Matlab crashed for unknown reasons when attempts were made. My suspicion is on memory problems there as well. A better setup will be needed to be able to process datasets such as these, or a filtering of the datasets to smaller size would be needed. Optimization of the algorithms with respect to memory usage is not done and improvements could be made.
 
 The datasets are examined both with regards to the number of interactions and examined if there are any clusters. \textit{alphaS} is an outlier as it had many users (51\%) with only one interaction. To generate recommendations a list of popular items could be provided and the users could be removed from the training and test sets for a general speedup and keeping the relative recommendation quality as high or possibly higher. The many one-item users explains the requirement for 61\% of all users to be able to reach 95\% of the users in \tableref{tab:top_data}.
 
 The sparsity of data in \textit{alphaS} explains the better recommendation accuracy for \textit{link-analysis} compared to \textit{katz-eig} (\tableref{tab:alg_full_perf}) as \textit{link-analysis} is specifically designed to solve the sparse data problem \citep{huang2004link, huang2007comparison}. Similar results can be seen for \textit{eswc2015books} and in the learning curves for \textit{movielens1m} and \textit{romeo} which supports the claim in the literature.
 
-The optimal parameters for \textit{eswc2015books} are fairly strange. For \textit{katz-eig} $K = 1$ gives the best recommendation quality, but that means the recommendations are given by a rank-1 approximation. I don't have a good explanation for it, a more in-depth look at the dataset and the generated recommendations would be needed.
+The optimal parameters for \textit{eswc2015books} are fairly strange. For \textit{katz-eig} $K = 1$ gives the best recommendation quality, but that means the recommendations are given by a rank-1 approximation. Also for \textit{link-analysis} $\gamma = 0$ gives the best recommendation quality, which means that no penalization of users with many purchases occur. This could be explained by the low variance of the users interaction count. All users have a very similar amount of interactions and the point of $\gamma$ is to penalize the user representativeness score $UR(u, \hat{u})$ if $u$ had more interactions than $\hat{u}$. If they have a similar amount, it doesn't matter.
 
-Also for \textit{link-analysis} $\gamma = 0$ gives the best recommendation quality, which means that no penalization of users with many purchases occur. This could be explained by the low variance of the users interaction count. All users have a very similar amount of interactions and the point of $\gamma$ is to penalize the user representativeness score $UR(u, \hat{u})$ if $u$ had more interactions than $\hat{u}$. If they have a similar amount, it doesn't matter.
+The main motivation for the clustering analysis was to see if \textit{eswc2015books} had any clusters at all, but it turned out it has clusters (see \figureref{fig:spec:book:clust}).  I don't have a good explanation for the strange parameter values for \textit{eswc2015books}, a more in-depth look at the dataset and the generated recommendations would be needed.
+
+Apart from defining a general baseline that all examined datasets have clusters, no other conclusions about the clustering could be drawn. The most clustered dataset \textit{alphaS} receives the lowest \textit{F-measure} and the dataset with the least amount of clear clusters \textit{movielens1m} gets a high \textit{F-measure}, but it's not clear if the clustering is the reason. They are endpoints with respect to sparsity with \textit{alphaS} being the most sparse and \textit{movielens1m} the least.
+
+The bad recommendations for \textit{alphaS} can also be explained by it having a very large percentage of users with very few interactions, which per definition will give a bad \textit{F-measure}. Similar reasons can be given for \textit{eswc2015books}. There most users have less than 10 interactions, but as we're generating a top-10 list of recommendations a large part of the recommendations will not be found matched against the test set and will produce a low \textit{F-measure}.
+
+Better recommendations are generated for \textit{movielens1m} and \textit{romeo}, with both algorithms. Both datasets are larger while being less sparse. The defining difference between datasets with good recommendations and datasets with bad seems to be the sparsity level and the number of interactions per user. Which makes intuitive sense as it is easier to predict for users with more interactions than for users with fewer interactions. Clustering does not seem to be a factor for generating good recommendations.
 
 
 \section{Evaluation}
@@ -80,6 +86,12 @@ Evaluation | 2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \
 \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/tasks/evaluation-service/}
 }.
 \textit{Rank Score} \cite{huang2007comparison} is another metric designed to rate a ranked list, list with the most recommended items, which is what is evaluated in thesis. \textit{Rank Score} and \textit{F-measure} is used to evaluate \textit{link-analysis} \cite{huang2007comparison}. For future work it would be interesting to evaluate \textit{link-analysis} and \textit{katz-eig} using these metrics to see if the parameter analysis differ.
+
+Another defining feature is that in this thesis only recommendations for new items are generated. This makes sense for some of Comordo's clients as they are concerned with recommending new products, but other businesses might want to recommend old products as well. Modifying the evaluation process to also include old products might change both the performance and the behaviour of the algorithms. This is something which might be pursued more in future work.
+
+The reasoning for evaluating \textit{F-measure} against a top-10 list of recommendations instead of the whole recommendation matrix with some threshold is also because it's most interesting for Comordo and their clients.
+
+In the end the reasoning for using \textit{F-measure} is one of simplicity. \textit{Precision}, \textit{Recall} and \textit{F-measure} is in some ways the basic way of evaluating recommendations which can form a good basis and other metrics which measure more specific things (like \textit{Diversity}) can complement and extend that basis. This extension is expanded upon more in \sectionref{sec:disc:recsys:future} of future work for Comordo's recommendation system.
 
 
 \section{Parameter tuning}
