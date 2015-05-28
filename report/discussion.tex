@@ -21,7 +21,7 @@ The list of features of a modern recommender system could have is large. An impo
 Netflix: Recommendations beyond 5 stars (Part 1), 2012.
 \url{http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html}
 }.
-This is also supported in the literature where it is noted that good recommendations should be accompanied with an explanation \citep{hu2008collaborative}.
+This is also supported by the literature which notes the importance of recommendations \citep{hu2008collaborative, tintarev2007survey}.
 The intuition is that if the recommendations come with a note ``Recommended to you because you watched \textit{Die Hard}'' and if you liked \textit{Die Hard} you're more likely to value the recommendations.
 
 Extending Comordo's recommender system with explanations would be a worthwhile direction for future work. Developing algorithms which examine the linked structure could be a possible way of generating explanations, this approach would be especially suited for \textit{link-analysis} but it might also be possible for \textit{katz-eig}. Using a different set of recommendation algorithms with support for explanations \citep{hu2008collaborative} might be another possible approach.
@@ -96,7 +96,7 @@ Optimization is very expensive, but generating recommendations for the full data
 
 The impact of varying $\beta$ is very small, as shown in \sectionref{sec:param:katzeig}. It is surprising as according to the model $\beta$ represents the link dampening.  This means that fixing $\beta$ to a constant value while optimizing over $K$ could give speed improvements while retaining recommendation quality. Another surprising result is that the training curves in \sectionref{sec:training:katz} show that the number of iterations does not have a sizable effect on \textit{F-measure}. There is some improvement, but it is a very minor one.
 
-These results suggests that \textit{katz-eig} gives very similar recommendations as directly using a SVD-$k$ approximation would, which is what happens when $\beta = 0$. The number of iterations intuitively represents how many links are followed, but if the recommendation quality is the same regardless of the number of iterations, then only one link followed is enough. Recommendations based on SVD, or low rank matrix approximation in general, is an acknowledged way of generating good predictions \citep{bobadilla2013recommender} so the assumption is reasonable.
+These results suggests that \textit{katz-eig} gives very similar recommendations as directly using a SVD-$k$ approximation would, which is what happens when $\beta = 0$. The number of iterations intuitively represents how many links are followed, but if the recommendation quality is the same regardless of the number of iterations, then only one link followed is enough. Recommendations based on SVD, or low rank matrix approximation in general, is an acknowledged way of generating good predictions \citep{bobadilla2013recommender, lu2012recommender} so the assumption is reasonable.
 
 The intuition that a low rank approximation could form the direct basis for recommendations is that the effect of a matrix approximation necessarily blurs rows and columns, meaning the user and item interaction history is blurred leading to users with similar interactions are blurred together.
 

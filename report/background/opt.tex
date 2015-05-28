@@ -5,7 +5,7 @@ Most supervised learning algorithms try to minimize a cost function during the l
 
 A simple cost function (without regularization) could be defined as
 
-\begin{equation}
+\begin{equation}\label{eq:simple_cost}
     \min_{r_{u, i}} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - r_{u, i})^2
 \end{equation}
 
@@ -16,7 +16,7 @@ A typical recommendation model associates each user $u$ with a user-factors vect
     \min_{x_*, y_*} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - x_{u}^T y_i)^2
 \end{equation}
 
-where the the optimization objective is $x_u$ and $y_i$. Usually stochastic gradient descent is used to find the parameters \cite{hu2008collaborative}. With regularization a possible cost function could be
+where the the optimization objective is $x_u$ and $y_i$. Usually stochastic gradient descent \psgd is used to find the parameters \cite{hu2008collaborative}. With regularization a possible cost function could be
 
 \begin{equation}\label{eq:exreg}
     \min_{x_*, y_*} \sum_{h_{u,i} \text{ is known} } (h_{u, i} - x_{u}^T y_i)^2 + \lambda(\|x_u\|^2 + \|y_i\|^2)
