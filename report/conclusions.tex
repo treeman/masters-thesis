@@ -1,12 +1,24 @@
 \chapter{Conclusions}\label{cha:conclusions}
 
-A recommender system with the recommendation algorithms \textit{katz-eig} and \textit{link-analysis} is built. Optimization strategies for learning the algorithms' parameters and fit them to different datasets are implemented and evaluated. Interactions in the datasets themselves are analyzed and clusters are found in all datasets.
+A \textit{implicit feedback} recommender system with the recommendation algorithms \textit{katz-eig} and \textit{link-analysis} is built. Optimization strategies for learning the algorithms' parameters and fit them to different datasets are implemented and evaluated.
 
-Recommendation quality is measured using \textit{F-measure} and the effect of varying the different parameters for the algorithms is analyzed. Varying $\beta$ for \textit{katz-eig} has little no effect and \textit{link-analysis} varies mostly depending on the sign with respect to $\eta$. The best parameter optimization strategy for \textit{katz-eig} is to fix $\beta = \| A_{train}\|_2$ and optimize $K$ using a hill climbing algorithm. It gives similar recommendation quality compared to a full grid search but with better speed. Similarly the best optimization strategy for \textit{link-analysis} only examines $\eta = 1$ and $\eta = -1$ while using an adaptive hill climbing algorithm to optimize $\gamma$.
-
-%For the available datasets \textit{katz-eig} gives better or comparable recommendation quality compared to \textit{link-analysis}, where \textit{link-analysis} gives slightly better recommendations with sparse datasets. \textit{katz-eig} is superior speed wise.
-
-For the sparse datasets \textit{link-analysis} gives slightly better recommendation quality compared to \textit{katz-eig} and \textit{katz-eig} gives better recommendations for the other less sparse datasets. \textit{katz-eig} is superior speed wise.
+Recommendation quality is measured using \textit{F-measure} and evaluated on a top 10 list.  For sparse datasets \textit{link-analysis} gives slightly better recommendation quality compared to \textit{katz-eig}, but the performance is comparable. For the other datasets \textit{katz-eig} gives better recommendations. Speed wise \textit{katz-eig} is superior.  As the difference in recommendation quality for sparse datasets is so small \textit{katz-eig} is the best general choice as the recommendations are better for the other datasets and it is generally much faster.  The recommendations are better with datasets which have more interactions and worse for sparse datasets.
 
 For future work \textit{bayesian optimization} and \textit{simulated annealing} could be explored as possibly more efficient optimization strategies.  The recommender system could be extended with regards to diversity and ability to explain the recommendations.
+
+\newpage
+
+This is a summary of the guiding questions posed in \sectionref{sec:intro:questions} with answers.
+
+\textbf{Q:} How can a recommender system be designed to allow for easily extendible input- and output handling?
+
+\textbf{A:} With a plugin system where each plugin correspond to a different format. The developed system is described more in \sectionref{sec:recsys:reader}.
+
+
+\textbf{Q:} How can learning and recommendation using \textit{link-analysis} and \textit{katz-eig} be performed in practice, with regards to speed and recommendation quality?
+How shall learning and optimization of their parameters be done?
+
+\textbf{A:} Using a recommender system as described in \sectionref{sec:res:sys} learning and recommending can be accomplished in a general way.
+
+Varying $\beta$ for \textit{katz-eig} has little no effect and \textit{link-analysis} varies mostly depending on the sign with respect to $\eta$. The best parameter optimization strategy for \textit{katz-eig} is to fix $\beta = \| A_{train}\|_2$ and optimize $K$ using a hill climbing algorithm. It gives similar recommendation quality compared to a full grid search but with better speed. Similarly the best optimization strategy for \textit{link-analysis} only examines $\eta = 1$ and $\eta = -1$ while using an adaptive hill climbing algorithm to optimize $\gamma$.
 

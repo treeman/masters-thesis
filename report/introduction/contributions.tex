@@ -3,7 +3,11 @@
 
 A first version of Comordo's recommender system is built based around the recommender algorithms \textit{katz-eig} and \textit{link-analysis} with parameter optimization and flexible input- and output handling. The designed system can later be built upon and extended.
 
-The parameter space over \textit{F-measure} for \textit{katz-eig} and \textit{link-analysis} is analyzed and for these datasets changes in $\beta$ for \textit{katz-eig}  have negligible effect. There are two plateaus at $\eta < 0$ and $\eta > 0$ for \textit{link-analysis} and either one can give a global maximum.
+The parameter space over \textit{F-measure} for \textit{katz-eig} and \textit{link-analysis} is analyzed for these datasets. An effective parameter optimization strategy for \textit{katz-eig} is to fix $\beta$ and to optimize $K$ using a hill climbing algorithm. Similarly for \textit{link-analysis} a good strategy is to fix $\eta$ and optimize $\gamma$ using an adaptive hill climbing algorithm.
 
-An effective parameter optimization strategy for \textit{katz-eig} is to fix $\beta = \| A_{train} \|_2$ and optimize $K$ using a hill climbing algorithm. For \textit{link-analysis} an effective strategy is to set $\eta = 1$ or $\eta = -1$ and optimize $\gamma$ using an adaptive hill climbing algorithm.
+For sparse datasets \textit{link-analysis} gives slightly better recommendations and for the other datasets \textit{katz-eig} gives better recommendations. Speed wise \textit{katz-eig} is superior. As the difference in recommendation quality for sparse datasets is so small \textit{katz-eig} is the best general choice as the recommendations are better for the other datasets and it is generally much faster.  The recommendations are better with datasets which have more interactions and worse for sparse datasets.
+
+%The parameter space over \textit{F-measure} for \textit{katz-eig} and \textit{link-analysis} is analyzed and for these datasets changes in $\beta$ for \textit{katz-eig}  have negligible effect. There are two plateaus at $\eta < 0$ and $\eta > 0$ for \textit{link-analysis} and either one can give a global maximum.
+
+%An effective parameter optimization strategy for \textit{katz-eig} is to fix $\beta = \| A_{train} \|_2$ and optimize $K$ using a hill climbing algorithm. For \textit{link-analysis} an effective strategy is to set $\eta = 1$ or $\eta = -1$ and optimize $\gamma$ using an adaptive hill climbing algorithm.
 
