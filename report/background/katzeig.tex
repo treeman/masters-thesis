@@ -10,7 +10,7 @@ where $I$ is the identity matrix. The intuition is that for each iteration $t$, 
 
 The problem with this definition is computational complexity, computing the Katz measure takes $\BigO{n^3}$ time which is not practical for large matrices. This is why the Singular Value Decomposition (SVD) is used.
 
-$A$ can be approximated by a rank $k$ SVD so $A \approx U * S * V^T$. $S$ is a $k\,x\,k$ diagonal matrix with the elements representing the $k$ largest singular values. Then the Katz measure can be approximated by
+$A$ can be approximated by a rank $k$ SVD so $A \approx U * S * V^T$. $S$ is a $k$ x $k$ diagonal matrix with the elements representing the $k$ largest singular values. Then the Katz measure can be approximated by
 
 \begin{equation}
     P = \sum_{t=1}^{\infty} \beta^t A^t
@@ -18,7 +18,7 @@ $A$ can be approximated by a rank $k$ SVD so $A \approx U * S * V^T$. $S$ is a $
     \approx U \left( \sum_{t=1}^{\infty} \beta^t S^t \right) V^T
 \end{equation}
 
-Exponentiation is moved from the large interaction matrix $A$ to the small $k\,x\,k$ diagonal matrix $S$ which makes the iterative part of the algorithm very fast. Much of the information about the matrix is still contained in $U$ and $V$. The complexity of the algorithm is now on calculating the SVD approximation.
+Exponentiation is moved from the large interaction matrix $A$ to the small $k$ x $k$ diagonal matrix $S$ which makes the iterative part of the algorithm very fast. Much of the information about the matrix is still contained in $U$ and $V$. The complexity of the algorithm is now on calculating the SVD approximation.
 
 \newpage
 Concretely the \textit{katz-eig} algorithm follow these steps:

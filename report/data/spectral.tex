@@ -14,7 +14,7 @@ charlesmartin14: Spectral Clustering: A quick overview, 2012. \\
     \item Form clusters in the subspace
 \end{enumerate}
 
-In our particular case, the interaction matrix $A$ is defined as rows corresponding to users and columns corresponding to items. The affinity matrix needs to be square, but the interaction matrix is not. There are other more complex ways of creating an affinity matrix, but for this purpose modelling an adjacency matrix is sufficient.
+In our particular case, the interaction matrix $A$ is defined as rows corresponding to users and columns corresponding to items. The affinity matrix needs to be square, but the interaction matrix does not. There are other more complex ways of creating an affinity matrix, but for this purpose modelling an adjacency matrix is sufficient.
 
 A transformation from the interaction matrix $A$ to the adjacency matrix $A_{f}$ is made by having both users and items as both row and column indices and mirroring the interactions. $A_{f}$ will then be a symmetric, square matrix. Equation \eqref{eq:make_adj} illustrates an example of the matrix structure and \figureref{fig:spec:book:matrix} gives a concrete example for \textit{eswc2015books}.
 
@@ -196,5 +196,5 @@ The datasets \textit{eswc2015movies}, \textit{eswc2015music} and \textit{moviele
 
 This analysis searched for a fixed number of clusters $k = 10$, with \textit{alphaS} using $k = 15$. It is by no means the optimal number of clusters and there might be more clusters in the datasets and there might fewer but ``better fitting'' clusters. The point of this analysis is not to cluster the datasets in an optimal way, but to examine if the datasets have any clusters.
 
-It is very hard to make recommendations for a dataset without any similarity between users, a random dataset for example, and the existence of clusters show that there is some structure in the dataset which could be used to make predictions. The intuition is that in a well clustered dataset users are tightly coupled with users of similar taste and reduces the noise of outlining interactions and a better approximation of the user's preferences can be made.
+It is very hard to make recommendations for a dataset without any similarity between users, a random dataset for example, and the existence of clusters shows that there is certain structure in the dataset which could be used to make predictions. The intuition is that in a well clustered dataset users are tightly coupled with users of similar taste and reduces the noise of outlining interactions and a better approximation of the user's preferences can be made.
 

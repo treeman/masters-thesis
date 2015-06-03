@@ -20,5 +20,5 @@ How shall learning and optimization of their parameters be done?
 
 \textbf{A:} Using a recommender system as described in \sectionref{sec:res:sys} learning and recommending can be accomplished in a general way.
 
-Varying $\beta$ for \textit{katz-eig} has little no effect and \textit{link-analysis} varies mostly depending on the sign with respect to $\eta$. The best parameter optimization strategy for \textit{katz-eig} is to fix $\beta = \| A_{train}\|_2$ and optimize $K$ using a hill climbing algorithm. It gives similar recommendation quality compared to a full grid search but with better speed. Similarly the best optimization strategy for \textit{link-analysis} only examines $\eta = 1$ and $\eta = -1$ while using an adaptive hill climbing algorithm to optimize $\gamma$.
+Varying $\beta$ for \textit{katz-eig} has little to no effect and \textit{link-analysis} varies mostly depending on the sign with respect to $\eta$. The best parameter optimization strategy for \textit{katz-eig} is to fix $\beta = \| A_{train}\|_2$ and optimize $K$ using a hill climbing algorithm. It gives similar recommendation quality compared to a full grid search but with better speed. Similarly the best optimization strategy for \textit{link-analysis} only examines $\eta = 1$ and $\eta = -1$ while using an adaptive hill climbing algorithm to optimize $\gamma$.
 

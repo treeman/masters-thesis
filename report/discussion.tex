@@ -89,7 +89,7 @@ Different types of evaluation metrics have been used throughout the literature. 
 Evaluation | 2nd Linked Open Data-enabled Recommender Systems Challenge, 2015. \\
 \url{http://sisinflab.poliba.it/events/lod-recsys-challenge-2015/tasks/evaluation-service/}
 }.
-\textit{Rank Score} \cite{huang2007comparison} is another metric designed to rate a ranked list, list with the most recommended items, which is what is evaluated in thesis. \textit{Rank Score} and \textit{F-measure} is used to evaluate \textit{link-analysis} \cite{huang2007comparison}. For future work it would be interesting to evaluate \textit{link-analysis} and \textit{katz-eig} using these metrics to see if the parameter analysis differ.
+\textit{Rank Score} \cite{huang2007comparison} is another metric designed to rate a ranked list, list with the most recommended items, which is evaluated in thesis. \textit{Rank Score} and \textit{F-measure} is used to evaluate \textit{link-analysis} \cite{huang2007comparison}. For future work it would be interesting to evaluate \textit{link-analysis} and \textit{katz-eig} using these metrics to see if the parameter analysis differ.
 
 Another defining feature is that in this thesis only recommendations for new items are generated. This makes sense for some of Comordo's clients as they are concerned with recommending new products, but other businesses might want to recommend old products as well. Modifying the evaluation process to also include old products might change both the performance and the behaviour of the algorithms. This is something which might be pursued more in future work.
 
@@ -127,11 +127,11 @@ The paper introducing \textit{link-analysis} \cite{huang2004link} does not inclu
 
 The analysis in \sectionref{sec:param:link} shows that $\eta = 1$ is a well performing value. The modelling of \textit{link-analysis} supports it as the most logical value, which probably is why they chose it. When $\eta > 1$ very similar results as $\eta = 1$ are obtained. This can be explained by the algorithm description. The purpose of $\UR_0 = \eta * I_M$ is to keep a high user representativeness score for the user itself. It doesn't matter that much how high the value is, as long as it is higher than the surrounding values. With the normalization step included in the iterations a value of $\eta \geq 1$ makes sure of that. Worth pointing out is that the optimal parameters can have $\eta > 1$, but it is not with a very big margin. Inaccuracy in multiplications is a plausible explanation.
 
-More interesting and harder to explain is values $\eta < 0$, which can be even better than $\eta > 0$. I have come to no reasonable explanation and it might be worth investigating further.
+More interesting and harder to explain is values $\eta < 0$, which can be even better than $\eta > 0$. I have found no reasonable explanation and it might be worth investigating further.
 
 The same papers \cite{huang2004link, huang2007comparison} mentions that investigations with $0 \leq \gamma \leq 1$ have been made and then a value of 0.9 was a good value. My investigations include a larger interval and optimal values for $\gamma$ can be found outside that range, \textit{romeo} has a local maxima with $\gamma = 2$. The findings in this thesis however do support the claim that 0.9 is a reasonably good value.
 
-Analysis of $\gamma$ in \sectionref{sec:param:link} suggests that \textit{F-measure} is almost convex with a clear ``hill'' in the function space. There are small local maxima however but as a whole it follows a clear hill form. This suggests that a hill climbing optimization strategy might perform well for these datasets. It might also be worthwhile to keep $\eta$ fixed as is done in \cite{huang2004link, huang2007comparison}.
+Analysis of $\gamma$ in \sectionref{sec:param:link} suggests that \textit{F-measure} is almost convex with a clear ``hill'' in the function space. There are small local maxima but as a whole it follows a clear hill form. This suggests that a hill climbing optimization strategy might perform well for these datasets. It might also be worthwhile to keep $\eta$ fixed as is done in \cite{huang2004link, huang2007comparison}.
 
 This is supported by the tests in \sectionref{sec:tuning:link} which show that an adaptive hill climbing strategy produce recommendations almost as good as a full blown grid search in only a fraction of the time needed. The difference in recommendation quality between optimizing over both $\gamma$ and $\eta$ compared to just optimizing over $\gamma$ while $\eta = 1 \text{ or } -1$ is small, but the runtime difference is not.
 
@@ -139,7 +139,7 @@ This is supported by the tests in \sectionref{sec:tuning:link} which show that a
 
 Due to time constraints several optimization techniques are not examined by this thesis. Stochastic hill climbing is examined for \textit{katz-eig} but not for \textit{link-analysis}. It is not a very promising strategy as the parameter space still has a clear hill shape, but depending on the exact implementation it could still be a promising technique. The fixed parameters for the examined algorithms were not optimized and performance improvements could be gained by tweaking them more.
 
-\textit{Simulated annealing} a way of randomly sample, similar to the random sampling and stochastic hill climbing investigated for \textit{katz-eig}, and the expectation is that simulated annealing might outperform these strategies. \textit{Bayesian optimization} is another promising optimization strategy to try.
+\textit{Simulated annealing} is a way of randomly sample, similar to the random sampling and stochastic hill climbing investigated for \textit{katz-eig}, and the expectation is that simulated annealing might outperform these strategies. \textit{Bayesian optimization} is another promising optimization strategy to try.
 
 For future work it would be interesting to examine the performance of optimizing on $K$ for \textit{katz-eig} and on $\gamma$ or on $\gamma$ and $\eta$ for \textit{link-analysis} using simulated annealing and bayesian optimization. The central question is if these strategies can outperform the regular hill climbing algorithm for datasets such as these with very prominent hill shapes.
 

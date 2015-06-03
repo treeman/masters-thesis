@@ -4,7 +4,7 @@
 This is the clustering process used to cluster on a user level with \textit{k-means}. The goal is to reorder the users so similar users are situated next to each other in the interaction matrix $A$.
 
 \begin{enumerate}
-    \item Approximate the interaction matrix $A$ by a rank $k$ SVD approximation, $U * S * V'$ where $S$ is a $k\,x\,k$ matrix representing the $k$ largest singular values.
+    \item Approximate the interaction matrix $A$ by a rank $k$ SVD approximation, $U * S * V'$ where $S$ is a $k$ x $k$ matrix representing the $k$ largest singular values.
     \item Locate $k$ clusters with \textit{k-means}, operating on $U * S$.
     \item Reorder the rows, representing the users, in $A$ using the clustering information.
 \end{enumerate}
@@ -25,7 +25,7 @@ If there are visible clusters the expected thing to see is horizontal bands of s
 
 \FloatBarrier
 
-In \textit{alphaS} there are some clusters whith relatively few item interactions, but the other clusters aren't very prominent. Both \textit{alpha} and \textit{alpha2} are so large the resolution isn't enough to capture any individual data points so their plots doesn't show anything of value so they are not included here.
+In \textit{alphaS} there are some clusters whith relatively few item interactions, but the other clusters aren't very prominent. Both \textit{alpha} and \textit{alpha2} are so large the resolution isn't enough to capture any individual data points so their plots don't show anything of value so they are not included here.
 \textit{eswc2015books} doesn't seem to have any major clusters, the dataset doesn't appear to have any structure except for a few streaks of very popular items.
 
 \twodiffpic{fig/data/eswc2015movies_10-clusters.png}{\textit{eswc2015movies}}
@@ -38,7 +38,7 @@ In \textit{alphaS} there are some clusters whith relatively few item interaction
 
 \FloatBarrier
 
-Although it possible to discern some structure or some structures from the clustering plots, it is not so clear. The following plots does the same clustering on the user level, but they also sort the items with the most popular item to the left.
+Although it is possible to discern some structure from the clustering plots, it is not so clear. The following plots does the same clustering on the user level, but they also sort the items with the most popular item to the left.
 
 \FloatBarrier
 

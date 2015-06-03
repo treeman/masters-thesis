@@ -23,7 +23,7 @@ Optimized parameters as described in \sectionref{sec:opt_params} are used. The p
 
 As the recommendation performance increase with increasing training size the learning process can be said to be working.
 
-A notable observation about the runtime is that the runtime for \textit{link-analysis} increases almost linearly with the increase in training set size, the runtime for \textit{katz-eig} is almost indifferent. This is to be expected as \textit{katz-eig} operates on a low-rank approximation of the interaction matrix $A_{train}$ while \textit{link-analysis} operates directly on the matrix. The sparse matrix format (\sectionref{sec:background:theory:model}) which discards zero elements during calculations is computationally more complex as the sparsity decreases.
+A notable observation about the runtime is that for \textit{link-analysis} it increases almost linearly with the increase in training set size, the runtime for \textit{katz-eig} is almost independent of the training set size. This is to be expected as \textit{katz-eig} operates on a low-rank approximation of the interaction matrix $A_{train}$ while \textit{link-analysis} operates directly on the matrix. The sparse matrix format (\sectionref{sec:background:theory:model}) which discards zero elements during calculations is computationally more complex as the sparsity decreases.
 
 Another observation is that \textit{link-analysis} seems to generate better recommendations for the sparse datasets \textit{alphaS} and \textit{eswc2015books} and also for \textit{movielens1m} and \textit{romeo} a short while when the training size was smaller.
 
