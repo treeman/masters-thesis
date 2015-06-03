@@ -34,6 +34,7 @@ mkdir $tmp_dir unless -d $tmp_dir;
 my %files = (
     planning => ["planning/report.tex", "planning-report.pdf", 0],
     report => ["report/main.tex", "report.pdf", 1],
+    reflektion => ["reflektion/report.tex", "reflektion.pdf", 0],
 );
 
 # Normalize paths
